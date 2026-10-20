@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(~/.config/controllable_agent/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.kube/**)",
+      "Bash(sudo *)",
+      "Bash(cat ~/.config/controllable_agent/*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Edit(~/legacy/**)",
+      "Edit(~/agent-containment-lab/**)"
+    ]
+  }
+}

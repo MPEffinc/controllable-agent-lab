@@ -8,7 +8,14 @@ __pycache__/
 *.pyc
 kubeconfig*
 *.kubeconfig
-external/
-runs/s02/db/
-.claude/settings.local.json
 *.log
+.claude/settings.local.json
+
+# 업스트림 클론(수정 금지, 커밋 해시는 env/sregym/UPSTREAM_COMMIT 에 기록)
+third_party/
+
+# 원시 출력(커밋 금지). 커밋용 요약은 docs/reports/
+local/
+
+# legacy/lab-v0 실행 산출물(세계 DB)
+legacy/lab-v0/runs/s02/db/

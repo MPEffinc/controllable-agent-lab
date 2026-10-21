@@ -82,7 +82,7 @@ async def main_async(a) -> dict:
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--problem", required=True)
-    p.add_argument("--agent", choices=["dummy", "single"], required=True)
+    p.add_argument("--agent", choices=["dummy", "single", "split"], required=True)
     p.add_argument("--rep", type=int, required=True)
     p.add_argument("--outdir", required=True)
     p.add_argument("--max-turns", type=int, default=25)

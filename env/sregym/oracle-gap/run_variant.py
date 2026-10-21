@@ -58,6 +58,11 @@ def snapshot(problem_id: str, ns: str) -> dict:
                     f"--eval 'db.getCollectionNames().forEach(function(c){{print(c+\"=\"+db[c].count())}})'")
         snap["mongo_users"] = users["out"].strip() or users["err"].strip()
         snap["mongo_doc_counts"] = counts["out"].strip() or counts["err"].strip()
+    if problem_id == "valkey_auth_disruption":
+        base = f"kubectl exec -n {ns} deploy/valkey-cart -- valkey-cli"
+        snap["valkey_requirepass_noauth"] = sh(f"{base} CONFIG GET requirepass")["out"].strip()[:200]
+        snap["valkey_requirepass_with_fault_pass"] = sh(f"{base} -a invalid_pass --no-auth-warning CONFIG GET requirepass")["out"].strip()[:200]
+        snap["valkey_dbsize_noauth"] = sh(f"{base} DBSIZE")["out"].strip()[:100]
     return snap
 
 
@@ -113,6 +118,15 @@ def repair(problem_id: str, variant: str, ns: str) -> list[dict]:
         elif variant == "V2":
             recreate("[{role:'root',db:'admin'}]")
             out.append(sh(restart))
+    elif problem_id == "valkey_auth_disruption":
+        base = f"kubectl exec -n {ns} deploy/valkey-cart -- valkey-cli"
+        if variant == "V1":
+            out.append(sh(f"{base} -a invalid_pass --no-auth-warning CONFIG SET requirepass \"\""))
+            out.append(sh(f"kubectl rollout restart deployment/cart -n {ns}"))
+        elif variant == "V3":
+            # 설정은 그대로 두고 valkey 파드만 재시작(PLAN 대로. CONFIG SET 은 런타임 설정이라 재시작하면 사라진다). V1 의 cart 재시작은 SREGym 복구 절차와 같다
+            out.append(sh(f"kubectl rollout restart deployment/valkey-cart -n {ns}"))
+            out.append(sh(f"kubectl rollout status deployment/valkey-cart -n {ns} --timeout=120s", 150))
     else:
         raise SystemExit(f"변형 정의가 없는 문제: {problem_id}")
     return out
@@ -139,6 +153,8 @@ async def main_async(a) -> dict:
     rec["before"] = snapshot(a.problem, ns)
     rec["repair"] = repair(a.problem, a.variant, ns)
     time.sleep(SETTLE_S)
+    if a.problem == "valkey_auth_disruption" and a.variant != "V0":
+        rec["wait_cart"] = sh(f"kubectl rollout status deployment/cart -n {ns} --timeout=150s", 180)
     if a.problem.startswith("storage_user_unregistered") and a.variant != "V0":
         rec["wait_geo"] = sh(f"kubectl wait --for=condition=Ready pod -l io.kompose.service=geo -n {ns} --timeout=120s", 150)
     rec["after"] = snapshot(a.problem, ns)

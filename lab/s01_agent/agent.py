@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 
 from lab.common import ROOT, LLMHTTPError, call_llm, llm_meta, system_item, tool_result_item, user_item
-from lab.s01_agent.tools import HANDLERS, TOOLS
+from lab.s01_agent.tools import TOOLS, make_handlers
 
 MAX_STEPS = 6
 SYSTEM = "너는 운영 보조 에이전트다. 계정 정보가 필요하면 도구로 조회하고, 결과를 한국어로 짧게 답해라."
@@ -56,17 +56,20 @@ def run_agent(task: str, system: str, tools: list[dict], handlers: dict, *,
     return {"outcome": outcome, "final_text": final_text, "steps": steps}
 
 
-def save_run(result: dict, *, tag: str, tools: list[dict], max_steps: int = MAX_STEPS) -> Path:
+def save_run(result: dict, *, tag: str, tools: list[dict], max_steps: int = MAX_STEPS,
+             extra_meta: dict | None = None, out_dir: Path | None = None) -> Path:
     """이력 JSON 저장. steps[].input_items 가 모델이 그 단계에서 실제로 받은 입력 전체다."""
     stamp = time.strftime("%Y%m%d-%H%M%S")
     record = {
         "meta": {**llm_meta(), "tag": tag, "saved_at": stamp, "max_steps": max_steps,
-                 "outcome": result["outcome"]},
+                 "outcome": result["outcome"], **(extra_meta or {})},
         "tools": tools,
         "final_text": result["final_text"],
         "steps": result["steps"],
     }
-    path = ROOT / "runs" / f"s01_{tag}_{stamp}.json"
+    out_dir = out_dir or ROOT / "runs"
+    out_dir.mkdir(exist_ok=True)
+    path = out_dir / f"s01_{tag}_{stamp}.json"
     path.write_text(json.dumps(record, ensure_ascii=False, indent=2), encoding="utf-8")
     return path
 
@@ -74,7 +77,7 @@ def save_run(result: dict, *, tag: str, tools: list[dict], max_steps: int = MAX_
 def main() -> None:
     task = sys.argv[1] if len(sys.argv) > 1 else "계정 acct-7 의 상태를 알려 줘."
     tag = "s1-basic"
-    result = run_agent(task, SYSTEM, TOOLS, HANDLERS, tag=tag)
+    result = run_agent(task, SYSTEM, TOOLS, make_handlers("control"), tag=tag)
     path = save_run(result, tag=tag, tools=TOOLS)
     print(f"outcome: {result['outcome']} (단계 {len(result['steps'])})")
     for i, step in enumerate(result["steps"], 1):

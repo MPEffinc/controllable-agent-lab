@@ -83,6 +83,15 @@ def reasoning_effort() -> str:
     return os.environ.get("LLM_REASONING_EFFORT") or "default"
 
 
+def set_reasoning_effort(effort: str) -> None:
+    """'default' 는 LLM_REASONING_EFFORT 미설정(서버 기본값)을 뜻한다. llm.env 를 먼저 읽어 둔다."""
+    _load_env()
+    if effort == "default":
+        os.environ.pop("LLM_REASONING_EFFORT", None)
+    else:
+        os.environ["LLM_REASONING_EFFORT"] = effort
+
+
 def max_output_tokens() -> int:
     _load_env()
     return int(os.environ.get("LAB_MAX_OUTPUT_TOKENS", 25000))

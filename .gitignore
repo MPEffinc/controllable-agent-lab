@@ -9,5 +9,6 @@ __pycache__/
 kubeconfig*
 *.kubeconfig
 external/
+runs/s02/db/
 .claude/settings.local.json
 *.log

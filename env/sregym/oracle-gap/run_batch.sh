@@ -9,8 +9,12 @@ PROBLEM="$1"; shift; VARIANTS=("$@")
 mkdir -p "$OUT"
 log() { echo "$(date -Is) $*" >> "$PROG"; }
 
+# 야간 지시: 시작(2026-10-21T14:00:39Z) 후 8시간이 지나면 새 작업을 시작하지 않는다.
+DEADLINE_EPOCH=$(date -d '2026-10-21T22:00:39Z' +%s)
+
 limits_ok() {
   local mem disk
+  if [ "$(date +%s)" -ge "$DEADLINE_EPOCH" ]; then log "P2 8시간 한도 도달: 새 작업을 시작하지 않음"; return 1; fi
   mem=$(free -g | awk '/^Mem:/{print $7}'); disk=$(df -BG --output=avail / | tail -1 | tr -dc 0-9)
   if [ "$mem" -lt 6 ] || [ "$disk" -lt 30 ]; then log "P2 한도 위반(가용메모리 ${mem}GiB, 디스크 ${disk}GB): 배치 중단"; return 1; fi
   return 0

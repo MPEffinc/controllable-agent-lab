@@ -71,7 +71,7 @@
 - 게이트 규칙, 판정기, 데이터 생성처럼 LLM 이 필요 없는 부분은 LLM 을 쓰지 않는다.
 
 ## 환경
-- 이 VM: Ubuntu 22.04, 8 vCPU, 메모리 15GiB, GPU 없음(12 vCPU·32GiB 증설 예정). 외부 API로 모델을 호출한다.
+- 이 VM: Ubuntu 22.04, 8 vCPU, 메모리 31GiB(증설 완료), GPU 없음(vCPU 는 8, 12 로 증설 예정). 외부 API로 모델을 호출한다.
 - 도구는 ~/.local/bin 에 설치한다(uv, kind, helm). 상세 버전은 docs/reports/ 의 사전 점검 보고서를 본다.
 
 ## 설명 방식 (사용자에게 설명·보고할 때)

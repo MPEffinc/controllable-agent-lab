@@ -2,6 +2,7 @@
 import functools
 import json
 import os
+import sys
 import time
 from pathlib import Path
 
@@ -13,9 +14,14 @@ USAGE_LOG = ROOT / "runs" / "usage.jsonl"
 ERROR_LOG = ROOT / "runs" / "llm_errors.jsonl"
 LLM_ENV = Path.home() / ".config" / "controllable_agent" / "llm.env"
 
+# 가격 (USD / 100만 토큰). 2026-10-21 확인. 제3자 요약 기준이므로 OpenAI 가격 페이지로 재확인 필요.
+PRICE_INPUT = 0.10
+PRICE_CACHED_INPUT = 0.01
+PRICE_OUTPUT = 0.50
+
 
 class TokenBudgetExceeded(Exception):
-    """누적 토큰이 LAB_MAX_TOKENS 에 도달했다."""
+    """누적 USD 가 LAB_MAX_USD 에, 또는 누적 토큰이 LAB_MAX_TOKENS 에 도달했다."""
 
 
 class LLMHTTPError(Exception):
@@ -37,14 +43,33 @@ def _append_jsonl(path: Path, record: dict) -> None:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
-def _used_tokens() -> int:
-    if not USAGE_LOG.exists():
-        return 0
-    total = 0
-    for line in USAGE_LOG.read_text(encoding="utf-8").splitlines():
-        rec = json.loads(line)
-        total += rec["input_tokens"] + rec["output_tokens"]
-    return total
+def _usd(input_tokens: int, cached_tokens: int, output_tokens: int) -> float:
+    """캐시 입력은 입력 토큰의 부분집합, 출력 토큰에는 추론 토큰이 포함된 것으로 계산한다."""
+    uncached = input_tokens - cached_tokens
+    return round((uncached * PRICE_INPUT + cached_tokens * PRICE_CACHED_INPUT
+                  + output_tokens * PRICE_OUTPUT) / 1_000_000, 9)
+
+
+def _usage_totals() -> tuple[int, float]:
+    """usage.jsonl 의 (누적 토큰, 누적 USD). usd_estimate 가 없는 옛 줄은 토큰으로 계산한다."""
+    tokens, usd = 0, 0.0
+    if USAGE_LOG.exists():
+        for line in USAGE_LOG.read_text(encoding="utf-8").splitlines():
+            rec = json.loads(line)
+            tokens += rec["input_tokens"] + rec["output_tokens"]
+            usd += rec.get("usd_estimate", _usd(rec["input_tokens"], 0, rec["output_tokens"]))
+    return tokens, usd
+
+
+def _anomaly(usage: dict, requested_max: int) -> str | None:
+    """응답 usage 가 이상하면 사유 문자열, 정상이면 None."""
+    problems = []
+    if usage["output_tokens"] > requested_max:
+        problems.append(f"output_tokens({usage['output_tokens']}) > max_output_tokens({requested_max})")
+    reasoning = usage["reasoning_tokens"]
+    if reasoning is not None and reasoning > usage["output_tokens"]:
+        problems.append(f"reasoning_tokens({reasoning}) > output_tokens({usage['output_tokens']})")
+    return "; ".join(problems) or None
 
 
 @functools.cache
@@ -60,7 +85,7 @@ def reasoning_effort() -> str:
 
 def max_output_tokens() -> int:
     _load_env()
-    return int(os.environ.get("LAB_MAX_OUTPUT_TOKENS", 800))
+    return int(os.environ.get("LAB_MAX_OUTPUT_TOKENS", 25000))
 
 
 def llm_meta() -> dict:
@@ -112,14 +137,19 @@ def _normalize(output_items: list[dict], usage: dict, status: str, incomplete_re
 
 def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: str = "") -> dict:
     client = get_client()
-    limit = int(os.environ.get("LAB_MAX_TOKENS", 300000))
-    if _used_tokens() >= limit:
-        raise TokenBudgetExceeded(f"누적 토큰이 상한 {limit} 에 도달했다")
+    used_tokens, used_usd = _usage_totals()
+    max_usd = float(os.environ.get("LAB_MAX_USD", 1.00))
+    if used_usd >= max_usd:
+        raise TokenBudgetExceeded(f"누적 비용 {used_usd:.4f} USD 가 상한 {max_usd} USD 에 도달했다")
+    max_tokens = int(os.environ.get("LAB_MAX_TOKENS", 2000000))
+    if used_tokens >= max_tokens:
+        raise TokenBudgetExceeded(f"누적 토큰 {used_tokens} 이 상한 {max_tokens} 에 도달했다")
     model = os.environ["LLM_MODEL"]
+    requested_max = max_output_tokens()
     kwargs = {
         "model": model,
         "input": input_items,
-        "max_output_tokens": max_output_tokens(),
+        "max_output_tokens": requested_max,
     }
     effort = reasoning_effort()
     if effort != "default":
@@ -131,15 +161,22 @@ def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: s
     except openai.APIStatusError as e:
         raise record_http_error(e, api="responses", tag=tag) from e
     data = resp.model_dump(exclude_none=True)
+    raw = data["usage"]
     usage = {
-        "input_tokens": data["usage"]["input_tokens"],
-        "output_tokens": data["usage"]["output_tokens"],
-        "reasoning_tokens": data["usage"].get("output_tokens_details", {}).get("reasoning_tokens"),
+        "input_tokens": raw["input_tokens"],
+        "cached_tokens": raw.get("input_tokens_details", {}).get("cached_tokens", 0),
+        "output_tokens": raw["output_tokens"],
+        "reasoning_tokens": raw.get("output_tokens_details", {}).get("reasoning_tokens"),
     }
+    usage["usd_estimate"] = _usd(usage["input_tokens"], usage["cached_tokens"], usage["output_tokens"])
+    usage["warning"] = _anomaly(usage, requested_max)
+    if usage["warning"]:
+        print(f"[경고] {tag}: {usage['warning']}", file=sys.stderr)
     status = data["status"]
     incomplete_reason = data.get("incomplete_details", {}).get("reason")
+    log_usage = {k: v for k, v in usage.items() if not (k == "warning" and v is None)}
     _append_jsonl(USAGE_LOG, {
-        "ts": _now(), "tag": tag, "model": model, "status": status, "effort": effort, **usage,
+        "ts": _now(), "tag": tag, "model": model, "status": status, "effort": effort, **log_usage,
     })
     return _normalize(data["output"], usage, status, incomplete_reason)
 

@@ -146,14 +146,17 @@ def _llm_common():
     return litellm
 
 
-def _litellm_chat(effort: str | None, model_prefix: str = "openai/"):
+def _litellm_chat(effort: str | None, model_prefix: str = "openai/", extra: dict | None = None):
+    """extra: completion() 에 덧붙일 인자. SREGym 의 Stratus 설정을 흉내 낼 때(drop_params 등) 쓴다."""
     def fn():
         litellm = _llm_common()
-        kwargs = {"model": f"{model_prefix}{MODEL}", "api_base": BASE_URL, "api_key": API_KEY, "max_tokens": MAX_OUT,
+        # max_tokens 대신 max_completion_tokens: 이 모델은 max_tokens 를 받지 않는다(LiteLLM 1.91.0 이 그대로 전달해 400)
+        kwargs = {"model": f"{model_prefix}{MODEL}", "api_base": BASE_URL, "api_key": API_KEY, "max_completion_tokens": MAX_OUT,
                   "messages": [{"role": "user", "content": PROMPT}],
                   "tools": [{"type": "function", "function": {"name": "get_account_status", "description": TOOL_DESC, "parameters": PARAMS}}]}
         if effort:
             kwargs["reasoning_effort"] = effort
+        kwargs.update(extra or {})
         d = litellm.completion(**kwargs).model_dump()
         msg = d["choices"][0]["message"]
         calls = [(c["function"]["name"], c["function"]["arguments"]) for c in (msg.get("tool_calls") or [])]
@@ -200,6 +203,15 @@ TESTS = {
         ("LiteLLM completion('openai/<model>') + 도구, reasoning_effort=low", _litellm_chat("low")),
         ("LiteLLM completion('openai/responses/<model>') + 도구, reasoning_effort=low", _litellm_chat("low", "openai/responses/")),
         ("LiteLLM responses('openai/<model>') + 도구, reasoning effort=low", _litellm_responses("low")),
+        # SREGym Stratus 흉내. third_party/SREGym/llm_backend/get_llm_backend.py 에서 직접 읽은 설정:
+        # litellm.drop_params=True(전역), temperature=0.0, top_p=0.95, tool_choice="auto", max_tokens 미전달,
+        # 추론 강도는 전달하지 않음. 아래 둘째 항목은 "추론 강도를 주면 어떻게 되는가"를 보는 대조다.
+        ("[Stratus 흉내] completion + 도구, drop_params=True, temperature=0.0, top_p=0.95, tool_choice=auto",
+         _litellm_chat(None, extra={"drop_params": True, "temperature": 0.0, "top_p": 0.95, "tool_choice": "auto"})),
+        ("[Stratus 흉내] 위 설정에 reasoning_effort=low 를 더함(drop_params=True)",
+         _litellm_chat("low", extra={"drop_params": True, "temperature": 0.0, "top_p": 0.95, "tool_choice": "auto"})),
+        ("completion + 도구, reasoning_effort=none, allowed_openai_params=['reasoning_effort']",
+         _litellm_chat("none", extra={"allowed_openai_params": ["reasoning_effort"]})),
     ],
 }
 

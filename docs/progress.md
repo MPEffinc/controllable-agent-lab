@@ -34,4 +34,24 @@
   - CLAUDE.md '기록과 커밋' 절에 README '## 현재 상태' 갱신 규칙 1줄 추가.
   - README.md 에 '## 현재 상태' 절 추가(S0 완료, 커밋 f18299e·47a8418).
 - 결정: 모델은 gpt-6-luna(LLM_MODEL) 하나만 쓴다. gpt-6-astra 시험 지시는 취소됐다.
-- 다음 할 일: 도구 호출 지원을 luna 로 확인한다(chat.completions tools → responses → 텍스트 규약 순, 성공하는 첫 방식에서 멈춤). 그다음 S1 을 튜터 모드로 시작한다.
+- 도구 호출 지원 시험(gpt-6-luna, 임시 스크립트로 방식당 1회, 가짜 도구 get_account_status):
+  - s00_check_env.py 의 방식: chat.completions.create(messages, max_completion_tokens=64), tools 없음.
+  - b chat.completions + tools: HTTP 400 (BadRequestError). 이때는 응답 본문을 읽지 않아 원인을 몰랐다(S1 에서 재시험해 확인, 아래 S1 절). 토큰 사용량 없음.
+  - c responses + tools: HTTP 200, 도구 호출 요청 get_account_status({"account_id":"acct-7"}) 수신. 입력 68 / 출력 22 토큰.
+  - d 텍스트 규약: c 가 성공해서 시험하지 않았다.
+  - 결론: S1 코드는 responses 형식 하나로 만든다. 시험 호출 토큰(90)은 call_llm() 이 없던 때라 runs/usage.jsonl 에 없다.
+- 다음 할 일: S1 을 튜터 모드로 시작한다(lab/common.py 의 call_llm() 부터 한 조각씩).
+
+## S1 에이전트 루프 (진행 중)
+- 날짜: 2026-10-21
+- 한 일:
+  - lab/common.py 작성: call_llm(input_items, tools, tag) 하나만 모델을 부른다. responses 형식 호출 → {"text","tool_calls":[{call_id,name,arguments}],"output_items","usage"} 로 정규화. 도구 정의는 우리 형식({name,description,parameters})으로 받아 call_llm 안에서 responses 형식으로 바꾼다.
+  - 비용 장치: 호출마다 runs/usage.jsonl 에 입력·출력 토큰 기록, LAB_MAX_OUTPUT_TOKENS(기본 800) 강제, 누적이 LAB_MAX_TOKENS(기본 300000) 이상이면 호출 전에 TokenBudgetExceeded. 자동 재시도 없음(SDK max_retries=0).
+  - non-2xx 처리: record_http_error() 가 상태 코드와 본문만 runs/llm_errors.jsonl 에 기록하고 LLMHTTPError 를 낸다(헤더 미저장, 본문 속 키 값은 *** 로 치환).
+  - 설계 결정: 대화 이력은 항목 목록으로 직접 관리하고 매 호출에 전체를 보낸다(previous_response_id 미사용). 시스템 프롬프트도 instructions 가 아니라 입력 항목으로 넣어 이력 JSON 에 "모델이 본 입력 전체"가 남게 한다. arguments 는 모델이 낸 JSON 문자열 그대로 돌려주고 파싱은 루프가 한다.
+- 관찰한 것:
+  - call_llm() 1회 확인(tag s1-probe): 도구 호출 1개 수신, 입력 68 / 출력 22 토큰, usage.jsonl 에 한 줄 기록. output_items 에는 id("fc_...")와 status 가 붙어 있다.
+  - chat.completions+tools 재시험(tag s1-retest-b, 이전 400 과 동일 요청) 오류 본문: "Function tools with reasoning_effort are not supported for gpt-6-luna in /v1/chat/completions. To use function tools, use /v1/responses or set reasoning_effort to 'none'." (param: reasoning_effort, type: invalid_request_error). 즉 chat 형식 자체가 아니라 추론(reasoning) 설정이 켜진 상태의 chat+tools 조합이 거부된 것이다.
+  - 추측(미확인): chat.completions 에서 reasoning_effort='none' 을 주면 tools 가 통과할 것이다. S5(AgentDojo 연결)에서 chat 형식이 필요하면 이 값으로 1회 시험한다. responses 쪽 기본 추론이 토큰을 얼마나 쓰는지는 아직 모른다(간단한 호출은 출력 22).
+- 막힌 곳: 없음.
+- 다음 할 일: 에이전트 루프 조각(입력 항목 도우미, 도구 1개, 루프), 이력 JSON 저장, 프롬프트 주입 관찰 실험 2개.

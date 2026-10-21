@@ -58,6 +58,21 @@ def reasoning_effort() -> str:
     return os.environ.get("LLM_REASONING_EFFORT") or "default"
 
 
+def max_output_tokens() -> int:
+    _load_env()
+    return int(os.environ.get("LAB_MAX_OUTPUT_TOKENS", 800))
+
+
+def llm_meta() -> dict:
+    """이력 JSON 메타데이터용. call_llm 이 실제로 쓰는 설정값이다."""
+    _load_env()
+    return {
+        "model": os.environ["LLM_MODEL"],
+        "effort": reasoning_effort(),
+        "max_output_tokens": max_output_tokens(),
+    }
+
+
 @functools.cache
 def get_client() -> openai.OpenAI:
     _load_env()
@@ -104,7 +119,7 @@ def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: s
     kwargs = {
         "model": model,
         "input": input_items,
-        "max_output_tokens": int(os.environ.get("LAB_MAX_OUTPUT_TOKENS", 800)),
+        "max_output_tokens": max_output_tokens(),
     }
     effort = reasoning_effort()
     if effort != "default":
@@ -127,3 +142,18 @@ def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: s
         "ts": _now(), "tag": tag, "model": model, "status": status, "effort": effort, **usage,
     })
     return _normalize(data["output"], usage, status, incomplete_reason)
+
+
+def system_item(text: str) -> dict:
+    return {"role": "system", "content": text}
+
+
+def user_item(text: str) -> dict:
+    return {"role": "user", "content": text}
+
+
+def tool_result_item(call_id: str, output) -> dict:
+    """도구 결과를 call_id 로 짝지어 붙이는 항목. 문자열이 아니면 JSON 으로 바꾼다."""
+    if not isinstance(output, str):
+        output = json.dumps(output, ensure_ascii=False)
+    return {"type": "function_call_output", "call_id": call_id, "output": output}

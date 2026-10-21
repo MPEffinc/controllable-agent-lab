@@ -60,5 +60,16 @@
   - 허용 값 확인: 'x' 를 1회 보내 HTTP 400 을 받았고(param: reasoning.effort), 본문에 "Supported values are: 'none', 'minimal', 'low', 'medium', 'high', 'xhigh', and 'max'". usage.jsonl 이 늘지 않아 토큰 비용 없음.
   - 출력 상한 시험(LAB_MAX_OUTPUT_TOKENS=30, 기본 추론 강도, "37 × 43 + 19 × 28 을 계산해라"): status=incomplete, incomplete_reason=max_output_tokens, 입력 28 / 출력 30 / 추론 30, text 비어 있고 output_items 는 reasoning 항목 하나뿐. 즉 출력 상한은 추론 토큰을 포함하고, 추론이 상한을 다 쓰면 답 없이 불완전으로 끝난다. 추론 토큰은 출력 토큰의 부분집합으로 보인다(이 호출에서 출력=추론=30). 그래서 _used_tokens() 의 입력+출력 합에서 이중 계산은 없다.
   - 아직 모르는 것: 기본 추론 강도에서 일반 요청의 추론 토큰이 대략 얼마인지(이 호출은 상한에서 잘려 하한만 안다). 기본 상한 800 에서 어려운 요청이 불완전이 될 수 있다.
+- 에이전트 루프와 이력 저장(같은 날):
+  - lab/common.py: system_item/user_item/tool_result_item(입력 항목 도우미), max_output_tokens(), llm_meta()(model, effort, max_output_tokens) 추가.
+  - lab/s01_agent/tools.py: 도구 1개 get_account_status(가짜 dict 2건, 조회 전용). 정의는 우리 형식, HANDLERS 는 이름→함수 표.
+  - lab/s01_agent/agent.py: run_tool(오류도 결과 문자열로 모델에 보임), run_agent(최대 6단계; output_items 를 순서대로 이어 붙이고 그 뒤에 function_call_output; 끝나는 방식 4종 final_answer/max_steps/incomplete/http_error 를 따로 기록; incomplete 응답의 도구 호출은 실행하지 않음; 서버 거부 시 항목을 걸러 내지 않고 오류 본문 전체를 단계 기록에 남김), save_run(runs/s01_<tag>_<시각>.json), 실행 진입점 `python -m lab.s01_agent.agent "질문"`.
+  - 이력 JSON: meta(model, effort, max_output_tokens, tag, max_steps, outcome), tools, steps[].input_items(모델이 그 단계에서 실제로 받은 입력 전체), output_items, usage, status, incomplete_reason, tool_runs.
+- 루프 1회 실행 관찰(tag s1-basic, 기본 질문 "계정 acct-7 의 상태를 알려 줘."):
+  - outcome=final_answer, 2단계. 토큰 119/22 와 172/27(입력/출력), 합계 340. 추론 토큰은 두 단계 모두 0, reasoning 항목도 없었다.
+  - 서버가 output_items 를 그대로 이어 붙인 입력(function_call 항목의 id·status 포함)을 거부 없이 받았다. call_id 짝맞춤 정상.
+  - 출력 항목 message 에 phase="final_answer" 필드가 있다(미사용).
+  - usage.jsonl 누적 488 토큰(상한 300000). 실험 1회당 약 340 토큰(2호출) 규모.
+  - 같은 기본 추론 강도에서 앞의 암산 요청은 추론 토큰을 30 이상 썼다. 기본 강도의 추론량은 요청에 따라 다르다(이유는 미확인).
 - 막힌 곳: 없음.
-- 다음 할 일: 에이전트 루프 조각(입력 항목 도우미, 도구 1개, 루프), 이력 JSON 저장, 프롬프트 주입 관찰 실험 2개(루프·이력 저장까지만 하고 실험 직전에 멈춘다).
+- 다음 할 일: 프롬프트 주입 관찰 실험 2개. 시작 전에 실험 설계(도구 결과에 무엇을 넣을지, 무엇을 관찰할지)를 사용자와 정한다.

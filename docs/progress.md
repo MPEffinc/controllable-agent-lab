@@ -53,5 +53,12 @@
   - call_llm() 1회 확인(tag s1-probe): 도구 호출 1개 수신, 입력 68 / 출력 22 토큰, usage.jsonl 에 한 줄 기록. output_items 에는 id("fc_...")와 status 가 붙어 있다.
   - chat.completions+tools 재시험(tag s1-retest-b, 이전 400 과 동일 요청) 오류 본문: "Function tools with reasoning_effort are not supported for gpt-6-luna in /v1/chat/completions. To use function tools, use /v1/responses or set reasoning_effort to 'none'." (param: reasoning_effort, type: invalid_request_error). 즉 chat 형식 자체가 아니라 추론(reasoning) 설정이 켜진 상태의 chat+tools 조합이 거부된 것이다.
   - 추측(미확인): chat.completions 에서 reasoning_effort='none' 을 주면 tools 가 통과할 것이다. S5(AgentDojo 연결)에서 chat 형식이 필요하면 이 값으로 1회 시험한다. responses 쪽 기본 추론이 토큰을 얼마나 쓰는지는 아직 모른다(간단한 호출은 출력 22).
+- call_llm 보완 3건(같은 날):
+  - 반환값에 status("completed"/"incomplete")와 incomplete_reason 추가. 불완전이어도 예외 없이 그대로 돌려준다. 호출 측이 '설정·능력 실패'로 따로 센다.
+  - usage.jsonl 한 줄: ts, tag, model, status, effort, input_tokens, output_tokens, reasoning_tokens. 추론 토큰은 응답의 usage.output_tokens_details.reasoning_tokens 에서 읽는다(필드 이름은 예상과 같았다).
+  - 추론 강도는 환경 변수 LLM_REASONING_EFFORT 로 뺐다. 미설정이면 reasoning 인자를 보내지 않고(서버 기본값) 기록에는 'default'.
+  - 허용 값 확인: 'x' 를 1회 보내 HTTP 400 을 받았고(param: reasoning.effort), 본문에 "Supported values are: 'none', 'minimal', 'low', 'medium', 'high', 'xhigh', and 'max'". usage.jsonl 이 늘지 않아 토큰 비용 없음.
+  - 출력 상한 시험(LAB_MAX_OUTPUT_TOKENS=30, 기본 추론 강도, "37 × 43 + 19 × 28 을 계산해라"): status=incomplete, incomplete_reason=max_output_tokens, 입력 28 / 출력 30 / 추론 30, text 비어 있고 output_items 는 reasoning 항목 하나뿐. 즉 출력 상한은 추론 토큰을 포함하고, 추론이 상한을 다 쓰면 답 없이 불완전으로 끝난다. 추론 토큰은 출력 토큰의 부분집합으로 보인다(이 호출에서 출력=추론=30). 그래서 _used_tokens() 의 입력+출력 합에서 이중 계산은 없다.
+  - 아직 모르는 것: 기본 추론 강도에서 일반 요청의 추론 토큰이 대략 얼마인지(이 호출은 상한에서 잘려 하한만 안다). 기본 상한 800 에서 어려운 요청이 불완전이 될 수 있다.
 - 막힌 곳: 없음.
-- 다음 할 일: 에이전트 루프 조각(입력 항목 도우미, 도구 1개, 루프), 이력 JSON 저장, 프롬프트 주입 관찰 실험 2개.
+- 다음 할 일: 에이전트 루프 조각(입력 항목 도우미, 도구 1개, 루프), 이력 JSON 저장, 프롬프트 주입 관찰 실험 2개(루프·이력 저장까지만 하고 실험 직전에 멈춘다).

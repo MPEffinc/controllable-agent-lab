@@ -1,1 +1,2 @@
 {"ts": "2026-10-21T00:59:41+0000", "tag": "s1-probe", "model": "gpt-6-luna", "status": "completed", "input_tokens": 68, "output_tokens": 22}
+{"ts": "2026-10-21T01:05:40+0000", "tag": "s1-cap30", "model": "gpt-6-luna", "status": "incomplete", "effort": "default", "input_tokens": 28, "output_tokens": 30, "reasoning_tokens": 30}

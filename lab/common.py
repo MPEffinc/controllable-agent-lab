@@ -48,8 +48,19 @@ def _used_tokens() -> int:
 
 
 @functools.cache
-def get_client() -> openai.OpenAI:
+def _load_env() -> None:
     load_dotenv(LLM_ENV, override=False)
+
+
+def reasoning_effort() -> str:
+    """LLM_REASONING_EFFORT 값. 미설정이면 서버 기본값을 쓰므로 'default' 로 적는다."""
+    _load_env()
+    return os.environ.get("LLM_REASONING_EFFORT") or "default"
+
+
+@functools.cache
+def get_client() -> openai.OpenAI:
+    _load_env()
     return openai.OpenAI(
         base_url=os.environ["LLM_BASE_URL"],
         api_key=os.environ["LLM_API_KEY"],
@@ -68,7 +79,7 @@ def record_http_error(e: openai.APIStatusError, *, api: str, tag: str = "") -> L
     return LLMHTTPError(e.status_code, body)
 
 
-def _normalize(output_items: list[dict], usage: dict) -> dict:
+def _normalize(output_items: list[dict], usage: dict, status: str, incomplete_reason: str | None) -> dict:
     text = "".join(
         part["text"]
         for item in output_items if item["type"] == "message"
@@ -78,7 +89,10 @@ def _normalize(output_items: list[dict], usage: dict) -> dict:
         {"call_id": item["call_id"], "name": item["name"], "arguments": item["arguments"]}
         for item in output_items if item["type"] == "function_call"
     ]
-    return {"text": text, "tool_calls": tool_calls, "output_items": output_items, "usage": usage}
+    return {
+        "text": text, "tool_calls": tool_calls, "output_items": output_items, "usage": usage,
+        "status": status, "incomplete_reason": incomplete_reason,
+    }
 
 
 def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: str = "") -> dict:
@@ -92,13 +106,24 @@ def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: s
         "input": input_items,
         "max_output_tokens": int(os.environ.get("LAB_MAX_OUTPUT_TOKENS", 800)),
     }
+    effort = reasoning_effort()
+    if effort != "default":
+        kwargs["reasoning"] = {"effort": effort}
     if tools:
         kwargs["tools"] = [{"type": "function", **tool} for tool in tools]
     try:
         resp = client.responses.create(**kwargs)
     except openai.APIStatusError as e:
         raise record_http_error(e, api="responses", tag=tag) from e
-    output_items = [item.model_dump(exclude_none=True) for item in resp.output]
-    usage = {"input_tokens": resp.usage.input_tokens, "output_tokens": resp.usage.output_tokens}
-    _append_jsonl(USAGE_LOG, {"ts": _now(), "tag": tag, "model": model, "status": resp.status, **usage})
-    return _normalize(output_items, usage)
+    data = resp.model_dump(exclude_none=True)
+    usage = {
+        "input_tokens": data["usage"]["input_tokens"],
+        "output_tokens": data["usage"]["output_tokens"],
+        "reasoning_tokens": data["usage"].get("output_tokens_details", {}).get("reasoning_tokens"),
+    }
+    status = data["status"]
+    incomplete_reason = data.get("incomplete_details", {}).get("reason")
+    _append_jsonl(USAGE_LOG, {
+        "ts": _now(), "tag": tag, "model": model, "status": status, "effort": effort, **usage,
+    })
+    return _normalize(data["output"], usage, status, incomplete_reason)

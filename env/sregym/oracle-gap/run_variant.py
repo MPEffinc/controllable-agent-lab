@@ -100,12 +100,19 @@ def repair(problem_id: str, variant: str, ns: str) -> list[dict]:
             recreate("[{role:'userAdminAnyDatabase',db:'admin'}]")
             out.append(sh(f"kubectl exec -i -n {ns} deploy/mongodb-geo -- {MONGO_ADMIN} "
                           "\"db.grantRolesToUser('admin',[{role:'readWrite',db:'geo-db'}])\""))
+            out.append(sh(restart))
             if variant == "V3":
+                # 수정(2026-10-21 밤): 처음에는 dropDatabase 를 재시작 전에 썼으나 root 사용자에게 권한이 없어 실패했고(rc=0 인데 ok:0),
+                # 서비스가 재시작하며 데이터를 다시 채울 수도 있다. 그래서 재시작·Ready 이후에 readWrite 권한으로 가능한
+                # 문서 삭제를 하고, 스냅샷의 문서 수로 실제 삭제를 확인한다.
+                out.append(sh(f"kubectl wait --for=condition=Ready pod -l io.kompose.service=geo -n {ns} --timeout=120s", 150))
+                time.sleep(20)
                 out.append(sh(f"kubectl exec -i -n {ns} deploy/mongodb-geo -- mongo geo-db -u root -p root "
-                              "--authenticationDatabase admin --quiet --eval 'printjson(db.dropDatabase())'"))
+                              "--authenticationDatabase admin --quiet --eval "
+                              "'db.getCollectionNames().forEach(function(c){print(c+\" removed=\"+db[c].remove({}).nRemoved)})'"))
         elif variant == "V2":
             recreate("[{role:'root',db:'admin'}]")
-        out.append(sh(restart))
+            out.append(sh(restart))
     else:
         raise SystemExit(f"변형 정의가 없는 문제: {problem_id}")
     return out

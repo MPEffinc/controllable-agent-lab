@@ -147,10 +147,10 @@ def _normalize(output_items: list[dict], usage: dict, status: str, incomplete_re
 def call_llm(input_items: list[dict], tools: list[dict] | None = None, *, tag: str = "") -> dict:
     client = get_client()
     used_tokens, used_usd = _usage_totals()
-    max_usd = float(os.environ.get("LAB_MAX_USD", 1.00))
+    max_usd = float(os.environ.get("LAB_MAX_USD", 5.00))
     if used_usd >= max_usd:
         raise TokenBudgetExceeded(f"누적 비용 {used_usd:.4f} USD 가 상한 {max_usd} USD 에 도달했다")
-    max_tokens = int(os.environ.get("LAB_MAX_TOKENS", 2000000))
+    max_tokens = int(os.environ.get("LAB_MAX_TOKENS", 50000000))
     if used_tokens >= max_tokens:
         raise TokenBudgetExceeded(f"누적 토큰 {used_tokens} 이 상한 {max_tokens} 에 도달했다")
     model = os.environ["LLM_MODEL"]

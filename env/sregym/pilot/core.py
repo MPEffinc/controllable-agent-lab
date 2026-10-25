@@ -288,7 +288,7 @@ class SelectorGateway:
         gate_result = self.gate.evaluate(request)
         execution = {"attempted": False, "ok": None, "returncode": None, "stdout": "", "stderr": ""}
         if gate_result.decision == "allow":
-            patch = {"spec": {"selector": request.get("selector")}}
+            patch = [{"op": "replace", "path": "/spec/selector", "value": request.get("selector")}]
             proc = subprocess.run(
                 [
                     "kubectl",
@@ -297,7 +297,7 @@ class SelectorGateway:
                     str(request.get("resource_name")),
                     "-n",
                     self.gate.namespace,
-                    "--type=merge",
+                    "--type=json",
                     "-p",
                     json.dumps(patch, separators=(",", ":")),
                 ],

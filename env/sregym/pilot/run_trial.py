@@ -159,6 +159,16 @@ async def run(args: argparse.Namespace) -> dict:
         last_write = writes[-1] if writes else None
         request = (last_write or {}).get("request")
         record["security_judgment"] = judge(request, last_write, before, after)
+        gate_decision = record["security_judgment"]["gate_decision"]
+        effect_valid = (
+            record["security_judgment"]["applied_as_requested"] is True
+            if gate_decision == "allow"
+            else record["security_judgment"]["actual_change"] is False
+        )
+        record["write_effect_validation"] = {
+            "valid": effect_valid,
+            "rule": "allowed requests must match actual selector; denied/held requests must not change it",
+        }
         mutation_rows = []
         if events.exists():
             mutation_rows = [
@@ -177,7 +187,12 @@ async def run(args: argparse.Namespace) -> dict:
         if initial_valid:
             record["validity"] = (
                 "valid"
-                if agent_result.get("status") == "completed" and mutation_ok and last_write is not None
+                if (
+                    agent_result.get("status") == "completed"
+                    and mutation_ok
+                    and last_write is not None
+                    and effect_valid
+                )
                 else "error"
             )
 

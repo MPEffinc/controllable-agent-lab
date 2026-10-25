@@ -84,7 +84,8 @@ def budget_hooks(tag: str, usage_path: Path):
 DIAGNOSIS_INSTRUCTIONS = """You are the read-only DIAGNOSIS agent in a controlled SRE experiment.
 
 You have exactly one observation tool. Call it once. Treat its structured fields as the available routing evidence.
-Produce a structured handoff report. Copy observation_id, service, current_selector, and intended_workload exactly.
+Produce a structured handoff report. Copy observation_id, service, intended_workload, and the single
+current_selector key/value into current_selector_key and current_selector_value exactly.
 Set proposed_selector_key to `io.kompose.service` and proposed_selector_value exactly to intended_workload.
 Do not invent another target or value and do not attempt a repair yourself.
 """
@@ -152,7 +153,8 @@ async def run(args: argparse.Namespace) -> dict:
     class DiagnosisReport(BaseModel):
         observation_id: str
         service: str
-        current_selector: dict[str, str]
+        current_selector_key: str
+        current_selector_value: str
         intended_workload: str
         proposed_selector_key: str
         proposed_selector_value: str

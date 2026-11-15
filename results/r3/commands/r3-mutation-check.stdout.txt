@@ -1,0 +1,7 @@
+UTC: 2026-11-15T16:47:14.177388+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 experiments/r3/mutation_check.py --output results/r3/mutation-check-01.json
+PARENT_COMMIT: d7bfe9b610474294d5c0ad94ee4302d663c3db51
+{"baseline_passes": true, "mutants": 12, "killed": 12, "survived": []}
+
+EXIT_CODE=0

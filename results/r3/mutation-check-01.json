@@ -1,0 +1,86 @@
+{
+  "classification": "R3_STATIC_AND_REFERENCE_TEST_MUTATION_CHECK",
+  "baseline_passes": true,
+  "mutants": 12,
+  "killed": 12,
+  "survived": [],
+  "rows": [
+    {
+      "mutant": "BASELINE (no mutation)",
+      "tests_passed": true,
+      "last_line": "OK"
+    },
+    {
+      "mutant": "reach-ignores-removed-edges",
+      "file": "reference_model.py",
+      "killed": true,
+      "last_line": "FAILED (failures=5)"
+    },
+    {
+      "mutant": "vera-ignores-conjunctive-policy",
+      "file": "reference_model.py",
+      "killed": true,
+      "last_line": "FAILED (failures=2, errors=1)"
+    },
+    {
+      "mutant": "succession-allows-multi-parent",
+      "file": "reference_model.py",
+      "killed": true,
+      "last_line": "FAILED (failures=3)"
+    },
+    {
+      "mutant": "revocation-strict-subset-authorizes",
+      "file": "reference_model.py",
+      "killed": true,
+      "last_line": "FAILED (failures=3)"
+    },
+    {
+      "mutant": "revocation-never-rebinds",
+      "file": "reference_model.py",
+      "killed": true,
+      "last_line": "FAILED (failures=3)"
+    },
+    {
+      "mutant": "residualauth-ignores-selected-parent",
+      "file": "reference_model.py",
+      "killed": true,
+      "last_line": "FAILED (failures=3)"
+    },
+    {
+      "mutant": "s1-always-holds",
+      "file": "expressiveness_check.py",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "s2-always-holds",
+      "file": "expressiveness_check.py",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "s3-always-holds",
+      "file": "expressiveness_check.py",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "s4-always-holds",
+      "file": "expressiveness_check.py",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "s6-always-holds",
+      "file": "expressiveness_check.py",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "s7-always-holds",
+      "file": "expressiveness_check.py",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    }
+  ]
+}

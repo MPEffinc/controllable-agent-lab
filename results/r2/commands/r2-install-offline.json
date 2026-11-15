@@ -1,0 +1,23 @@
+{
+  "name": "r2-install-offline",
+  "command": [
+    "uv",
+    "pip",
+    "install",
+    "--offline",
+    "--python",
+    "experiments/r2/.venv/bin/python",
+    "-r",
+    "experiments/r2/requirements-input.txt"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T15:03:16.582198+00:00",
+  "end_utc": "2026-11-15T15:03:16.696724+00:00",
+  "duration_seconds": 0.115,
+  "exit_code": 1,
+  "log": "results/r2/commands/r2-install-offline.stdout.txt",
+  "parent_commit": "b7c1f88a0ab260041e2a77db559c9b7d4575ecc4",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

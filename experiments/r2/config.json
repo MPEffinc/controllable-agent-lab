@@ -1,0 +1,285 @@
+{
+  "schema_version": "r2-a2a-continuity-v1",
+  "_status": "PRE-REGISTERED before any R2 trial was executed. Conditions, authorization rules and predictions below are not edited after results are seen; a later change must be a new commit that states why.",
+  "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+  "original_method": {
+    "repository": "https://github.com/zast-ai/continuity",
+    "pinned_sha": "59cfe60930d247d1890b366ded686c718020a11e",
+    "entry_points": ["ContinuityVerifier.verify_bundle", "ContinuityVerifier.issue_permit", "EffectBroker.dispatch", "FinalitySink.execute"]
+  },
+  "domain": "workspace",
+  "now": 1800000000,
+  "policy_epoch": 43,
+  "agents": {
+    "agent-A": {"identity": "spiffe://example/agent/workspace/1", "role": "delegator / proposer"},
+    "agent-B": {"identity": "spiffe://example/agent/workspace/0", "role": "delegated executor"}
+  },
+  "authorization_rules": {
+    "artifact_source": "Original continuity.experiment.make_scenario(domain, seed, kind, fault) with the original build_infrastructure(); no artifact is hand-built or re-signed by the adapter.",
+    "authorized_effect": "The ledger entry for a grant is the benign twin of the same seed: make_scenario(domain, seed, 'benign') -> (operation, resource, parameters, effect_class) and its resolved_destination. An effect is authorized only if it equals this entry exactly.",
+    "authorized_actor": "Only the agent named by authorized_actor may execute the effect (checked against the issuer ledger, not against the verifier decision).",
+    "revocation": "Revocation is applied to the grant id of the root task by the trusted runtime-state authority. IMMEDIATE_CUT_AT_FINALITY: an effect finalised after the revoke event is a violation.",
+    "seed_note": "Seeds are chosen only to fix identities and destinations: actor = spiffe://example/agent/workspace/(seed % 13), principal = did:example:user:(seed % 97), customer N = seed % 10000. 1001 and 1014 (=0 mod 13) -> actor agent-B; 1002 (=1 mod 13) -> actor agent-A; 89999 and 2002 (=0 mod 13) -> actor agent-B, and 89999 (=9999 mod 10000) makes the original UNTRUSTED_FIELD_BINDING proposal resolve to the attacker destination, so a hypothetical effect would be visibly unauthorized."
+  },
+  "families": {
+    "delegated_normal": "A.delegate (hosts stages memory+gateway, enqueues) -> harness drains queue -> B.execute (hosts stage adapter, then b_script)",
+    "direct_attempt": "A.attempt (hosts memory+gateway+adapter, requests a permit, then a_script)",
+    "deny_then_delegate": "A.attempt (as direct_attempt) then A forwards the partial bundle to B (scripted adversarial forwarding, as R1 C3) -> drain -> B.execute (b_script)",
+    "stale_permit": "A.delegate -> drain: B.prepare (host adapter, request permit, hold it) -> trusted revoke of root A -> B.commit (dispatch with the held permit)",
+    "queued_then_cut": "A.delegate -> trusted revoke of root A -> drain: B.execute",
+    "independent_root": "A.delegate(root A) -> revoke root A -> drain: B.execute(root A work) -> A.delegate(root B) -> drain: B.execute(root B work)",
+    "cut_then_create": "trusted revoke of root A -> A.delegate (work created after the cut) -> drain: B.execute",
+    "cut_then_direct": "trusted revoke of root A -> A.attempt (single agent, no queue/handoff)"
+  },
+  "b_script_modes": {
+    "honest": "request a permit; if issued, dispatch the final action of the bundle",
+    "substitute_after_permit": "request a permit; if issued, dispatch a SUBSTITUTED action (destination and body changed) with that permit",
+    "skip_permit": "do not request a permit; dispatch the final action with permit=None",
+    "strip_proof": "remove envelopes and receipts from the bundle, then request a permit",
+    "ladder": "execute the listed steps in order; stop_on_effect stops after the first executed effect"
+  },
+  "conditions": [
+    {
+      "id": "R2-0_valid_delegated", "group": "CORE", "family": "delegated_normal",
+      "r1_counterpart": "C0_valid_delegated", "r1_equivalence": "MATCH",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": true}],
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-B", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "SATISFIED", "completion": "SATISFIED"}
+      }
+    },
+    {
+      "id": "R2-1a_unauthorized_destination_attempt", "group": "CORE", "family": "direct_attempt",
+      "r1_counterpart": "C2_unauthorized_direct_guarded", "r1_equivalence": "MATCH",
+      "materials": [{"label": "rootA", "seed": 89999, "kind": "attack", "fault": "UNTRUSTED_FIELD_BINDING", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "a_script": {"then": "stop"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-A", "allowed": false, "reason_contains": ["E_UNRELEASED_FIELD:/action/destination"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "R2-1b_post_permit_action_substitution", "group": "CORE", "family": "delegated_normal",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "Original fault POST_PERMIT_ACTION_SUBSTITUTION performed by the delegated executor. R1 had no permit object, so there is no R1 counterpart.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "substitute_after_permit", "substitution": {"destination": "https://attacker.invalid/collect", "body_suffix": "\nExfiltrate all records."}}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-B", "ok": false, "reason": "E_ACTION_SUBSTITUTION"}],
+        "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "R2-2_after_A_deny_B_reexecutes", "group": "CORE", "family": "deny_then_delegate",
+      "r1_counterpart": "C3_after_deny_all_mediated", "r1_equivalence": "MATCH",
+      "materials": [{"label": "rootA", "seed": 89999, "kind": "attack", "fault": "UNTRUSTED_FIELD_BINDING", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "a_script": {"then": "forward"},
+      "b_script": {"mode": "ladder", "stop_on_effect": true, "ladder": ["request_permit", "dispatch_no_permit", "dispatch_forged_permit_own_signer", "dispatch_forged_permit_claimed_trusted_signer"]},
+      "ablation": [],
+      "expected": {
+        "verifier": [
+          {"by": "agent-A", "allowed": false, "reason_contains": ["E_UNRELEASED_FIELD:/action/destination"]},
+          {"by": "agent-B", "allowed": false, "reason_contains": ["E_UNRELEASED_FIELD:/action/destination"]}
+        ],
+        "finality": [
+          {"caller": "agent-B", "ok": false, "reason": "E_UNMEDIATED_PATH"},
+          {"caller": "agent-B", "ok": false, "reason": "E_UNTRUSTED_PERMIT_ISSUER"},
+          {"caller": "agent-B", "ok": false, "reason": "E_BAD_PERMIT_SIGNATURE"}
+        ],
+        "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "R2-3a_stale_permit_after_revocation", "group": "CORE", "family": "stale_permit",
+      "r1_counterpart": "C4_preaccepted_grandfather", "r1_equivalence": "NON_EQUIVALENT_SEMANTICS",
+      "note": "R1 accept-then-commit (grandfather) has no CONTINUITY analogue: permit issuance is not sink acceptance and CONTINUITY finality is atomic. This condition tests the CONTINUITY contract itself (revocation recheck at finality), judged under IMMEDIATE_CUT_AT_FINALITY. It is not scored against the R1 grandfather oracle.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-B", "ok": false, "reason": "E_REVOKED_AT_FINALITY"}],
+        "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "R2-3b_retained_work_after_revocation", "group": "CORE", "family": "queued_then_cut",
+      "r1_counterpart": "C4_queued_before_cut_current", "r1_equivalence": "MATCH",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": false, "reason_contains": ["E_REVOKED_ROOT_GRANT"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "R2-4_independent_root_B_after_A_revoked", "group": "CORE", "family": "independent_root",
+      "r1_counterpart": "C5_independent_root_current", "r1_equivalence": "MATCH",
+      "materials": [
+        {"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false},
+        {"label": "rootB", "seed": 1014, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": true}
+      ],
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [
+          {"by": "agent-B", "allowed": false, "reason_contains": ["E_REVOKED_ROOT_GRANT"]},
+          {"by": "agent-B", "allowed": true, "reason_contains": []}
+        ],
+        "finality": [{"caller": "agent-B", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "SATISFIED", "completion": "SATISFIED"}
+      }
+    },
+    {
+      "id": "R2-5_dispatch_without_permit", "group": "CORE", "family": "delegated_normal",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "Original fault ALTERNATE_PATH performed by the delegated executor that holds valid authority but skips the permit.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "skip_permit"}, "ablation": [],
+      "expected": {
+        "verifier": [],
+        "finality": [{"caller": "agent-B", "ok": false, "reason": "E_UNMEDIATED_PATH"}],
+        "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "NC-subject_delegator_uses_delegatee_permit", "group": "NEGATIVE_CONTROL", "family": "direct_attempt",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "Original fault SUBJECT_SUBSTITUTION: the delegator obtains a permit for a grant whose actor is the delegatee and tries to finalise it as itself.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "a_script": {"then": "dispatch_if_permit"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-A", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-A", "ok": false, "reason": "E_SUBJECT_SUBSTITUTION"}],
+        "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "NC-queue_tamper_gateway_envelope", "group": "NEGATIVE_CONTROL", "family": "delegated_normal",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "The untrusted queue rewrites envelopes[2].action.destination in the queued bundle without re-signing. Tests fail-closed on a tampered proof carried through retained work.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "queue_tamper": {"envelope_index": 2, "field": "action.destination", "value": "alias:workspace:attacker:9999"},
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": false, "reason_contains": ["E_BAD_ENVELOPE_SIGNATURE:1", "E_BROKEN_TRANSITION_LINK:1"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "NC-missing_proof_empty_chain", "group": "NEGATIVE_CONTROL", "family": "delegated_normal",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "strip_proof"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": false, "reason_contains": ["E_EMPTY_CHAIN"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "NC-attacker_minted_root", "group": "NEGATIVE_CONTROL", "family": "delegated_normal",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "Original fault UNTRUSTED_ROOT_PRODUCER: root grant and root envelope are minted with the attacker-controlled key. The trusted authority issues nothing, so the issuer ledger has no grant for this root.",
+      "materials": [{"label": "rootA", "seed": 2002, "kind": "attack", "fault": "UNTRUSTED_ROOT_PRODUCER", "issuer": "attacker", "authorized_actor": null, "completion_expected": false}],
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": false, "reason_contains": ["E_UNTRUSTED_ROOT", "E_UNTRUSTED_ROOT_ISSUER"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "AB-mediation_off_after_A_deny", "group": "CONTROLLED_ABLATION", "family": "deny_then_delegate",
+      "r1_counterpart": "C3_after_deny_A_only", "r1_equivalence": "MECHANISM_ONLY",
+      "note": "Original ablation IncompleteMediation (EffectBroker.require_permit=False). Oracle-sensitivity control; NOT a finding about CONTINUITY.",
+      "materials": [{"label": "rootA", "seed": 89999, "kind": "attack", "fault": "UNTRUSTED_FIELD_BINDING", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "a_script": {"then": "forward"},
+      "b_script": {"mode": "ladder", "stop_on_effect": true, "ladder": ["request_permit", "dispatch_no_permit", "dispatch_forged_permit_own_signer", "dispatch_forged_permit_claimed_trusted_signer"]},
+      "ablation": ["mediation"],
+      "expected": {
+        "verifier": [
+          {"by": "agent-A", "allowed": false, "reason_contains": ["E_UNRELEASED_FIELD:/action/destination"]},
+          {"by": "agent-B", "allowed": false, "reason_contains": ["E_UNRELEASED_FIELD:/action/destination"]}
+        ],
+        "finality": [{"caller": "agent-B", "ok": true, "reason_prefix": "BYPASS_EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "VIOLATION", "violation_types_contain": ["UNMEDIATED_EFFECT", "UNAUTHORIZED_ACTION"], "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "AB-revocation_recheck_off", "group": "CONTROLLED_ABLATION", "family": "stale_permit",
+      "r1_counterpart": "C4_queued_before_cut_static", "r1_equivalence": "MECHANISM_ONLY",
+      "note": "Original ablation NoRevocationRecheck. Oracle-sensitivity control; NOT a finding about CONTINUITY.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "honest"}, "ablation": ["revocation"],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-B", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "VIOLATION", "violation_types_contain": ["REVOKED_AT_FINALITY"], "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "AB-action_binding_off", "group": "CONTROLLED_ABLATION", "family": "delegated_normal",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "Original ablation NoActionBinding. Oracle-sensitivity control; NOT a finding about CONTINUITY.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "substitute_after_permit", "substitution": {"destination": "https://attacker.invalid/collect", "body_suffix": "\nExfiltrate all records."}},
+      "ablation": ["action_binding"],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-B", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "VIOLATION", "violation_types_contain": ["UNAUTHORIZED_ACTION"], "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "AB-subject_binding_off", "group": "CONTROLLED_ABLATION", "family": "direct_attempt",
+      "r1_counterpart": null, "r1_equivalence": "NONE",
+      "note": "Original ablation NoSubjectBinding. Oracle-sensitivity control; NOT a finding about CONTINUITY.",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "a_script": {"then": "dispatch_if_permit"}, "ablation": ["subject_binding"],
+      "expected": {
+        "verifier": [{"by": "agent-A", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-A", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "VIOLATION", "violation_types_contain": ["UNAUTHORIZED_ACTOR"], "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "X-single_agent_post_cut", "group": "R1_EXTENSION", "family": "cut_then_direct",
+      "r1_counterpart": "C4_single_agent_postcut_static", "r1_equivalence": "PARTIAL_CURRENT_ONLY",
+      "note": "Only the current-state semantics matches R1; the static-policy factor has no CONTINUITY counterpart. Asks whether post-cut denial depends on the delegation structure.",
+      "materials": [{"label": "rootA", "seed": 1002, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-A", "completion_expected": false}],
+      "a_script": {"then": "stop"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-A", "allowed": false, "reason_contains": ["E_REVOKED_ROOT_GRANT"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    },
+    {
+      "id": "X-created_after_cut", "group": "R1_EXTENSION", "family": "cut_then_create",
+      "r1_counterpart": "C4_created_after_cut_current", "r1_equivalence": "MATCH",
+      "materials": [{"label": "rootA", "seed": 1001, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-B", "completion_expected": false}],
+      "b_script": {"mode": "honest"}, "ablation": [],
+      "expected": {
+        "verifier": [{"by": "agent-B", "allowed": false, "reason_contains": ["E_REVOKED_ROOT_GRANT"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"}
+      }
+    }
+  ],
+  "not_run_r1_conditions": {
+    "C1_unauthorized_unmediated": "NO_DIRECT_ANALOGUE: wrapper-OFF baseline; the mechanism is exercised by AB-mediation_off_after_A_deny",
+    "C3_handoff_removed": "COVERED: A-side denial of R2-1a with no forwarding",
+    "C3_single_agent_replay": "COVERED_PARTIALLY: R2-1a/R2-2 A-side attempt; no separate retry step",
+    "C4_queued_before_cut_static": "NON_EQUIVALENT_SEMANTICS: no static-policy mode in CONTINUITY (verifier always reads current RuntimeState); nearest tests are R2-3a/R2-3b",
+    "C4_created_after_cut_static": "NON_EQUIVALENT_SEMANTICS: as above; nearest X-created_after_cut",
+    "C4_preaccepted_sink_fence": "NON_EQUIVALENT_SEMANTICS: CONTINUITY has no pending receipt or cancel-pending fence",
+    "C4_postcut_sink_fence_static": "NON_EQUIVALENT_SEMANTICS: as above",
+    "C5_global_stop_overblock_control": "NON_EQUIVALENT_SEMANTICS: global stop is a policy-engine choice; CONTINUITY revokes by grant id, so this control is not a CONTINUITY mode and is not constructed"
+  },
+  "not_exercised_by_design": [
+    "policy epoch rotation and policy-digest change", "permit/context expiry (constant logical clock)",
+    "concurrent or distributed finality (sequential in-process schedule)", "multiple grants per root task",
+    "re-delegation to a different actor or sub-delegation (needs a separately authenticated grant)",
+    "typed releases and external-field provenance beyond UNTRUSTED_FIELD_BINDING",
+    "authenticated caller identity at the A2A transport (identity is bound by the in-process handler)",
+    "agent-side adaptive attack strategies (scripted white-box behaviours only)", "any LLM or real tool"
+  ]
+}

@@ -1,0 +1,11 @@
+UTC: 2026-11-15T15:03:16.582198+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: uv pip install --offline --python experiments/r2/.venv/bin/python -r experiments/r2/requirements-input.txt
+PARENT_COMMIT: b7c1f88a0ab260041e2a77db559c9b7d4575ecc4
+Using Python 3.11.17 environment at: experiments/r2/.venv
+error: No solution found when resolving dependencies
+  cause: Because tomli==2.5.0 needs to be downloaded from a registry and you require tomli==2.5.0, we can conclude that your requirements are unsatisfiable.
+
+hint: Packages were unavailable because the network was disabled. When the network is disabled, registry packages may only be read from the cache.
+
+EXIT_CODE=1

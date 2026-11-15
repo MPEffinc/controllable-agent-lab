@@ -1,0 +1,22 @@
+UTC start: 2026-11-14T02:49:24.193057+00:00
+CWD: /home/cclab/controllable_agent
+Command: bash -c 'pwd; git status --short; uname -a; python3 --version; uv --version; git --version; docker --version; command -v podman || true; free -h; df -h .; date -u +%Y-%m-%dT%H:%M:%SZ'
+/home/cclab/controllable_agent
+?? CODEX_BOOTSTRAP_PROMPT.md
+?? CONTEXT.seed.md
+?? README_START.md
+?? results/
+?? scripts/
+Linux cclab 5.15.0-198-generic #208-Ubuntu SMP Fri Sep 4 10:22:38 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Python 3.10.12
+uv 0.13.3 (x86_64-unknown-linux-gnu)
+git version 2.34.1
+Docker version 28.3.2, build 578ccf6
+               total        used        free      shared  buff/cache   available
+Mem:            31Gi       9.0Gi       8.8Gi       1.7Gi        13Gi        20Gi
+Swap:          2.0Gi       136Mi       1.9Gi
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda4       192G   91G   92G  50% /
+2026-11-14T02:49:24Z
+
+EXIT_CODE=0

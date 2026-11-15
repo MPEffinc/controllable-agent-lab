@@ -1,0 +1,20 @@
+{
+  "name": "openshell-clone",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "--filter=blob:none",
+    "--sparse",
+    "https://github.com/NVIDIA/OpenShell.git",
+    "third_party/openshell"
+  ],
+  "start_utc": "2026-11-14T02:50:06.769867+00:00",
+  "end_utc": "2026-11-14T02:50:16.839976+00:00",
+  "duration_seconds": 10.07,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/openshell-clone.log"
+}

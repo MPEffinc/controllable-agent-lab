@@ -1,0 +1,16 @@
+{
+  "name": "defenses-camel-sync",
+  "cwd": "/home/cclab/controllable_agent/third_party/camel",
+  "command": [
+    "uv",
+    "sync",
+    "--frozen",
+    "--no-dev"
+  ],
+  "start_utc": "2026-11-14T02:49:46.234260+00:00",
+  "end_utc": "2026-11-14T02:50:20.551881+00:00",
+  "duration_seconds": 34.318,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/defenses-camel-sync.log"
+}

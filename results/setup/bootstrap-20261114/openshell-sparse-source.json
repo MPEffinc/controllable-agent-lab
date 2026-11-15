@@ -1,0 +1,21 @@
+{
+  "name": "openshell-sparse-source",
+  "cwd": "/home/cclab/controllable_agent/third_party/openshell",
+  "command": [
+    "git",
+    "sparse-checkout",
+    "set",
+    "crates",
+    "python/openshell",
+    "openshell",
+    "examples",
+    "policies",
+    "proto"
+  ],
+  "start_utc": "2026-11-14T02:50:43.708916+00:00",
+  "end_utc": "2026-11-14T02:57:17.953885+00:00",
+  "duration_seconds": 442.827,
+  "exit_code": 124,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/openshell-sparse-source.log"
+}

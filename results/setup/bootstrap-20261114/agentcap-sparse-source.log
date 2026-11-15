@@ -1,0 +1,12 @@
+UTC start: 2026-11-14T02:50:36.807335+00:00
+CWD: /home/cclab/controllable_agent/third_party/agentcap
+Command: git sparse-checkout set src tests scripts docs examples benchmarks
+
+TIMEOUT
+
+EXIT_CODE=124
+error: RPC failed; curl 56 GnuTLS recv error (-54): Error in the pull function.
+error: 6041 bytes of body are still expected
+fetch-pack: unexpected disconnect while reading sideband packet
+fatal: early EOF
+fatal: fetch-pack: invalid index-pack output

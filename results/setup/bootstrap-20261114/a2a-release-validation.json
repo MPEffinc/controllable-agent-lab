@@ -1,0 +1,14 @@
+{
+  "name": "a2a-release-validation",
+  "cwd": "/home/cclab/controllable_agent/third_party/a2asecbench",
+  "command": [
+    ".venv/bin/python",
+    "scripts/validate_release.py"
+  ],
+  "start_utc": "2026-11-14T02:49:47.953441+00:00",
+  "end_utc": "2026-11-14T02:53:11.875913+00:00",
+  "duration_seconds": 225.802,
+  "exit_code": 124,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/a2a-release-validation.log"
+}

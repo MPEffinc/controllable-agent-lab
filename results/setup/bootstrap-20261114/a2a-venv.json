@@ -1,0 +1,17 @@
+{
+  "name": "a2a-venv",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "uv",
+    "venv",
+    "third_party/a2asecbench/.venv",
+    "--python",
+    "python3.10"
+  ],
+  "start_utc": "2026-11-14T02:48:58.218061+00:00",
+  "end_utc": "2026-11-14T02:48:58.825787+00:00",
+  "duration_seconds": 0.608,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/a2a-venv.log"
+}

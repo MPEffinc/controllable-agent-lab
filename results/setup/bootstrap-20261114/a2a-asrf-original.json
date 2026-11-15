@@ -1,0 +1,20 @@
+{
+  "name": "a2a-asrf-original",
+  "cwd": "/home/cclab/controllable_agent/third_party/a2asecbench",
+  "command": [
+    ".venv/bin/python",
+    "orchestration.py",
+    "--config",
+    "configs/offline/asrf_eval.yaml",
+    "--trials",
+    "1",
+    "--out",
+    "../../results/setup/bootstrap-20261114/a2a-asrf-original/trials.jsonl"
+  ],
+  "start_utc": "2026-11-14T02:49:37.597710+00:00",
+  "end_utc": "2026-11-14T02:50:38.457308+00:00",
+  "duration_seconds": 60.86,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/a2a-asrf-original.log"
+}

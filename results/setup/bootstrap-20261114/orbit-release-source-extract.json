@@ -1,0 +1,15 @@
+{
+  "name": "orbit-release-source-extract",
+  "cwd": "/home/cclab/controllable_agent/third_party/orbit-release-v1.0.4",
+  "command": [
+    "tar",
+    "-xzf",
+    "orbit-1.0.4.tar.gz"
+  ],
+  "start_utc": "2026-11-14T02:49:48.074644+00:00",
+  "end_utc": "2026-11-14T02:49:49.773915+00:00",
+  "duration_seconds": 1.699,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/orbit-release-source-extract.log"
+}

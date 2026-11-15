@@ -1,0 +1,18 @@
+{
+  "name": "orbit-python311",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "env",
+    "UV_PYTHON_INSTALL_DIR=/home/cclab/controllable_agent/.cache/bootstrap-python",
+    "uv",
+    "python",
+    "install",
+    "3.11"
+  ],
+  "start_utc": "2026-11-14T02:49:25.080736+00:00",
+  "end_utc": "2026-11-14T02:49:34.317543+00:00",
+  "duration_seconds": 9.222,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/orbit-python311.log"
+}

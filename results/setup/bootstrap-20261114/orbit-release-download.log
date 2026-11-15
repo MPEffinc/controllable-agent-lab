@@ -1,0 +1,21 @@
+UTC start: 2026-11-14T02:49:23.616926+00:00
+CWD: /home/cclab/controllable_agent/third_party/orbit-release-v1.0.4
+Command: curl --fail --fail-early --location --remote-name-all https://github.com/wlanderson0/orbit/releases/download/v1.0.4/orbit-1.0.4-py3-none-any.whl https://github.com/wlanderson0/orbit/releases/download/v1.0.4/orbit-1.0.4.tar.gz https://github.com/wlanderson0/orbit/releases/download/v1.0.4/SHA256SUMS https://github.com/wlanderson0/orbit/releases/download/v1.0.4/release-manifest.json
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100 2728k  100 2728k    0     0  1526k      0  0:00:01  0:00:01 --:--:-- 4421k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 8079k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 8079k  100 8079k    0     0  6305k      0  0:00:01  0:00:01 --:--:-- 10.9M
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   180  100   180    0     0    393      0 --:--:-- --:--:-- --:--:--   393
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   692  100   692    0     0   1360      0 --:--:-- --:--:-- --:--:--  1360
+
+EXIT_CODE=0

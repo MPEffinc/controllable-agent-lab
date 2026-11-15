@@ -1,0 +1,17 @@
+{
+  "name": "defenses-progent-venv",
+  "cwd": "/home/cclab/controllable_agent/third_party/progent",
+  "command": [
+    "uv",
+    "venv",
+    "--python",
+    "3.10",
+    ".venv"
+  ],
+  "start_utc": "2026-11-14T02:49:46.353422+00:00",
+  "end_utc": "2026-11-14T02:49:46.744648+00:00",
+  "duration_seconds": 0.396,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/defenses-progent-venv.log"
+}

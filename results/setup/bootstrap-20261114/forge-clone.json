@@ -1,0 +1,20 @@
+{
+  "name": "forge-clone",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "--filter=blob:none",
+    "--sparse",
+    "https://github.com/sasy-labs/forge.git",
+    "third_party/forge"
+  ],
+  "start_utc": "2026-11-14T02:50:06.769059+00:00",
+  "end_utc": "2026-11-14T02:50:17.986928+00:00",
+  "duration_seconds": 11.218,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/forge-clone.log"
+}

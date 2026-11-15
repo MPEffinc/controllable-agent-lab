@@ -1,0 +1,16 @@
+{
+  "name": "a2a-pytest",
+  "cwd": "/home/cclab/controllable_agent/third_party/a2asecbench",
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q"
+  ],
+  "start_utc": "2026-11-14T02:49:38.846376+00:00",
+  "end_utc": "2026-11-14T02:52:44.258889+00:00",
+  "duration_seconds": 198.141,
+  "exit_code": 124,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/a2a-pytest.log"
+}

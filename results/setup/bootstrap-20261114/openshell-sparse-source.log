@@ -1,0 +1,7 @@
+UTC start: 2026-11-14T02:50:43.708916+00:00
+CWD: /home/cclab/controllable_agent/third_party/openshell
+Command: git sparse-checkout set crates python/openshell openshell examples policies proto
+
+TIMEOUT
+
+EXIT_CODE=124

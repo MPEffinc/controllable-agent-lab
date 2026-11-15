@@ -1,0 +1,18 @@
+{
+  "name": "defenses-clone-agentdojo",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/sequrity-ai/agentdojo.git",
+    "third_party/agentdojo"
+  ],
+  "start_utc": "2026-11-14T02:49:05.306093+00:00",
+  "end_utc": "2026-11-14T02:49:07.381740+00:00",
+  "duration_seconds": 2.076,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/defenses-clone-agentdojo.log"
+}

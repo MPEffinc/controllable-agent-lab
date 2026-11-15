@@ -1,0 +1,7 @@
+UTC start: 2026-11-14T02:49:47.953441+00:00
+CWD: /home/cclab/controllable_agent/third_party/a2asecbench
+Command: .venv/bin/python scripts/validate_release.py
+
+TIMEOUT
+
+EXIT_CODE=124

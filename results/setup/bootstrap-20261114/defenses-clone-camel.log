@@ -1,0 +1,6 @@
+UTC start: 2026-11-14T02:49:05.556397+00:00
+CWD: /home/cclab/controllable_agent
+Command: git clone --depth 1 https://github.com/google-research/camel-prompt-injection.git third_party/camel
+Cloning into 'third_party/camel'...
+
+EXIT_CODE=0

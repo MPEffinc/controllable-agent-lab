@@ -1,0 +1,25 @@
+{
+  "audit_utc": "2026-11-15T02:16:01.227714+00:00",
+  "user_date": "2026-11-15 Asia/Seoul",
+  "branch": "bootstrap/mas-security-keypapers",
+  "base_head": "baca6088f106d19a226feee84edc0f8cedec24be",
+  "origin": "git@github.com:MPEffinc/controllable-agent-lab.git",
+  "verify_saved": {
+    "command": [
+      "python3",
+      "scripts/audit_bootstrap.py",
+      "--verify-saved"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"VERIFIED\", \"repositories\": 10, \"command_logs\": 28, \"projected_trial_rows\": 200, \"attack_asr\": 1.0, \"control_pass_rate\": 1.0, \"scope\": \"saved evidence integrity/counts only; no benchmark rerun or independent reproduction\"}\n",
+    "stderr": "",
+    "exported_from": "Git index",
+    "third_party_present": false,
+    "venv_present": false,
+    "raw_trials_present": false
+  },
+  "python_syntax": "VERIFIED; compile only, no experiment execution",
+  "staged_secret_pattern_scan": "VERIFIED: no private/model/GitHub/AWS keys or JWT patterns found; category exclusions checked",
+  "deleted_tracked_files": [],
+  "new_benchmarks_or_installs_during_handoff": 0
+}

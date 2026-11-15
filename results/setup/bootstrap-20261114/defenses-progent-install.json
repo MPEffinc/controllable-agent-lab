@@ -1,0 +1,19 @@
+{
+  "name": "defenses-progent-install",
+  "cwd": "/home/cclab/controllable_agent/third_party/progent",
+  "command": [
+    "uv",
+    "pip",
+    "install",
+    "--python",
+    ".venv/bin/python",
+    "-e",
+    "."
+  ],
+  "start_utc": "2026-11-14T02:50:10.862074+00:00",
+  "end_utc": "2026-11-14T02:50:54.147793+00:00",
+  "duration_seconds": 43.286,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/defenses-progent-install.log"
+}

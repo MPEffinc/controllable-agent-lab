@@ -1,0 +1,6 @@
+UTC start: 2026-11-14T02:48:43.235883+00:00
+CWD: /home/cclab/controllable_agent
+Command: git clone --depth 1 https://github.com/SaFo-Lab/A2ASecBench.git third_party/a2asecbench
+Cloning into 'third_party/a2asecbench'...
+
+EXIT_CODE=0

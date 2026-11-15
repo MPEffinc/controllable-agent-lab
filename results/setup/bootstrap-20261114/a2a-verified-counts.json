@@ -1,0 +1,24 @@
+{
+  "records": 200,
+  "attack_records": 100,
+  "control_records": 100,
+  "attack_successes": 100,
+  "control_passes": 100,
+  "raw_sha256": "eebabeb64dd42fb88cb6870607649cbc41bb55492aa2474f3607eace9947d52b",
+  "raw_bytes": 1449552,
+  "model_calls": "NOT INFERRED; deterministic backend in source/config",
+  "summary": {
+    "a2a_attack_asr": 1.0,
+    "a2a_attack_trials": 100,
+    "asr": 0.5,
+    "config_hash": "72cf32d54477cd4079a213759b902dee0dda92a7fe4801490e397a466603935a",
+    "config_path": "configs/offline/asrf_eval.yaml",
+    "control_pass_rate": 1.0,
+    "control_trials": 100,
+    "overblock_rate": 0.0,
+    "run_finished_at": "2026-11-14T02:50:38.219304+00:00",
+    "run_started_at": "2026-11-14T02:49:39.235693+00:00",
+    "total_successes": 100,
+    "total_trials": 200
+  }
+}

@@ -1,0 +1,26 @@
+UTC start: 2026-11-14T02:50:16.570344+00:00
+CWD: /home/cclab/controllable_agent
+Command: uv pip install --python experiments/orbit-release/.venv/bin/python inspect-ai==0.3.263 ./third_party/orbit-release-v1.0.4/orbit-1.0.4-py3-none-any.whl
+Using Python 3.11.17 environment at: experiments/orbit-release/.venv
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.7.*`; after: `>=3.7`)
+Resolved 88 packages in 9.36s
+Downloading pydantic-core (2.1MiB)
+Downloading aiohttp (1.8MiB)
+Downloading botocore (13.4MiB)
+Downloading numpy (16.1MiB)
+Downloading debugpy (2.9MiB)
+Downloading zstandard (5.3MiB)
+Downloading inspect-ai (32.7MiB)
+Downloading tiktoken (1.2MiB)
+ Downloaded tiktoken
+ Downloaded aiohttp
+ Downloaded pydantic-core
+ Downloaded debugpy
+ Downloaded zstandard
+ Downloaded botocore
+ Downloaded numpy
+
+TIMEOUT
+
+EXIT_CODE=124

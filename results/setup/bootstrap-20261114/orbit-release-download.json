@@ -1,0 +1,21 @@
+{
+  "name": "orbit-release-download",
+  "cwd": "/home/cclab/controllable_agent/third_party/orbit-release-v1.0.4",
+  "command": [
+    "curl",
+    "--fail",
+    "--fail-early",
+    "--location",
+    "--remote-name-all",
+    "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/orbit-1.0.4-py3-none-any.whl",
+    "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/orbit-1.0.4.tar.gz",
+    "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/SHA256SUMS",
+    "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/release-manifest.json"
+  ],
+  "start_utc": "2026-11-14T02:49:23.616926+00:00",
+  "end_utc": "2026-11-14T02:49:27.770800+00:00",
+  "duration_seconds": 4.154,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/orbit-release-download.log"
+}

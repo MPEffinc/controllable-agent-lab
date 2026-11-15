@@ -1,0 +1,6 @@
+UTC start: 2026-11-14T02:49:05.306093+00:00
+CWD: /home/cclab/controllable_agent
+Command: git clone --depth 1 https://github.com/sequrity-ai/agentdojo.git third_party/agentdojo
+Cloning into 'third_party/agentdojo'...
+
+EXIT_CODE=0

@@ -1,0 +1,5 @@
+UTC start: 2026-11-14T02:50:40.070671+00:00
+CWD: /home/cclab/controllable_agent/third_party/forge
+Command: git sparse-checkout set experiments policies scripts
+
+EXIT_CODE=0

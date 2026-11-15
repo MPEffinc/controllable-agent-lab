@@ -19,3 +19,13 @@ local/
 
 # legacy/lab-v0 실행 산출물(세계 DB)
 legacy/lab-v0/runs/s02/db/
+
+# Current research bootstrap: isolated dependency/download caches and raw outputs
+.cache/bootstrap-*/
+results/setup/**/raw/
+*.eval
+# Keep only reviewed small bootstrap evidence in Git.
+!results/setup/bootstrap-20261114/*.log
+results/setup/bootstrap-20261114/discovery-search*.json
+results/setup/bootstrap-20261114/a2a-asrf-original/trials.jsonl
+experiments/orbit-release/first_benchmark.py

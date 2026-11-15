@@ -1,0 +1,15 @@
+{
+  "name": "orbit-release-checksums",
+  "cwd": "/home/cclab/controllable_agent/third_party/orbit-release-v1.0.4",
+  "command": [
+    "sha256sum",
+    "-c",
+    "SHA256SUMS"
+  ],
+  "start_utc": "2026-11-14T02:49:45.955680+00:00",
+  "end_utc": "2026-11-14T02:49:46.727026+00:00",
+  "duration_seconds": 0.793,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/orbit-release-checksums.log"
+}

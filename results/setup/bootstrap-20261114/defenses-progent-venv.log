@@ -1,0 +1,8 @@
+UTC start: 2026-11-14T02:49:46.353422+00:00
+CWD: /home/cclab/controllable_agent/third_party/progent
+Command: uv venv --python 3.10 .venv
+Using CPython 3.10.12 interpreter at: /usr/bin/python3.10
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+
+EXIT_CODE=0

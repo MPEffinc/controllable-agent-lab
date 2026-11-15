@@ -1,0 +1,9 @@
+UTC start: 2026-11-14T02:49:25.080736+00:00
+CWD: /home/cclab/controllable_agent
+Command: env UV_PYTHON_INSTALL_DIR=/home/cclab/controllable_agent/.cache/bootstrap-python uv python install 3.11
+Downloading cpython-3.11.17-linux-x86_64-gnu (download) (29.4MiB)
+ Downloaded cpython-3.11.17-linux-x86_64-gnu (download)
+Installed Python 3.11.17 in 9.12s
+ + cpython-3.11.17-linux-x86_64-gnu (python3.11)
+
+EXIT_CODE=0

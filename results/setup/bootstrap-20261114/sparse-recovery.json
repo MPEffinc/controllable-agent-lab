@@ -1,0 +1,272 @@
+[
+  {
+    "repo": "agentcap",
+    "path": ".gitattributes",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": ".gitignore",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "ACM-Reference-Format.bst",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "Makefile",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "acmart.cls",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "acmauthoryear.bbx",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "acmauthoryear.cbx",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "acmdatamodel.dbx",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "acmnumeric.bbx",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "acmnumeric.cbx",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "main.pdf",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "main.tex",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "pytest.ini",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "agentcap",
+    "path": "references.bib",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".dockerignore",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".env.example",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".gitattributes",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".gitignore",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".markdownlint-cli2.jsonc",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".packit.yaml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".python-version",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": ".trivyignore.yaml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "AGENTS.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "CI.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "CLAUDE.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "CODE_OF_CONDUCT.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "CONTRIBUTING.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "Cargo.lock",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "Cargo.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "DCO",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "GOVERNANCE.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "LICENSE",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "MAINTAINERS.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "README.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "REVIEWERS.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "SECURITY.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "STYLEGUIDE.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "TESTING.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "THIRD-PARTY-NOTICES",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "WINDOWS.md",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "about.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "buf.yaml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "clippy.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "deny.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "flake.lock",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "flake.nix",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "install.sh",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "mise.lock",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "mise.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "openshell.spec",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "pyproject.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "rust-toolchain.toml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "snapcraft.yaml",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  },
+  {
+    "repo": "openshell",
+    "path": "uv.lock",
+    "status": "RESTORED_CACHED_ORIGINAL"
+  }
+]

@@ -1,0 +1,5 @@
+UTC start: 2026-11-14T02:49:48.074644+00:00
+CWD: /home/cclab/controllable_agent/third_party/orbit-release-v1.0.4
+Command: tar -xzf orbit-1.0.4.tar.gz
+
+EXIT_CODE=0

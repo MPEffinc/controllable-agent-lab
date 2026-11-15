@@ -1,0 +1,480 @@
+[
+  {
+    "name": "a2a-asrf-original",
+    "command": [
+      ".venv/bin/python",
+      "orchestration.py",
+      "--config",
+      "configs/offline/asrf_eval.yaml",
+      "--trials",
+      "1",
+      "--out",
+      "../../results/setup/bootstrap-20261114/a2a-asrf-original/trials.jsonl"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:37.597710+00:00",
+    "end_utc": "2026-11-14T02:50:38.457308+00:00",
+    "metadata": "results/setup/bootstrap-20261114/a2a-asrf-original.json",
+    "log": "results/setup/bootstrap-20261114/a2a-asrf-original.log",
+    "log_sha256": "88f3cef42d44ba25255010ec0adb00999780a09af0ccc86f810fe7e23e377ff0"
+  },
+  {
+    "name": "a2a-clone",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/SaFo-Lab/A2ASecBench.git",
+      "third_party/a2asecbench"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:48:43.235883+00:00",
+    "end_utc": "2026-11-14T02:48:45.255308+00:00",
+    "metadata": "results/setup/bootstrap-20261114/a2a-clone.json",
+    "log": "results/setup/bootstrap-20261114/a2a-clone.log",
+    "log_sha256": "26b613d7a15e5c33efbdc06a31faf4c2fd9087d4fbd6b0c2f37465be29f5b134"
+  },
+  {
+    "name": "a2a-install",
+    "command": [
+      "uv",
+      "pip",
+      "install",
+      "--python",
+      "third_party/a2asecbench/.venv/bin/python",
+      "-e",
+      "third_party/a2asecbench[dev]"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:06.245544+00:00",
+    "end_utc": "2026-11-14T02:49:28.579785+00:00",
+    "metadata": "results/setup/bootstrap-20261114/a2a-install.json",
+    "log": "results/setup/bootstrap-20261114/a2a-install.log",
+    "log_sha256": "d7e78b68a271a3e0d224f06e599e18471d9997672e83c054365479886cdce1aa"
+  },
+  {
+    "name": "a2a-pytest",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "exit_code": 124,
+    "start_utc": "2026-11-14T02:49:38.846376+00:00",
+    "end_utc": "2026-11-14T02:52:44.258889+00:00",
+    "metadata": "results/setup/bootstrap-20261114/a2a-pytest.json",
+    "log": "results/setup/bootstrap-20261114/a2a-pytest.log",
+    "log_sha256": "5350c1417d892ca94b6521752488d4163a667d03985c4f3c440cd42c3713e15d"
+  },
+  {
+    "name": "a2a-release-validation",
+    "command": [
+      ".venv/bin/python",
+      "scripts/validate_release.py"
+    ],
+    "exit_code": 124,
+    "start_utc": "2026-11-14T02:49:47.953441+00:00",
+    "end_utc": "2026-11-14T02:53:11.875913+00:00",
+    "metadata": "results/setup/bootstrap-20261114/a2a-release-validation.json",
+    "log": "results/setup/bootstrap-20261114/a2a-release-validation.log",
+    "log_sha256": "0b7e639ef2b10896a008c602078577b3f410a94763ec70042bf3371fa3681d3b"
+  },
+  {
+    "name": "a2a-venv",
+    "command": [
+      "uv",
+      "venv",
+      "third_party/a2asecbench/.venv",
+      "--python",
+      "python3.10"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:48:58.218061+00:00",
+    "end_utc": "2026-11-14T02:48:58.825787+00:00",
+    "metadata": "results/setup/bootstrap-20261114/a2a-venv.json",
+    "log": "results/setup/bootstrap-20261114/a2a-venv.log",
+    "log_sha256": "7e5acacd0e8875eb4267ac59a321ad781f2150c9b35660738ff758d170e1ea30"
+  },
+  {
+    "name": "agentcap-clone",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "--filter=blob:none",
+      "--sparse",
+      "https://github.com/yunwei37/agentcap.git",
+      "third_party/agentcap"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:50:06.783815+00:00",
+    "end_utc": "2026-11-14T02:50:15.829641+00:00",
+    "metadata": "results/setup/bootstrap-20261114/agentcap-clone.json",
+    "log": "results/setup/bootstrap-20261114/agentcap-clone.log",
+    "log_sha256": "9b453aa6ff93fe0b795fecdde621c19585a3d40adc324c7c19f4db7c670e4c5e"
+  },
+  {
+    "name": "agentcap-sparse-source",
+    "command": [
+      "git",
+      "sparse-checkout",
+      "set",
+      "src",
+      "tests",
+      "scripts",
+      "docs",
+      "examples",
+      "benchmarks"
+    ],
+    "exit_code": 124,
+    "start_utc": "2026-11-14T02:50:36.807335+00:00",
+    "end_utc": "2026-11-14T02:57:45.861729+00:00",
+    "metadata": "results/setup/bootstrap-20261114/agentcap-sparse-source.json",
+    "log": "results/setup/bootstrap-20261114/agentcap-sparse-source.log",
+    "log_sha256": "38f8ccc44476401d33c4c0f8bf0cccc74eadac8c04c2f08f18a2adef3f97aaf2"
+  },
+  {
+    "name": "defenses-camel-sync",
+    "command": [
+      "uv",
+      "sync",
+      "--frozen",
+      "--no-dev"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:46.234260+00:00",
+    "end_utc": "2026-11-14T02:50:20.551881+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-camel-sync.json",
+    "log": "results/setup/bootstrap-20261114/defenses-camel-sync.log",
+    "log_sha256": "284c1ad29e10af3f60b1f8abda41d1b364c5f20724fe87e7d3cabb726af76956"
+  },
+  {
+    "name": "defenses-clone-agentdojo",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/sequrity-ai/agentdojo.git",
+      "third_party/agentdojo"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:05.306093+00:00",
+    "end_utc": "2026-11-14T02:49:07.381740+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-clone-agentdojo.json",
+    "log": "results/setup/bootstrap-20261114/defenses-clone-agentdojo.log",
+    "log_sha256": "ed281ac7ebaa0079c04bc11c3372b7b18275f6a0a15d1591248d22ff1600e3a0"
+  },
+  {
+    "name": "defenses-clone-camel",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/google-research/camel-prompt-injection.git",
+      "third_party/camel"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:05.556397+00:00",
+    "end_utc": "2026-11-14T02:49:07.124573+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-clone-camel.json",
+    "log": "results/setup/bootstrap-20261114/defenses-clone-camel.log",
+    "log_sha256": "55a6e3d79ffee85aa1bbaafd4971dddb2af4bb01280a776d369f20c77f415bd3"
+  },
+  {
+    "name": "defenses-clone-drift",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/SaFo-Lab/DRIFT.git",
+      "third_party/drift"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:06.150259+00:00",
+    "end_utc": "2026-11-14T02:49:24.865595+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-clone-drift.json",
+    "log": "results/setup/bootstrap-20261114/defenses-clone-drift.log",
+    "log_sha256": "0e12a98287d66c96d67af5b3f50bcd6249c2e5081e7a97c83f308b37993307ae"
+  },
+  {
+    "name": "defenses-clone-progent",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/sunblaze-ucb/progent.git",
+      "third_party/progent"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:06.012735+00:00",
+    "end_utc": "2026-11-14T02:49:15.261784+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-clone-progent.json",
+    "log": "results/setup/bootstrap-20261114/defenses-clone-progent.log",
+    "log_sha256": "28950c82df5b70d946105d248e25d1141a1dc9a41b890034784f30bc9d296b87"
+  },
+  {
+    "name": "defenses-progent-install",
+    "command": [
+      "uv",
+      "pip",
+      "install",
+      "--python",
+      ".venv/bin/python",
+      "-e",
+      "."
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:50:10.862074+00:00",
+    "end_utc": "2026-11-14T02:50:54.147793+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-progent-install.json",
+    "log": "results/setup/bootstrap-20261114/defenses-progent-install.log",
+    "log_sha256": "33ceebe20caf6bd3469397b47cea5067ef65d387e058b5866489ff8a3f833af1"
+  },
+  {
+    "name": "defenses-progent-venv",
+    "command": [
+      "uv",
+      "venv",
+      "--python",
+      "3.10",
+      ".venv"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:46.353422+00:00",
+    "end_utc": "2026-11-14T02:49:46.744648+00:00",
+    "metadata": "results/setup/bootstrap-20261114/defenses-progent-venv.json",
+    "log": "results/setup/bootstrap-20261114/defenses-progent-venv.log",
+    "log_sha256": "de4dab8820b13005a37127d18ba58265e28c7285230b257511c8af9717c0a3c1"
+  },
+  {
+    "name": "forge-clone",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "--filter=blob:none",
+      "--sparse",
+      "https://github.com/sasy-labs/forge.git",
+      "third_party/forge"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:50:06.769059+00:00",
+    "end_utc": "2026-11-14T02:50:17.986928+00:00",
+    "metadata": "results/setup/bootstrap-20261114/forge-clone.json",
+    "log": "results/setup/bootstrap-20261114/forge-clone.log",
+    "log_sha256": "96a9216aad6416b1a7a67d9693624fd59070290706ddf328e4020df5bb580ad5"
+  },
+  {
+    "name": "forge-sparse-source",
+    "command": [
+      "git",
+      "sparse-checkout",
+      "set",
+      "experiments",
+      "policies",
+      "scripts"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:50:40.070671+00:00",
+    "end_utc": "2026-11-14T02:50:53.517073+00:00",
+    "metadata": "results/setup/bootstrap-20261114/forge-sparse-source.json",
+    "log": "results/setup/bootstrap-20261114/forge-sparse-source.log",
+    "log_sha256": "7e63744842eec55bedc83d5d7e38e0bd07c3686cd0d57ab19373903518c9eeac"
+  },
+  {
+    "name": "host-doctor",
+    "command": [
+      "bash",
+      "-c",
+      "pwd; git status --short; uname -a; python3 --version; uv --version; git --version; docker --version; command -v podman || true; free -h; df -h .; date -u +%Y-%m-%dT%H:%M:%SZ"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:24.193057+00:00",
+    "end_utc": "2026-11-14T02:49:24.950069+00:00",
+    "metadata": "results/setup/bootstrap-20261114/host-doctor.json",
+    "log": "results/setup/bootstrap-20261114/host-doctor.log",
+    "log_sha256": "8346a7e1de269a1dbe7148cbcd02792e1ed797facbfc40c3916e1eaef417d652"
+  },
+  {
+    "name": "openshell-clone",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "--filter=blob:none",
+      "--sparse",
+      "https://github.com/NVIDIA/OpenShell.git",
+      "third_party/openshell"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:50:06.769867+00:00",
+    "end_utc": "2026-11-14T02:50:16.839976+00:00",
+    "metadata": "results/setup/bootstrap-20261114/openshell-clone.json",
+    "log": "results/setup/bootstrap-20261114/openshell-clone.log",
+    "log_sha256": "b4606ec45aa1d707174d4d88715ae0bcb2eb9e74ab73abdbcf42cf9f266a6c62"
+  },
+  {
+    "name": "openshell-sparse-source",
+    "command": [
+      "git",
+      "sparse-checkout",
+      "set",
+      "crates",
+      "python/openshell",
+      "openshell",
+      "examples",
+      "policies",
+      "proto"
+    ],
+    "exit_code": 124,
+    "start_utc": "2026-11-14T02:50:43.708916+00:00",
+    "end_utc": "2026-11-14T02:57:17.953885+00:00",
+    "metadata": "results/setup/bootstrap-20261114/openshell-sparse-source.json",
+    "log": "results/setup/bootstrap-20261114/openshell-sparse-source.log",
+    "log_sha256": "10ef10ebf76edfce3bb38236c8f8c309ec1c17767d0ec3e6b32cf03efbb68495"
+  },
+  {
+    "name": "orbit-clone",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wlanderson0/orbit.git",
+      "third_party/orbit"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:48:51.103133+00:00",
+    "end_utc": "2026-11-14T02:48:57.248281+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-clone.json",
+    "log": "results/setup/bootstrap-20261114/orbit-clone.log",
+    "log_sha256": "e4c70574877d13ab5cdf77380250364f60a49930a47bcb248af4bd77cc92a661"
+  },
+  {
+    "name": "orbit-python311",
+    "command": [
+      "env",
+      "UV_PYTHON_INSTALL_DIR=/home/cclab/controllable_agent/.cache/bootstrap-python",
+      "uv",
+      "python",
+      "install",
+      "3.11"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:25.080736+00:00",
+    "end_utc": "2026-11-14T02:49:34.317543+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-python311.json",
+    "log": "results/setup/bootstrap-20261114/orbit-python311.log",
+    "log_sha256": "fbf5b86a48f3f19b6d9fdf8a49f5441e055e35952752109d33ffd6ba815ac539"
+  },
+  {
+    "name": "orbit-release-checksums",
+    "command": [
+      "sha256sum",
+      "-c",
+      "SHA256SUMS"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:45.955680+00:00",
+    "end_utc": "2026-11-14T02:49:46.727026+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-release-checksums.json",
+    "log": "results/setup/bootstrap-20261114/orbit-release-checksums.log",
+    "log_sha256": "b2005a19aa7516827ef6e407523e0280b37471349277d137f013a3ce631c5739"
+  },
+  {
+    "name": "orbit-release-download",
+    "command": [
+      "curl",
+      "--fail",
+      "--fail-early",
+      "--location",
+      "--remote-name-all",
+      "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/orbit-1.0.4-py3-none-any.whl",
+      "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/orbit-1.0.4.tar.gz",
+      "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/SHA256SUMS",
+      "https://github.com/wlanderson0/orbit/releases/download/v1.0.4/release-manifest.json"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:23.616926+00:00",
+    "end_utc": "2026-11-14T02:49:27.770800+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-release-download.json",
+    "log": "results/setup/bootstrap-20261114/orbit-release-download.log",
+    "log_sha256": "4e8aa04342dde6cc2747a02c24a084548521918d74b2930879bb6a95a162f998"
+  },
+  {
+    "name": "orbit-release-install",
+    "command": [
+      "uv",
+      "pip",
+      "install",
+      "--python",
+      "experiments/orbit-release/.venv/bin/python",
+      "inspect-ai==0.3.263",
+      "./third_party/orbit-release-v1.0.4/orbit-1.0.4-py3-none-any.whl"
+    ],
+    "exit_code": 124,
+    "start_utc": "2026-11-14T02:50:16.570344+00:00",
+    "end_utc": "2026-11-14T02:58:02.086878+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-release-install.json",
+    "log": "results/setup/bootstrap-20261114/orbit-release-install.log",
+    "log_sha256": "6dc7a6de536a82b673d4e75159ebb1c95909a777b598cb3e2cfdb1f3d65b908a"
+  },
+  {
+    "name": "orbit-release-source-extract",
+    "command": [
+      "tar",
+      "-xzf",
+      "orbit-1.0.4.tar.gz"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:48.074644+00:00",
+    "end_utc": "2026-11-14T02:49:49.773915+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-release-source-extract.json",
+    "log": "results/setup/bootstrap-20261114/orbit-release-source-extract.log",
+    "log_sha256": "71b313e8c433a2bc63071bd9622c9c995ab1a8f46f9e231b9a79cbb8a14b34ed"
+  },
+  {
+    "name": "orbit-release-venv",
+    "command": [
+      "env",
+      "UV_PYTHON_INSTALL_DIR=/home/cclab/controllable_agent/.cache/bootstrap-python",
+      "uv",
+      "venv",
+      "--python",
+      "3.11",
+      "experiments/orbit-release/.venv"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:49:51.122769+00:00",
+    "end_utc": "2026-11-14T02:49:58.653196+00:00",
+    "metadata": "results/setup/bootstrap-20261114/orbit-release-venv.json",
+    "log": "results/setup/bootstrap-20261114/orbit-release-venv.log",
+    "log_sha256": "3e23e22b08972ba539faede0bc6b10eace0ef4d3c141517ccae5bf9ae6425803"
+  },
+  {
+    "name": "sasy-clone",
+    "command": [
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/sasy-labs/sasy.git",
+      "third_party/sasy"
+    ],
+    "exit_code": 0,
+    "start_utc": "2026-11-14T02:50:06.771642+00:00",
+    "end_utc": "2026-11-14T02:50:17.230536+00:00",
+    "metadata": "results/setup/bootstrap-20261114/sasy-clone.json",
+    "log": "results/setup/bootstrap-20261114/sasy-clone.log",
+    "log_sha256": "da312533b86e37a6e7708ede5102e81edf0bebee3de84a50d4b64347b985aad5"
+  }
+]

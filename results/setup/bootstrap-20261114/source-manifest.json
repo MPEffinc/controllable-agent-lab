@@ -1,0 +1,125 @@
+[
+  {
+    "name": "a2asecbench",
+    "url": "https://github.com/SaFo-Lab/A2ASecBench",
+    "commit": "e02109ebdcce3fe926884fbacbc935eef44e4aa3",
+    "origin": "https://github.com/SaFo-Lab/A2ASecBench.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 1647,
+    "checkout_status": [
+      "M results/summary.json",
+      "?? results/run_20261114T025036855271Z.jsonl",
+      "?? results/run_20261114T025037227135Z.jsonl",
+      "?? results/run_20261114T025051642306Z.jsonl"
+    ],
+    "sparse": "false"
+  },
+  {
+    "name": "orbit",
+    "url": "https://github.com/wlanderson0/orbit",
+    "commit": "887a0415e0ded15406de0f1e14259099b595d443",
+    "origin": "https://github.com/wlanderson0/orbit.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 861,
+    "checkout_status": [],
+    "sparse": "false"
+  },
+  {
+    "name": "camel",
+    "url": "https://github.com/google-research/camel-prompt-injection",
+    "commit": "f083b6b396399d3b3c7f2ddaf613a5945eaf32d8",
+    "origin": "https://github.com/google-research/camel-prompt-injection.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 63,
+    "checkout_status": [],
+    "sparse": "false"
+  },
+  {
+    "name": "progent",
+    "url": "https://github.com/sunblaze-ucb/progent",
+    "commit": "b02783b896d4bf01a2adf24738015e258db8d35b",
+    "origin": "https://github.com/sunblaze-ucb/progent.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 575,
+    "checkout_status": [],
+    "sparse": "false"
+  },
+  {
+    "name": "drift",
+    "url": "https://github.com/SaFo-Lab/DRIFT",
+    "commit": "6fd3df4763fad77398c3c273c2a4fe14dd50f7ea",
+    "origin": "https://github.com/SaFo-Lab/DRIFT.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 1846,
+    "checkout_status": [],
+    "sparse": "false"
+  },
+  {
+    "name": "agentdojo",
+    "url": "https://github.com/sequrity-ai/agentdojo",
+    "commit": "357c80dea9af34323f709c3505d9e6d224654c7e",
+    "origin": "https://github.com/sequrity-ai/agentdojo.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 197,
+    "checkout_status": [],
+    "sparse": "false"
+  },
+  {
+    "name": "agentcap",
+    "url": "https://github.com/yunwei37/agentcap",
+    "commit": "1886fd50dbd51344c62acd1d224375054ac076e9",
+    "origin": "https://github.com/yunwei37/agentcap.git",
+    "license_files": [],
+    "tracked_tree_paths": 2581,
+    "checkout_status": [],
+    "sparse": "true"
+  },
+  {
+    "name": "openshell",
+    "url": "https://github.com/NVIDIA/OpenShell",
+    "commit": "2e5589b2180dd432320adda124c4f7bcede119b5",
+    "origin": "https://github.com/NVIDIA/OpenShell.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 2049,
+    "checkout_status": [],
+    "sparse": "true"
+  },
+  {
+    "name": "sasy",
+    "url": "https://github.com/sasy-labs/sasy",
+    "commit": "7dc9e524c5b1979b91d16b9d573219e358a6c332",
+    "origin": "https://github.com/sasy-labs/sasy.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 493,
+    "checkout_status": [],
+    "sparse": "false"
+  },
+  {
+    "name": "forge",
+    "url": "https://github.com/sasy-labs/forge",
+    "commit": "ecc5ff9f7576f2669249609d9002c07674947913",
+    "origin": "https://github.com/sasy-labs/forge.git",
+    "license_files": [
+      "LICENSE"
+    ],
+    "tracked_tree_paths": 42584,
+    "checkout_status": [],
+    "sparse": "true"
+  }
+]

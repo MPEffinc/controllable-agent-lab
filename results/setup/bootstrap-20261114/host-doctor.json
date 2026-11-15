@@ -1,0 +1,15 @@
+{
+  "name": "host-doctor",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "bash",
+    "-c",
+    "pwd; git status --short; uname -a; python3 --version; uv --version; git --version; docker --version; command -v podman || true; free -h; df -h .; date -u +%Y-%m-%dT%H:%M:%SZ"
+  ],
+  "start_utc": "2026-11-14T02:49:24.193057+00:00",
+  "end_utc": "2026-11-14T02:49:24.950069+00:00",
+  "duration_seconds": 0.757,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/host-doctor.log"
+}

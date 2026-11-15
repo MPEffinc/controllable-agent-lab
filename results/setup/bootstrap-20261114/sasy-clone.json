@@ -1,0 +1,18 @@
+{
+  "name": "sasy-clone",
+  "cwd": "/home/cclab/controllable_agent",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/sasy-labs/sasy.git",
+    "third_party/sasy"
+  ],
+  "start_utc": "2026-11-14T02:50:06.771642+00:00",
+  "end_utc": "2026-11-14T02:50:17.230536+00:00",
+  "duration_seconds": 10.459,
+  "exit_code": 0,
+  "credential_env_removed": true,
+  "log": "results/setup/bootstrap-20261114/sasy-clone.log"
+}

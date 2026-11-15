@@ -1,0 +1,26 @@
+{
+  "name": "r3-research-provenance",
+  "command": [
+    "python3",
+    "-I",
+    "/home/cclab/controllable_agent/experiments/r3/research_provenance.py",
+    "--cache",
+    "/home/cclab/controllable_agent/local/r3-research",
+    "--artifact-zip",
+    "/home/cclab/controllable_agent/third_party/vera-artifact-anon.zip",
+    "--artifact-dir",
+    "/home/cclab/controllable_agent/third_party/vera-artifact-anon",
+    "--output",
+    "/home/cclab/controllable_agent/results/r3/research-provenance.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T16:41:05.421286+00:00",
+  "end_utc": "2026-11-15T16:41:05.636120+00:00",
+  "duration_seconds": 0.215,
+  "exit_code": 0,
+  "log": "results/r3/commands/r3-research-provenance.stdout.txt",
+  "parent_commit": "20d95d90b84767bd6e8c9d74af1508ccc2fe8d29",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

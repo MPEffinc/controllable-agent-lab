@@ -1,0 +1,552 @@
+{
+  "classification": "R3_PRIOR_ART_PROVENANCE",
+  "generated_utc": "2026-11-15T16:41:05.598501+00:00",
+  "papers": {
+    "continuity": {
+      "arxiv_id": "2609.05269",
+      "version": "v1",
+      "short": "CONTINUITY",
+      "title": "CONTINUITY: Security-Context Contracts for Composable LLM Agent Controls",
+      "authors": [
+        "Chris Zheng",
+        "Geng Yang"
+      ],
+      "submitted": "2026-09-04",
+      "abs_url": "https://arxiv.org/abs/2609.05269",
+      "html_url": "https://arxiv.org/html/2609.05269v1",
+      "title_found_in_text": true,
+      "title_found_ignoring_spaces": true,
+      "html_sha256": "b76dd33aa0e656ce842c23b330d3b7208cac51ce22d1c1895f23a2d24eeac1cd",
+      "html_bytes": 475420,
+      "text_sha256": "c9e3b6312d897f9b0a6e28d935aff17e399a9747f76791ea26be039a01816bcd",
+      "text_chars": 95538,
+      "cached_utc": "2026-11-15T16:09:50.109841+00:00"
+    },
+    "vera": {
+      "arxiv_id": "2608.30091",
+      "version": "v1",
+      "short": "VERA",
+      "title": "VERA: Authority-Preserving Edge Revocation for Federated AI-Agent Workflows",
+      "authors": [
+        "Lifei Liu",
+        "Haoran Yu",
+        "Xiaochong Jiang"
+      ],
+      "submitted": "2026-08-30",
+      "abs_url": "https://arxiv.org/abs/2608.30091",
+      "html_url": "https://arxiv.org/html/2608.30091v1",
+      "title_found_in_text": false,
+      "title_found_ignoring_spaces": true,
+      "html_sha256": "e97e4b112474c1fb790f58dfb25a4cdbc58ceec7a5ee14b8696ff919edee10e6",
+      "html_bytes": 231826,
+      "text_sha256": "1c9d08355d3e6332cacc762e5637fe0788e4c01e5b91e0d3e0e5eef10bea9ee5",
+      "text_chars": 49133,
+      "cached_utc": "2026-11-15T16:09:49.573844+00:00"
+    },
+    "revocation": {
+      "arxiv_id": "2609.21284",
+      "version": "v1",
+      "short": "Authorization Revocation",
+      "title": "Authorization Revocation for Long-Running AI Agents: Root-Scoped Quiescence under Delegation and Asynchronous Execution",
+      "authors": [
+        "Genliang Zhu",
+        "Chu Wang"
+      ],
+      "submitted": "2026-09-18",
+      "abs_url": "https://arxiv.org/abs/2609.21284",
+      "html_url": "https://arxiv.org/html/2609.21284v1",
+      "title_found_in_text": true,
+      "title_found_ignoring_spaces": true,
+      "html_sha256": "bc85025e2a7e19707fedefa7714b82eb210b31718d81101ea99dc25e9a255ecd",
+      "html_bytes": 542514,
+      "text_sha256": "71e6a6fd698d2b4a80c25a587488400dfb1228ce5167ef174f8c33299bc29d0a",
+      "text_chars": 154889,
+      "cached_utc": "2026-11-15T16:09:49.689844+00:00"
+    },
+    "residualauth": {
+      "arxiv_id": "2609.08062",
+      "version": "v2",
+      "short": "ResidualAuth",
+      "title": "ResidualAuth: What Authorization State Must Language Agents Preserve under Revocable Delegation?",
+      "authors": [
+        "Moonwon Choi",
+        "Seokho Jeong",
+        "Sian Choi",
+        "Seunggeun Lee"
+      ],
+      "submitted": "2026-09-08 (v1), 2026-09-30 (v2)",
+      "title_note": "arXiv abstract page title says \"Language Agents\"; the v2 HTML text says \"Agent Systems\"",
+      "abs_url": "https://arxiv.org/abs/2609.08062",
+      "html_url": "https://arxiv.org/html/2609.08062v2",
+      "title_found_in_text": false,
+      "title_found_ignoring_spaces": false,
+      "html_sha256": "9855d86494db2a02dfc5697cfdaf549d05c12b003f489e49cdfda69e777b2e9f",
+      "html_bytes": 1274518,
+      "text_sha256": "0042673391b74584f312ab30cb10ad3409b5993664fba6c3d40d5e442fda0f9f",
+      "text_chars": 273651,
+      "cached_utc": "2026-11-15T16:09:49.993841+00:00"
+    },
+    "succession": {
+      "arxiv_id": "2610.00347",
+      "version": "v1",
+      "short": "Authorization Succession",
+      "title": "Authorization for Self-Modifying AI Agent Populations: Conserving Authority across Replacement, Forking, and Rollback",
+      "authors": [
+        "Genliang Zhu",
+        "Chu Wang"
+      ],
+      "submitted": "2026-09-29",
+      "abs_url": "https://arxiv.org/abs/2610.00347",
+      "html_url": "https://arxiv.org/html/2610.00347v1",
+      "title_found_in_text": true,
+      "title_found_ignoring_spaces": true,
+      "html_sha256": "6cb9fe3624072a32876ff41a8f57d0163ef6f31fbd09eff91550ec3c8d7074d9",
+      "html_bytes": 545779,
+      "text_sha256": "4bac8f4cfd698b9e587cbb1c79aa4e090eacaf9f4a213e95e588e6f77199ff05",
+      "text_chars": 155390,
+      "cached_utc": "2026-11-15T16:09:49.809843+00:00"
+    }
+  },
+  "quote_count": 41,
+  "quotes_found": 41,
+  "quotes": [
+    {
+      "id": "VERA-1",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "It does not cover threshold approval or all-parent approval; those policies require different target functions.",
+      "found_verbatim": true,
+      "char_offset": 12879
+    },
+    {
+      "id": "VERA-2",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "A node with an alternate authorizing root path must stay active.",
+      "found_verbatim": true,
+      "char_offset": 14991
+    },
+    {
+      "id": "VERA-3",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "hot-path authorization uses cached verified revocation state",
+      "found_verbatim": true,
+      "char_offset": 37281
+    },
+    {
+      "id": "VERA-4",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "The artifact is available at",
+      "found_verbatim": true,
+      "char_offset": 41731
+    },
+    {
+      "id": "VERA-5",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "None directly provides a multi-parent, cross-domain edge target",
+      "found_verbatim": true,
+      "char_offset": 40414
+    },
+    {
+      "id": "VERA-6",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "the edge target preserves the shared agent in all 320 cases while tree cascade revokes it in all 320",
+      "found_verbatim": true,
+      "char_offset": 29994
+    },
+    {
+      "id": "VERA-7",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "APS is closest among agent proposals but uses a single-parent rooted tree",
+      "found_verbatim": true,
+      "char_offset": 40331
+    },
+    {
+      "id": "REV-1",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "A carrier may have conjunctive requirements and alternative roots.",
+      "found_verbatim": true,
+      "char_offset": 40596
+    },
+    {
+      "id": "REV-2",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "Treating its roots as a flat union would over-revoke independently authorized work; treating them as an existential set would permit root laundering.",
+      "found_verbatim": true,
+      "char_offset": 40663
+    },
+    {
+      "id": "REV-3",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "It neither declares the whole system idle nor revokes work supported by other roots.",
+      "found_verbatim": true,
+      "char_offset": 7993
+    },
+    {
+      "id": "REV-4",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "a strict subset of a conjunctive witness cannot authorize an effect",
+      "found_verbatim": true,
+      "char_offset": 75045
+    },
+    {
+      "id": "REV-5",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "Registry and manifest completeness",
+      "found_verbatim": true,
+      "char_offset": 31599
+    },
+    {
+      "id": "REV-6",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "Issuer mediation and non-expansion",
+      "found_verbatim": true,
+      "char_offset": 29831
+    },
+    {
+      "id": "REV-7",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "Theorem 12 (Independent-support preservation)",
+      "found_verbatim": true,
+      "char_offset": 60224
+    },
+    {
+      "id": "REV-8",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "Theorem 14 (Crash/replay stability and unrelated-root locality)",
+      "found_verbatim": true,
+      "char_offset": 61008
+    },
+    {
+      "id": "REV-9",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "Exact delegation-edge revocation the authority consequences of removing a selected graph edge",
+      "found_verbatim": true,
+      "char_offset": 14912
+    },
+    {
+      "id": "REV-10",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "The evaluated system is the executable durable-ledger artifact, its 17-case late-effect test suite, and the separately implemented checker.",
+      "found_verbatim": true,
+      "char_offset": 90652
+    },
+    {
+      "id": "REV-11",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "represents alternative and conjunctive authority as antichains of minimal sufficient root sets",
+      "found_verbatim": true,
+      "char_offset": 4305
+    },
+    {
+      "id": "SUC-1",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "The core transition system admits no multi-parent child and no merge rule.",
+      "found_verbatim": true,
+      "char_offset": 37767
+    },
+    {
+      "id": "SUC-2",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "Multi-parent authority merge is outside the formal, implemented, and executed result.",
+      "found_verbatim": true,
+      "char_offset": 120925
+    },
+    {
+      "id": "SUC-3",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "such coordination does not create an authorization parent edge or union their grants",
+      "found_verbatim": true,
+      "char_offset": 18048
+    },
+    {
+      "id": "SUC-4",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "Executable artifacts, adapters, checker traces, temporary files, source caches, and non-manuscript research materials remain outside that archive.",
+      "found_verbatim": true,
+      "char_offset": 125109
+    },
+    {
+      "id": "SUC-5",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "Our protocol assumes such complete mediation",
+      "found_verbatim": true,
+      "char_offset": 116389
+    },
+    {
+      "id": "SUC-6",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "conserves authority across a single-parent generation forest",
+      "found_verbatim": true,
+      "char_offset": 4203
+    },
+    {
+      "id": "RES-1",
+      "paper": "residualauth",
+      "arxiv_id": "2609.08062",
+      "quote": "an optional immutable selected parent",
+      "found_verbatim": true,
+      "char_offset": 115112
+    },
+    {
+      "id": "RES-2",
+      "paper": "residualauth",
+      "arxiv_id": "2609.08062",
+      "quote": "Cascading effectiveness is the well-founded recursion",
+      "found_verbatim": true,
+      "char_offset": 116305
+    },
+    {
+      "id": "RES-3",
+      "paper": "residualauth",
+      "arxiv_id": "2609.08062",
+      "quote": "A hard gate separately checks proposals against a trusted ledger before execution",
+      "found_verbatim": true,
+      "char_offset": 10615
+    },
+    {
+      "id": "RES-4",
+      "paper": "residualauth",
+      "arxiv_id": "2609.08062",
+      "quote": "not an end-to-end replay of the experiment repository",
+      "found_verbatim": true,
+      "char_offset": 41417
+    },
+    {
+      "id": "CON-1",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "Authority and delegation can increase only through a separately authenticated grant",
+      "found_verbatim": true,
+      "char_offset": 34414
+    },
+    {
+      "id": "CON-2",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "only a verified grant edge may add authority",
+      "found_verbatim": true,
+      "char_offset": 36458
+    },
+    {
+      "id": "CON-3",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "Key rotation, quorum authorization, hardware roots, and certificate-path validation are outside the prototype.",
+      "found_verbatim": true,
+      "char_offset": 73279
+    },
+    {
+      "id": "CON-4",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "Complete mediation is an engineering and governance obligation.",
+      "found_verbatim": true,
+      "char_offset": 76206
+    },
+    {
+      "id": "CON-5",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "A permit issued before a grant is revoked is rejected at finality.",
+      "found_verbatim": true,
+      "char_offset": 44601
+    },
+    {
+      "id": "CON-6",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "The proof protects only sinks that require a valid permit.",
+      "found_verbatim": true,
+      "char_offset": 44691
+    },
+    {
+      "id": "CON-7",
+      "paper": "continuity",
+      "arxiv_id": "2609.05269",
+      "quote": "A deployment must enumerate protected effect classes",
+      "found_verbatim": true,
+      "char_offset": 44750
+    },
+    {
+      "id": "VERA-8",
+      "paper": "vera",
+      "arxiv_id": "2608.30091",
+      "quote": "Simultaneous revocations must yield the exact joint target, not necessarily the union of single-edge targets.",
+      "found_verbatim": true,
+      "char_offset": 15320
+    },
+    {
+      "id": "REV-12",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "No descendant inherits the rebind merely from ancestry; it must either be covered by the same atomic profile transition or carry its own receipt.",
+      "found_verbatim": true,
+      "char_offset": 44480
+    },
+    {
+      "id": "REV-13",
+      "paper": "revocation",
+      "arxiv_id": "2609.21284",
+      "quote": "obligations and carrier effects already emitted before or across the revocation cut",
+      "found_verbatim": true,
+      "char_offset": 15006
+    },
+    {
+      "id": "SUC-7",
+      "paper": "succession",
+      "arxiv_id": "2610.00347",
+      "quote": "Ancestor cuts invalidate dependent descendants; rollback creates a fresh generation without restoring spent authority; a new root requires an independent grant.",
+      "found_verbatim": true,
+      "char_offset": 4727
+    },
+    {
+      "id": "RES-5",
+      "paper": "residualauth",
+      "arxiv_id": "2609.08062",
+      "quote": "an idempotent grant never reparents an authorized target",
+      "found_verbatim": true,
+      "char_offset": 58316
+    },
+    {
+      "id": "RES-6",
+      "paper": "residualauth",
+      "arxiv_id": "2609.08062",
+      "quote": "One parent per record does not mean one incoming grant per principal.",
+      "found_verbatim": true,
+      "char_offset": 26770
+    }
+  ],
+  "vera_artifact": {
+    "paper_stated_url": "https://anonymous.4open.science/r/ictai2026-agent-revocation-artifact-14BA/README.md",
+    "paper_stated_in": "VERA arXiv:2608.30091v1, unnumbered Artifact Availability paragraph after Section XI (quote VERA-4)",
+    "archive_sha256": "5e7ee1be8bb2cc8e3834e2ec51c5d931c5e7c5ff31646dd145101e01c60de32f",
+    "archive_entries": 73,
+    "file_count": 73,
+    "file_sha256": {
+      ".gitignore": "630e790565dd0428e786ed1d86603ddc66bf3170377075c9c6900906d0658dab",
+      "MANIFEST.md": "6e99e998ae6096d044a5aaac30e14e518676ea1aca45af2906f90d507a303bc5",
+      "README.md": "a795715578c11d71c2a2b8fd27b5a2f644ceb60808fb6a1e62ee3701b3383029",
+      "examples/agent_runtime_adapter.py": "05ec6c6c147dac7112862b11dc37d3ba56f3c4df0d5554015a144888290f3c42",
+      "experiments/e11_oss_corpus/corpus_graphs.json": "a225b2b8ce82ac4a98f39b58f0aa300906bd2160a79d8c190815813b78a0b283",
+      "experiments/e11_oss_corpus/e11_results.json": "40040d8353dad6e41bb62cf221dda4d6df2059f001bfe87700dc356f68172a92",
+      "experiments/e11_oss_corpus/harvest.py": "55c95a2af762114dc3f2797ab02863967bf0e3a82ffee83ece5f8d8ca176810e",
+      "experiments/e11_oss_corpus/repos.json": "90b78134bd94df23c82e12f018c2c0cc5d6d70887e3d11dc6cf360dfaf0e2c3e",
+      "experiments/e11_oss_corpus/run.py": "d77ddf7900e179ea94de73c8c87cb381b92bb05a6e87c86b0a38ba5e088c50d6",
+      "experiments/e11_oss_corpus/sampling_manifest.json": "ec0e7510f23f5a08c5289f196062b461803b784fd52513070f30c301b56215e2",
+      "experiments/e11_oss_corpus/validation_sample.json": "468f65c5413e428a14be77e4874a8554d09419585085d52eb9bc457e38fe05ac",
+      "experiments/e16_framework_trace_replay/baseline_expressiveness.py": "b2f443a7fd0890319b94ed95351001bbc59a0cecf3f69685c7669feeeb0e3041",
+      "experiments/e16_framework_trace_replay/collect_langgraph.py": "9299ade5a1e5bb08b0c5643d6aca29da226b948b2e6429e8c501c6f68f389d1f",
+      "experiments/e16_framework_trace_replay/common.py": "562bebf1f33a434c5445bbfd435998ad82edd2f4ab1a2ca8bbee3c5e1cb48336",
+      "experiments/e16_framework_trace_replay/e16_baseline_expressiveness.csv": "7f3f7d336b1f503b996ba7c9565f6705ef1c4359aa5386d5ca0da8d8f77ad8af",
+      "experiments/e16_framework_trace_replay/e16_baseline_expressiveness.json": "5377639fe8a7167ef3ce8ce2c1c5a684bb50c0404a97a15bcea898a76ac7ee51",
+      "experiments/e16_framework_trace_replay/e16_baseline_expressiveness_table.tex": "7272ebfbe47efdea994ef5e253eb1c728332d6b8e0fdf3366672f55a57f7397b",
+      "experiments/e16_framework_trace_replay/e16_results.json": "2b5747feb569ae92aee47a5f34fba6502f6859bbed4b65e428277e8e84b93745",
+      "experiments/e16_framework_trace_replay/normalize.py": "b5cbe3e390f379c5ad118eb5cdf126eb808d3d8f89a82a1f7207843ea085c99a",
+      "experiments/e16_framework_trace_replay/replay.py": "8fece9746ff269852ba829b3e8382856419a9df06a80a0e44d2889ee46412e2b",
+      "experiments/e16_framework_trace_replay/run.py": "c67032238956675b9282ebb07db8519b0df10bde99b1f7fb7906526653e59a39",
+      "experiments/e16_framework_trace_replay/schema.md": "593a4daed8fbc39bb2f845a25e74a5adf9f653afe6455e7a22646a6382278604",
+      "experiments/e16_framework_trace_replay/traces/langgraph_raw.jsonl": "8a2928661bed874364a65dcf0f9bc016772f16a9de1cd2eda3fd75875b0e8f03",
+      "experiments/e16_framework_trace_replay/traces/normalized_events.jsonl": "701fdf9fa1a44c6786d2964c408eaa072226f9bdccfe3c0138a4a8abd5c057ef",
+      "experiments/e16_framework_trace_replay/traces/public_keys.json": "023f4a95f7c3aa24a5cea92405130c9694283e185a70c40cf8e3ec46c35109ee",
+      "experiments/e17_a2a_protocol_demo/README.md": "9b1af249191aabc2d14647f7b97db36c2dbcc2b31fc2e92d56608119760de340",
+      "experiments/e17_a2a_protocol_demo/e17_results.json": "640fc42c7f4c7e12f7a651e257b99115ed0acb79d06bd32f59bb9aeb433d3d9c",
+      "experiments/e17_a2a_protocol_demo/run.py": "c4b0ea181dd3434b18aa01f33e75eed4dbd6e27956d7627f3d0ae7d8a5a4d721",
+      "experiments/e17_a2a_protocol_demo/traces/a2a_raw.jsonl": "5fe3df85e7985c743fe30b511d63887ca7b80accf4bd6bc1e763566a94e30ced",
+      "experiments/e17_a2a_protocol_demo/traces/normalized_events.jsonl": "6394e0619bdea64719e13dea946ebcfdd3958ab88fa143bd1c2a7dc3d97c66fe",
+      "experiments/e18_cross_framework_agent_demo/README.md": "3c14dc2827d71a4057575f7d03763c777b57227753e553b25c7e8b656c860cc3",
+      "experiments/e18_cross_framework_agent_demo/e18_results.json": "bfe985019b412dfb775af84a97723536ff5d256b8a5ba08c4d5e026bba435880",
+      "experiments/e18_cross_framework_agent_demo/run.py": "061a49832f8d68b52966eebde23817f0cec2e23b63f2f906c63363641168dc2a",
+      "experiments/e18_cross_framework_agent_demo/traces/cross_framework_raw.jsonl": "98d235f4396381a5e2da9844f56f951fb16859c8645f794a756591558b263c36",
+      "experiments/e18_cross_framework_agent_demo/traces/normalized_events.jsonl": "12456a2ebf6a820d3b48fdca2ebed2d0ba78c78c82d185b947429d297bcbab44",
+      "experiments/e19_crewai_executable_demo/.gitignore": "472f568478bff9056ec56b5c5e8a7ca3d280c651d527321e1eb80892801164be",
+      "experiments/e19_crewai_executable_demo/README.md": "24f21e795ae5e06b38a8953d1989aa3d52129b5975222ea0f1c34e9e28cbf7bf",
+      "experiments/e19_crewai_executable_demo/e19_results.json": "fc796850f2836d0d979bef05ab88e39c312c0d4969b070480aa783089af15c20",
+      "experiments/e19_crewai_executable_demo/requirements.txt": "32b1737cb23b7edeeaf1a5996c6d7ef523da70151722f1cfb85c51a9103dbe49",
+      "experiments/e19_crewai_executable_demo/run.py": "300dca36b0983b9580c120a3680012a80858c7731e5e80d53119466aa68750c0",
+      "experiments/e19_crewai_executable_demo/traces/crewai_runtime_raw.jsonl": "fe4c319d27ad9d8db84b912e3b119044739b74a75666e0ae198f9b28a1d6bf24",
+      "experiments/e19_crewai_executable_demo/traces/normalized_events.jsonl": "96daf5daeab8a46ee0a3d3cb93d401e48f7bd11a2f4ed10100882e821e197000",
+      "experiments/e4_ba_scale/e4_results.json": "a1d132515ede3b1bccb8dfc2d99e77a84d992e80c216d6d1b04959ad3c867218",
+      "experiments/e4_ba_scale/gen_fig4.py": "b7a32aa7a7bcb085a2b1e4853dc2b03db4f4a73dfbe8e9f1fa1a5761aa2387eb",
+      "experiments/e4_ba_scale/run.py": "0b1425c6b18cc3a96f7b06798a49e85d6cb9b4b8d02bb1943a10e047baccd60b",
+      "experiments/e5_case_study/run.py": "25acd37872229c661e1b2dcca3b568f5d27a993aac0fe3df207f4671e60201ff",
+      "experiments/e6_semantic_stress/run.py": "b521e6041d5292917a6c83eb0fc779259262b605bcadef9da2d20908491b80cf",
+      "experiments/e8_prototype/run.py": "83aeca595b1010a83e990610f3a38fc103e9fa4c3878a5c96e8c4e409943dacf",
+      "requirements-core.txt": "0df309641ffb028146cc85ff0bc8ccbf9c50faf465d5441623a5a9d71dd3a380",
+      "requirements-dev.txt": "0ff9959e6efc3eb9724b6f314ea24f857789b2cef4a921482dd93992fe3be567",
+      "requirements-framework.txt": "d933f2fae76e9c041211405331a289e408f97b8bd81cbca89298f81171011a44",
+      "results/e13_sensitivity.json": "68259b882607e7d08b39e6dffe40339e8721c8774f5b952c88d3192e89020ac3",
+      "results/e6_semantic_stress.json": "06a65272ea932f7dbec9db553558b7e307bfeb7708561551ba201f1b2864e019",
+      "results/e8_protocol_results.json": "199ec049b4c37fd36bdf4886ec24825335b690ee1b2ecd6fbcea547081d445da",
+      "scripts/check_artifact.py": "95a41569e6c94922aaba327d6dddacaff45fd975784cc4b346121026f80a9bbb",
+      "src/revocation/__init__.py": "867e77ecababb053d9e2c86485178d73cc06a2cafda5410279188926e98153de",
+      "src/revocation/api.py": "d39c89b78bcc72d7e4892a2c4b5552a6cfcb1ff96a0503f323a035286a19bea5",
+      "src/revocation/cli.py": "d214f38bb3f383976f4d99f77a96f5abe778b0f565b9f1214602c8fa7bdcaeab",
+      "src/revocation/crypto.py": "6c6129ebd1273146f54405ed7209f0d871cdc5d38db5a317524c518e0b7bcce4",
+      "src/revocation/dag.py": "c0a10b038563c272be0f06fc489306164e17b34a734470903724454cf30df720",
+      "src/revocation/damage_harness.py": "7136da8c9061ad31bb205c2ca80457475e8c52e03b2d2dd7b55ad3ab49381998",
+      "src/revocation/envelope.py": "bdb5f2905d92e2502ec1d82bac79ae5cbd0a5747f2e719eeffcf32cf4f466724",
+      "src/revocation/granularity.py": "d762ec14a46568e3c1bd3220fd204eb149f673d3a6b0d242f361f90f44d1e039",
+      "src/revocation/prototype.py": "8a56207462365836b3b4fcf83b852f6798bd8458edb5289cd67822ca91c00219",
+      "src/revocation/revocation.py": "46e8f9e453bfe14543fe1717ac54a2c375e96f049b1c6ef645ae03e0b13f9ca6",
+      "src/revocation/trace_gen.py": "de17e0c3da8117f5aa207266aee0dd67e500024959e53441e97383729221e4d2",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/unit/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/unit/test_api_cli.py": "81ffacdf7865dc5adaf75e8b3277e5eb053e05690c4252606388c46734fd7747",
+      "tests/unit/test_dag.py": "f710342a5ca2b0d675b9669cab8eb59f58166b5732b8577bcc11924d1a233e59",
+      "tests/unit/test_granularity.py": "7032f7107a1023e084c79571c4a188c4094d9f694744ee3c1443143f3b2d26f5",
+      "tests/unit/test_prototype.py": "7cb26d92177549a9db9e04ccf580ad9d9b41a76631ebd07a69e22eb69628ae96",
+      "tests/unit/test_revocation.py": "4f1a6c7f41d561f69f723f43bdcc144caca31b95fd98ae746d58e0a1c0b75894"
+    },
+    "executed": false,
+    "execution_status": "NOT EXECUTED. An attempt to run the downloaded artifact scripts/tests was denied by the session permission classifier and was not retried or bypassed. Evidence below is static reading only.",
+    "static_review": {
+      "source_files": [
+        "src/revocation/__init__.py",
+        "src/revocation/api.py",
+        "src/revocation/cli.py",
+        "src/revocation/crypto.py",
+        "src/revocation/dag.py",
+        "src/revocation/damage_harness.py",
+        "src/revocation/envelope.py",
+        "src/revocation/granularity.py",
+        "src/revocation/prototype.py",
+        "src/revocation/revocation.py",
+        "src/revocation/trace_gen.py"
+      ],
+      "risky_call_matches_in_src": [],
+      "conjunctive_or_threshold_terms_in_src": {
+        "src/revocation/envelope.py": [
+          "m-of-n"
+        ]
+      },
+      "target_set_l2_defined": true,
+      "target_set_l2_is_reachability_difference": true,
+      "handoff_recorded_as_candidate_edge": true,
+      "e17_states_not_a_full_a2a_stack": true
+    }
+  },
+  "note": "Paper texts are cached locally (not committed). Hashes identify the exact HTML versions read."
+}

@@ -1,0 +1,9 @@
+UTC: 2026-11-15T16:11:16.815289+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: uv venv --python .cache/bootstrap-python/cpython-3.11.17-linux-x86_64-gnu/bin/python experiments/r3/.venv-vera
+PARENT_COMMIT: 20d95d90b84767bd6e8c9d74af1508ccc2fe8d29
+Using CPython 3.11.17 interpreter at: .cache/bootstrap-python/cpython-3.11.17-linux-x86_64-gnu/bin/python
+Creating virtual environment at: experiments/r3/.venv-vera
+Activate with: source experiments/r3/.venv-vera/bin/activate
+
+EXIT_CODE=0

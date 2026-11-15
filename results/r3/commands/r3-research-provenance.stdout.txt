@@ -1,0 +1,7 @@
+UTC: 2026-11-15T16:41:05.421286+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 -I /home/cclab/controllable_agent/experiments/r3/research_provenance.py --cache /home/cclab/controllable_agent/local/r3-research --artifact-zip /home/cclab/controllable_agent/third_party/vera-artifact-anon.zip --artifact-dir /home/cclab/controllable_agent/third_party/vera-artifact-anon --output /home/cclab/controllable_agent/results/r3/research-provenance.json
+PARENT_COMMIT: 20d95d90b84767bd6e8c9d74af1508ccc2fe8d29
+{"papers": 5, "titles_found": 3, "titles_found_ignoring_spaces": 4, "quotes": 41, "quotes_found": 41, "artifact_files": 73, "artifact_executed": false}
+
+EXIT_CODE=0

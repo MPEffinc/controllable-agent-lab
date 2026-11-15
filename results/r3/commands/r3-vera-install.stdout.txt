@@ -1,0 +1,28 @@
+UTC: 2026-11-15T16:11:16.908498+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: uv pip install --python experiments/r3/.venv-vera/bin/python -r third_party/vera-artifact-anon/requirements-dev.txt
+PARENT_COMMIT: 20d95d90b84767bd6e8c9d74af1508ccc2fe8d29
+Using Python 3.11.17 environment at: experiments/r3/.venv-vera
+Resolved 10 packages in 329ms
+Downloading networkx (2.0MiB)
+Downloading numpy (17.4MiB)
+Downloading cryptography (4.5MiB)
+Downloading scipy (36.6MiB)
+ Downloaded networkx
+ Downloaded cryptography
+ Downloaded numpy
+ Downloaded scipy
+Prepared 5 packages in 9.34s
+Installed 10 packages in 252ms
+ + cffi==2.1.1
+ + cryptography==48.0.1
+ + iniconfig==2.3.1
+ + networkx==3.6.1
+ + numpy==1.26.4
+ + packaging==26.3
+ + pluggy==1.7.0
+ + pycparser==3.12
+ + pytest==8.1.1
+ + scipy==1.12.0
+
+EXIT_CODE=0

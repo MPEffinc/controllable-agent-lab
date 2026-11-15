@@ -1,0 +1,228 @@
+{
+  "schema_version": "r3-delegation-lineage-v1",
+  "_status": "PRE-REGISTERED before any R3 trial, static check or reference-model computation was executed. Conditions, semantics status, predictions and verdict rules are not edited after results are seen; a later change must be a new commit that states why.",
+  "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY_PLUS_PAPER_DEFINITION_REFERENCE_MODELS",
+  "base_commit": "20d95d90b84767bd6e8c9d74af1508ccc2fe8d29",
+  "original_method": {
+    "repository": "https://github.com/zast-ai/continuity",
+    "pinned_sha": "59cfe60930d247d1890b366ded686c718020a11e",
+    "entry_points": ["ContinuityVerifier.verify_bundle", "ContinuityVerifier.issue_permit", "EffectBroker.dispatch", "FinalitySink.execute"]
+  },
+  "reused_from_r2": ["experiments/r2/trusted.py", "experiments/r2/adversary.py", "experiments/r2/proof_codec.py", "experiments/r2/oracle.py"],
+  "domain": "workspace",
+  "now": 1800000000,
+  "policy_epoch": 43,
+  "agents": {
+    "agent-A": {"identity": "spiffe://example/agent/workspace/1", "role": "origin delegator (hosts stage memory)"},
+    "agent-B": {"identity": "spiffe://example/agent/workspace/0", "role": "intermediate relay (hosts stage gateway)"},
+    "agent-C": {"identity": "spiffe://example/agent/workspace/2", "role": "executor, the actor named by every RootGrant (hosts stage adapter)"}
+  },
+  "hypothesis": {
+    "r3": "In a MAS where authority dependencies are created dynamically, does revoking a specific delegation edge or a root authority reflect exactly on derived execution authority, and are independent approval paths preserved?",
+    "r3a_defined_by_continuity": "In a three-agent A2A chain with RootGrants only (work delegation), root revocation reflects in C's effect at finality and an independent RootGrant is unaffected. Prediction: holds (G0, G1a, G1b, G2).",
+    "r3b_prior_art_discrimination": "Each of the properties asked in G3, G4, G5 is defined by at least one of VERA, Authorization Revocation, ResidualAuth, Authorization Succession, and CONTINUITY's RootGrant model does not define them. Prediction: yes for G3, G4 and G5 (G5 only through Authorization Revocation).",
+    "r3c_gap": "Some condition among G0-G5 is covered by none of the five works. Prediction: no condition is uncovered; only the intersection (edge-level revocation x conjunctive/independent supports x protected-effect finality with in-flight rebind) is unclaimed at paper level."
+  },
+  "threat_model": {
+    "assets": "the protected effect (email.send to the authorized destination) and the authority state (grants, revocations)",
+    "trusted": ["root authority issuer", "ingress", "provenance and context issuers", "directory", "runtime-state authority (revocation)", "permit service (original verifier)", "effect gateway (original EffectBroker and FinalitySink)", "stage-host shims (code)"],
+    "untrusted": ["logic of agents A, B and C (deterministic scripts)", "queues between agents (storage; no tampering is attempted in R3)"],
+    "adversary_goals": ["obtain an effect after revocation through work retained in a queue or a permit already in flight (G1a, G1b)", "have revocation of root A deny independent root X's work, i.e. collateral denial (G2)"],
+    "explicitly_not_done": [
+      "no original check is disabled (no ablation in R3)",
+      "the trusted issuer is never made to issue attacker-chosen authority",
+      "no PASS or FAIL is produced for conditions whose authorization semantics are undefined in the system under test",
+      "no attacker-held keys, forged permits or tampered evidence (covered in R2)"
+    ]
+  },
+  "authorization_rules": {
+    "artifact_source": "Original continuity.experiment.make_scenario(domain, seed, kind, fault) with the original build_infrastructure(), exactly as in R2. Nothing is hand-built or re-signed.",
+    "authorized_effect": "Benign twin of the same seed (operation, resource, parameters, effect class) with its resolved destination. An effect is authorized only if it equals this entry exactly.",
+    "authorized_actor": "agent-C for every R3 material. The grant names C as actor at issuance. Intermediate agents A and B are work relays and hold no authority.",
+    "revocation": "Revocation adds the grant id of the root to the runtime state. Semantics: IMMEDIATE_CUT_AT_FINALITY, as in R2.",
+    "seed_note": "actor = spiffe://example/agent/workspace/(seed % 13); seed 1016 and 1029 are 2 mod 13, so the actor is agent-C. principal = did:example:user:(seed % 97): 1016 -> 46, 1029 -> 59. Seeds only fix identities and destinations."
+  },
+  "record_schema": {
+    "per_effect_and_attempt": ["root_principal", "current_actor", "delegating_actor", "parent_support", "independent_supports", "grant_issuer", "signed_delegation_evidence", "revoked_grant_or_edge", "permit", "finality_decision", "actual_effect", "independent_oracle_verdict"],
+    "continuity_specific_values": {
+      "parent_support": "NONE (RootGrant has no parent reference)",
+      "independent_supports": "[] (no notion of independent support)",
+      "signed_delegation_evidence": "stage receipts prove WORK delegation only; authority_delegation_evidence is always NONE",
+      "revoked_grant_or_edge": "grant ids only; edges are NOT_REPRESENTABLE"
+    }
+  },
+  "families": {
+    "chain_normal": "A.delegate (hosts memory, enqueues for B) -> B.relay (hosts gateway, enqueues for C) -> C.execute (hosts adapter, requests a permit, dispatches)",
+    "chain_inflight_revoke": "as chain_normal but C.prepare obtains and holds a permit -> trusted revoke of rootA -> C.commit dispatches with the held permit",
+    "chain_retained_revoke": "A.delegate -> B.relay -> trusted revoke of rootA while the work is retained between B and C -> C.execute",
+    "chain_independent_root": "A.delegate(rootA) -> B.relay -> trusted revoke of rootA -> C.execute(rootA work) -> A.delegate(rootX) -> B.relay -> C.execute(rootX work)"
+  },
+  "conditions": [
+    {
+      "id": "G0_single_root_chain", "group": "DEFINED_BY_CONTINUITY", "execution": "RUN", "family": "chain_normal",
+      "description": "One RootGrant only. Normal A->B->C work delegation.",
+      "semantics": {"CONTINUITY": "DEFINED", "prior_art_overlap": "not a prior-art question; inside CONTINUITY's scope"},
+      "materials": [{"label": "rootA", "seed": 1016, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-C", "completion_expected": true}],
+      "c_script": {"mode": "honest"},
+      "expected": {
+        "verifier": [{"by": "agent-C", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-C", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "SATISFIED", "completion": "SATISFIED"},
+        "hops": [["memory", "agent-A"], ["gateway", "agent-B"], ["adapter", "agent-C"]],
+        "r3_verdict": "IN_SCOPE_PASS"
+      }
+    },
+    {
+      "id": "G1a_same_root_revoked_in_flight", "group": "DEFINED_BY_CONTINUITY", "execution": "RUN", "family": "chain_inflight_revoke",
+      "description": "Same RootGrant revoked after C obtained a permit and before C dispatches.",
+      "semantics": {"CONTINUITY": "DEFINED", "prior_art_overlap": "COVERED_BY_PRIOR_ART: CONTINUITY finality [CON-5]; Authorization Revocation root cut and fence (semantics differ on pre-fence acceptance); Succession cut checked at every effect; ResidualAuth hard gate"},
+      "materials": [{"label": "rootA", "seed": 1016, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-C", "completion_expected": false}],
+      "c_script": {"mode": "honest"},
+      "expected": {
+        "verifier": [{"by": "agent-C", "allowed": true, "reason_contains": []}],
+        "finality": [{"caller": "agent-C", "ok": false, "reason": "E_REVOKED_AT_FINALITY"}],
+        "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"},
+        "hops": [["memory", "agent-A"], ["gateway", "agent-B"], ["adapter", "agent-C"]],
+        "r3_verdict": "IN_SCOPE_PASS"
+      }
+    },
+    {
+      "id": "G1b_same_root_revoked_while_retained", "group": "DEFINED_BY_CONTINUITY", "execution": "RUN", "family": "chain_retained_revoke",
+      "description": "Same RootGrant revoked while the work is retained between B and C; C then tries to obtain a permit.",
+      "semantics": {"CONTINUITY": "DEFINED", "prior_art_overlap": "COVERED_BY_PRIOR_ART: same as G1a; already shown for two agents in R2-3b"},
+      "materials": [{"label": "rootA", "seed": 1016, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-C", "completion_expected": false}],
+      "c_script": {"mode": "honest"},
+      "expected": {
+        "verifier": [{"by": "agent-C", "allowed": false, "reason_contains": ["E_REVOKED_ROOT_GRANT"]}],
+        "finality": [], "effects": 0, "oracle": {"safety": "SATISFIED", "completion": "NOT_EXERCISED"},
+        "hops": [["memory", "agent-A"], ["gateway", "agent-B"], ["adapter", "agent-C"]],
+        "r3_verdict": "IN_SCOPE_PASS"
+      }
+    },
+    {
+      "id": "G2_independent_root_preserved", "group": "DEFINED_BY_CONTINUITY", "execution": "RUN", "family": "chain_independent_root",
+      "description": "Root A is revoked; C's work under a separate, independently approved RootGrant (root X) still executes normally.",
+      "semantics": {"CONTINUITY": "DEFINED (independent grant ids)", "prior_art_overlap": "COVERED_BY_PRIOR_ART: Authorization Revocation unrelated-root locality [REV-8, REV-3]; VERA separate root paths; Succession independent re-root (excluded from its Thm 9 conclusion)"},
+      "materials": [
+        {"label": "rootA", "seed": 1016, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-C", "completion_expected": false},
+        {"label": "rootX", "seed": 1029, "kind": "benign", "fault": "NONE", "issuer": "trusted_authority", "authorized_actor": "agent-C", "completion_expected": true}
+      ],
+      "c_script": {"mode": "honest"},
+      "expected": {
+        "verifier": [
+          {"by": "agent-C", "allowed": false, "reason_contains": ["E_REVOKED_ROOT_GRANT"]},
+          {"by": "agent-C", "allowed": true, "reason_contains": []}
+        ],
+        "finality": [{"caller": "agent-C", "ok": true, "reason": "EXECUTED"}],
+        "effects": 1, "oracle": {"safety": "SATISFIED", "completion": "SATISFIED"},
+        "hops": [["memory", "agent-A"], ["gateway", "agent-B"], ["adapter", "agent-C"], ["memory", "agent-A"], ["gateway", "agent-B"], ["adapter", "agent-C"]],
+        "r3_verdict": "IN_SCOPE_PASS"
+      }
+    },
+    {
+      "id": "G3_derived_authority_only", "group": "UNDEFINED_IN_CONTINUITY", "execution": "NOT_RUN_ON_CONTINUITY",
+      "description": "C holds only authority explicitly derived from A. Revoking A's authority (root edge e1) or the derivation edge (e2) must reach C.",
+      "semantics": {
+        "CONTINUITY": "UNDEFINED_AUTHORIZATION_SEMANTICS (SCOPE_EXTENSION / POLICY_MODEL_MISMATCH): no parent reference, no dependency semantics, no effect-time dependency check",
+        "VERA": "DEFINED: signed edge, target = reach(G) minus reach(G without e)",
+        "ResidualAuth": "DEFINED: selected parent, cascading effectiveness",
+        "Succession": "DEFINED: single-parent lineage atoms, ancestor cut",
+        "Revocation": "PARTIAL: root-level support only; an intermediate edge is not an atom",
+        "prior_art_overlap": "COVERED_BY_PRIOR_ART (VERA, ResidualAuth, Succession)"
+      },
+      "reference_graph": "G3",
+      "expected": {"r3_verdict": "UNDEFINED_AUTHORIZATION_SEMANTICS", "gap_status": "COVERED_BY_PRIOR_ART"}
+    },
+    {
+      "id": "G4_derived_plus_independent", "group": "UNDEFINED_IN_CONTINUITY", "execution": "NOT_RUN_ON_CONTINUITY",
+      "description": "C has a path derived from A and an independent path through root X. Revoking A's edge or root must not remove C's authority.",
+      "semantics": {
+        "CONTINUITY": "UNDEFINED_AUTHORIZATION_SEMANTICS: no notion of independent support or rebind; separate grants are unrelated roots",
+        "VERA": "DEFINED: alternate path keeps the node active [VERA-2]",
+        "Revocation": "DEFINED: independent sufficient support, Theorem 12, atomic rebind [REV-7]",
+        "ResidualAuth": "PARTIAL: graph semantics yes; selected-parent ledger refinement limited to an audited subfamily [RES-6]",
+        "Succession": "NOT_EXPRESSIBLE: multi-parent merge excluded [SUC-1]",
+        "prior_art_overlap": "COVERED_BY_PRIOR_ART (VERA, Authorization Revocation)"
+      },
+      "reference_graph": "G4",
+      "expected": {"r3_verdict": "UNDEFINED_AUTHORIZATION_SEMANTICS", "gap_status": "COVERED_BY_PRIOR_ART"}
+    },
+    {
+      "id": "G5_conjunctive_approval", "group": "UNDEFINED_IN_CONTINUITY", "execution": "NOT_RUN_ON_CONTINUITY",
+      "description": "C's effect requires BOTH authorities (root A path and root X path). Revoking either must remove C's authority.",
+      "semantics": {
+        "CONTINUITY": "UNDEFINED_AUTHORIZATION_SEMANTICS: approval_digest is unverified and quorum authorization is outside the prototype [CON-3]",
+        "VERA": "EXCLUDED by the authors: disjunctive authority only [VERA-1]",
+        "Revocation": "DEFINED: conjunctive witness sets, a strict subset cannot authorize [REV-4, REV-1]",
+        "ResidualAuth": "NOT FOUND in the read portion",
+        "Succession": "PARTIAL: abstract profile only; reference implementation uses one evidence digest",
+        "prior_art_overlap": "COVERED_BY_PRIOR_ART (Authorization Revocation, root-level, paper and registered case only); VERA does not cover it"
+      },
+      "reference_graph": "G5",
+      "expected": {"r3_verdict": "UNDEFINED_AUTHORIZATION_SEMANTICS", "gap_status": "COVERED_BY_PRIOR_ART"}
+    }
+  ],
+  "static_predictions": [
+    {"id": "S1", "claim": "RootGrant has no field referring to a parent, lineage, edge or derivation (the only delegation-named field is delegation_scope)"},
+    {"id": "S2", "claim": "RuntimeState has exactly the fields policy_id, policy_digest, policy_epoch, revoked_ids"},
+    {"id": "S3", "claim": "Every membership test against revoked_ids in core.py is applied to a grant id, release id, root grant id or permit id"},
+    {"id": "S4", "claim": "approval_digest is referenced in core.py only by the SecurityContext definition and the CONTEXT_ATOMIC_PATHS constant, never by verification or finality logic"},
+    {"id": "S5", "claim": "Constructing RootGrant with a parent_grant_id argument raises TypeError"},
+    {"id": "S6", "claim": "The source of verify_bundle and FinalitySink.execute contains none of: parent, lineage, quorum, approver, edge"},
+    {"id": "S7", "claim": "delegation_scope is only compared by subset or membership (monotone narrowing and scope membership); no code creates a grant from it"}
+  ],
+  "reference_graphs": {
+    "G3": {
+      "label": "C only has authority derived from A. B relays work and is not in the authority graph.",
+      "roots": ["R_A"], "edges": {"e1": ["R_A", "A"], "e2": ["A", "C"]}, "target": "C",
+      "conjunctive_roots": [],
+      "revocations": {"edge_e2": ["e2"], "root_edge_e1": ["e1"]}
+    },
+    "G4": {
+      "label": "C has a path through A and an independent path from root X.",
+      "roots": ["R_A", "R_X"], "edges": {"e1": ["R_A", "A"], "e2": ["A", "C"], "e3": ["R_X", "C"]}, "target": "C",
+      "conjunctive_roots": [],
+      "revocations": {"edge_e2": ["e2"], "root_edge_e1": ["e1"]}
+    },
+    "G5": {
+      "label": "C requires both the root A path and the root X path.",
+      "roots": ["R_A", "R_X"], "edges": {"e1": ["R_A", "A"], "e2": ["A", "C"], "e3": ["R_X", "C"]}, "target": "C",
+      "conjunctive_roots": ["R_A", "R_X"],
+      "revocations": {"edge_e2": ["e2"], "root_edge_e1": ["e1"]}
+    }
+  },
+  "reference_model_expected": {
+    "note": "Outputs of independent re-implementations of the papers' DEFINITIONS (not original artifacts). C_active is the target's authority after the named revocation.",
+    "G3": {
+      "VERA": {"target_edge_e2": ["C"], "target_root_edge_e1": ["A", "C"], "C_active_after_edge_e2": false, "C_active_after_root_edge_e1": false},
+      "ResidualAuth": {"C_effective_after_edge_e2": false, "C_effective_after_root_edge_e1": false},
+      "Succession": {"C_current_after_edge_e2": false, "C_current_after_root_edge_e1": false},
+      "Revocation": {"C_authorized_after_edge_e2": "NOT_EXPRESSIBLE", "C_authorized_after_root_edge_e1": false}
+    },
+    "G4": {
+      "VERA": {"target_edge_e2": [], "target_root_edge_e1": ["A"], "C_active_after_edge_e2": true, "C_active_after_root_edge_e1": true},
+      "ResidualAuth": {"graph_C_effective_after_edge_e2": true, "graph_C_effective_after_root_edge_e1": true, "ledger_selected_parent_e2_after_root_edge_e1": false, "ledger_selected_parent_e3_after_root_edge_e1": true},
+      "Succession": {"expressible": false},
+      "Revocation": {"C_authorized_after_edge_e2": "NOT_EXPRESSIBLE", "C_authorized_after_root_edge_e1": true, "rebind_to_independent_support": true}
+    },
+    "G5": {
+      "VERA": {"expressible": false, "or_semantics_C_active_after_edge_e2": true, "and_policy_violated_by_or_semantics": true},
+      "ResidualAuth": {"expressible": "NOT_FOUND"},
+      "Succession": {"expressible": false},
+      "Revocation": {"C_authorized_after_edge_e2": "NOT_EXPRESSIBLE", "C_authorized_after_root_edge_e1": false, "strict_subset_can_authorize": false}
+    }
+  },
+  "verdict_rules": {
+    "defined_conditions": "oracle SATISFIED and prediction matched -> IN_SCOPE_PASS. A mismatch or an oracle VIOLATION -> NEEDS_TRIAGE in this order: evidence integrity, implementation error (re-run the same artifact through the original harness), assumption failure, already known condition, only then UNRESOLVED_GAP_CANDIDATE.",
+    "undefined_conditions": "The verdict is fixed to UNDEFINED_AUTHORIZATION_SEMANTICS for CONTINUITY. No effect is produced or judged. Prior-art coverage is reported separately as COVERED_BY_PRIOR_ART with the quote ids.",
+    "gap_rule": "UNRESOLVED_GAP_CANDIDATE needs a precise condition that none of the five works claims, compared quote by quote with docs/R3_PRIOR_ART_COMPARISON.md. A weak paper-level candidate must say so and is not a finding.",
+    "pivot_rule": "If G0-G2 are IN_SCOPE_PASS, the static predictions hold and the reference-model table matches, the lineage hypothesis is closed as COVERED_BY_PRIOR_ART or SCOPE_EXTENSION and the next direction is chosen on the evidence in docs/R3_GAP_VERDICT.md."
+  },
+  "not_run_by_design": [
+    "G3, G4, G5 on CONTINUITY (semantics undefined; inventing them would not be equivalent to the original guarantee)",
+    "any execution of the downloaded VERA artifact (a request to run downloaded third-party code was denied; static review only)",
+    "Authorization Revocation, ResidualAuth and Succession artifacts (no public artifact found)",
+    "policy-epoch rotation, expiry, concurrent or distributed finality, transport-level caller authentication",
+    "real LLM agents, real providers"
+  ]
+}

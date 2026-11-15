@@ -1,0 +1,20 @@
+{
+  "name": "r3-vera-venv-create",
+  "command": [
+    "uv",
+    "venv",
+    "--python",
+    ".cache/bootstrap-python/cpython-3.11.17-linux-x86_64-gnu/bin/python",
+    "experiments/r3/.venv-vera"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T16:11:16.815289+00:00",
+  "end_utc": "2026-11-15T16:11:16.831456+00:00",
+  "duration_seconds": 0.016,
+  "exit_code": 0,
+  "log": "results/r3/commands/r3-vera-venv-create.stdout.txt",
+  "parent_commit": "20d95d90b84767bd6e8c9d74af1508ccc2fe8d29",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

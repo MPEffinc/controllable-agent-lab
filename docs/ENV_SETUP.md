@@ -1,5 +1,7 @@
 # 설치·실행 증거와 재생성
 
+**R1 갱신(2026-11-15):** 아래 본문은 Bootstrap 감사 시점 기록이다. 이후 별도 `experiments/r1/.venv`(Python3.10.12)를 기존 cache의 A2A/Progent snapshot으로 offline 구성해17조건을 실행했다. 기존 venv를 변경하지 않았다. 별도 `third_party/continuity/.venv`(Python3.11.17)는 공식 원본 requirements를 설치해 tests30/quick을 실행했다. cache-only 실패(exit1) 뒤 같은 requirements 설치성공(exit0)도 보존했다. 정확한 재생성은 [R1 README](../experiments/r1/README.md), [CONTINUITY 설치](r1_continuity_artifact.md), [source/runtime](../results/r1/continuity-source-runtime.json), [원본 실행 manifest](../results/r1/fixture-run-01/manifest.json) 참조. 원본 full paper 재현은 아니다.
+
 감사일 2026-11-15 (Asia/Seoul). **아래 재개 명령은 이번 감사에서 실행하지 않았다.** 실제 수행 명령·cwd·UTC 시작/종료·exit code·log hash는 [command-index.json](../results/setup/bootstrap-20261114/command-index.json)에 있다. 기존 성공/실패 기록은 재작성하지 않았다.
 
 ## 확인된 호스트·격리 환경

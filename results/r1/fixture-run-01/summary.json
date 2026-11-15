@@ -1,0 +1,636 @@
+{
+  "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+  "fixture": "official_A2A_SDK_inprocess_transport_plus_original_Progent_wrapper",
+  "original_paper_reproduction": false,
+  "model_calls": 0,
+  "trial_count": 17,
+  "trials": [
+    {
+      "trial_id": "C0_valid_delegated-r1",
+      "condition_id": "C0_valid_delegated",
+      "scenario": "C0",
+      "event_count": 18,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "sink_commit": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C0_valid_delegated-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C1_unauthorized_unmediated-r1",
+      "condition_id": "C1_unauthorized_unmediated",
+      "scenario": "C1",
+      "event_count": 11,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "message_created": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "sink_commit": 1,
+        "a2a_response": 1
+      },
+      "observed_policy_decisions": {
+        "NOT_APPLIED": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C1_unauthorized_unmediated-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "attacker@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A"
+      ],
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C2_unauthorized_direct_guarded-r1",
+      "condition_id": "C2_unauthorized_direct_guarded",
+      "scenario": "C2",
+      "event_count": 10,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "message_created": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "a2a_response": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 1
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A"
+      ],
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C3_after_deny_A_only-r1",
+      "condition_id": "C3_after_deny_A_only",
+      "scenario": "C3",
+      "event_count": 21,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 2,
+        "policy_decision": 2,
+        "post_decision_continuation": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "sink_accept": 1,
+        "sink_commit": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 1,
+        "NOT_APPLIED": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C3_after_deny_A_only-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "attacker@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C3_after_deny_all_mediated-r1",
+      "condition_id": "C3_after_deny_all_mediated",
+      "scenario": "C3",
+      "event_count": 20,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "policy_loaded": 2,
+        "policy_proposed": 2,
+        "policy_decision": 2,
+        "post_decision_continuation": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 2
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C3_handoff_removed-r1",
+      "condition_id": "C3_handoff_removed",
+      "scenario": "C3",
+      "event_count": 10,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "message_created": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "a2a_response": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 1
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A"
+      ],
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C3_single_agent_replay-r1",
+      "condition_id": "C3_single_agent_replay",
+      "scenario": "C3",
+      "event_count": 20,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "policy_loaded": 2,
+        "policy_proposed": 2,
+        "policy_decision": 2,
+        "post_decision_continuation": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 2
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_queued_before_cut_static-r1",
+      "condition_id": "C4_queued_before_cut_static",
+      "scenario": "C4",
+      "event_count": 19,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "revoke": 1,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "sink_commit": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C4_queued_before_cut_static-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_queued_before_cut_current-r1",
+      "condition_id": "C4_queued_before_cut_current",
+      "scenario": "C4",
+      "event_count": 17,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "revoke": 1,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 1
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_created_after_cut_static-r1",
+      "condition_id": "C4_created_after_cut_static",
+      "scenario": "C4",
+      "event_count": 19,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "revoke": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "sink_commit": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C4_created_after_cut_static-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_created_after_cut_current-r1",
+      "condition_id": "C4_created_after_cut_current",
+      "scenario": "C4",
+      "event_count": 17,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "revoke": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 1
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_single_agent_postcut_static-r1",
+      "condition_id": "C4_single_agent_postcut_static",
+      "scenario": "C4",
+      "event_count": 13,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "revoke": 1,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "message_created": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "sink_commit": 1,
+        "a2a_response": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C4_single_agent_postcut_static-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A"
+      ],
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_preaccepted_grandfather-r1",
+      "condition_id": "C4_preaccepted_grandfather",
+      "scenario": "C4",
+      "event_count": 19,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "revoke": 1,
+        "sink_commit": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C4_preaccepted_grandfather-r1-receipt-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_preaccepted_sink_fence-r1",
+      "condition_id": "C4_preaccepted_sink_fence",
+      "scenario": "C4",
+      "event_count": 21,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_accept": 1,
+        "revoke": 1,
+        "sink_fence": 1,
+        "sink_cancel": 1,
+        "commit_attempt_cancelled": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C4_postcut_sink_fence_static-r1",
+      "condition_id": "C4_postcut_sink_fence_static",
+      "scenario": "C4",
+      "event_count": 19,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "message_created": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "revoke": 1,
+        "sink_fence": 1,
+        "queue_dequeued": 1,
+        "policy_loaded": 1,
+        "policy_proposed": 1,
+        "policy_decision": 1,
+        "sink_reject": 1
+      },
+      "observed_policy_decisions": {
+        "allow": 1
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C5_independent_root_current-r1",
+      "condition_id": "C5_independent_root_current",
+      "scenario": "C5",
+      "event_count": 32,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 4,
+        "agent_received": 4,
+        "message_created": 2,
+        "delegation_requested": 2,
+        "queue_enqueued": 2,
+        "a2a_response": 4,
+        "revoke": 1,
+        "queue_dequeued": 2,
+        "policy_loaded": 2,
+        "policy_proposed": 2,
+        "policy_decision": 2,
+        "sink_accept": 1,
+        "sink_commit": 1
+      },
+      "observed_policy_decisions": {
+        "deny": 1,
+        "allow": 1
+      },
+      "committed_effects": [
+        {
+          "receipt_id": "C5_independent_root_current-r1-receipt-1",
+          "root_task_id": "root-B",
+          "principal_id": "principal-B",
+          "recipient": "owner-B@example.test",
+          "body": "synthetic-r1-report"
+        }
+      ],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 4,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "C5_global_stop_overblock_control-r1",
+      "condition_id": "C5_global_stop_overblock_control",
+      "scenario": "C5",
+      "event_count": 30,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant": 2,
+        "a2a_request": 4,
+        "agent_received": 4,
+        "message_created": 2,
+        "delegation_requested": 2,
+        "queue_enqueued": 2,
+        "a2a_response": 4,
+        "revoke": 1,
+        "queue_dequeued": 2,
+        "policy_loaded": 2,
+        "policy_proposed": 2,
+        "policy_decision": 2
+      },
+      "observed_policy_decisions": {
+        "deny": 2
+      },
+      "committed_effects": [],
+      "active_agents": [
+        "agent-A",
+        "agent-B"
+      ],
+      "a2a_messages": 4,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    }
+  ]
+}

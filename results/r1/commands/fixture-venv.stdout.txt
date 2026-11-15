@@ -1,0 +1,8 @@
+UTC: 2026-11-15T13:51:06.499190+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: uv venv --python 3.10 experiments/r1/.venv
+Using CPython 3.10.12 interpreter at: /usr/bin/python3.10
+Creating virtual environment at: experiments/r1/.venv
+Activate with: source experiments/r1/.venv/bin/activate
+
+EXIT_CODE=0

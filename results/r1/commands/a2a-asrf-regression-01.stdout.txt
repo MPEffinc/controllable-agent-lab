@@ -1,0 +1,7 @@
+UTC: 2026-11-15T13:59:34.474190+00:00
+CWD: /home/cclab/controllable_agent/third_party/a2asecbench
+COMMAND: .venv/bin/python -m pytest -q tests/test_asrf_executable_environment.py
+.....                                                                    [100%]
+5 passed in 0.53s
+
+EXIT_CODE=0

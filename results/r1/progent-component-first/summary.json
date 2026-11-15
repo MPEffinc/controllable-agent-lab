@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "trials": 4,
+  "model_calls": 0,
+  "classification": "original-library-component-check; no LLM, no MAS, no paper reproduction",
+  "assertions": "benign commits OFF/ON; substituted recipient commits OFF, denied ON"
+}

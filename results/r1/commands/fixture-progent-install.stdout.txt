@@ -1,0 +1,12 @@
+UTC: 2026-11-15T13:51:07.158653+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: uv pip install --offline --no-deps --python experiments/r1/.venv/bin/python -e third_party/progent
+Using Python 3.10.12 environment at: experiments/r1/.venv
+Resolved 1 package in 3ms
+   Building secagent @ file:///home/cclab/controllable_agent/third_party/progent
+      Built secagent @ file:///home/cclab/controllable_agent/third_party/progent
+Prepared 1 package in 395ms
+Installed 1 package in 0.63ms
+ + secagent==0.1.0 (from file:///home/cclab/controllable_agent/third_party/progent)
+
+EXIT_CODE=0

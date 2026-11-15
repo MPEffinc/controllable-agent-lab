@@ -1,86 +1,88 @@
 # Controllable Agent / MAS 연구 현황
 
-갱신: **2026-11-15 (Asia/Seoul)**. Bootstrap 실행 증거는 2026-11-14 UTC 기록이다. 이번 작업은 기존 결과 감사·문서 정리·GitHub 인계이며 새 설치나 실험은 시작하지 않았다. 시작 시 루트 `CONTEXT.md`는 없었고 `CONTEXT.seed.md`를 출발점으로 작성했다. 기존 파일·과거 연구 기록은 보존했다.
+갱신: **2026-11-15 (Asia/Seoul), R1 실행 완료**. 기준 Bootstrap commit `6071b5f7eec92bd5a6ab0f4f703b71645a0b4702`, R1 브랜치 `exp/r1-intervention-boundary`. 기존 [Bootstrap CONTEXT](docs/history/CONTEXT.bootstrap-6071b5f.md)와 실행 기록을 보존했다. SREGym/XR/ROS/legacy 기록은 현재 검증 결과에 합산하지 않는다.
 
-## 연구 배경과 목표
+## 연구 목표와 판단
 
-Controllable Agent 및 Multi-Agent System의 **기존 보안 보장을 실행으로 검증**한다. agent 간 메시지, shared state, 위임 권한, 동적 구성, 실제 tool effect를 통과해도 명시된 보장이 성립하는지 확인하고, 기존 방법으로 해결되지 않은 반복 가능한 한계를 찾는다. 새 방어를 먼저 만드는 단계가 아니다.
+Controllable Agent / MAS의 **기존 보안 보장을 실제 실행으로 검증**한다. 메시지·shared state·위임·비동기 실행·효과 경계를 통과해도 명시한 속성이 유지되는지 확인하고 기존 방법으로 해결되지 않는 반복 가능한 한계를 찾는다. 지도교수의 2026-11-12 요청대로 공개 정책 코드를 실행하고 intent·판정·실제 효과를 분리한다. 새 방어 알고리즘이나 통합 프레임워크를 먼저 만드는 단계가 아니다.
 
-2026-11-12 지도교수 피드백은 문헌 분류를 늘리기보다 기존 policy-based agent/MAS software를 실행하고 정책 적용 전후의 tool intent, 판정, 실제 효과를 가져오라는 것이었다. 문헌 map·SoK 검토·Key Paper 선정은 연구 배경이며 검증 결과가 아니다. XR/ROS, SREGym, `legacy/`, 기존 `docs/reports/`·`local/`의 결과를 이번 연구 실험으로 합산하지 않는다.
+**VERIFIED:** Progent 원본 component, 결정론적 R1 17조건, 독립 oracle/회귀, CONTINUITY 원본 quick conformance를 실제 실행했다. **전체 논문 재현·LLM 공격 성공·새 method gap은 확정하지 않았다.**
 
-현재 **설치 성공 3환경, 원본 결정론적 harness 1개 실행 성공**을 확인했다. **정책 OFF/ON 비교, LLM 공격 재현, 원본 논문 전체 실험 재현, 신규 method gap 증명은 모두 NOT_RUN**이다.
+H1의 약한 가능성—개입 후 retained work가 후속 효과로 이어짐—은 미중재/stale-policy 구성에서 관찰됐다. 모든 알려진 경계에 wrapper를 적용하거나 현재 grant를 반영하면 차단됐고 single-agent stale-policy 조건에서도 효과가 발생했다. MAS 고유 실패나 기존 방법으로 해결 불가능하다는 강한 주장은 성립하지 않는다.
 
-## SoK 연구 map과 E1–E4
+## SoK map·E1–E4
 
-SoK *When Safe Agents Fail Together* (arXiv:2609.00595)는 seed에서 인계한 연구 틀이다. 이번 감사에서 SoK 자체를 새로 검증한 것은 아니다. A=공격자 위치, I=상호작용 경계, R=보안 결과/위반 속성, C=구성, P=공격 경로를 구분한다. I1 admission, I2 messages, I3 state, I4 authority/action, I5 collective decision, I6 intervention. 공격 기법, 전달 인터페이스, 실패 결과를 같은 축으로 취급하지 않는다.
+SoK [2609.00595v1](https://arxiv.org/html/2609.00595v1)의 관련 원문을 확인했다. A=공격자 위치, I=경계, R=위반 속성, C=구성, P=경로를 분리한다. I1 admission, I2 messages, I3 state, I4 authority/action, I5 collective decisions, I6 intervention. local block과 path closure, containment와 recovery의 차이는 이미 SoK가 제시한다.
 
-| 후보 | 검증할 속성 | 관련 경계 | 상태 |
-|---|---|---|---|
-| E1 | 서로 다른 root task의 권한과 delegation/revocation 이후 action 정당화 | I2/I4 | NOT_RUN |
-| E2 | 메시지·요약·shared memory에서 provenance/trust 제한 보존 | I2/I3 | NOT_RUN |
-| E3 | 중첩 도구·queue·provider·지연 effect의 실제 mediation coverage | I4/I6 | NOT_RUN |
-| E4 | 동적 membership·집단 결정에서 권한·안전성 보존 | I1/I5 | NOT_RUN |
-
-이들은 확정된 신규 기여나 네 개의 논문 주제가 아니다. single-agent/상호작용 제거 대조군을 두고 tree/DAG, private/shared state, static/revoked authority, sync/async, membership 축을 하나씩 바꾼다. 보장 범위 내 위반, 가정 실패, scope extension, 구현 오류, 측정 한계를 구분한다.
-
-## Key Papers의 역할
-
-| 분야 | 참조 방법·환경 | 이번 상태 |
+| 후보 | 속성 / 경계 | 현재 상태 |
 |---|---|---|
-| control/data 및 provenance | CaMeL, Multi-CaMeL, DRIFT | CaMeL 설치 VERIFIED, DRIFT 소스 확보 VERIFIED, Multi-CaMeL artifact URL PARTIAL |
-| fine-grained authorization | Progent, PAuth, AuthGraph, IntentCap | Progent 설치 VERIFIED, IntentCap 논문→repo 확인 VERIFIED/source PARTIAL, PAuth/AuthGraph 코드 연결 PARTIAL |
-| history·delegation·revocation | FORGE/SASY, ResidualAuth, Authorization Revocation, SAGA | FORGE/SASY 소스 VERIFIED, 나머지 코드 검증 PARTIAL/실행 NOT_RUN |
-| orchestration·runtime | ControlValve, OpenShell | ControlValve 코드 URL PARTIAL, OpenShell 공식 원격 VERIFIED/source PARTIAL |
-| 평가 | AgentDojo, MultiAgentDojo, ORBIT, A2ASecBench | A2A offline 실행 VERIFIED; 나머지 benchmark 실행 NOT_RUN |
+| E1 | task/root 권한·delegation/revocation, I2/I4 | PARTIAL: R1 독립 root와 단일 support/cut. 복수 support·lineage·rebind NOT_RUN |
+| E2 | message/summary/shared memory provenance, I2/I3 | PARTIAL: retained work label 기록. full IFC/요약·retrieval NOT_RUN |
+| E3 | 실제 effect 중재·관측 범위, I4/I6 | PARTIAL: 알려진 A/B와 sink 대조. H2 동적 완전성 판정 NOT_RUN |
+| E4 | membership·collective decisions, I1/I5 | NOT_RUN |
 
-검증되지 않은 URL을 만들지 않는다. 코드 미확인은 공개 코드 부재의 증명이 아니다. [출처·코드 경로 감사](docs/REPO_AUDIT.md), [미확인 artifact 확인 범위](docs/artifacts/ADDITIONAL.md)를 참조한다. 기존 Related Works sheet는 배경 자료이며 이번 운영 상태의 근거가 아니다.
+기존 Related Works의 **D1 입력·모델, D2 정보흐름·신뢰경계, D3 tool 인가·최소권한, D4 계획·동적 흐름, D5 MAS 통신·위임·신원, D6 실행환경 격리**를 sheet에서 읽어 유지했다. SoK 자체 D1–D4와 혼합하지 않는다. [Gap Matrix](docs/RESEARCH_GAP_MATRIX.md), [출처 행](results/r1/taxonomy-source.json).
 
-## 확보한 소스·실제 환경
+## 분야별 Key Papers
 
-**VERIFIED/PARTIAL:** 별도 `third_party/`에 10개 pinned source를 확보했다: A2ASecBench, ORBIT, CaMeL, Progent, DRIFT, AgentDojo, IntentCap/agentcap, OpenShell, SASY, FORGE 평가. 정확한 URL·40자리 SHA·라이선스·partial 사유는 [REPO_AUDIT](docs/REPO_AUDIT.md), 기계 판독 목록은 [source-manifest](results/setup/bootstrap-20261114/source-manifest.json)이다. 외부 repo 코드·venv·release wheel·대형 데이터는 Git에서 제외한다.
-
-| 항목 | 상태 | 실제 확인 |
+| 분야 | 참조 방법 | 실제 검증 범위 |
 |---|---|---|
-| A2ASecBench 격리 설치 | VERIFIED | Python3.10.12, a2asecbench0.1.0, a2a-sdk0.3.26, 43 distributions |
-| CaMeL 격리 설치 | VERIFIED | Python3.10.12, camel1.0.0/AgentDojo0.1.34, 원본 uv.lock/no-dev, 121 distributions |
-| Progent 최소 격리 설치 | VERIFIED | Python3.10.12, secagent0.1.0, 25 distributions. 내부 benchmark 환경과 별개 |
-| ORBIT 공식 release 설치 | FAILED / PARTIAL | v1.0.4 checksum 검증과 Python3.11.17 venv 생성 VERIFIED. 설치 timeout124, packages0 |
-| DRIFT·standalone AgentDojo 설치 | NOT_RUN | 원본 소스 감사만, 다른 AgentDojo 환경과 병합하지 않음 |
-| IntentCap·OpenShell 설치 | NOT_RUN | sparse source 확장 FAILED timeout124, root cached files 복구/source PARTIAL |
-| FORGE/SASY 엔진 설치 | NOT_RUN | 소스 확보/정책·executor 경계 감사만, Rust/Soufflé/Docker daemon 미검증 |
+| tool 인가 | Progent, PAuth, AuthGraph, IntentCap | Progent component VERIFIED; 나머지 runtime NOT_RUN |
+| control/data·provenance | CaMeL, DRIFT, Multi-CaMeL | source/일부 설치. R1 runtime NOT_RUN |
+| history·finality·revocation | FORGE/SASY, CONTINUITY, ResidualAuth, Authorization Revocation | CONTINUITY 원본 tests/quick VERIFIED. 다른 방법 R1 runtime NOT_RUN |
+| shared state | Governed Shared Memory | 관련 원문 확인; runtime NOT_RUN |
+| orchestration·runtime | ControlValve, SAGA, OpenShell | source/연결 일부 감사; runtime NOT_RUN |
+| 평가 | AgentDojo, MultiAgentDojo, ORBIT, A2ASecBench | A2A offline/회귀·SDK 재사용 VERIFIED; 다른 full benchmark NOT_RUN |
 
-[ENV_SETUP](docs/ENV_SETUP.md), [environment-inventory](results/setup/bootstrap-20261114/environment-inventory.json), requirements snapshots를 참조한다. snapshot은 원본 lockfile 또는 재설치 검증 결과가 아니다.
+[권한 상태 원문 대조](docs/r1_prior_authorization.md), [상태·경계 대조](docs/r1_prior_state.md)는 직접 관련 보장·전제·평가만 기록한다. 코드 URL 미확인을 코드 부재로 단정하지 않는다.
 
-## 완료한 실행과 증거
+## 소스와 환경
 
-**VERIFIED — A2ASecBench 원본 offline ASRF:** `configs/offline/asrf_eval.yaml --trials 1`, exit0, 총200건(attack100 + matched control100). 공격100건 모두 localhost forbidden resource dereference가 관찰되어 attack ASR1.0, control100건 정상 통과하여 control pass1.0/overblock0. 전체200건을 섞은 필드 `asr=0.5`와 공격 ASR을 구분한다.
+Bootstrap source10개 URL/license/40자리SHA는 [REPO_AUDIT](docs/REPO_AUDIT.md)와 [source-manifest](results/setup/bootstrap-20261114/source-manifest.json)에 보존했다. 추가 공식 source는 `https://github.com/zast-ai/continuity`, SHA `59cfe60930d247d1890b366ded686c718020a11e`, MIT, clean. 총11개 remote snapshot이며 agentcap/OpenShell은 이전 partial 상태다.
 
-공식 A2A SDK in-process AgentCard/JSON-RPC와 실제 loopback HTTP trap이 실행됐다. 선택된 SUT는 결정론적 unguarded coordinator이며 LLM/API를 사용하지 않는다. 이 결과는 harness 및 scorer 작동의 증거다. 기존 방어의 보장 위반이나 LLM 보안 성능·MAS 신규 gap은 결론내릴 수 없다. monitor policy ON/OFF 실험도 아니다. 로그에 BrokenPipeError1건이 동반되어 전체 테스트가 깨끗하게 통과한 것으로 표현하지 않는다.
+| 환경 | 상태 | 실제 설치·용도 |
+|---|---|---|
+| A2ASecBench `.venv` | VERIFIED | Python3.10.12/a2a-sdk0.3.26; 기존 ASRF200건, 이번 원본 tests5 |
+| Progent `.venv` | VERIFIED | Python3.10.12/secagent0.1.0; component4조건 |
+| `experiments/r1/.venv` | VERIFIED | Python3.10.12, 별도 offline dependency union; SDK+wrapper17조건 |
+| CONTINUITY `.venv` | VERIFIED | Python3.11.17, 원본 pinned requirements20distributions; tests30/quick |
+| CaMeL `.venv` | VERIFIED 설치 / NOT_RUN 동작 | 원본 frozen lock/no-dev121distributions |
+| ORBIT release `.venv` | FAILED 설치 / NOT_RUN 실행 | 이전 timeout124/packages0. 이번 재시도 안 함 |
+| DRIFT·standalone AgentDojo·SASY/FORGE·IntentCap·OpenShell | NOT_RUN 설치/실행 | 기존 source audit 수준 유지 |
 
-증거 경로:
+전역 설치/sudo/기존 venv 변경과 원본 보안 로직 수정은 없다. R1 dependency snapshot을 upstream lock으로 부르지 않는다. 정확한 source/runtime/code/config/output hashes는 [R1 manifest](results/r1/fixture-run-01/manifest.json), [CONTINUITY metadata](results/r1/continuity-source-runtime.json), [ENV_SETUP](docs/ENV_SETUP.md).
 
-- [실행 명령·종료코드](results/setup/bootstrap-20261114/a2a-asrf-original.json), [stdout/stderr](results/setup/bootstrap-20261114/a2a-asrf-original.log), [원본 summary](results/setup/bootstrap-20261114/a2a-asrf-original/summary.json).
-- [전체200건 sink 이벤트 projection](results/setup/bootstrap-20261114/a2a-asrf-observations.jsonl), [attack/control 전체 이벤트 각1건](results/setup/bootstrap-20261114/a2a-asrf-sample.jsonl), [raw hash·재집계](results/setup/bootstrap-20261114/a2a-verified-counts.json).
-- 1,449,552-byte raw `a2a-asrf-original/trials.jsonl`은 로컬 보존/Git 제외. SHA256 `eebabeb64dd42fb88cb6870607649cbc41bb55492aa2474f3607eace9947d52b`.
-- [전체28개 기존 명령 index](results/setup/bootstrap-20261114/command-index.json). setup 명령28개를 테스트28개로 세지 않는다.
+## 실제 실행과 증거
 
-**FAILED — A2A 전체 pytest 및 release validator:** 둘 다 timeout124. 최종 summary가 없어서 전체 test PASS·정확한 통과 개수를 주장하지 않는다. **NOT_RUN — ORBIT 두 agent example, CaMeL/Progent 동작 test, 정책 ON/OFF, provider model run, 모든 전체 논문 재현.** 실행이 없는 파일이나 upstream의 기존 결과를 성공 증거로 쓰지 않는다.
+**SYNTHETIC MULTI-AGENT EXPERIMENT — VERIFIED:** 공식 A2A AgentCard/JSON-RPC in-process ASGI, A→asyncio queue→B, 원본 Progent wrapper, in-memory receipt/outbox.17조건·333이벤트·각1회·exit0. 실제 모델·race·원본 benchmark scenario 재현이 아니다.
 
-## 다음 실행 단계와 진입 조건
+독립 oracle02는 grant/cut를 재생하고 수락 인자↔commit binding과 별도 sink snapshot을 검사했다. receipt9/commit8, 실험의 immediate-cut 의미에서 비인가 acceptance/commit5개. safety12만족/5위반, Root B continuation1만족/1과잉차단, 결합11만족/6위반. 고의적 baseline 실패를 전체 보안 PASS나 기존 메서드 취약점으로 표현하지 않는다.
 
-이번 감사의 범위를 넘어서는 아래 작업은 시작하지 않았다. [EXPERIMENT_PLAN](docs/EXPERIMENT_PLAN.md)과 [BOOTSTRAP_HANDOFF](docs/BOOTSTRAP_HANDOFF.md)에 exact command가 있다.
+- C3 A-only: A deny 뒤 B 미중재 효과1. A+B 적용은0. handoff 제거/동일-agent 재시도도 차단.
+- C4 static grant: cut 후 효과. current grant는 차단. single-agent static도 효과여서 MAS 고유성 반증.
+- pre-cut 정당한 acceptance의 post-cut commit은 grandfather 의미에서 정상이다. pending-cancel fence는 별도 강한 테스트베드 통제이며 원본 철회 논문의 구현이 아니다. post-fence acceptance0건.
+- C5 current scoped policy는 독립 Root B 완료, global-stop은 과잉차단. safety와 정상지속 판정을 분리한다.
 
-1. Progent 원본 wrapper를 사용하는 준비된 in-memory 도구 component check를 별도 실행 작업에서 수행한다. 고정 task+recipient substitution에 정책 OFF/ON × benign/attack을 비교하고 판정과 committed effect를 분리한다. 이 파일은 **NOT_RUN**이며 성공하더라도 full reproduction이 아니다.
-2. ORBIT release 의존성 설치 timeout을 해결한 후 공식 두 agent example와 negative control을 실행한다. release SHA와 Inspect0.3.263을 유지한다. negative control은 정책 toggle이 아니다.
-3. A2A 원본 test를 개별로 좁혀 timeout 위치를 확인한다. deterministic baseline을 LLM 결과와 구분한다.
-4. AgentDojo/DRIFT/CaMeL/FORGE의 원본 benchmark·defense preset·scorer·실제 sink를 동일 task/attack에서 비교한다. 모델 호출이 필요하면 호출/토큰 상한·비용·credentials를 사전에 확정하고 승인받는다. 새 방어를 먼저 개발하지 않는다.
+[보고서](docs/R1_EXPERIMENT_REPORT.md), [threat model](docs/R1_HYPOTHESIS_AND_THREAT_MODEL.md), [raw333events](results/r1/fixture-run-01/events.jsonl), [sink snapshot](results/r1/fixture-run-01/sink_state.json), [canonical oracle02](results/r1/oracle-02.json), [17조건 CSV](results/r1/condition_summary.csv). 초기 safety-only oracle01은 보존했다. analyzer에 effect binding·독립 root 지속성 검사를 보강했으며 실제8개 commit의 인자 불일치는0건이었다.
+
+**ORIGINAL METHOD COMPONENT CHECK — VERIFIED:** Progent OFF 정상·치환 모두 outbox commit, ON 정상 commit·치환 deny/no effect.4조건/exit0([로그](results/r1/commands/progent-component-first.stdout.txt)). full paper/LLM/MAS 결과가 아니다.
+
+**회귀 VERIFIED:** independent oracle15tests, A2A 원본 ASRF5tests exit0. 효과+outbox 동시 치환, 누락/중복·principal·순서·overblocking을 검사했다. 이전 full A2A pytest/validator timeout124는 미해결이다.
+
+**ORIGINAL ARTIFACT CONFORMANCE / PARTIAL PAPER EVALUATION — VERIFIED:** CONTINUITY 원본 tests30와 quick main488scenarios/3416system-runs, ablation2304행·performance exit0. CONTINUITY harmful0/384attack, benign80/80, ambiguous24/24, lifecycle488/488. [artifact 보고](docs/r1_continuity_artifact.md), [summary](results/r1/continuity-quick-01/summary.csv), [score projection](results/r1/continuity-quick-01/score_projection.csv). 원본 runner는 full receipt trace를 저장하지 않으므로 독립 sink oracle 결과로 대체하지 않는다. R1와 직접 ASR 크기 비교 금지. full2,560attack/R1adapter NOT_RUN.
+
+이전 Bootstrap A2A deterministic ASRF100attack+100control/exit0은 [별도 기록](results/setup/bootstrap-20261114/a2a-asrf-original/summary.json)으로 보존하며 R1와 합산하지 않는다.
+
+## 미완료·실패·다음 검증
+
+CONTINUITY cache-only install은 미캐시 pinned package로 exit1, 이후 같은 requirements 설치exit0. 실패 로그를 보존했다. ORBIT install/full A2A tests의 이전 timeout은 해결하지 않았다. 전체 논문 재현·dynamic complete mediation 판정은 NOT_RUN이다.
+
+가장 가까운 기존 해결은 CONTINUITY의 current-bound finality, Revocation의 fence/accounting, FORGE의 history-aware complete mediation, ResidualAuth의 필요한 history다. 현재 관찰은 이들로 설명 가능하여 새 gap을 확정하지 않는다. **다음 한 가지는 원본 CONTINUITY의 witness/permit/finality를 동일 R1 A2A17조건에 좁게 연결하고 cut/accept/fence 의미를 일치시켜 원본 control과 비교하는 것**이다. 아직 NOT_RUN이며 새 방어를 먼저 만들지 않는다.
 
 ## ChatGPT–Codex–GitHub 협업
 
-GitHub 대상은 기존 **[MPEffinc/controllable-agent-lab](https://github.com/MPEffinc/controllable-agent-lab)**, 작업 브랜치는 **`bootstrap/mas-security-keypapers`**, 기반 HEAD는 `baca6088f106d19a226feee84edc0f8cedec24be`이다. 기존 `origin`을 바꾸거나 과거 브랜치를 reset/force-push하지 않는다.
+대상 [MPEffinc/controllable-agent-lab](https://github.com/MPEffinc/controllable-agent-lab), R1 브랜치 `exp/r1-intervention-boundary`. Bootstrap/과거 연구 이력을 보존하고 origin 변경/reset/force-push를 하지 않는다. Codex는 실행·로그·의존성·코드 hashes를 남기고 ChatGPT는 **고정 commit**에서 CONTEXT→R1 report→raw/manifest/oracle 순으로 관찰·해석·원본 보장 범위를 검토한다.
 
-Codex는 로컬 checkout·격리환경·실행·원시로그를 관리하고 검토 가능한 최소 증거·명령·manifest를 커밋한다. ChatGPT는 반드시 **해당 브랜치 또는 보고된 commit SHA**에서 CONTEXT→HANDOFF→audit→JSON/log를 읽는다. main의 예전 연구 문서나 파일 존재만으로 실행 성공을 추론하지 않는다. source/license/SHA와 설치/runtime/full reproduction을 따로 검토하고 다음 한 가지 비교를 정한다.
+Git에는 key/`.env`/venv/외부 source/대형 원본 conformance CSV를 넣지 않는다. CONTINUITY raw CSV는 로컬 보존+hash, 모든 trial의 최소 score projection은 공유한다. R1 raw333events와 sink snapshot도 공유한다.
 
-GitHub fresh clone에서 `python3 scripts/audit_bootstrap.py --verify-saved`로 log hash/exit/metadata, source manifest, 200행 projection 집계, package snapshot 정합성을 검증할 수 있다. 이 감사 명령은 benchmark·모델 호출·설치를 하지 않으며 **저장 증거 검증과 독립 실험 재현을 구분**한다. 로컬의 전체 raw·venv는 GitHub에 포함되지 않는다.
-
-**VERIFIED — 공유 파일만으로 감사:** Git index에서 추출한 별도 디렉터리에서 `--verify-saved` exit0 확인([감사 기록](results/handoff-20261115/verification.json)). 기존 연구 파일 삭제 없음, 커밋 대상의 credential 패턴·제외 경로 점검 완료.
+`python3 experiments/r1/verify_saved.py`는 외부 source/venv/API 없이 저장 증거의 hashes·oracle replay·conformance 집계를 검증한다. 저장 증거 정합성과 새 runtime 재현을 구분한다. 기존 `scripts/audit_bootstrap.py --verify-saved`도 유지한다.

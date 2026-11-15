@@ -1,0 +1,41 @@
+{
+  "source": "https://docs.google.com/spreadsheets/d/1abFjTBcpDAYTZFAVOTUtYH28jKw3xhKg6JCjCGX5Tjg/edit#gid=2045979736",
+  "sheet": "Related_works",
+  "read_ranges": [
+    "A60:J125",
+    "A122:J142"
+  ],
+  "access": "READ_ONLY",
+  "classification_preserved": [
+    {
+      "id": "D6",
+      "label": "실행환경 격리 및 실제 자원 접근제어",
+      "row": 137
+    },
+    {
+      "id": "D1",
+      "label": "입력 모델 수준 방어",
+      "row": 78
+    },
+    {
+      "id": "D2",
+      "label": "정보흐름 및 신뢰경계 보호",
+      "row": 88
+    },
+    {
+      "id": "D3",
+      "label": "도구 호출 인가 및 최소 권한 통제",
+      "row": 98
+    },
+    {
+      "id": "D4",
+      "label": "계획 및 동적 실행 흐름 검증",
+      "row": 112
+    },
+    {
+      "id": "D5",
+      "label": "Multi-Agent 통신/위임/신원 보호",
+      "row": 124
+    }
+  ]
+}

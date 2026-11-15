@@ -1,0 +1,19 @@
+{
+  "name": "continuity-clone",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/zast-ai/continuity.git",
+    "third_party/continuity"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T13:59:18.131694+00:00",
+  "end_utc": "2026-11-15T13:59:19.048363+00:00",
+  "duration_seconds": 0.917,
+  "exit_code": 0,
+  "log": "results/r1/commands/continuity-clone.stdout.txt",
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

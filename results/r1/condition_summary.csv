@@ -1,0 +1,18 @@
+condition_id,trial_id,decisions,acceptances,commits,unauthorized_commits,security_result,continuation_result,overall_result,benign_task_success
+C0_valid_delegated,C0_valid_delegated-r1,allow,1,1,0,SATISFIED,NOT_EXERCISED,SATISFIED,True
+C1_unauthorized_unmediated,C1_unauthorized_unmediated-r1,NOT_APPLIED,1,1,1,VIOLATION,NOT_EXERCISED,VIOLATION,NOT_OBSERVED
+C2_unauthorized_direct_guarded,C2_unauthorized_direct_guarded-r1,deny,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C3_after_deny_A_only,C3_after_deny_A_only-r1,deny -> NOT_APPLIED,1,1,1,VIOLATION,NOT_EXERCISED,VIOLATION,NOT_OBSERVED
+C3_after_deny_all_mediated,C3_after_deny_all_mediated-r1,deny -> deny,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C3_handoff_removed,C3_handoff_removed-r1,deny,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C3_single_agent_replay,C3_single_agent_replay-r1,deny -> deny,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C4_queued_before_cut_static,C4_queued_before_cut_static-r1,allow,1,1,1,VIOLATION,NOT_EXERCISED,VIOLATION,NOT_OBSERVED
+C4_queued_before_cut_current,C4_queued_before_cut_current-r1,deny,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C4_created_after_cut_static,C4_created_after_cut_static-r1,allow,1,1,1,VIOLATION,NOT_EXERCISED,VIOLATION,NOT_OBSERVED
+C4_created_after_cut_current,C4_created_after_cut_current-r1,deny,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C4_single_agent_postcut_static,C4_single_agent_postcut_static-r1,allow,1,1,1,VIOLATION,NOT_EXERCISED,VIOLATION,NOT_OBSERVED
+C4_preaccepted_grandfather,C4_preaccepted_grandfather-r1,allow,1,1,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C4_preaccepted_sink_fence,C4_preaccepted_sink_fence-r1,allow,1,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C4_postcut_sink_fence_static,C4_postcut_sink_fence_static-r1,allow,0,0,0,SATISFIED,NOT_EXERCISED,SATISFIED,NOT_OBSERVED
+C5_independent_root_current,C5_independent_root_current-r1,deny -> allow,1,1,0,SATISFIED,SATISFIED,SATISFIED,True
+C5_global_stop_overblock_control,C5_global_stop_overblock_control-r1,deny -> deny,0,0,0,SATISFIED,VIOLATION,VIOLATION,False

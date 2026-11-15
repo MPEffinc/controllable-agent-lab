@@ -1,0 +1,6 @@
+UTC: 2026-11-15T13:58:02.872529+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 experiments/r1/oracle.py --events results/r1/fixture-run-01/events.jsonl --sink-state results/r1/fixture-run-01/sink_state.json --output results/r1/oracle-02.json
+{"classification": "INDEPENDENT_SAVED_TRACE_ORACLE", "trials": 17, "counts": {"sink_acceptances": 9, "unauthorized_acceptances": 5, "sink_commits": 8, "unauthorized_commits": 5, "pending_fence_contract_breaches": 0, "post_fence_acceptances": 0}, "security_outcome_counts": {"SATISFIED": 12, "VIOLATION": 5, "INCOMPLETE_EVIDENCE": 0}, "continuation_outcome_counts": {"SATISFIED": 1, "VIOLATION": 1, "INCOMPLETE_EVIDENCE": 0, "NOT_EXERCISED": 15}, "outcome_counts": {"SATISFIED": 11, "VIOLATION": 6, "INCOMPLETE_EVIDENCE": 0}}
+
+EXIT_CODE=0

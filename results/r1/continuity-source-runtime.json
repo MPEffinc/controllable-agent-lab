@@ -1,0 +1,134 @@
+{
+  "observed_utc": "2026-11-15T14:01:53.474942+00:00",
+  "url": "https://github.com/zast-ai/continuity",
+  "commit": "59cfe60930d247d1890b366ded686c718020a11e",
+  "license": "MIT",
+  "source_status": "",
+  "runtime": {
+    "python": "3.11.17 (main, Oct 14 2026, 01:05:33) [Clang 23.1.3 ]",
+    "packages": [
+      [
+        "Pygments",
+        "2.21.0"
+      ],
+      [
+        "cffi",
+        "2.1.1"
+      ],
+      [
+        "contourpy",
+        "1.3.3"
+      ],
+      [
+        "cryptography",
+        "46.0.4"
+      ],
+      [
+        "cycler",
+        "0.12.1"
+      ],
+      [
+        "fonttools",
+        "4.68.0"
+      ],
+      [
+        "iniconfig",
+        "2.3.1"
+      ],
+      [
+        "kiwisolver",
+        "1.5.1"
+      ],
+      [
+        "matplotlib",
+        "3.10.8"
+      ],
+      [
+        "numpy",
+        "2.3.5"
+      ],
+      [
+        "packaging",
+        "26.3"
+      ],
+      [
+        "pandas",
+        "2.2.3"
+      ],
+      [
+        "pillow",
+        "13.0.0"
+      ],
+      [
+        "pluggy",
+        "1.7.0"
+      ],
+      [
+        "pycparser",
+        "3.12"
+      ],
+      [
+        "pyparsing",
+        "3.3.3"
+      ],
+      [
+        "pytest",
+        "9.0.2"
+      ],
+      [
+        "python-dateutil",
+        "4.0.0"
+      ],
+      [
+        "pytz",
+        "2026.6"
+      ],
+      [
+        "tzdata",
+        "2026.6"
+      ]
+    ]
+  },
+  "classification": "ORIGINAL_ARTIFACT_CONFORMANCE",
+  "full_paper_experiment_reproduction": false,
+  "r1_a2a_adapter_replay": false,
+  "command_logs": [
+    "continuity-clone",
+    "continuity-venv",
+    "continuity-install-offline",
+    "continuity-install",
+    "continuity-pytest",
+    "continuity-quick-01"
+  ],
+  "main_row_counts": {
+    "total": 3416,
+    "continuity": 488,
+    "attack": 384,
+    "benign": 80,
+    "ambiguous": 24,
+    "harmful_attack_effects": 0,
+    "lifecycle_correct": 488
+  },
+  "source_file_sha256": {
+    "third_party/continuity/requirements.txt": "e44442b43d2ba3e5a98021e453cdd4456b5e373c2d7a53c3b5607e4bb313d500",
+    "third_party/continuity/src/continuity/core.py": "94bcc7a7e5a36afd4fef88253ef8b94ce350cb44bdc18bd3856739b8453cdd45",
+    "third_party/continuity/src/continuity/experiment.py": "75cb601ebace5376ac0d761166ce7cd9bb335e8dd155c9544e0c0e6d8015a5c8",
+    "third_party/continuity/scripts/run_experiments.py": "ef3b1a8c5cb4424df7005524f666140d1d7575898d77e0e12b286134da47b7d4"
+  },
+  "output_sha256": {
+    "ablation_raw.csv": "7e3b18cdd28db887c339615dd6f1aa98cccf967c9a57d89c12f63a7f18f7649b",
+    "raw_results.csv": "616ccf7bf68002360a76e7322cead0485684decc2939adc317eb037230a1ebbb",
+    "r1_relevant_rows.csv": "05cadadcb71d96843e942ddbfe39b6872f6697546e4a7f8173f226eb8f79d8d7",
+    "manifest.json": "a329fab209f651fe722ce7e4f1228f45648aa43cfb64f544af9ba9b87ef62bdb",
+    "by_fault.csv": "cceea7253bbec9eda245bb40a2c64a3b91411525c2d5ff3c26de9bdd8103baee",
+    "scaling.csv": "595e62a8a87ef6a4c8853cfb2dc7e15ae1b72799ef1b900e58c6e5d2899dc7b9",
+    "ablation_score_projection.csv": "02b58e0922058520fe5482b4cb51c33cd1cb0b1a6bde928b42add6930766946b",
+    "summary.csv": "9c50cf36560f4bc6730ca92c69c375db3cdd826f0781fc999a76b0f8bbd57717",
+    "ablation_summary.csv": "91609f1eb0df6357f17a7d6159229df47f6ac9a23e5aae0a40be1e579caf126e",
+    "score_projection.csv": "8f3092583514d256e440a2a17dc8d0219972c9bf5cf9ca51a36f9f00b2bbef4d",
+    "performance.csv": "e58a484cc86fd5b289eaa63b52d3518888b51f0013a246d75298fa788a5cf834",
+    "ablation_by_fault.csv": "91f926289a6890cdd48edb0e74da8115623e66cdf0cc6637c0bb809c770aef52"
+  },
+  "evaluation_scope": "PARTIAL_PAPER_EVALUATION; original quick=True",
+  "raw_result_scope": "Original runner stores result/count/reason CSV, not serialized world effects or finality receipts; projection is derived from every generated original result row."
+}

@@ -1,0 +1,14 @@
+UTC: 2026-11-15T13:59:34.960696+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: uv pip install --offline --python third_party/continuity/.venv/bin/python -r third_party/continuity/requirements.txt
+Using Python 3.11.17 environment at: third_party/continuity/.venv
+WARN `pytest==9.0.2` needs to be downloaded from a registry
+WARN `cryptography==46.0.4` needs to be downloaded from a registry
+WARN cryptography needs to be downloaded from a registry
+WARN `numpy==2.3.5` needs to be downloaded from a registry
+error: No solution found when resolving dependencies
+  cause: Because cryptography==46.0.4 needs to be downloaded from a registry and you require cryptography==46.0.4, we can conclude that your requirements are unsatisfiable.
+
+hint: Packages were unavailable because the network was disabled. When the network is disabled, registry packages may only be read from the cache.
+
+EXIT_CODE=1

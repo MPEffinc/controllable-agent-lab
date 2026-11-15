@@ -1,0 +1,17 @@
+{
+  "name": "fixture-run-01",
+  "command": [
+    "experiments/r1/.venv/bin/python",
+    "experiments/r1/scenario.py",
+    "--output-dir",
+    "results/r1/fixture-run-01"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T13:54:22.660301+00:00",
+  "end_utc": "2026-11-15T13:54:23.627188+00:00",
+  "duration_seconds": 0.967,
+  "exit_code": 0,
+  "log": "results/r1/commands/fixture-run-01.stdout.txt",
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

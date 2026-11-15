@@ -1,5 +1,7 @@
 # Bootstrap artifact audit
 
+**R1 추가 상태(2026-11-15):** 기존10개 snapshot은 아래 Bootstrap 기록으로 보존한다. CONTINUITY 공식 source를 추가 확보(SHA `59cfe60930d247d1890b366ded686c718020a11e`, MIT)하고 원본 tests/quick을 실행했다. Progent component, A2A 원본5tests, 합성17조건도 실행했다. 현재 상태는 [R1 보고](R1_EXPERIMENT_REPORT.md)와 [CONTINUITY artifact 감사](r1_continuity_artifact.md)를 기준으로 읽는다. 아래의 NOT_RUN은 Bootstrap 시점 기록이다.
+
 감사일: **2026-11-15 (Asia/Seoul)**. 실행 로그의 날짜는 **2026-11-14 UTC**이며 이번 인계 작업에서 새로운 설치·실험은 하지 않았다. 과거 SREGym/XR/ROS 기록은 현재 연구 검증에 포함하지 않는다.
 
 상태: `VERIFIED` = 해당 사실에 직접 증거 있음, `PARTIAL` = 일부만 확보·확인, `FAILED` = 시도했으나 실패/timeout, `NOT_RUN` = 실행 기록 없음. 출처 등급의 `VERIFIED OFFICIAL` / `VERIFIED AUTHOR-ASSOCIATED`는 실행 상태와 별개다. **설치와 원본 논문 실험 재현은 다르며, 전체 논문 재현은 모두 NOT_RUN이다.**

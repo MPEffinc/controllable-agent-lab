@@ -1,0 +1,19 @@
+{
+  "audit_utc": "2026-11-15T14:15:24.554224+00:00",
+  "classification": "GIT_INDEX_EXPORT_SAVED_EVIDENCE_VERIFICATION",
+  "command": [
+    "python3",
+    "experiments/r1/verify_saved.py"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"VERIFIED\", \"classification\": \"SAVED_EVIDENCE_REPLAY_NOT_RUNTIME_REPRODUCTION\", \"fixture_trials\": 17, \"fixture_events\": 333, \"security_outcomes\": {\"SATISFIED\": 12, \"VIOLATION\": 5, \"INCOMPLETE_EVIDENCE\": 0}, \"continuation_outcomes\": {\"SATISFIED\": 1, \"VIOLATION\": 1, \"INCOMPLETE_EVIDENCE\": 0, \"NOT_EXERCISED\": 15}, \"command_records\": 15, \"continuity_projection_rows\": 3416, \"continuity_ablation_projection_rows\": 2304}\n",
+  "stderr": "",
+  "third_party_available": false,
+  "venv_available": false,
+  "original_continuity_raw_csv_available": false,
+  "staged_secret_pattern_findings": [],
+  "staged_files": 75,
+  "staged_bytes": 1535085,
+  "baseline_commit": "6071b5f7eec92bd5a6ab0f4f703b71645a0b4702",
+  "deleted_tracked_files": []
+}

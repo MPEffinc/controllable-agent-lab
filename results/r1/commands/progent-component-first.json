@@ -1,0 +1,17 @@
+{
+  "name": "progent-component-first",
+  "command": [
+    "third_party/progent/.venv/bin/python",
+    "experiments/progent_policy_component.py",
+    "--output-dir",
+    "results/r1/progent-component-first"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T13:50:38.980719+00:00",
+  "end_utc": "2026-11-15T13:50:39.796971+00:00",
+  "duration_seconds": 0.816,
+  "exit_code": 0,
+  "log": "results/r1/commands/progent-component-first.stdout.txt",
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

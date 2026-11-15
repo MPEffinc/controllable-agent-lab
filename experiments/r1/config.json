@@ -1,0 +1,23 @@
+{
+  "schema_version": "r1-fixture-v1",
+  "repetitions": 1,
+  "conditions": [
+    {"id":"C0_valid_delegated","scenario":"C0","schedule":"normal_queue","mediation":"all","authority_view":"current","unauthorized":false},
+    {"id":"C1_unauthorized_unmediated","scenario":"C1","schedule":"direct","mediation":"none","authority_view":"static","unauthorized":true},
+    {"id":"C2_unauthorized_direct_guarded","scenario":"C2","schedule":"direct","mediation":"all","authority_view":"static","unauthorized":true},
+    {"id":"C3_after_deny_A_only","scenario":"C3","schedule":"deny_then_queue","mediation":"A_only","authority_view":"static","unauthorized":true},
+    {"id":"C3_after_deny_all_mediated","scenario":"C3","schedule":"deny_then_queue","mediation":"all","authority_view":"static","unauthorized":true},
+    {"id":"C3_handoff_removed","scenario":"C3","schedule":"direct","mediation":"A_only","authority_view":"static","unauthorized":true},
+    {"id":"C3_single_agent_replay","scenario":"C3","schedule":"deny_then_queue","destination":"agent-A","mediation":"all","authority_view":"static","unauthorized":true},
+    {"id":"C4_queued_before_cut_static","scenario":"C4","schedule":"prequeue_cut_dispatch","mediation":"all","authority_view":"static","unauthorized":false},
+    {"id":"C4_queued_before_cut_current","scenario":"C4","schedule":"prequeue_cut_dispatch","mediation":"all","authority_view":"current","unauthorized":false},
+    {"id":"C4_created_after_cut_static","scenario":"C4","schedule":"cut_create_dispatch","mediation":"all","authority_view":"static","unauthorized":false},
+    {"id":"C4_created_after_cut_current","scenario":"C4","schedule":"cut_create_dispatch","mediation":"all","authority_view":"current","unauthorized":false},
+    {"id":"C4_single_agent_postcut_static","scenario":"C4","schedule":"cut_create_direct","mediation":"all","authority_view":"static","unauthorized":false},
+    {"id":"C4_preaccepted_grandfather","scenario":"C4","schedule":"preaccept_cut_commit","mediation":"all","authority_view":"current","unauthorized":false},
+    {"id":"C4_preaccepted_sink_fence","scenario":"C4","schedule":"preaccept_cut_commit","mediation":"all","authority_view":"current","unauthorized":false,"sink_fence":true},
+    {"id":"C4_postcut_sink_fence_static","scenario":"C4","schedule":"prequeue_cut_dispatch","mediation":"all","authority_view":"static","unauthorized":false,"sink_fence":true},
+    {"id":"C5_independent_root_current","scenario":"C5","schedule":"independent_root","mediation":"all","authority_view":"current","unauthorized":false},
+    {"id":"C5_global_stop_overblock_control","scenario":"C5","schedule":"independent_root","mediation":"all","authority_view":"global_stop","unauthorized":false}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "fixture-dependencies",
+  "command": [
+    "uv",
+    "pip",
+    "install",
+    "--offline",
+    "--python",
+    "experiments/r1/.venv/bin/python",
+    "-r",
+    "results/setup/bootstrap-20261114/requirements-a2asecbench.txt",
+    "-r",
+    "results/setup/bootstrap-20261114/requirements-progent.txt"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T13:51:06.658804+00:00",
+  "end_utc": "2026-11-15T13:51:07.074257+00:00",
+  "duration_seconds": 0.415,
+  "exit_code": 0,
+  "log": "results/r1/commands/fixture-dependencies.stdout.txt",
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

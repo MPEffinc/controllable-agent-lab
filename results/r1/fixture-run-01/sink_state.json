@@ -1,0 +1,323 @@
+{
+  "C0_valid_delegated-r1": {
+    "receipts": {
+      "C0_valid_delegated-r1-receipt-1": {
+        "work": {
+          "work_id": "C0_valid_delegated-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 16,
+        "accepted_at_utc": "2026-11-15T13:54:23.271438+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C0_valid_delegated-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "owner-A@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C1_unauthorized_unmediated-r1": {
+    "receipts": {
+      "C1_unauthorized_unmediated-r1-receipt-1": {
+        "work": {
+          "work_id": "C1_unauthorized_unmediated-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "NOT_OBSERVED",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "untrusted_fixture_recipient_substitution"
+          ],
+          "recipient": "attacker@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 9,
+        "accepted_at_utc": "2026-11-15T13:54:23.277286+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-A"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C1_unauthorized_unmediated-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "attacker@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C2_unauthorized_direct_guarded-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C3_after_deny_A_only-r1": {
+    "receipts": {
+      "C3_after_deny_A_only-r1-receipt-1": {
+        "work": {
+          "work_id": "C3_after_deny_A_only-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "untrusted_fixture_recipient_substitution"
+          ],
+          "recipient": "attacker@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 19,
+        "accepted_at_utc": "2026-11-15T13:54:23.295165+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C3_after_deny_A_only-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "attacker@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C3_after_deny_all_mediated-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C3_handoff_removed-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C3_single_agent_replay-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C4_queued_before_cut_static-r1": {
+    "receipts": {
+      "C4_queued_before_cut_static-r1-receipt-1": {
+        "work": {
+          "work_id": "C4_queued_before_cut_static-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 17,
+        "accepted_at_utc": "2026-11-15T13:54:23.337367+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C4_queued_before_cut_static-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "owner-A@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C4_queued_before_cut_current-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C4_created_after_cut_static-r1": {
+    "receipts": {
+      "C4_created_after_cut_static-r1-receipt-1": {
+        "work": {
+          "work_id": "C4_created_after_cut_static-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 17,
+        "accepted_at_utc": "2026-11-15T13:54:23.356745+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C4_created_after_cut_static-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "owner-A@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C4_created_after_cut_current-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C4_single_agent_postcut_static-r1": {
+    "receipts": {
+      "C4_single_agent_postcut_static-r1-receipt-1": {
+        "work": {
+          "work_id": "C4_single_agent_postcut_static-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "NOT_OBSERVED",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 11,
+        "accepted_at_utc": "2026-11-15T13:54:23.372672+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-A"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C4_single_agent_postcut_static-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "owner-A@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C4_preaccepted_grandfather-r1": {
+    "receipts": {
+      "C4_preaccepted_grandfather-r1-receipt-1": {
+        "work": {
+          "work_id": "C4_preaccepted_grandfather-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 16,
+        "accepted_at_utc": "2026-11-15T13:54:23.382653+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C4_preaccepted_grandfather-r1-receipt-1",
+        "root_task_id": "root-A",
+        "principal_id": "principal-A",
+        "recipient": "owner-A@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C4_preaccepted_sink_fence-r1": {
+    "receipts": {
+      "C4_preaccepted_sink_fence-r1-receipt-1": {
+        "work": {
+          "work_id": "C4_preaccepted_sink_fence-r1-work-1",
+          "root_task_id": "root-A",
+          "principal_id": "principal-A",
+          "authorization_support": "support-A",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-A@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 16,
+        "accepted_at_utc": "2026-11-15T13:54:23.392618+00:00",
+        "cancelled": true,
+        "committed": false,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": []
+  },
+  "C4_postcut_sink_fence_static-r1": {
+    "receipts": {},
+    "outbox": []
+  },
+  "C5_independent_root_current-r1": {
+    "receipts": {
+      "C5_independent_root_current-r1-receipt-1": {
+        "work": {
+          "work_id": "C5_independent_root_current-r1-work-2",
+          "root_task_id": "root-B",
+          "principal_id": "principal-B",
+          "authorization_support": "support-B",
+          "delegation_parent": "agent-A",
+          "input_provenance": [
+            "trusted_fixture_task",
+            "synthetic_report"
+          ],
+          "recipient": "owner-B@example.test",
+          "body": "synthetic-r1-report"
+        },
+        "accepted_at": 30,
+        "accepted_at_utc": "2026-11-15T13:54:23.419141+00:00",
+        "cancelled": false,
+        "committed": true,
+        "agent_id": "agent-B"
+      }
+    },
+    "outbox": [
+      {
+        "receipt_id": "C5_independent_root_current-r1-receipt-1",
+        "root_task_id": "root-B",
+        "principal_id": "principal-B",
+        "recipient": "owner-B@example.test",
+        "body": "synthetic-r1-report"
+      }
+    ]
+  },
+  "C5_global_stop_overblock_control-r1": {
+    "receipts": {},
+    "outbox": []
+  }
+}

@@ -1,0 +1,45 @@
+UTC: 2026-11-15T14:00:06.170566+00:00
+CWD: /home/cclab/controllable_agent/third_party/continuity
+COMMAND: .venv/bin/python scripts/run_experiments.py --quick --output ../../results/r1/continuity-quick-01
+           system  attack_instances  fault_domain_classes  effect_attack_success_rate  contained_fault_domain_classes  benign_auto_completion_rate  ambiguous_escalation_accuracy  lifecycle_correctness  replay_lifecycle_accuracy  latency_p50_ms  latency_p95_ms  mean_bundle_kib
+      PassThrough               384                   128                     1.00000                               0                          1.0                            0.0               0.163934                        0.0        0.014351        0.022340        12.729332
+    ToolAllowlist               384                   128                     1.00000                               0                          1.0                            0.0               0.163934                        0.0        0.007418        0.012266        12.729332
+    GatewayPolicy               384                   128                     0.96875                               4                          1.0                            0.0               0.188525                        0.0        0.008157        0.011545        12.729332
+ProvenanceGateway               384                   128                     0.84375                              20                          1.0                            1.0               0.336066                        0.0        0.317678        0.722438        12.729332
+EffectBoundPermit               384                   128                     0.81250                              24                          1.0                            0.0               0.311475                        1.0        0.916736        1.203564        12.729332
+ Gateway+Finality               384                   128                     0.65625                              44                          1.0                            1.0               0.483607                        1.0        1.190951        1.605127        12.729332
+       CONTINUITY               384                   128                     0.00000                             128                          1.0                            1.0               1.000000                        1.0        8.848997        9.940078        12.729332
+
+Ablation:
+                    ablation  attack_instances  effect_attack_success_rate  failed_fault_domain_classes
+                        Full               128                     0.00000                            0
+        NoRootAuthentication               128                     0.12500                           16
+      NoComponentRoleBinding               128                     0.03125                            4
+       NoContractConformance               128                     0.18750                           24
+NoTransformWitnessValidation               128                     0.06250                            8
+         NoReleaseValidation               128                     0.09375                           12
+           NoFieldProvenance               128                     0.18750                           24
+           NoIdentityBinding               128                     0.03125                            4
+     NoAuthorityMonotonicity               128                     0.00000                            0
+    NoDelegationMonotonicity               128                     0.03125                            4
+         NoTaintMonotonicity               128                     0.03125                            4
+           NoPolicyFreshness               128                     0.03125                            4
+         NoContextCommitment               128                     0.03125                            4
+             NoActionBinding               128                     0.03125                            4
+            NoSubjectBinding               128                     0.03125                            4
+         NoRevocationRecheck               128                     0.03125                            4
+          NoReplayProtection               128                     0.06250                            8
+         IncompleteMediation               128                     0.18750                           24
+
+Performance:
+                         operation  iterations    p50_ms    p95_ms   mean_ms
+           proof_verification_only         100  8.697885  9.126075  8.798484
+end_to_end_with_transition_signing         100 15.473634 16.030257 15.464906
+ transitions    p50_ms    p95_ms   mean_ms  bundle_kib
+           1  4.781906  5.066098  4.842067    8.066406
+           3  8.785024  9.099640  8.810095   12.432617
+           5 13.105841 14.479722 13.213081   16.772461
+          10 23.373049 25.104640 23.574100   27.625000
+          20 44.342331 47.120753 44.736099   49.366211
+
+EXIT_CODE=0

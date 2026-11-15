@@ -29,3 +29,7 @@ results/setup/**/raw/
 results/setup/bootstrap-20261114/discovery-search*.json
 results/setup/bootstrap-20261114/a2a-asrf-original/trials.jsonl
 experiments/orbit-release/first_benchmark.py
+
+# R1: preserve original conformance raw locally; share projections and hashes.
+results/r1/continuity-quick-01/raw_results.csv
+results/r1/continuity-quick-01/ablation_raw.csv

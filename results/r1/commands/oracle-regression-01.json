@@ -1,0 +1,22 @@
+{
+  "name": "oracle-regression-01",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/r1",
+    "-p",
+    "test_oracle.py",
+    "-v"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T13:58:02.984941+00:00",
+  "end_utc": "2026-11-15T13:58:03.099647+00:00",
+  "duration_seconds": 0.115,
+  "exit_code": 0,
+  "log": "results/r1/commands/oracle-regression-01.stdout.txt",
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

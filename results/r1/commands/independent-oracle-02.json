@@ -1,0 +1,21 @@
+{
+  "name": "independent-oracle-02",
+  "command": [
+    "python3",
+    "experiments/r1/oracle.py",
+    "--events",
+    "results/r1/fixture-run-01/events.jsonl",
+    "--sink-state",
+    "results/r1/fixture-run-01/sink_state.json",
+    "--output",
+    "results/r1/oracle-02.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T13:58:02.872529+00:00",
+  "end_utc": "2026-11-15T13:58:02.937064+00:00",
+  "duration_seconds": 0.065,
+  "exit_code": 0,
+  "log": "results/r1/commands/independent-oracle-02.stdout.txt",
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

@@ -1,0 +1,25 @@
+UTC: 2026-11-15T13:58:02.984941+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 -m unittest discover -s experiments/r1 -p test_oracle.py -v
+test_acceptance_without_grant_detected (test_oracle.OracleTests) ... ok
+test_allow_label_does_not_make_invalid_effect_authorized (test_oracle.OracleTests) ... ok
+test_consistent_committed_effect_substitution_detected (test_oracle.OracleTests) ... ok
+test_deny_claim_does_not_hide_actual_effect (test_oracle.OracleTests) ... ok
+test_duplicate_commit_detected (test_oracle.OracleTests) ... ok
+test_global_stop_is_overblock_even_with_safety (test_oracle.OracleTests) ... ok
+test_hidden_extra_outbox_effect_detected (test_oracle.OracleTests) ... ok
+test_independent_root_not_removed_by_other_root_cut (test_oracle.OracleTests) ... ok
+test_missing_acceptance_detected (test_oracle.OracleTests) ... ok
+test_missing_commit_log_detected_by_outbox (test_oracle.OracleTests) ... ok
+test_postcut_prefence_is_separate_from_paper_fence_violation (test_oracle.OracleTests) ... ok
+test_preaccepted_postcut_commit_is_grandfathered (test_oracle.OracleTests) ... ok
+test_receipt_support_substitution_detected (test_oracle.OracleTests) ... ok
+test_reordered_or_duplicate_sequence_detected (test_oracle.OracleTests) ... ok
+test_wrong_principal_support_detected (test_oracle.OracleTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.022s
+
+OK
+
+EXIT_CODE=0

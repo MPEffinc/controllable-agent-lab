@@ -1,5 +1,7 @@
 # 다음 원본 재현 절차 — 계획 상태 NOT_RUN
 
+**R1 후속 갱신(2026-11-15):** 아래 Bootstrap 계획의 Progent component와 별도 합성17조건, CONTINUITY 원본 conformance quick은 이제 실행됐다. [실제 결과](R1_EXPERIMENT_REPORT.md)와 [새 가설·위협 모델](R1_HYPOTHESIS_AND_THREAT_MODEL.md)을 기준으로 읽는다. 다음 한 가지는 원본 CONTINUITY를 같은 A2A17조건에 연결해 동일한 권한·acceptance/fence 의미로 비교하는 것이다(현재 NOT_RUN). 아래 내용은 과거 시점 계획을 보존한 것이다.
+
 기준일 2026-11-15 (Asia/Seoul). 이번 작업은 감사와 GitHub 인계이며 새 실험·설치는 시작하지 않는다. 실행 성공, 설치 성공, 논문 재현 성공은 별도 상태다. 현재 완료된 실험은 A2ASecBench 원본 결정론적 ASRF offline 100 attack + 100 matched control뿐이다. 이것은 방어 OFF/ON 실험이나 LLM 공격 재현이 아니다.
 
 ## 다음 실행 가능한 한 가지 비교

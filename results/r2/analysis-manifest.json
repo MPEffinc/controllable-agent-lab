@@ -1,0 +1,101 @@
+{
+  "scope": "Canonical run is run-01; run-02-replicate is an unmodified replicate; original_crosscheck is confirmatory (post-hoc).",
+  "preregistration_commit": "75870a95fc0161176e108c03d7c0f5c6e5344bb5",
+  "original_continuity_sha": "59cfe60930d247d1890b366ded686c718020a11e",
+  "source_files_and_outputs": {
+    "experiments/r2/adversary.py": "4fd0f300ddc3f41af79a308283b095920f1dd672a08d5cfc07c5253a95fd188b",
+    "experiments/r2/classify.py": "74a7d0a2bd33d3e0dc184407778ba6c24c43371dcc3a0a30baf357810cdc9855",
+    "experiments/r2/config.json": "02f3d8c825cf9bcb13e370a417c01e5f1cb199169c9cb1e4e3f83a06db00d189",
+    "experiments/r2/mutation_check.py": "bc369340dcf99859797134653e3cdc23947dd7c7c00e1a711dda190b5aa91e59",
+    "experiments/r2/oracle.py": "1a5619da417be972f6a6c1c1636b10d88d243e912608c6463b7c9014a24c5131",
+    "experiments/r2/original_crosscheck.py": "d7257d824528e03da37be7e7e36d55eb2dd5405dbd2a4404ed9e159b2161316a",
+    "experiments/r2/proof_codec.py": "401d38f856165789fb21b7e3cc782768d09f3ea8db1e7cc51845c9fc0059b981",
+    "experiments/r2/r1_projection.py": "d00cd28e26348a0cf29078c6e3753bc012b0e964b2b6f1687d5e5fa5ffb9268d",
+    "experiments/r2/requirements-input.txt": "0c6876099ce5476651c565bd18dde20e738060645f9099126312aaf44ed4f04c",
+    "experiments/r2/requirements-observed.txt": "338967c9a86f27f44c5d201ec2c3ed6cd485f2f4c71cdfe06c90a6704c98703f",
+    "experiments/r2/scenario.py": "3be0fb57bd305ad4984a7eee5197b7e68a4f20f7ce76fff7cd0f3bd2fd5dd188",
+    "experiments/r2/test_bridge.py": "403dc39e50740e40b0eaba26f08d50a11c89790adc027be15f8b7e09a796f826",
+    "experiments/r2/test_oracle.py": "3c71c8af18f50cb20de21f99581d82fa8981face752350874c701cda982dd4e0",
+    "experiments/r2/trusted.py": "dddfa4af4d730699114b5e618a022d8875847ab552905bed88ffd0558aa0ecef",
+    "experiments/r2/verify_saved.py": "0e99353f41af4fab237052c74ecde8c3d8b1ba75c6351ed507e84a509fd2aaf6",
+    "results/r2/commands/r2-classify-01.json": "a33537f79f947aafcdaef112445771023e88867879466c0f47e1ef169e4c7f64",
+    "results/r2/commands/r2-classify-01.stdout.txt": "598d73fbc588b427d903f261090674f0d529cd3215c386661687007b90a7fe7e",
+    "results/r2/commands/r2-continuity-original-pytest-after-runs.json": "c5ece0cea3613224ebc4d3312ff8936261b3a012d8884296522ef5c3c517aa41",
+    "results/r2/commands/r2-continuity-original-pytest-after-runs.stdout.txt": "333077642987f36399fbdb8d9cd258134496d62ec862e7bd058d4a254cc1dfbb",
+    "results/r2/commands/r2-continuity-original-pytest-r2env.json": "828e00792228c1a67907a07995e6dd20d824d06bb96ab1d7fc287c4c9fbfbd74",
+    "results/r2/commands/r2-continuity-original-pytest-r2env.stdout.txt": "f101fafdb8b21e28192bce2f04ffd6aa5e16b4df8998cc8164bc699a35dabb35",
+    "results/r2/commands/r2-install-offline.json": "6b477208110a4dd24cfb76fd6a8e740d0cd006c3f5db8b6da6306b09522ce772",
+    "results/r2/commands/r2-install-offline.stdout.txt": "3393cc327984d1d36c33b3379b49d69830ca49ee43dbc7c1d306011e56486c46",
+    "results/r2/commands/r2-install-online.json": "f9a66aa92def2c0b3bf85fe8a23db0e0a932086dc77cf159b0668d60d7e7b022",
+    "results/r2/commands/r2-install-online.stdout.txt": "954e1f1b3e1ba1ff0c0d350d8008af3b2903d98bb0b008c6cf7561d537d4e88f",
+    "results/r2/commands/r2-mutation-check-01.json": "e8f30c1b7a4a035a0ba25525ddb17c1094685ef146814c9c2a271475ed9f2c29",
+    "results/r2/commands/r2-mutation-check-01.stdout.txt": "f77f37f916944a3f9bb63c9e0f7ecaebe8612f2ba5f1ae1b1eef39e58c66a8c2",
+    "results/r2/commands/r2-oracle-01.json": "2573d61fd48700f5d36d732333b04b158ae1c8fcb9ebd38ce260e611325e0715",
+    "results/r2/commands/r2-oracle-01.stdout.txt": "5b02ef1c9e01e2961e10a8176d37f77f1c34e7526cccabb631dad774706832c6",
+    "results/r2/commands/r2-oracle-02-replicate.json": "c3682dc40ebf566a9b8fe0a05909e7dcb5dc17cff71c968cdb31709331e2a7f6",
+    "results/r2/commands/r2-oracle-02-replicate.stdout.txt": "d623f16fbd828cc66aaf304eecb40b2808422ce61ed71dc5cc2571e1dd7e9610",
+    "results/r2/commands/r2-original-crosscheck-01.json": "84e4d10bf5073c00c9120e82e82f56ad3c3519956eac1e1b14c7a4e6d7c81da5",
+    "results/r2/commands/r2-original-crosscheck-01.stdout.txt": "8575741051061796843f42e938266798cd8281cbc0a4e29ff6112925f3dd6e11",
+    "results/r2/commands/r2-r1-projection-01.json": "650b0a88099ed6fdac80d4cf9e237ab95bbc2d6d4aba90818d76ce9a4d877493",
+    "results/r2/commands/r2-r1-projection-01.stdout.txt": "48a60e7519b3cf6976c842c7b603f05339eca15e1bde19cf28e4aa1193acba22",
+    "results/r2/commands/r2-unit-tests-after-run.json": "94d53bed4997af1edc3f25f9cf94967dd1504189bfe0a584b2c24dedf335f365",
+    "results/r2/commands/r2-unit-tests-after-run.stdout.txt": "6f8ccdb4cc744de38234926b115196c1c2ec676c648383a2ddc1bfcb088aebb3",
+    "results/r2/commands/r2-venv-create.json": "d493debb18bbf09d6f63c16edef24f7b8264493310d5147ca51eb4cabb8ec298",
+    "results/r2/commands/r2-venv-create.stdout.txt": "a2192a4f9ddc5d3c26076693bdb1aa121414efc25cd6e925de7a2cecd8e2f54e",
+    "results/r2/commands/run-01.json": "3477d84dc7795a0ecb5fb2c01b091641ee4d62d31fa2f2ae25a2693042ac969e",
+    "results/r2/commands/run-01.stdout.txt": "b002b8a3312bea38b026993c6d09b82fe16b5a4d5b1524c0bcbe9ada51f3b991",
+    "results/r2/commands/run-02-replicate.json": "4d4c32a5db7bbbf5e3ec6fa494c3eea695b827e69698f29223e4b87f8f9e62d6",
+    "results/r2/commands/run-02-replicate.stdout.txt": "94bf2926b21d58a90846009680d15dea571edde6126ab53bc3b570292693ab74",
+    "results/r2/condition_summary.csv": "60ad0f272c7268a19dd7ed749b55e38a99063be12101573883213ba2f9c0fac4",
+    "results/r2/expectation-check-01.json": "b8a8d526ce726fdd9636e621dc8b51fe4b065caaddbcea9eb171db0836007703",
+    "results/r2/mutation-check-01.json": "d203c2dcf7e889a25dbacdf6543d04ea31560cd557d7368f12a8047c49a41eb9",
+    "results/r2/oracle-01.json": "91e60c58efd5e2ece84ce0b62ced003066cb3230210c9788a415bd49b21b85a3",
+    "results/r2/oracle-02-replicate.json": "91e60c58efd5e2ece84ce0b62ced003066cb3230210c9788a415bd49b21b85a3",
+    "results/r2/original-crosscheck-01.json": "af0ab8456bd283d00d5371a0e74ed3b68c3274537f76e0a5f71b26045a06902f",
+    "results/r2/r1-oracle-01.json": "a81331e3ebd8cec6575f9c7153e70bbe83cc007b77c0f922b5754a0f2daf3789",
+    "results/r2/run-01/events.jsonl": "f227bcb7972f61d3256f7e4ac226ec6b2b52429fc14262a53142d8c8136a85d2",
+    "results/r2/run-01/manifest.json": "e9a02ec6be8bd10d25f3e8f1d12a7ac7b4bfa7abaaea29b9d6044a58ff246541",
+    "results/r2/run-01/summary.json": "46d72cde47c1008d14e4a5554924af0a0ae8f91215690f346638489e29e9bb70",
+    "results/r2/run-01/world_state.json": "94d4b9eb2f59a97d505e52a37d0482cfe10957cc7944579a6f536a0244d99396",
+    "results/r2/run-02-replicate/events.jsonl": "222f32e89b0929264d26035066b9ca7b0d85a469e7a50199d36c45c24f3e3223",
+    "results/r2/run-02-replicate/manifest.json": "c15e97369a41e77c87ff21497aa56c15eb94a446e636934d79ad913768ed964c",
+    "results/r2/run-02-replicate/summary.json": "46d72cde47c1008d14e4a5554924af0a0ae8f91215690f346638489e29e9bb70",
+    "results/r2/run-02-replicate/world_state.json": "94d4b9eb2f59a97d505e52a37d0482cfe10957cc7944579a6f536a0244d99396",
+    "scripts/r2_run.py": "4170c1eb5aec45a4d95e72cc980a496e23b93b21ea24bfdeb7be998b78fbe372"
+  },
+  "observed_verification": {
+    "status": "VERIFIED",
+    "classification": "SAVED_EVIDENCE_REPLAY_NOT_RUNTIME_REPRODUCTION",
+    "run-01": {
+      "trials": 18,
+      "events": 322,
+      "oracle": {
+        "SATISFIED": 14,
+        "VIOLATION": 4,
+        "INCOMPLETE_EVIDENCE": 0
+      },
+      "r1_security": {
+        "SATISFIED": 15,
+        "VIOLATION": 3,
+        "INCOMPLETE_EVIDENCE": 0
+      }
+    },
+    "run-02-replicate": {
+      "trials": 18,
+      "events": 322,
+      "oracle": {
+        "SATISFIED": 14,
+        "VIOLATION": 4,
+        "INCOMPLETE_EVIDENCE": 0
+      }
+    },
+    "expectation_check": {
+      "conditions": 18,
+      "matched": 18
+    },
+    "replicate_outcomes_identical": true,
+    "command_records": 14,
+    "prereg_before_results": "VERIFIED",
+    "sensitive_pattern_hits": 0
+  }
+}

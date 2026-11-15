@@ -1,5 +1,7 @@
 # controllable-agent-lab
 
+R2 실행 결과(브랜치 `exp/r2-continuity-a2a`): 원본 CONTINUITY를 A2A 위임 경로에 연결한 [통합 보고](docs/R2_CONTINUITY_INTEGRATION_REPORT.md), [의미 정렬(사전 고정)](docs/R2_SEMANTIC_ALIGNMENT.md), [연구 공백 판정](docs/R2_GAP_VERDICT.md). 사전 고정 18조건에서 기존 방법의 보장이 유지됐고 연구 공백은 확정하지 않았다. 저장 증거 검증: `python3 experiments/r2/verify_saved.py`.
+
 R1 실행 결과: [17조건 개입 이후 MAS 실험 보고](docs/R1_EXPERIMENT_REPORT.md), [가설·위협 모델](docs/R1_HYPOTHESIS_AND_THREAT_MODEL.md), [선행연구 Gap Matrix](docs/RESEARCH_GAP_MATRIX.md). Progent component와 CONTINUITY 원본 quick도 실행했다. 저장 증거 검증: `python3 experiments/r1/verify_saved.py`. 새 gap이나 전체 논문 재현을 확정한 결과는 아니다.
 
 현재 MAS 보안 연구의 검증 상태는 **[CONTEXT.md](CONTEXT.md)**와 **[Bootstrap GitHub 인계](docs/BOOTSTRAP_HANDOFF.md)**를 기준으로 확인한다. URL·SHA·설치·실행 증거는 [REPO_AUDIT](docs/REPO_AUDIT.md)에 있다. 아래 소개와 SREGym 기록은 이전 연구의 보존 자료이며 이번 Bootstrap 검증 결과에 합산하지 않는다.

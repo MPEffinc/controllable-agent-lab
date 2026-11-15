@@ -1,0 +1,19 @@
+{
+  "name": "r2-mutation-check-01",
+  "command": [
+    "python3",
+    "experiments/r2/mutation_check.py",
+    "--output",
+    "results/r2/mutation-check-01.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T15:32:45.490261+00:00",
+  "end_utc": "2026-11-15T15:32:46.206261+00:00",
+  "duration_seconds": 0.716,
+  "exit_code": 0,
+  "log": "results/r2/commands/r2-mutation-check-01.stdout.txt",
+  "parent_commit": "198489624ecdda4198af8b62b4f8719b81fdd84a",
+  "tracked_files_dirty": true,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

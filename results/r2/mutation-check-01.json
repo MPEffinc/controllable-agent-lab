@@ -1,0 +1,54 @@
+{
+  "classification": "ORACLE_TEST_SUITE_MUTATION_CHECK",
+  "baseline_passes": true,
+  "mutants": 8,
+  "killed": 8,
+  "survived": [],
+  "rows": [
+    {
+      "mutant": "BASELINE (no mutation)",
+      "tests_passed": true,
+      "last_line": "OK"
+    },
+    {
+      "mutant": "no-revocation-check",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "no-actor-check",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "trust-any-permit",
+      "killed": true,
+      "last_line": "FAILED (failures=2)"
+    },
+    {
+      "mutant": "no-unmediated-check",
+      "killed": true,
+      "last_line": "FAILED (errors=1)"
+    },
+    {
+      "mutant": "no-log-world-compare",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "no-action-check",
+      "killed": true,
+      "last_line": "FAILED (failures=2)"
+    },
+    {
+      "mutant": "no-epoch-check",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    },
+    {
+      "mutant": "no-duplicate-check",
+      "killed": true,
+      "last_line": "FAILED (failures=1)"
+    }
+  ]
+}

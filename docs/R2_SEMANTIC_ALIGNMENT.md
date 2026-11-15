@@ -193,3 +193,11 @@ AB 그룹의 위반은 **원본 방법의 우회 취약성이 아니다.** oracl
 - R1 grant는 행위자에 결속되지 않고 CONTINUITY grant는 `actor`에 결속된다. R2에서는 **루트 grant가 위임받은 실행자(B)를 `actor`로 명시**하는 방식으로 위임을 모델링한다. 실행 중 동적으로 다른 에이전트에게 재위임하는 구조는 시험하지 않는다(별도 인증된 grant가 필요하다는 원본 계약과 일치). 이것은 **미검증 조건이며 공백으로 판정하지 않는다.**
 - "delegated origin"은 원본 논문의 정의된 용어가 아니다([논문] 요약에서 확인되지 않음). R1 문서의 표현이며 R2에서는 §2의 대응표로 대체한다.
 - 시행 1회씩이며 결정론적 일정이다. 확률적 공격 성공률이나 일반성을 추정하지 않는다.
+
+## 10. 정오표 (결과 확인 뒤 추가, 2026-11-15)
+
+사전 고정 본문(§1–§9)과 [config.json](../experiments/r2/config.json)은 수정하지 않았다(config는 사전 고정 commit `75870a9` 이후 변경 없음). 아래만 사후에 덧붙인다.
+
+- §4.1의 "임시 시드 4개" 확인은 저장하지 않은 임시 점검 스크립트의 결과다. **증거로 세지 않는다.** 저장된 증거는 [test_bridge.py](../experiments/r2/test_bridge.py)의 3개 시드 바이트 동일성 테스트다.
+- §6의 R1 oracle 투영은 구현 결과 R1 형식의 `grant/revoke/sink_accept/sink_commit/trial_completed`를 만들며, R1 grant에 행위자 필드가 없어 **행위자 대체를 판정하지 못한다**. 실행으로 확인했다(`AB-subject_binding_off`를 R1 oracle은 SATISFIED, R2 oracle은 UNAUTHORIZED_ACTOR로 판정). §3의 "R1 grant는 행위자에 결속되지 않음"이 평가 한계로 이어진 사례다.
+- §7의 판정값 중 `ASSUMPTION_FAILURE` 0건은 가정이 검증됐다는 뜻이 아니라, §4.4의 가정을 구성으로 성립시켰다는 뜻이다.

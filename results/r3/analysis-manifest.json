@@ -1,0 +1,117 @@
+{
+  "scope": "Canonical run is run-01; run-02-replicate is an unmodified replicate. G3-G5 were not run on CONTINUITY.",
+  "preregistration_commit": "d7bfe9b610474294d5c0ad94ee4302d663c3db51",
+  "original_continuity_sha": "59cfe60930d247d1890b366ded686c718020a11e",
+  "source_files_and_outputs": {
+    "experiments/r3/classify.py": "c0f7678abc5f3ae746a312a9aec78894c847807eaff3ee2889399f549e8c2935",
+    "experiments/r3/config.json": "0fdd9a6e7ad9a224ac0bc2b2eafc5f86295317feaf98e80a532f27e9f1b30f5f",
+    "experiments/r3/expressiveness_check.py": "f44396841f74b6ae08ad5427edec7a340a105baebfde6a67b5f9213f4e16c460",
+    "experiments/r3/mutation_check.py": "351d40f9fd746923a5f221de3e817a3eb33e5152534cff08197a8ae04ec40cc2",
+    "experiments/r3/oracle.py": "af38236ab2b8bfbb3ed6c65dd7e76d124c1cf6ffe2c98b990bcf5d2693b5b551",
+    "experiments/r3/reference_model.py": "762b230e27ed73044363a1fa20994693e566cb5fee471835f9cb8cd560a0c2ed",
+    "experiments/r3/research_provenance.py": "1e41c2c715a885cbefb37328884db12a5009c8de20eafbbd868ec6c663ed3610",
+    "experiments/r3/scenario.py": "b12abfb5f89aa7d5d8693fa74aeac3a3262f0d1aeabea006559f5d895ed69406",
+    "experiments/r3/test_r3_static.py": "c7d622b5328baaa52c14cad2f39ae8f8626ac5bf91cf9d9c33c1f33b8acfef91",
+    "experiments/r3/test_r3_wiring.py": "4804b72bcc5cb5b868de2d6f1f74986ebad1ade65ec8a46e7debee2a7696592f",
+    "experiments/r3/verify_saved.py": "436707f6a01522f7f384b999fedefb6858586c50c3928ca019b388db12ce781d",
+    "results/r3/commands/r3-classify-01.json": "249a1068a8ba6a7a3298ef465ef30bcc3f41c40720e740e7865a37fc5cdae396",
+    "results/r3/commands/r3-classify-01.stdout.txt": "06c4c9318d59f97154a3629a4306f385736c87a0286a70bd5b93a9bef860d61e",
+    "results/r3/commands/r3-continuity-original-pytest-after-runs.json": "aa5a8658a542cdfced08cda9891a143bf56cd7b6316377aca34e8a5bf8e4f6f2",
+    "results/r3/commands/r3-continuity-original-pytest-after-runs.stdout.txt": "472a69d7ee6ddcff4205be6a83a7524bf54ec47341bfa6fe1085453ff8378c79",
+    "results/r3/commands/r3-expressiveness-01.json": "1f81f0049ff916dcd8106f52681c31b44dd5ffe44022378d3e345d6bf874466c",
+    "results/r3/commands/r3-expressiveness-01.stdout.txt": "17229d824a0d5214fe700808be6b027679ad7ae72aeb68663815f4ce7eb29be0",
+    "results/r3/commands/r3-mutation-check.json": "85440d8c6f6b729cc9a0347cbffcbf6f7fdffd08d3266333bc32611128bf5579",
+    "results/r3/commands/r3-mutation-check.stdout.txt": "8a376e0955d5b79768118881f36ff9bcc9ccfa0669aade25b7892065292719b2",
+    "results/r3/commands/r3-oracle-01.json": "398d2205d101c8198e170a071f18fb001448f8bd0ede063940f8bf3ae22f12ec",
+    "results/r3/commands/r3-oracle-01.stdout.txt": "a02e0eebf8af4d937661a17cb7d43c7a64a85241e90048141ec419ebf67f89e2",
+    "results/r3/commands/r3-oracle-02-replicate.json": "2bbb1ff0c9573194254e5ce4bd45e12e4c8d067b687e1abb8ad095f2524df437",
+    "results/r3/commands/r3-oracle-02-replicate.stdout.txt": "0e8e607580945e55dc8fb52ca7b6d61bcea34b9cc4f66127af57b0acccb57d14",
+    "results/r3/commands/r3-r2-unit-tests-after-run.json": "05e08ca436ec0b7774265af933cf8677e45f53661c4dcb656b24be420094bd8a",
+    "results/r3/commands/r3-r2-unit-tests-after-run.stdout.txt": "cab1e39b48e356f1508b5e660be79ad55f54573743285d5f243b5ffcced35175",
+    "results/r3/commands/r3-reference-model-01.json": "db5f363d2d5b047bd4d44c196f2cdc094f34e55b66eaac411a10ae95aa030421",
+    "results/r3/commands/r3-reference-model-01.stdout.txt": "6f8c23159d9abfcfc84920b17ea39f38e13ad912d0bbf91860ccaa2f4da14018",
+    "results/r3/commands/r3-research-provenance.json": "4329b89fb0db12c509049528cd5d1cab9994c6f7936414766ede051c93d3708b",
+    "results/r3/commands/r3-research-provenance.stdout.txt": "90f46ce84dc09f27b5e21ecdd9adbae15443e242385b5fbdb690687b34dda590",
+    "results/r3/commands/r3-unit-tests-after-run.json": "85920d73fb931e9e97ac54a82357d4e7ff335e10968cf12ec3930c5b0233244b",
+    "results/r3/commands/r3-unit-tests-after-run.stdout.txt": "d72633cd1aaaa12af5eaf46e96fd7982aa9dfcd9c31758e0d5f1891a17854cd5",
+    "results/r3/commands/r3-vera-install.json": "6a801df97f63f64e9f587deb088c616b615c71ff3c1cc71fb036151c2a003a97",
+    "results/r3/commands/r3-vera-install.stdout.txt": "85a3c829dd6a92139db892fff6376d55de8e39fd7d843c73192ccaf85cc0d287",
+    "results/r3/commands/r3-vera-venv-create.json": "916bc9c40f43831310d93649a51f9fdb3ce0f37b37d1afb7d9913ea546961622",
+    "results/r3/commands/r3-vera-venv-create.stdout.txt": "dbda3cc56158bb6b0d3cd471641923c7c74710e9a232778612e39d3069bdefce",
+    "results/r3/commands/run-01.json": "c85b09f1b8a7bf46ceadd3b3636ce3c44bdc6b25824a07ba3166eaa54f6d5570",
+    "results/r3/commands/run-01.stdout.txt": "c65a2d89a38e2b4898658feff7dadd755be8bee8acc688829e3feedaa51ccc00",
+    "results/r3/commands/run-02-replicate.json": "101214adcdf387e7582bb1784215eebee48f71b401afb623c25e47cf559e8f26",
+    "results/r3/commands/run-02-replicate.stdout.txt": "6586ab3cd435e5cc994463aea70afde0d2a29ff78c05a20f062e00ba13810eb7",
+    "results/r3/condition_summary.csv": "5f59ebe7fe4b2bd1efbf3f2a10e231295f6c330844cd1bfe540d509ea31f6c43",
+    "results/r3/expectation-check-01.json": "bac743335836b566b1e029983e2fc0c8c8746256e6685bc0c62a4d678405bf33",
+    "results/r3/expressiveness-01.json": "dae048acc433dd2d0468e8dec7f7006dee6ef962c39c58eed961997224f4cb82",
+    "results/r3/mutation-check-01.json": "e6f4488da18e29689fedc92b1f9323d52629cf51b85deabef8dc832c7f85b411",
+    "results/r3/oracle-01.json": "94f8e715bc7892e77efc1f489368441f11b94317e6e88ef27620334b64630f94",
+    "results/r3/oracle-02-replicate.json": "94f8e715bc7892e77efc1f489368441f11b94317e6e88ef27620334b64630f94",
+    "results/r3/reference-model-01.json": "fa689decaf61b029d6d49509db747bb62026731d3d88e261dec4e3b1abbbe457",
+    "results/r3/research-provenance.json": "27c5663774fe901629d8d0888dc535ea9f88794f6a5bcf81c59f8a645ffa70f8",
+    "results/r3/run-01/events.jsonl": "76fd05416afe0981c00476cc98715625ac1be6fb4f079e9f718ccd8e15ce0720",
+    "results/r3/run-01/manifest.json": "e8e662881c120f6762b87ce1a9e47faa0961b4184838e18b4d2a85c1d023463b",
+    "results/r3/run-01/summary.json": "0277a26f484a95be8a6209e3b365bc325fbad02139e829930de3a2214abbff0d",
+    "results/r3/run-01/world_state.json": "f60d40ddb8b7ee549a6274da8d551adcf8058a73db2c477303eafbe649eb75b8",
+    "results/r3/run-02-replicate/events.jsonl": "4c54ed71cf3a6cd4ea3032859dc81960dca9a779545a049286a5a083f9faa556",
+    "results/r3/run-02-replicate/manifest.json": "62a95d48c15a5d1afb15619af7a609e860b02672a35c8c2b4e051035f715411d",
+    "results/r3/run-02-replicate/summary.json": "0277a26f484a95be8a6209e3b365bc325fbad02139e829930de3a2214abbff0d",
+    "results/r3/run-02-replicate/world_state.json": "f60d40ddb8b7ee549a6274da8d551adcf8058a73db2c477303eafbe649eb75b8",
+    "scripts/r3_run.py": "a9e9c3fc2ab0a7c2f3a645de5a32762068026a3432e1fd5ecfb2861e157c6c58"
+  },
+  "observed_verification": {
+    "status": "VERIFIED",
+    "classification": "SAVED_EVIDENCE_REPLAY_NOT_RUNTIME_REPRODUCTION",
+    "run-01": {
+      "trials": 4,
+      "events": 140,
+      "oracle": {
+        "SATISFIED": 4,
+        "VIOLATION": 0,
+        "INCOMPLETE_EVIDENCE": 0
+      }
+    },
+    "run-02-replicate": {
+      "trials": 4,
+      "events": 140,
+      "oracle": {
+        "SATISFIED": 4,
+        "VIOLATION": 0,
+        "INCOMPLETE_EVIDENCE": 0
+      }
+    },
+    "static_core_hash": "recomputed and equal",
+    "static_reference_provenance_mutation": {
+      "static": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "reference_matches": true,
+      "quotes": "41/41",
+      "mutants_killed": "12/12"
+    },
+    "expectation_check": {
+      "conditions": 7,
+      "matched": 7,
+      "verdicts": {
+        "G0_single_root_chain": "IN_SCOPE_PASS",
+        "G1a_same_root_revoked_in_flight": "IN_SCOPE_PASS",
+        "G1b_same_root_revoked_while_retained": "IN_SCOPE_PASS",
+        "G2_independent_root_preserved": "IN_SCOPE_PASS",
+        "G3_derived_authority_only": "UNDEFINED_AUTHORIZATION_SEMANTICS",
+        "G4_derived_plus_independent": "UNDEFINED_AUTHORIZATION_SEMANTICS",
+        "G5_conjunctive_approval": "UNDEFINED_AUTHORIZATION_SEMANTICS"
+      }
+    },
+    "replicate_outcomes_identical": true,
+    "command_records": 14,
+    "prereg_before_results": "VERIFIED",
+    "sensitive_pattern_hits": 0
+  }
+}

@@ -1,5 +1,7 @@
 # controllable-agent-lab
 
+R3 실행 결과(브랜치 `exp/r3-delegation-lineage`): 3-agent A2A 사슬에서 **작업 위임**과 **권한 위임**을 구분하고 선행연구(VERA, Authorization Revocation, ResidualAuth, Authorization Succession)와 대조한 [실험 보고](docs/R3_EXPERIMENT_REPORT.md), [선행연구 대조](docs/R3_PRIOR_ART_COMPARISON.md), [위임 의미 분석](docs/R3_DELEGATION_SEMANTICS.md), [사전 고정](docs/R3_HYPOTHESIS_PREREG.md), [연구 공백 판정](docs/R3_GAP_VERDICT.md). 원본 CONTINUITY가 의미를 정의하는 4조건은 유지됐고, 파생 권한·독립 지원·conjunctive 승인 3조건은 CONTINUITY가 표현하지 못해 실행하지 않았으며 선행연구가 이미 정의한다. 연구 공백은 확정하지 않았고 계보·간선 가설은 종료했다. 저장 증거 검증: `python3 experiments/r3/verify_saved.py`.
+
 R2 실행 결과(브랜치 `exp/r2-continuity-a2a`): 원본 CONTINUITY를 A2A 위임 경로에 연결한 [통합 보고](docs/R2_CONTINUITY_INTEGRATION_REPORT.md), [의미 정렬(사전 고정)](docs/R2_SEMANTIC_ALIGNMENT.md), [연구 공백 판정](docs/R2_GAP_VERDICT.md). 사전 고정 18조건에서 기존 방법의 보장이 유지됐고 연구 공백은 확정하지 않았다. 저장 증거 검증: `python3 experiments/r2/verify_saved.py`.
 
 R1 실행 결과: [17조건 개입 이후 MAS 실험 보고](docs/R1_EXPERIMENT_REPORT.md), [가설·위협 모델](docs/R1_HYPOTHESIS_AND_THREAT_MODEL.md), [선행연구 Gap Matrix](docs/RESEARCH_GAP_MATRIX.md). Progent component와 CONTINUITY 원본 quick도 실행했다. 저장 증거 검증: `python3 experiments/r1/verify_saved.py`. 새 gap이나 전체 논문 재현을 확정한 결과는 아니다.

@@ -1,0 +1,126 @@
+{
+  "classification": "STATIC_EXPRESSIVENESS_CHECK_OF_ORIGINAL_CONTINUITY",
+  "original_head": "59cfe60930d247d1890b366ded686c718020a11e",
+  "core_sha256": "94bcc7a7e5a36afd4fef88253ef8b94ce350cb44bdc18bd3856739b8453cdd45",
+  "checks": [
+    {
+      "id": "S1",
+      "holds": true,
+      "observed": {
+        "root_grant_fields": [
+          "grant_id",
+          "issuer",
+          "principal",
+          "actor",
+          "task_root",
+          "authority",
+          "delegation_scope",
+          "allowed_tool_ids",
+          "allowed_server_ids",
+          "allowed_effect_classes",
+          "max_data_classification",
+          "field_constraints",
+          "policy_id",
+          "policy_digest",
+          "policy_epoch",
+          "provenance_root",
+          "context_root",
+          "nonce",
+          "expires_at",
+          "signature"
+        ],
+        "lineage_like_fields": []
+      }
+    },
+    {
+      "id": "S2",
+      "holds": true,
+      "observed": {
+        "runtime_state_fields": [
+          "policy_digest",
+          "policy_epoch",
+          "policy_id",
+          "revoked_ids"
+        ]
+      }
+    },
+    {
+      "id": "S3",
+      "holds": true,
+      "observed": {
+        "revoked_ids_membership_operands": [
+          "context.root_grant_id",
+          "grant.grant_id",
+          "permit.grant_id",
+          "permit.permit_id",
+          "release.release_id"
+        ],
+        "allowed": [
+          "context.root_grant_id",
+          "grant.grant_id",
+          "permit.grant_id",
+          "permit.permit_id",
+          "release.release_id"
+        ]
+      }
+    },
+    {
+      "id": "S4",
+      "holds": true,
+      "observed": {
+        "attribute_reads": [],
+        "field_definitions": 1,
+        "string_constants": [
+          "/context/approval_digest"
+        ]
+      }
+    },
+    {
+      "id": "S5",
+      "holds": true,
+      "observed": {
+        "raised": "TypeError",
+        "message": "RootGrant.__init__() got an unexpected keyword argument 'parent_grant_id'"
+      }
+    },
+    {
+      "id": "S6",
+      "holds": true,
+      "observed": {
+        "inspected": [
+          "ContinuityVerifier.verify_bundle",
+          "FinalitySink.execute"
+        ],
+        "token_hits": {}
+      }
+    },
+    {
+      "id": "S7",
+      "holds": true,
+      "observed": {
+        "uses": {
+          "subset": 4,
+          "membership": 4
+        },
+        "other_uses": [],
+        "root_grant_constructor_calls_in_core": 0
+      }
+    }
+  ],
+  "all_preregistered_predictions_hold": true,
+  "informational_not_preregistered": {
+    "whole_class_token_scan": {
+      "id": "S6",
+      "holds": true,
+      "observed": {
+        "inspected": [
+          "ContinuityVerifier(class)",
+          "EffectBroker(class)",
+          "FinalitySink(class)"
+        ],
+        "token_hits": {}
+      }
+    }
+  },
+  "meaning": "If S1-S7 hold, a separately signed grant is an independent root for CONTINUITY: there is no parent reference, no dependency semantics and no effect-time dependency check. This is a model scope limit (SCOPE_EXTENSION / POLICY_MODEL_MISMATCH), not a defect."
+}

@@ -1,0 +1,7 @@
+UTC: 2026-11-15T16:48:53.965525+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 experiments/r3/reference_model.py --output results/r3/reference-model-01.json
+PARENT_COMMIT: de674d9b4bc3d690f5d57d53db2ad6499c7374bc
+{"label": "REFERENCE_MODEL_FROM_PAPER_DEFINITION", "matches_preregistered_expectation": true, "mismatch_count": 0}
+
+EXIT_CODE=0

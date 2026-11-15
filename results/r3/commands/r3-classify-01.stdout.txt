@@ -1,0 +1,7 @@
+UTC: 2026-11-15T16:49:19.270955+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 experiments/r3/classify.py --config experiments/r3/config.json --events results/r3/run-01/events.jsonl --oracle results/r3/oracle-01.json --expressiveness results/r3/expressiveness-01.json --reference results/r3/reference-model-01.json --provenance results/r3/research-provenance.json --output-json results/r3/expectation-check-01.json --output-csv results/r3/condition_summary.csv
+PARENT_COMMIT: de674d9b4bc3d690f5d57d53db2ad6499c7374bc
+{"conditions": 7, "prediction_matched": 7, "needs_triage": 0}
+
+EXIT_CODE=0

@@ -1,0 +1,685 @@
+{
+  "classification": "R3_ORACLE_R2_UNCHANGED_PLUS_RECORD",
+  "r2_oracle_sha256": "1a5619da417be972f6a6c1c1636b10d88d243e912608c6463b7c9014a24c5131",
+  "trials": 4,
+  "results": [
+    {
+      "trial_id": "G0_single_root_chain-r1",
+      "condition_id": "G0_single_root_chain",
+      "group": "DEFINED_BY_CONTINUITY",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "SATISFIED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "root_task_id": "task:workspace:1016",
+          "completed_exactly_once": true
+        }
+      ],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1016",
+            "destination": "mailto:customer:1016",
+            "parameters": {
+              "body": "Status update 1016",
+              "subject": "Case 1016"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 26,
+          "caller": "agent-C",
+          "permit_id": "permit:fd7eee200c0d08ce:nonce:workspace:benign:NONE:1016",
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "violation_types": []
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-C",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-C",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "G1a_same_root_revoked_in_flight-r1",
+      "condition_id": "G1a_same_root_revoked_in_flight",
+      "group": "DEFINED_BY_CONTINUITY",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 1,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [
+        {
+          "caller": "agent-C",
+          "ok": false,
+          "reason": "E_REVOKED_AT_FINALITY"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-C",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "G1b_same_root_revoked_while_retained-r1",
+      "condition_id": "G1b_same_root_revoked_while_retained",
+      "group": "DEFINED_BY_CONTINUITY",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-C",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "G2_independent_root_preserved-r1",
+      "condition_id": "G2_independent_root_preserved",
+      "group": "DEFINED_BY_CONTINUITY",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "SATISFIED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1029",
+          "root_task_id": "task:workspace:1029",
+          "completed_exactly_once": true
+        }
+      ],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1029",
+            "destination": "mailto:customer:1029",
+            "parameters": {
+              "body": "Status update 1029",
+              "subject": "Case 1029"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 51,
+          "caller": "agent-C",
+          "permit_id": "permit:7bf6c3a039b7ed8e:nonce:workspace:benign:NONE:1029",
+          "grant_id": "grant:workspace:benign:NONE:1029",
+          "violation_types": []
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-C",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-C",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        },
+        {
+          "by": "agent-C",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    }
+  ],
+  "records": [
+    {
+      "trial_id": "G0_single_root_chain-r1",
+      "condition_id": "G0_single_root_chain",
+      "root_principals": [
+        "did:example:user:46"
+      ],
+      "grant_issuers": [
+        "key:authority"
+      ],
+      "authority_supports": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "root_principal": "did:example:user:46",
+          "grant_issuer": "key:authority",
+          "support_kind": "ROOT",
+          "parent_support": null,
+          "independent_supports": [],
+          "authorized_actor": "agent-C"
+        }
+      ],
+      "work_delegation_chain": [
+        {
+          "work_id": "G0_single_root_chain-r1-work-rootA",
+          "current_actor": "agent-A",
+          "delegating_actor": "ingress",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G0_single_root_chain-r1-work-rootA",
+          "current_actor": "agent-B",
+          "delegating_actor": "agent-A",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G0_single_root_chain-r1-work-rootA",
+          "current_actor": "agent-C",
+          "delegating_actor": "agent-B",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        }
+      ],
+      "signed_delegation_evidence": {
+        "work_delegation_receipts": 3,
+        "hops": [
+          {
+            "stage": "memory",
+            "agent": "agent-A",
+            "signer": "key:memory",
+            "input_digest": "sha256:ece496f26f56e25b254789c04560a9c297cd735912b673abac34531051b57fbc",
+            "output_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11"
+          },
+          {
+            "stage": "gateway",
+            "agent": "agent-B",
+            "signer": "key:gateway",
+            "input_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11",
+            "output_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093"
+          },
+          {
+            "stage": "adapter",
+            "agent": "agent-C",
+            "signer": "key:adapter",
+            "input_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093",
+            "output_digest": "sha256:f731316f8ed45040a2bc13a9a735ec3886d83d479e5409aff3708e12578b0507"
+          }
+        ],
+        "authority_delegation_evidence": "NONE",
+        "meaning": "stage receipts prove that WORK moved and the context was preserved; CONTINUITY has no signed authority-delegation object"
+      },
+      "revoked": {
+        "grants": [],
+        "edges": "NOT_REPRESENTABLE"
+      },
+      "finality_attempts": [
+        {
+          "current_actor": "spiffe://example/agent/workspace/2",
+          "caller_agent": "agent-C",
+          "permit_id": "permit:fd7eee200c0d08ce:nonce:workspace:benign:NONE:1016",
+          "permit_grant_id": "grant:workspace:benign:NONE:1016",
+          "permit_subject": "spiffe://example/agent/workspace/2",
+          "finality_decision": {
+            "ok": true,
+            "reason": "EXECUTED"
+          },
+          "effect_id": "effect:0",
+          "runtime_revoked_ids": []
+        }
+      ],
+      "actual_effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1016",
+            "destination": "mailto:customer:1016",
+            "parameters": {
+              "body": "Status update 1016",
+              "subject": "Case 1016"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 26,
+          "caller": "agent-C",
+          "permit_id": "permit:fd7eee200c0d08ce:nonce:workspace:benign:NONE:1016",
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "violation_types": []
+        }
+      ],
+      "world_effect_count": 1,
+      "independent_oracle_verdict": {
+        "overall": "SATISFIED",
+        "safety": "SATISFIED",
+        "completion": "SATISFIED",
+        "violation_types": []
+      }
+    },
+    {
+      "trial_id": "G1a_same_root_revoked_in_flight-r1",
+      "condition_id": "G1a_same_root_revoked_in_flight",
+      "root_principals": [
+        "did:example:user:46"
+      ],
+      "grant_issuers": [
+        "key:authority"
+      ],
+      "authority_supports": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "root_principal": "did:example:user:46",
+          "grant_issuer": "key:authority",
+          "support_kind": "ROOT",
+          "parent_support": null,
+          "independent_supports": [],
+          "authorized_actor": "agent-C"
+        }
+      ],
+      "work_delegation_chain": [
+        {
+          "work_id": "G1a_same_root_revoked_in_flight-r1-work-rootA",
+          "current_actor": "agent-A",
+          "delegating_actor": "ingress",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G1a_same_root_revoked_in_flight-r1-work-rootA",
+          "current_actor": "agent-B",
+          "delegating_actor": "agent-A",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G1a_same_root_revoked_in_flight-r1-work-rootA",
+          "current_actor": "agent-C",
+          "delegating_actor": "agent-B",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        }
+      ],
+      "signed_delegation_evidence": {
+        "work_delegation_receipts": 3,
+        "hops": [
+          {
+            "stage": "memory",
+            "agent": "agent-A",
+            "signer": "key:memory",
+            "input_digest": "sha256:ece496f26f56e25b254789c04560a9c297cd735912b673abac34531051b57fbc",
+            "output_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11"
+          },
+          {
+            "stage": "gateway",
+            "agent": "agent-B",
+            "signer": "key:gateway",
+            "input_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11",
+            "output_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093"
+          },
+          {
+            "stage": "adapter",
+            "agent": "agent-C",
+            "signer": "key:adapter",
+            "input_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093",
+            "output_digest": "sha256:f731316f8ed45040a2bc13a9a735ec3886d83d479e5409aff3708e12578b0507"
+          }
+        ],
+        "authority_delegation_evidence": "NONE",
+        "meaning": "stage receipts prove that WORK moved and the context was preserved; CONTINUITY has no signed authority-delegation object"
+      },
+      "revoked": {
+        "grants": [
+          "grant:workspace:benign:NONE:1016"
+        ],
+        "edges": "NOT_REPRESENTABLE"
+      },
+      "finality_attempts": [
+        {
+          "current_actor": "spiffe://example/agent/workspace/2",
+          "caller_agent": "agent-C",
+          "permit_id": "permit:fd7eee200c0d08ce:nonce:workspace:benign:NONE:1016",
+          "permit_grant_id": "grant:workspace:benign:NONE:1016",
+          "permit_subject": "spiffe://example/agent/workspace/2",
+          "finality_decision": {
+            "ok": false,
+            "reason": "E_REVOKED_AT_FINALITY"
+          },
+          "effect_id": null,
+          "runtime_revoked_ids": [
+            "grant:workspace:benign:NONE:1016"
+          ]
+        }
+      ],
+      "actual_effects": [],
+      "world_effect_count": 0,
+      "independent_oracle_verdict": {
+        "overall": "SATISFIED",
+        "safety": "SATISFIED",
+        "completion": "NOT_EXERCISED",
+        "violation_types": []
+      }
+    },
+    {
+      "trial_id": "G1b_same_root_revoked_while_retained-r1",
+      "condition_id": "G1b_same_root_revoked_while_retained",
+      "root_principals": [
+        "did:example:user:46"
+      ],
+      "grant_issuers": [
+        "key:authority"
+      ],
+      "authority_supports": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "root_principal": "did:example:user:46",
+          "grant_issuer": "key:authority",
+          "support_kind": "ROOT",
+          "parent_support": null,
+          "independent_supports": [],
+          "authorized_actor": "agent-C"
+        }
+      ],
+      "work_delegation_chain": [
+        {
+          "work_id": "G1b_same_root_revoked_while_retained-r1-work-rootA",
+          "current_actor": "agent-A",
+          "delegating_actor": "ingress",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G1b_same_root_revoked_while_retained-r1-work-rootA",
+          "current_actor": "agent-B",
+          "delegating_actor": "agent-A",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G1b_same_root_revoked_while_retained-r1-work-rootA",
+          "current_actor": "agent-C",
+          "delegating_actor": "agent-B",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        }
+      ],
+      "signed_delegation_evidence": {
+        "work_delegation_receipts": 3,
+        "hops": [
+          {
+            "stage": "memory",
+            "agent": "agent-A",
+            "signer": "key:memory",
+            "input_digest": "sha256:ece496f26f56e25b254789c04560a9c297cd735912b673abac34531051b57fbc",
+            "output_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11"
+          },
+          {
+            "stage": "gateway",
+            "agent": "agent-B",
+            "signer": "key:gateway",
+            "input_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11",
+            "output_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093"
+          },
+          {
+            "stage": "adapter",
+            "agent": "agent-C",
+            "signer": "key:adapter",
+            "input_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093",
+            "output_digest": "sha256:f731316f8ed45040a2bc13a9a735ec3886d83d479e5409aff3708e12578b0507"
+          }
+        ],
+        "authority_delegation_evidence": "NONE",
+        "meaning": "stage receipts prove that WORK moved and the context was preserved; CONTINUITY has no signed authority-delegation object"
+      },
+      "revoked": {
+        "grants": [
+          "grant:workspace:benign:NONE:1016"
+        ],
+        "edges": "NOT_REPRESENTABLE"
+      },
+      "finality_attempts": [],
+      "actual_effects": [],
+      "world_effect_count": 0,
+      "independent_oracle_verdict": {
+        "overall": "SATISFIED",
+        "safety": "SATISFIED",
+        "completion": "NOT_EXERCISED",
+        "violation_types": []
+      }
+    },
+    {
+      "trial_id": "G2_independent_root_preserved-r1",
+      "condition_id": "G2_independent_root_preserved",
+      "root_principals": [
+        "did:example:user:46",
+        "did:example:user:59"
+      ],
+      "grant_issuers": [
+        "key:authority"
+      ],
+      "authority_supports": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1016",
+          "root_principal": "did:example:user:46",
+          "grant_issuer": "key:authority",
+          "support_kind": "ROOT",
+          "parent_support": null,
+          "independent_supports": [],
+          "authorized_actor": "agent-C"
+        },
+        {
+          "grant_id": "grant:workspace:benign:NONE:1029",
+          "root_principal": "did:example:user:59",
+          "grant_issuer": "key:authority",
+          "support_kind": "ROOT",
+          "parent_support": null,
+          "independent_supports": [],
+          "authorized_actor": "agent-C"
+        }
+      ],
+      "work_delegation_chain": [
+        {
+          "work_id": "G2_independent_root_preserved-r1-work-rootA",
+          "current_actor": "agent-A",
+          "delegating_actor": "ingress",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G2_independent_root_preserved-r1-work-rootA",
+          "current_actor": "agent-B",
+          "delegating_actor": "agent-A",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G2_independent_root_preserved-r1-work-rootA",
+          "current_actor": "agent-C",
+          "delegating_actor": "agent-B",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G2_independent_root_preserved-r1-work-rootX",
+          "current_actor": "agent-A",
+          "delegating_actor": "ingress",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G2_independent_root_preserved-r1-work-rootX",
+          "current_actor": "agent-B",
+          "delegating_actor": "agent-A",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        },
+        {
+          "work_id": "G2_independent_root_preserved-r1-work-rootX",
+          "current_actor": "agent-C",
+          "delegating_actor": "agent-B",
+          "delegation_kind": "WORK_DELEGATION",
+          "authority_delegation_evidence": "NONE"
+        }
+      ],
+      "signed_delegation_evidence": {
+        "work_delegation_receipts": 6,
+        "hops": [
+          {
+            "stage": "memory",
+            "agent": "agent-A",
+            "signer": "key:memory",
+            "input_digest": "sha256:ece496f26f56e25b254789c04560a9c297cd735912b673abac34531051b57fbc",
+            "output_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11"
+          },
+          {
+            "stage": "gateway",
+            "agent": "agent-B",
+            "signer": "key:gateway",
+            "input_digest": "sha256:cf6f856f8b2ea91cab0676bf0790fb6e37415507f0f6a48bcd0e24cc667ffe11",
+            "output_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093"
+          },
+          {
+            "stage": "adapter",
+            "agent": "agent-C",
+            "signer": "key:adapter",
+            "input_digest": "sha256:5cd02879bff6995f7824a386a749cc8674a5f63ba6832d04632984b916192093",
+            "output_digest": "sha256:f731316f8ed45040a2bc13a9a735ec3886d83d479e5409aff3708e12578b0507"
+          },
+          {
+            "stage": "memory",
+            "agent": "agent-A",
+            "signer": "key:memory",
+            "input_digest": "sha256:095d7d9f4e14c6000a2f9710da429a99c1d7397c2a1ceecf8b61e47157583a6c",
+            "output_digest": "sha256:52cde613f73276ca2ec68719df97896591e122f4694f01b271ed527555870043"
+          },
+          {
+            "stage": "gateway",
+            "agent": "agent-B",
+            "signer": "key:gateway",
+            "input_digest": "sha256:52cde613f73276ca2ec68719df97896591e122f4694f01b271ed527555870043",
+            "output_digest": "sha256:499e1b390ede0b7e4686c695a4a16374eda79e2553949b1622136bc8db3b395d"
+          },
+          {
+            "stage": "adapter",
+            "agent": "agent-C",
+            "signer": "key:adapter",
+            "input_digest": "sha256:499e1b390ede0b7e4686c695a4a16374eda79e2553949b1622136bc8db3b395d",
+            "output_digest": "sha256:0e49e0a3f7d9f8eaa45f21fd5b0334f97accdb4baa0c04704e1afa8620dc3875"
+          }
+        ],
+        "authority_delegation_evidence": "NONE",
+        "meaning": "stage receipts prove that WORK moved and the context was preserved; CONTINUITY has no signed authority-delegation object"
+      },
+      "revoked": {
+        "grants": [
+          "grant:workspace:benign:NONE:1016"
+        ],
+        "edges": "NOT_REPRESENTABLE"
+      },
+      "finality_attempts": [
+        {
+          "current_actor": "spiffe://example/agent/workspace/2",
+          "caller_agent": "agent-C",
+          "permit_id": "permit:7bf6c3a039b7ed8e:nonce:workspace:benign:NONE:1029",
+          "permit_grant_id": "grant:workspace:benign:NONE:1029",
+          "permit_subject": "spiffe://example/agent/workspace/2",
+          "finality_decision": {
+            "ok": true,
+            "reason": "EXECUTED"
+          },
+          "effect_id": "effect:0",
+          "runtime_revoked_ids": [
+            "grant:workspace:benign:NONE:1016"
+          ]
+        }
+      ],
+      "actual_effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1029",
+            "destination": "mailto:customer:1029",
+            "parameters": {
+              "body": "Status update 1029",
+              "subject": "Case 1029"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 51,
+          "caller": "agent-C",
+          "permit_id": "permit:7bf6c3a039b7ed8e:nonce:workspace:benign:NONE:1029",
+          "grant_id": "grant:workspace:benign:NONE:1029",
+          "violation_types": []
+        }
+      ],
+      "world_effect_count": 1,
+      "independent_oracle_verdict": {
+        "overall": "SATISFIED",
+        "safety": "SATISFIED",
+        "completion": "SATISFIED",
+        "violation_types": []
+      }
+    }
+  ],
+  "oracle_outcome_counts": {
+    "SATISFIED": 4,
+    "VIOLATION": 0,
+    "INCOMPLETE_EVIDENCE": 0
+  },
+  "completion_outcome_counts": {
+    "SATISFIED": 2,
+    "VIOLATION": 0,
+    "NOT_EXERCISED": 2
+  },
+  "world_effects_total": 2
+}

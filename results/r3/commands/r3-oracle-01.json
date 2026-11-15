@@ -1,0 +1,23 @@
+{
+  "name": "r3-oracle-01",
+  "command": [
+    "python3",
+    "experiments/r3/oracle.py",
+    "--events",
+    "results/r3/run-01/events.jsonl",
+    "--world",
+    "results/r3/run-01/world_state.json",
+    "--output",
+    "results/r3/oracle-01.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T16:49:19.130622+00:00",
+  "end_utc": "2026-11-15T16:49:19.195020+00:00",
+  "duration_seconds": 0.064,
+  "exit_code": 0,
+  "log": "results/r3/commands/r3-oracle-01.stdout.txt",
+  "parent_commit": "de674d9b4bc3d690f5d57d53db2ad6499c7374bc",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

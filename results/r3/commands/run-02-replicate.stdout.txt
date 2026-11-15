@@ -1,0 +1,11 @@
+UTC: 2026-11-15T16:49:42.010472+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: experiments/r2/.venv/bin/python experiments/r3/scenario.py --output-dir results/r3/run-02-replicate
+PARENT_COMMIT: de674d9b4bc3d690f5d57d53db2ad6499c7374bc
+{"trial_id": "G0_single_root_chain-r1", "observed_verifier_decisions": [{"by": "agent-C", "allowed": true, "reason_codes": []}], "observed_finality_attempts": [{"caller": "agent-C", "ok": true, "reason": "EXECUTED"}], "world_effect_count": 1, "adapter_errors": 0}
+{"trial_id": "G1a_same_root_revoked_in_flight-r1", "observed_verifier_decisions": [{"by": "agent-C", "allowed": true, "reason_codes": []}], "observed_finality_attempts": [{"caller": "agent-C", "ok": false, "reason": "E_REVOKED_AT_FINALITY"}], "world_effect_count": 0, "adapter_errors": 0}
+{"trial_id": "G1b_same_root_revoked_while_retained-r1", "observed_verifier_decisions": [{"by": "agent-C", "allowed": false, "reason_codes": ["E_REVOKED_ROOT_GRANT", "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated", "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved", "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"]}], "observed_finality_attempts": [], "world_effect_count": 0, "adapter_errors": 0}
+{"trial_id": "G2_independent_root_preserved-r1", "observed_verifier_decisions": [{"by": "agent-C", "allowed": false, "reason_codes": ["E_REVOKED_ROOT_GRANT", "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated", "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved", "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"]}, {"by": "agent-C", "allowed": true, "reason_codes": []}], "observed_finality_attempts": [{"caller": "agent-C", "ok": true, "reason": "EXECUTED"}], "world_effect_count": 1, "adapter_errors": 0}
+{"trial_count": 4, "event_file": "results/r3/run-02-replicate/events.jsonl", "oracle_result": "NOT_OBSERVED; run the independent oracle separately"}
+
+EXIT_CODE=0

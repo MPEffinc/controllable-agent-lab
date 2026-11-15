@@ -1,0 +1,19 @@
+{
+  "name": "r3-expressiveness-01",
+  "command": [
+    "experiments/r2/.venv/bin/python",
+    "experiments/r3/expressiveness_check.py",
+    "--output",
+    "results/r3/expressiveness-01.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T16:48:53.174393+00:00",
+  "end_utc": "2026-11-15T16:48:53.890217+00:00",
+  "duration_seconds": 0.716,
+  "exit_code": 0,
+  "log": "results/r3/commands/r3-expressiveness-01.stdout.txt",
+  "parent_commit": "de674d9b4bc3d690f5d57d53db2ad6499c7374bc",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

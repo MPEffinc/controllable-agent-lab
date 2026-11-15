@@ -1,0 +1,19 @@
+{
+  "name": "run-02-replicate",
+  "command": [
+    "experiments/r2/.venv/bin/python",
+    "experiments/r3/scenario.py",
+    "--output-dir",
+    "results/r3/run-02-replicate"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T16:49:42.010472+00:00",
+  "end_utc": "2026-11-15T16:49:43.328467+00:00",
+  "duration_seconds": 1.318,
+  "exit_code": 0,
+  "log": "results/r3/commands/run-02-replicate.stdout.txt",
+  "parent_commit": "de674d9b4bc3d690f5d57d53db2ad6499c7374bc",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

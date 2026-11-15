@@ -1,0 +1,64 @@
+{
+  "G0_single_root_chain-r1": {
+    "effects": [
+      {
+        "ordinal": 0,
+        "operation": "email.send",
+        "resource": "customer:1016",
+        "destination": "mailto:customer:1016",
+        "parameters": {
+          "body": "Status update 1016",
+          "subject": "Case 1016"
+        },
+        "effect_class": "EXTERNAL_WRITE"
+      }
+    ],
+    "consumed_nonces": [
+      "nonce:workspace:benign:NONE:1016"
+    ],
+    "outcome_keys": [
+      "task:workspace:1016:sha256:6b1e12e28a358ec7c65689725c63575958c4f068da11eba0fd7eee200c0d08ce"
+    ],
+    "revoked_ids": []
+  },
+  "G1a_same_root_revoked_in_flight-r1": {
+    "effects": [],
+    "consumed_nonces": [],
+    "outcome_keys": [],
+    "revoked_ids": [
+      "grant:workspace:benign:NONE:1016"
+    ]
+  },
+  "G1b_same_root_revoked_while_retained-r1": {
+    "effects": [],
+    "consumed_nonces": [],
+    "outcome_keys": [],
+    "revoked_ids": [
+      "grant:workspace:benign:NONE:1016"
+    ]
+  },
+  "G2_independent_root_preserved-r1": {
+    "effects": [
+      {
+        "ordinal": 0,
+        "operation": "email.send",
+        "resource": "customer:1029",
+        "destination": "mailto:customer:1029",
+        "parameters": {
+          "body": "Status update 1029",
+          "subject": "Case 1029"
+        },
+        "effect_class": "EXTERNAL_WRITE"
+      }
+    ],
+    "consumed_nonces": [
+      "nonce:workspace:benign:NONE:1029"
+    ],
+    "outcome_keys": [
+      "task:workspace:1029:sha256:01700953b6cede9c68eb5cb8be29ac12b09739fae3415ed57bf6c3a039b7ed8e"
+    ],
+    "revoked_ids": [
+      "grant:workspace:benign:NONE:1016"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "r3-continuity-original-pytest-after-runs",
+  "command": [
+    "/home/cclab/controllable_agent/experiments/r2/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "cwd": "/home/cclab/controllable_agent/third_party/continuity",
+  "start_utc": "2026-11-15T16:49:57.676693+00:00",
+  "end_utc": "2026-11-15T16:50:01.751108+00:00",
+  "duration_seconds": 4.074,
+  "exit_code": 0,
+  "log": "results/r3/commands/r3-continuity-original-pytest-after-runs.stdout.txt",
+  "parent_commit": "de674d9b4bc3d690f5d57d53db2ad6499c7374bc",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

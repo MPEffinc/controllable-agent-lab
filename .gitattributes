@@ -2,3 +2,4 @@
 results/r1/*.csv -text whitespace=cr-at-eol
 results/r1/**/*.csv -text whitespace=cr-at-eol
 results/r2/*.csv -text whitespace=cr-at-eol
+results/r3/*.csv -text whitespace=cr-at-eol

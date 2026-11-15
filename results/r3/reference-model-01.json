@@ -1,0 +1,168 @@
+{
+  "classification": "REFERENCE_MODEL_FROM_PAPER_DEFINITION",
+  "fidelity": "DEFINITION_LEVEL; not original artifacts; not a measurement of any system",
+  "graphs": {
+    "G3": {
+      "label": "C only has authority derived from A. B relays work and is not in the authority graph.",
+      "roots": [
+        "R_A"
+      ],
+      "edges": {
+        "e1": [
+          "R_A",
+          "A"
+        ],
+        "e2": [
+          "A",
+          "C"
+        ]
+      },
+      "target": "C",
+      "conjunctive_roots": [],
+      "revocations": {
+        "edge_e2": [
+          "e2"
+        ],
+        "root_edge_e1": [
+          "e1"
+        ]
+      }
+    },
+    "G4": {
+      "label": "C has a path through A and an independent path from root X.",
+      "roots": [
+        "R_A",
+        "R_X"
+      ],
+      "edges": {
+        "e1": [
+          "R_A",
+          "A"
+        ],
+        "e2": [
+          "A",
+          "C"
+        ],
+        "e3": [
+          "R_X",
+          "C"
+        ]
+      },
+      "target": "C",
+      "conjunctive_roots": [],
+      "revocations": {
+        "edge_e2": [
+          "e2"
+        ],
+        "root_edge_e1": [
+          "e1"
+        ]
+      }
+    },
+    "G5": {
+      "label": "C requires both the root A path and the root X path.",
+      "roots": [
+        "R_A",
+        "R_X"
+      ],
+      "edges": {
+        "e1": [
+          "R_A",
+          "A"
+        ],
+        "e2": [
+          "A",
+          "C"
+        ],
+        "e3": [
+          "R_X",
+          "C"
+        ]
+      },
+      "target": "C",
+      "conjunctive_roots": [
+        "R_A",
+        "R_X"
+      ],
+      "revocations": {
+        "edge_e2": [
+          "e2"
+        ],
+        "root_edge_e1": [
+          "e1"
+        ]
+      }
+    }
+  },
+  "computed": {
+    "G3": {
+      "VERA": {
+        "target_edge_e2": [
+          "C"
+        ],
+        "C_active_after_edge_e2": false,
+        "target_root_edge_e1": [
+          "A",
+          "C"
+        ],
+        "C_active_after_root_edge_e1": false
+      },
+      "ResidualAuth": {
+        "C_effective_after_edge_e2": false,
+        "C_effective_after_root_edge_e1": false
+      },
+      "Succession": {
+        "C_current_after_edge_e2": false,
+        "C_current_after_root_edge_e1": false
+      },
+      "Revocation": {
+        "C_authorized_after_edge_e2": "NOT_EXPRESSIBLE",
+        "C_authorized_after_root_edge_e1": false
+      }
+    },
+    "G4": {
+      "VERA": {
+        "target_edge_e2": [],
+        "C_active_after_edge_e2": true,
+        "target_root_edge_e1": [
+          "A"
+        ],
+        "C_active_after_root_edge_e1": true
+      },
+      "ResidualAuth": {
+        "graph_C_effective_after_edge_e2": true,
+        "graph_C_effective_after_root_edge_e1": true,
+        "ledger_selected_parent_e2_after_root_edge_e1": false,
+        "ledger_selected_parent_e3_after_root_edge_e1": true
+      },
+      "Succession": {
+        "expressible": false
+      },
+      "Revocation": {
+        "C_authorized_after_edge_e2": "NOT_EXPRESSIBLE",
+        "C_authorized_after_root_edge_e1": true,
+        "rebind_to_independent_support": true
+      }
+    },
+    "G5": {
+      "VERA": {
+        "expressible": false,
+        "or_semantics_C_active_after_edge_e2": true,
+        "and_policy_violated_by_or_semantics": true
+      },
+      "ResidualAuth": {
+        "expressible": "NOT_FOUND"
+      },
+      "Succession": {
+        "expressible": false
+      },
+      "Revocation": {
+        "C_authorized_after_edge_e2": "NOT_EXPRESSIBLE",
+        "C_authorized_after_root_edge_e1": false,
+        "strict_subset_can_authorize": false
+      }
+    }
+  },
+  "matches_preregistered_expectation": true,
+  "mismatches": []
+}

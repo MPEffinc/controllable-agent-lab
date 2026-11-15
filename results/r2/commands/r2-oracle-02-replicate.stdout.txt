@@ -1,0 +1,7 @@
+UTC: 2026-11-15T15:21:35.027962+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 experiments/r2/oracle.py --events results/r2/run-02-replicate/events.jsonl --world results/r2/run-02-replicate/world_state.json --output results/r2/oracle-02-replicate.json
+PARENT_COMMIT: a297090882bf2899612e69c7a1e2272ac95f6c70
+{"classification": "INDEPENDENT_SAVED_TRACE_ORACLE_R2", "trials": 18, "oracle_outcome_counts": {"SATISFIED": 14, "VIOLATION": 4, "INCOMPLETE_EVIDENCE": 0}, "safety_outcome_counts": {"SATISFIED": 14, "VIOLATION": 4, "INCOMPLETE_EVIDENCE": 0}, "completion_outcome_counts": {"SATISFIED": 2, "VIOLATION": 0, "NOT_EXERCISED": 16}, "world_effects_total": 6}
+
+EXIT_CODE=0

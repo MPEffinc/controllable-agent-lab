@@ -1,0 +1,8 @@
+UTC: 2026-11-15T15:23:35.029543+00:00
+CWD: /home/cclab/controllable_agent/third_party/continuity
+COMMAND: /home/cclab/controllable_agent/experiments/r2/.venv/bin/python -m pytest -q -p no:cacheprovider
+PARENT_COMMIT: a297090882bf2899612e69c7a1e2272ac95f6c70
+..............................                                           [100%]
+30 passed in 3.15s
+
+EXIT_CODE=0

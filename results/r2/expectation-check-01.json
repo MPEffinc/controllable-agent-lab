@@ -1,0 +1,215 @@
+{
+  "classification": "EXPECTATION_CHECK_R2",
+  "conditions": 18,
+  "prediction_matched": 18,
+  "needs_triage": 0,
+  "results": [
+    {
+      "condition_id": "R2-0_valid_delegated",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "R2-1a_unauthorized_destination_attempt",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "R2-1b_post_permit_action_substitution",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "R2-2_after_A_deny_B_reexecutes",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "R2-3a_stale_permit_after_revocation",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": false
+    },
+    {
+      "condition_id": "R2-3b_retained_work_after_revocation",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "R2-4_independent_root_B_after_A_revoked",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "R2-5_dispatch_without_permit",
+      "group": "CORE",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "NC-subject_delegator_uses_delegatee_permit",
+      "group": "NEGATIVE_CONTROL",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "NC-queue_tamper_gateway_envelope",
+      "group": "NEGATIVE_CONTROL",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "NC-missing_proof_empty_chain",
+      "group": "NEGATIVE_CONTROL",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "NC-attacker_minted_root",
+      "group": "NEGATIVE_CONTROL",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "AB-mediation_off_after_A_deny",
+      "group": "CONTROLLED_ABLATION",
+      "label": "CONTROLLED_ABLATION:ORACLE_SENSITIVE",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "VIOLATION",
+      "violation_types": [
+        "UNAUTHORIZED_ACTION",
+        "UNMEDIATED_EFFECT"
+      ],
+      "r1_oracle_security": "VIOLATION",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "AB-revocation_recheck_off",
+      "group": "CONTROLLED_ABLATION",
+      "label": "CONTROLLED_ABLATION:ORACLE_SENSITIVE",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "VIOLATION",
+      "violation_types": [
+        "REVOKED_AT_FINALITY"
+      ],
+      "r1_oracle_security": "VIOLATION",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "AB-action_binding_off",
+      "group": "CONTROLLED_ABLATION",
+      "label": "CONTROLLED_ABLATION:ORACLE_SENSITIVE",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "VIOLATION",
+      "violation_types": [
+        "UNAUTHORIZED_ACTION"
+      ],
+      "r1_oracle_security": "VIOLATION",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "AB-subject_binding_off",
+      "group": "CONTROLLED_ABLATION",
+      "label": "CONTROLLED_ABLATION:ORACLE_SENSITIVE",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "VIOLATION",
+      "violation_types": [
+        "UNAUTHORIZED_ACTOR"
+      ],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "X-single_agent_post_cut",
+      "group": "R1_EXTENSION",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    },
+    {
+      "condition_id": "X-created_after_cut",
+      "group": "R1_EXTENSION",
+      "label": "ORIGINAL_GUARANTEE_HOLDS(exact condition only)",
+      "prediction_matched": true,
+      "mismatches": [],
+      "oracle_result": "SATISFIED",
+      "violation_types": [],
+      "r1_oracle_security": "SATISFIED",
+      "r1_semantics_applicable": true
+    }
+  ]
+}

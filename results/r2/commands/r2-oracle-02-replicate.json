@@ -1,0 +1,23 @@
+{
+  "name": "r2-oracle-02-replicate",
+  "command": [
+    "python3",
+    "experiments/r2/oracle.py",
+    "--events",
+    "results/r2/run-02-replicate/events.jsonl",
+    "--world",
+    "results/r2/run-02-replicate/world_state.json",
+    "--output",
+    "results/r2/oracle-02-replicate.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T15:21:35.027962+00:00",
+  "end_utc": "2026-11-15T15:21:35.092212+00:00",
+  "duration_seconds": 0.064,
+  "exit_code": 0,
+  "log": "results/r2/commands/r2-oracle-02-replicate.stdout.txt",
+  "parent_commit": "a297090882bf2899612e69c7a1e2272ac95f6c70",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

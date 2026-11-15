@@ -1,0 +1,272 @@
+{
+  "classification": "ORIGINAL_HARNESS_CROSSCHECK_CONFIRMATORY",
+  "original_head": "59cfe60930d247d1890b366ded686c718020a11e",
+  "conditions_compared": 15,
+  "equal": 15,
+  "not_compared": "R2-2 ladder, R2-4 (composed), NC-queue_tamper (a different artifact path): covered by unit tests / composed of compared parts",
+  "rows": [
+    {
+      "condition_id": "R2-0_valid_delegated",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "EXECUTE",
+        "first_outcome": "EXECUTED",
+        "effects": 1,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "EXECUTED",
+        "effects": 1
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "R2-1a_unauthorized_destination_attempt",
+      "mode": "verifier0",
+      "original_harness": {
+        "allowed": false,
+        "reasons": [
+          "E_UNRELEASED_FIELD:/action/destination"
+        ]
+      },
+      "r2_a2a_path": {
+        "allowed": false,
+        "reasons": [
+          "E_UNRELEASED_FIELD:/action/destination"
+        ]
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "R2-1b_post_permit_action_substitution",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "DENY",
+        "first_outcome": "E_ACTION_SUBSTITUTION",
+        "effects": 0,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "E_ACTION_SUBSTITUTION",
+        "effects": 0
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "R2-3a_stale_permit_after_revocation",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "DENY",
+        "first_outcome": "E_REVOKED_AT_FINALITY",
+        "effects": 0,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "E_REVOKED_AT_FINALITY",
+        "effects": 0
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "R2-3b_retained_work_after_revocation",
+      "mode": "verifier0",
+      "original_harness": {
+        "allowed": false,
+        "reasons": [
+          "E_REVOKED_ROOT_GRANT",
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+        ]
+      },
+      "r2_a2a_path": {
+        "allowed": false,
+        "reasons": [
+          "E_REVOKED_ROOT_GRANT",
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+        ]
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "R2-5_dispatch_without_permit",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "DENY",
+        "first_outcome": "E_UNMEDIATED_PATH",
+        "effects": 0,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "E_UNMEDIATED_PATH",
+        "effects": 0
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "NC-subject_delegator_uses_delegatee_permit",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "DENY",
+        "first_outcome": "E_SUBJECT_SUBSTITUTION",
+        "effects": 0,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "E_SUBJECT_SUBSTITUTION",
+        "effects": 0
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "NC-missing_proof_empty_chain",
+      "mode": "verifier0",
+      "original_harness": {
+        "allowed": false,
+        "reasons": [
+          "E_EMPTY_CHAIN"
+        ]
+      },
+      "r2_a2a_path": {
+        "allowed": false,
+        "reasons": [
+          "E_EMPTY_CHAIN"
+        ]
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "NC-attacker_minted_root",
+      "mode": "verifier0",
+      "original_harness": {
+        "allowed": false,
+        "reasons": [
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized",
+          "E_UNTRUSTED_ROOT",
+          "E_UNTRUSTED_ROOT_ISSUER"
+        ]
+      },
+      "r2_a2a_path": {
+        "allowed": false,
+        "reasons": [
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized",
+          "E_UNTRUSTED_ROOT",
+          "E_UNTRUSTED_ROOT_ISSUER"
+        ]
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "X-created_after_cut",
+      "mode": "verifier0",
+      "original_harness": {
+        "allowed": false,
+        "reasons": [
+          "E_REVOKED_ROOT_GRANT",
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+        ]
+      },
+      "r2_a2a_path": {
+        "allowed": false,
+        "reasons": [
+          "E_REVOKED_ROOT_GRANT",
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+        ]
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "X-single_agent_post_cut",
+      "mode": "verifier0",
+      "original_harness": {
+        "allowed": false,
+        "reasons": [
+          "E_REVOKED_ROOT_GRANT",
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+        ]
+      },
+      "r2_a2a_path": {
+        "allowed": false,
+        "reasons": [
+          "E_REVOKED_ROOT_GRANT",
+          "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+          "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+          "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+        ]
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "AB-mediation_off_after_A_deny",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "EXECUTE",
+        "first_outcome": "BYPASS_EXECUTED:effect:0",
+        "effects": 1,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "BYPASS_EXECUTED",
+        "effects": 1
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "AB-revocation_recheck_off",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "EXECUTE",
+        "first_outcome": "EXECUTED",
+        "effects": 1,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "EXECUTED",
+        "effects": 1
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "AB-action_binding_off",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "EXECUTE",
+        "first_outcome": "EXECUTED",
+        "effects": 1,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "EXECUTED",
+        "effects": 1
+      },
+      "equal": true
+    },
+    {
+      "condition_id": "AB-subject_binding_off",
+      "mode": "finality0",
+      "original_harness": {
+        "disposition": "EXECUTE",
+        "first_outcome": "EXECUTED",
+        "effects": 1,
+        "reasons": []
+      },
+      "r2_a2a_path": {
+        "first_outcome": "EXECUTED",
+        "effects": 1
+      },
+      "equal": true
+    }
+  ]
+}

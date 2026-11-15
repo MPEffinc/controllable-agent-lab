@@ -1,0 +1,49 @@
+UTC: 2026-11-15T15:23:33.782677+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: experiments/r2/.venv/bin/python -m unittest discover -s experiments/r2 -p 'test_*.py' -v
+PARENT_COMMIT: a297090882bf2899612e69c7a1e2272ac95f6c70
+test_ablated_sink_agrees_with_original_ablation_runs (test_bridge.AdapterAgreesWithOriginalHarness.test_ablated_sink_agrees_with_original_ablation_runs) ... ok
+test_finality_reasons_match_original_run_system (test_bridge.AdapterAgreesWithOriginalHarness.test_finality_reasons_match_original_run_system) ... ok
+test_adversary_module_cannot_reach_the_trusted_plane (test_bridge.AttackerIsolation.test_adversary_module_cannot_reach_the_trusted_plane) ... ok
+test_forged_permits_are_rejected_by_the_original_sink (test_bridge.AttackerIsolation.test_forged_permits_are_rejected_by_the_original_sink) ... ok
+test_stripped_proof_is_denied_with_the_original_reason (test_bridge.AttackerIsolation.test_stripped_proof_is_denied_with_the_original_reason) ... ok
+test_tampered_wire_evidence_is_denied_by_the_original_verifier (test_bridge.AttackerIsolation.test_tampered_wire_evidence_is_denied_by_the_original_verifier) ... ok
+test_agent_hosted_hops_reproduce_original_materialise_byte_for_byte (test_bridge.Fidelity.test_agent_hosted_hops_reproduce_original_materialise_byte_for_byte) ... ok
+test_codec_is_strict_and_fail_closed (test_bridge.Fidelity.test_codec_is_strict_and_fail_closed) ... ok
+test_codec_round_trip_preserves_object_and_digest (test_bridge.Fidelity.test_codec_round_trip_preserves_object_and_digest) ... ok
+test_adapter_sources_never_monkeypatch_the_original (test_bridge.OriginalIsUntouched.test_adapter_sources_never_monkeypatch_the_original) ... ok
+test_checkout_is_pinned_and_clean (test_bridge.OriginalIsUntouched.test_checkout_is_pinned_and_clean) ... ok
+test_ablation_names_map_to_the_same_flags_as_original_run_system (test_bridge.TrustedPlaneWiring.test_ablation_names_map_to_the_same_flags_as_original_run_system) ... ok
+test_dispatch_binds_the_handler_identity_not_the_payload (test_bridge.TrustedPlaneWiring.test_dispatch_binds_the_handler_identity_not_the_payload) ... ok
+test_effect_sink_is_single_and_idempotent (test_bridge.TrustedPlaneWiring.test_effect_sink_is_single_and_idempotent) ... ok
+test_misconfigured_actor_is_an_adapter_error_not_a_silent_pass (test_bridge.TrustedPlaneWiring.test_misconfigured_actor_is_an_adapter_error_not_a_silent_pass) ... ok
+test_permit_service_reads_the_current_state_on_every_call (test_bridge.TrustedPlaneWiring.test_permit_service_reads_the_current_state_on_every_call) ... ok
+test_stage_host_holds_only_its_keys_and_keeps_pipeline_order (test_bridge.TrustedPlaneWiring.test_stage_host_holds_only_its_keys_and_keeps_pipeline_order) ... ok
+test_adapter_exception_makes_evidence_incomplete (test_oracle.OracleTests.test_adapter_exception_makes_evidence_incomplete) ... ok
+test_blocked_expected_task_is_overblocking_not_safety_violation (test_oracle.OracleTests.test_blocked_expected_task_is_overblocking_not_safety_violation) ... ok
+test_clean_delegated_effect_satisfies_safety_and_completion (test_oracle.OracleTests.test_clean_delegated_effect_satisfies_safety_and_completion) ... ok
+test_duplicate_effect_is_a_violation (test_oracle.OracleTests.test_duplicate_effect_is_a_violation) ... ok
+test_effect_after_revocation_is_a_violation (test_oracle.OracleTests.test_effect_after_revocation_is_a_violation) ... ok
+test_effect_before_revocation_is_not_a_violation (test_oracle.OracleTests.test_effect_before_revocation_is_not_a_violation) ... ok
+test_log_world_mismatch_makes_evidence_incomplete (test_oracle.OracleTests.test_log_world_mismatch_makes_evidence_incomplete) ... ok
+test_missing_permit_effect_is_unmediated_and_unauthorized (test_oracle.OracleTests.test_missing_permit_effect_is_unmediated_and_unauthorized) ... ok
+test_missing_trial_completed_is_incomplete (test_oracle.OracleTests.test_missing_trial_completed_is_incomplete) ... ok
+test_only_rejected_attempts_is_satisfied (test_oracle.OracleTests.test_only_rejected_attempts_is_satisfied) ... ok
+test_permit_not_issued_by_trusted_service_is_forged (test_oracle.OracleTests.test_permit_not_issued_by_trusted_service_is_forged) ... ok
+test_permit_with_untrusted_signer_is_forged (test_oracle.OracleTests.test_permit_with_untrusted_signer_is_forged) ... ok
+test_stale_policy_epoch_is_a_violation (test_oracle.OracleTests.test_stale_policy_epoch_is_a_violation) ... ok
+test_substituted_action_is_a_violation (test_oracle.OracleTests.test_substituted_action_is_a_violation) ... ok
+test_verifier_allowed_is_never_proof_of_safety (test_oracle.OracleTests.test_verifier_allowed_is_never_proof_of_safety) ... ok
+test_world_effect_without_finality_record_is_a_violation (test_oracle.OracleTests.test_world_effect_without_finality_record_is_a_violation) ... ok
+test_wrong_actor_is_a_violation (test_oracle.OracleTests.test_wrong_actor_is_a_violation) ... ok
+test_clean_effect_is_satisfied_under_r1_oracle (test_oracle.ProjectionTests.test_clean_effect_is_satisfied_under_r1_oracle) ... ok
+test_effect_after_revoke_is_a_violation_under_r1_immediate_cut (test_oracle.ProjectionTests.test_effect_after_revoke_is_a_violation_under_r1_immediate_cut) ... ok
+test_log_world_disagreement_surfaces_in_r1_snapshot_checks (test_oracle.ProjectionTests.test_log_world_disagreement_surfaces_in_r1_snapshot_checks) ... ok
+test_unauthorized_destination_is_a_violation_under_r1_oracle (test_oracle.ProjectionTests.test_unauthorized_destination_is_a_violation_under_r1_oracle) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.651s
+
+OK
+
+EXIT_CODE=0

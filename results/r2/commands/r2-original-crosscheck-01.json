@@ -1,0 +1,21 @@
+{
+  "name": "r2-original-crosscheck-01",
+  "command": [
+    "experiments/r2/.venv/bin/python",
+    "experiments/r2/original_crosscheck.py",
+    "--events",
+    "results/r2/run-01/events.jsonl",
+    "--output",
+    "results/r2/original-crosscheck-01.json"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T15:22:18.327923+00:00",
+  "end_utc": "2026-11-15T15:22:19.144151+00:00",
+  "duration_seconds": 0.816,
+  "exit_code": 0,
+  "log": "results/r2/commands/r2-original-crosscheck-01.stdout.txt",
+  "parent_commit": "a297090882bf2899612e69c7a1e2272ac95f6c70",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

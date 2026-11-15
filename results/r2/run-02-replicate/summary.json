@@ -1,0 +1,750 @@
+{
+  "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+  "fixture": "official_A2A_SDK_inprocess_transport_plus_original_CONTINUITY",
+  "original_paper_reproduction": false,
+  "model_calls": 0,
+  "trial_count": 18,
+  "trials": [
+    {
+      "trial_id": "R2-0_valid_delegated-r1",
+      "condition_id": "R2-0_valid_delegated",
+      "group": "CORE",
+      "family": "delegated_normal",
+      "event_count": 18,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "world_effect_count": 1,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-1a_unauthorized_destination_attempt-r1",
+      "condition_id": "R2-1a_unauthorized_destination_attempt",
+      "group": "CORE",
+      "family": "direct_attempt",
+      "event_count": 10,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "hop_applied": 3,
+        "verify_decision": 1,
+        "a2a_response": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-1b_post_permit_action_substitution-r1",
+      "condition_id": "R2-1b_post_permit_action_substitution",
+      "group": "CORE",
+      "family": "delegated_normal",
+      "event_count": 18,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_ACTION_SUBSTITUTION"
+        }
+      ],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-2_after_A_deny_B_reexecutes-r1",
+      "condition_id": "R2-2_after_A_deny_B_reexecutes",
+      "group": "CORE",
+      "family": "deny_then_delegate",
+      "event_count": 26,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 4,
+        "verify_decision": 2,
+        "post_decision_continuation": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "adversary_step": 4,
+        "finality_attempt": 3
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        },
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_UNMEDIATED_PATH"
+        },
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_UNTRUSTED_PERMIT_ISSUER"
+        },
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_BAD_PERMIT_SIGNATURE"
+        }
+      ],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-3a_stale_permit_after_revocation-r1",
+      "condition_id": "R2-3a_stale_permit_after_revocation",
+      "group": "CORE",
+      "family": "stale_permit",
+      "event_count": 22,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 3,
+        "agent_received": 3,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 3,
+        "queue_dequeued": 1,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "revoke": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_REVOKED_AT_FINALITY"
+        }
+      ],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 3,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-3b_retained_work_after_revocation-r1",
+      "condition_id": "R2-3b_retained_work_after_revocation",
+      "group": "CORE",
+      "family": "queued_then_cut",
+      "event_count": 17,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "revoke": 1,
+        "queue_dequeued": 1,
+        "verify_decision": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-4_independent_root_B_after_A_revoked-r1",
+      "condition_id": "R2-4_independent_root_B_after_A_revoked",
+      "group": "CORE",
+      "family": "independent_root",
+      "event_count": 33,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 2,
+        "a2a_request": 4,
+        "agent_received": 4,
+        "hop_applied": 6,
+        "delegation_requested": 2,
+        "queue_enqueued": 2,
+        "a2a_response": 4,
+        "revoke": 1,
+        "queue_dequeued": 2,
+        "verify_decision": 2,
+        "permit_issued": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        },
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "world_effect_count": 1,
+      "adapter_errors": 0,
+      "a2a_messages": 4,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "R2-5_dispatch_without_permit-r1",
+      "condition_id": "R2-5_dispatch_without_permit",
+      "group": "CORE",
+      "family": "delegated_normal",
+      "event_count": 16,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_UNMEDIATED_PATH"
+        }
+      ],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "NC-subject_delegator_uses_delegatee_permit-r1",
+      "condition_id": "NC-subject_delegator_uses_delegatee_permit",
+      "group": "NEGATIVE_CONTROL",
+      "family": "direct_attempt",
+      "event_count": 12,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "hop_applied": 3,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "finality_attempt": 1,
+        "a2a_response": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-A",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-A",
+          "ok": false,
+          "reason": "E_SUBJECT_SUBSTITUTION"
+        }
+      ],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "NC-queue_tamper_gateway_envelope-r1",
+      "condition_id": "NC-queue_tamper_gateway_envelope",
+      "group": "NEGATIVE_CONTROL",
+      "family": "delegated_normal",
+      "event_count": 17,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_tampered": 1,
+        "queue_dequeued": 1,
+        "verify_decision": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_BAD_ENVELOPE_SIGNATURE:1",
+            "E_BROKEN_TRANSITION_LINK:1",
+            "E_FALSE_CHANGESET:1",
+            "E_GUARANTEE_FALSE:2:canonical_destination",
+            "E_NOT_PRESERVED:1:/action/destination",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "NC-missing_proof_empty_chain-r1",
+      "condition_id": "NC-missing_proof_empty_chain",
+      "group": "NEGATIVE_CONTROL",
+      "family": "delegated_normal",
+      "event_count": 15,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 2,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "verify_decision": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_EMPTY_CHAIN"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "NC-attacker_minted_root-r1",
+      "condition_id": "NC-attacker_minted_root",
+      "group": "NEGATIVE_CONTROL",
+      "family": "delegated_normal",
+      "event_count": 16,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "attacker_material_created": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "verify_decision": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized",
+            "E_UNTRUSTED_ROOT",
+            "E_UNTRUSTED_ROOT_ISSUER"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "AB-mediation_off_after_A_deny-r1",
+      "condition_id": "AB-mediation_off_after_A_deny",
+      "group": "CONTROLLED_ABLATION",
+      "family": "deny_then_delegate",
+      "event_count": 22,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 4,
+        "verify_decision": 2,
+        "post_decision_continuation": 1,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "adversary_step": 2,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        },
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "BYPASS_EXECUTED:effect:0"
+        }
+      ],
+      "world_effect_count": 1,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "AB-revocation_recheck_off-r1",
+      "condition_id": "AB-revocation_recheck_off",
+      "group": "CONTROLLED_ABLATION",
+      "family": "stale_permit",
+      "event_count": 22,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 3,
+        "agent_received": 3,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 3,
+        "queue_dequeued": 1,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "revoke": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "world_effect_count": 1,
+      "adapter_errors": 0,
+      "a2a_messages": 3,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "AB-action_binding_off-r1",
+      "condition_id": "AB-action_binding_off",
+      "group": "CONTROLLED_ABLATION",
+      "family": "delegated_normal",
+      "event_count": 18,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "finality_attempt": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "world_effect_count": 1,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "AB-subject_binding_off-r1",
+      "condition_id": "AB-subject_binding_off",
+      "group": "CONTROLLED_ABLATION",
+      "family": "direct_attempt",
+      "event_count": 12,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "hop_applied": 3,
+        "verify_decision": 1,
+        "permit_issued": 1,
+        "finality_attempt": 1,
+        "a2a_response": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-A",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "observed_finality_attempts": [
+        {
+          "caller": "agent-A",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "world_effect_count": 1,
+      "adapter_errors": 0,
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "X-single_agent_post_cut-r1",
+      "condition_id": "X-single_agent_post_cut",
+      "group": "R1_EXTENSION",
+      "family": "cut_then_direct",
+      "event_count": 11,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "revoke": 1,
+        "a2a_request": 1,
+        "agent_received": 1,
+        "hop_applied": 3,
+        "verify_decision": 1,
+        "a2a_response": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 1,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    },
+    {
+      "trial_id": "X-created_after_cut-r1",
+      "condition_id": "X-created_after_cut",
+      "group": "R1_EXTENSION",
+      "family": "cut_then_create",
+      "event_count": 17,
+      "observed_event_counts": {
+        "trial_started": 1,
+        "grant_issued": 1,
+        "revoke": 1,
+        "a2a_request": 2,
+        "agent_received": 2,
+        "hop_applied": 3,
+        "delegation_requested": 1,
+        "queue_enqueued": 1,
+        "a2a_response": 2,
+        "queue_dequeued": 1,
+        "verify_decision": 1
+      },
+      "observed_verifier_decisions": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "observed_finality_attempts": [],
+      "world_effect_count": 0,
+      "adapter_errors": 0,
+      "a2a_messages": 2,
+      "classification": "SYNTHETIC_MULTI_AGENT_EXPERIMENT_WITH_ORIGINAL_CONTINUITY",
+      "oracle_result": "NOT_OBSERVED",
+      "model_calls": 0
+    }
+  ]
+}

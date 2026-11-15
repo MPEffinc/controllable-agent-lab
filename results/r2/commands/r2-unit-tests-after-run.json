@@ -1,0 +1,24 @@
+{
+  "name": "r2-unit-tests-after-run",
+  "command": [
+    "experiments/r2/.venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "experiments/r2",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T15:23:33.782677+00:00",
+  "end_utc": "2026-11-15T15:23:34.949990+00:00",
+  "duration_seconds": 1.167,
+  "exit_code": 0,
+  "log": "results/r2/commands/r2-unit-tests-after-run.stdout.txt",
+  "parent_commit": "a297090882bf2899612e69c7a1e2272ac95f6c70",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

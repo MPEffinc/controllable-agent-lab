@@ -1,0 +1,7 @@
+UTC: 2026-11-15T15:20:18.493341+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: python3 experiments/r2/classify.py --config experiments/r2/config.json --events results/r2/run-01/events.jsonl --oracle results/r2/oracle-01.json --r1-oracle results/r2/r1-oracle-01.json --output-json results/r2/expectation-check-01.json --output-csv results/r2/condition_summary.csv
+PARENT_COMMIT: a297090882bf2899612e69c7a1e2272ac95f6c70
+{"conditions": 18, "prediction_matched": 18, "needs_triage": 0}
+
+EXIT_CODE=0

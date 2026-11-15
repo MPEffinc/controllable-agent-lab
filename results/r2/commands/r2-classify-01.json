@@ -1,0 +1,29 @@
+{
+  "name": "r2-classify-01",
+  "command": [
+    "python3",
+    "experiments/r2/classify.py",
+    "--config",
+    "experiments/r2/config.json",
+    "--events",
+    "results/r2/run-01/events.jsonl",
+    "--oracle",
+    "results/r2/oracle-01.json",
+    "--r1-oracle",
+    "results/r2/r1-oracle-01.json",
+    "--output-json",
+    "results/r2/expectation-check-01.json",
+    "--output-csv",
+    "results/r2/condition_summary.csv"
+  ],
+  "cwd": "/home/cclab/controllable_agent",
+  "start_utc": "2026-11-15T15:20:18.493341+00:00",
+  "end_utc": "2026-11-15T15:20:18.557627+00:00",
+  "duration_seconds": 0.064,
+  "exit_code": 0,
+  "log": "results/r2/commands/r2-classify-01.stdout.txt",
+  "parent_commit": "a297090882bf2899612e69c7a1e2272ac95f6c70",
+  "tracked_files_dirty": false,
+  "filtered_credential_env": true,
+  "note": "Environment filtering only, not a network/OS sandbox"
+}

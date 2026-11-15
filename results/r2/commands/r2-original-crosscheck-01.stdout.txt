@@ -1,0 +1,7 @@
+UTC: 2026-11-15T15:22:18.327923+00:00
+CWD: /home/cclab/controllable_agent
+COMMAND: experiments/r2/.venv/bin/python experiments/r2/original_crosscheck.py --events results/r2/run-01/events.jsonl --output results/r2/original-crosscheck-01.json
+PARENT_COMMIT: a297090882bf2899612e69c7a1e2272ac95f6c70
+{"conditions_compared": 15, "equal": 15}
+
+EXIT_CODE=0

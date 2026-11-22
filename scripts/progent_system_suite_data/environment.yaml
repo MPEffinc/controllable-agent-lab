@@ -1,0 +1,4 @@
+resources:
+  lab-vm-01: running
+  lab-vm-02: running
+events: []

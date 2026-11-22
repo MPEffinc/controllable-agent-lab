@@ -18,10 +18,10 @@ class LiveOfflineTest(unittest.TestCase):
             backend.restart("lab-vm-01")
         self.assertEqual(backend.start("lab-vm-01"), "running")
 
-    def test_global_request_ledger_stops_at_thirty(self):
+    def test_global_request_ledger_stops_at_sixty(self):
         with tempfile.TemporaryDirectory() as directory:
             with patch.object(progent_system_live, "LEDGER", Path(directory) / "budget.json"):
-                for _ in range(30):
+                for _ in range(60):
                     progent_system_live.reserve({"messages": [{"content": "test"}]}, 1024)
                 with self.assertRaises(RuntimeError):
                     progent_system_live.reserve({"messages": [{"content": "test"}]}, 1024)

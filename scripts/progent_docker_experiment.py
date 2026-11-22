@@ -61,6 +61,9 @@ def main():
     run_id = "docker-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:6]
     backend = DockerBackend(run_id)
     log = {"run_id": run_id, "time_utc": datetime.now(timezone.utc).isoformat(),
+           "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+           "source_dirty": bool(subprocess.check_output(
+               ["git", "status", "--porcelain", "--untracked-files=no"], text=True).strip()),
            "image": IMAGE, "input_origin": "direct harness, not LLM", "events": []}
     path = Path("local/progent-vm/docker") / f"{run_id}.json"
     path.parent.mkdir(parents=True, exist_ok=True)

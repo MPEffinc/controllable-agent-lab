@@ -5,6 +5,7 @@ import contextlib
 import io
 import json
 import os
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
@@ -52,6 +53,9 @@ def main():
     path = Path("local/progent-vm/agentdojo") / f"{run_id}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     log = {"run_id": run_id, "source": "original AgentDojo TaskSuite and evaluator with custom transport",
+           "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+           "source_dirty": bool(subprocess.check_output(
+               ["git", "status", "--porcelain", "--untracked-files=no"], text=True).strip()),
            "mode": "offline-ground-truth" if args.offline_ground_truth else "live-luna",
            "backend": args.backend, "case": args.case, "api_config_source": source,
            "model": None if args.offline_ground_truth else "gpt-6-luna", "api": [],
@@ -60,6 +64,7 @@ def main():
     policy_requests = 0
     agent_turns = 0
     tool_calls = 0
+    phase = "runtime_setup"
 
     def api_call(role, messages, tools=None):
         body = {"model": "gpt-6-luna", "messages": messages, "reasoning_effort": "none",
@@ -144,6 +149,7 @@ def main():
             pipeline.name = "agentdojo-ground-truth-direct-calls"
             log["ground_truth_calls"] = [call.model_dump() for call in task.ground_truth(environment)]
         else:
+            phase = "policy_and_agent"
             core.api_request = policy_api
             openai_llm.chat_completion_request = agent_api
             llm = OpenAILLM(client, "gpt-6-luna", reasoning_effort="none", temperature=None)
@@ -154,6 +160,7 @@ def main():
             pipeline.name = llm.name
             pipeline.elements[-1].elements[0] = BoundedToolsExecutor()
 
+        phase = "pipeline_execution"
         with OutputLogger(str(path.parent)) as output_logger:
             with TraceLogger(output_logger, suite_name=task_suite.name, user_task_id=task.ID,
                              injection_task_id=None, injections={}, attack_type="none",
@@ -188,7 +195,13 @@ def main():
         if args.verbose:
             print("[SOURCE TRACE]", log["source_trace"])
     except Exception as exc:
-        log["status"] = "LLM_API_ERROR" if log["api"] and "error" in log["api"][-1] else "FAILED"
+        log["error_phase"] = phase
+        if log["api"] and "error" in log["api"][-1]:
+            log["status"] = "LLM_API_ERROR"
+        elif phase == "runtime_setup":
+            log["status"] = "RUNTIME_UNAVAILABLE"
+        else:
+            log["status"] = "TASK_INCOMPLETE"
         log["error"] = safe_error(exc)
         print("[RESULT]", log["status"], type(exc).__name__)
     finally:
@@ -204,8 +217,11 @@ def main():
         bind_backend(None)
         core.update_security_policy({})
         path.write_text(json.dumps(log, indent=2, ensure_ascii=False) + "\n")
+        if args.verbose:
+            print("[VERBOSE API TRACE]", json.dumps(log["api"], ensure_ascii=False, indent=2))
+            print("[VERBOSE SOURCE]", log.get("source_stderr", ""))
         print("[LOG]", path)
-    if log["status"] not in {"SUCCESS", "TASK_INCOMPLETE"}:
+    if log.get("error") or log["status"] not in {"SUCCESS", "TASK_INCOMPLETE"}:
         raise SystemExit(1)
 
 

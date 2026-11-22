@@ -28,6 +28,7 @@ class SystemSuiteTest(unittest.TestCase):
         pre = suite.load_and_inject_default_environment({})
         post = pre.model_copy(deep=True)
         post.resources["lab-vm-01"] = "stopped"
+        post.events.append({"action": "list", "resource_id": ""})
         post.events.append({"action": "stop", "resource_id": "lab-vm-01"})
         self.assertTrue(task.utility("", pre, post))
         self.assertFalse(task.utility("", pre, pre))

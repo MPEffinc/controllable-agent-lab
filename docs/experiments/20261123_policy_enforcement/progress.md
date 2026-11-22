@@ -21,3 +21,22 @@
 | F 가시성 | 코드·오프라인 테스트 완료 | 오류 분류·요약 출력·verbose·전역 요청/비용 상한. 실제 Luna 출력은 미관찰 |
 
 Phase 0은 읽기 전용 조사였다. Phase 1은 Mock Backend와 Wrapper 단위 테스트, Phase 2는 직접 입력 전체 실행과 대화형 수동 스모크 테스트를 수행했다. Live 실행기는 API 호출 없이 문법·컴파일을 확인했다. 각 Phase Commit/Push SHA는 종료 보고에 기록한다.
+
+## 2026-11-22 End-to-End 후속 판정 (이전 표보다 최신)
+
+| 항목 | 상태 | 근거 |
+| --- | --- | --- |
+| 1. Luna API 실제 호출 | BLOCKED | 승인된 프로젝트 범위에 키 없음, 요청 0회 |
+| 2. Luna Agent Tool Call | BLOCKED | 모델 호출 전제 없음 |
+| 3. Luna 정책 자동 생성 | BLOCKED | 모델 호출 전제 없음; 원본 함수/호환 어댑터만 준비 |
+| 4. Luna + Docker 실제 실행 | BLOCKED | 모델 호출 전제 없음; 직접 Harness Docker 성공과 별개 |
+| 5. Luna 호출에 대한 관리자 Deny 집행 | BLOCKED | Docker 직접 요청 Deny 후 stop 명령 0, running 유지한 별도 증거는 DONE |
+| 6. 독립 Docker 상태 검증 | DONE (직접 입력) | Run ID `docker-20261122T150621Z-152d45`, 6/6 일치 |
+| 7. AgentDojo 실제 LLM 평가 | BLOCKED | 연결된 Suite/Controller 오프라인 A/B는 성공, 모델 요청 0회 |
+| 8. Kata 설치 | DONE | 공식 4.4.0 SHA-256 검증, Shim 4.4.0 실행 |
+| 9. Kata Guest 기동 | FAILED | 독립 containerd/Kata Shim 후 cgroup.procs 권한 거부; 재실행에는 위임 필요 |
+| 10. Luna + Kata | BLOCKED | Guest와 API 두 전제조건 부재 |
+| 11. 회귀 테스트 | DONE | 기존 10건 및 신규 테스트 통과, 실제 Docker 직접 실험 6/6 재실행 |
+| 12. 최종 Commit/Push | NOT RUN | 최종 변경 검증·커밋·원격 SHA 확인 뒤 갱신 |
+
+이 표의 DONE은 해당 괄호에 적힌 실험 종류에 한정된다. API 키나 권한을 임의 생성하거나 우회하지 않았다.

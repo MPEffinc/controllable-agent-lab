@@ -19,3 +19,13 @@ Phase 1 이후에는 각 실행 ID마다 정책·Agent 제안/직접 Harness 입
 이전 문단은 Phase 0 시점의 계획이다. 이후 사용자가 소규모 유료 호출을 승인했으나 **현재 프로세스에는 API 인증 환경변수가 없어** 새 Luna 호출은 0회다. Mock Phase 2 10건과 실제 Docker Stage C 6건의 결과는 각각 `phase2.md`, `docker_results.md`에 있다. Docker 실험 리소스는 모두 정리했고 기존 SREGym 컨테이너 4개는 그대로 실행 중이다. Kata는 `kata_results.md`의 실패 조건으로 미실행이다.
 
 새 CLI는 `bash scripts/progent_vm.sh system-live --backend mock|docker --case A|B|C|D|E`다. 인증정보가 사용자 터미널에 설정되면 이 명령이 추가 확인 프롬프트 없이 API를 호출한다. `local/progent-vm/luna_budget.json`은 30요청·추정 USD 2 상한 기록으로, 이 파일과 `local/progent-vm/live/`의 원시 요청/응답을 Git에 넣지 않는다. 다음 세션은 새 Live 결과가 실제 존재하는지 먼저 확인하고, 모델 접근·정책 출력·Agent Tool Call·독립 상태를 Run ID별로 대조해야 한다. 기존 두 GPT-4o Live 기록은 보존하며 새 Luna 결과로 혼합하지 않는다.
+
+## 2026-11-22 후속 End-to-End 시도 — 위 이전 계획을 대체하는 최신 상태
+
+사용자는 프로젝트 범위 API 설정 탐색과 소규모 Luna 호출을 추가 승인했다. 현재 프로세스, 프로젝트 `.env*`/`local` 설정 파일, 사용자 셸 초기화 파일에서 **키 이름의 존재 여부만** 확인했으나 실키를 찾지 못했다. `sudo -n -v/-l`은 비밀번호 필요로 exit 1. 따라서 Luna API, 정책 자동 생성, Agent Tool Call, Luna→Docker/AgentDojo/Kata 실행은 모두 **BLOCKED**이며 0 API 요청이다. 이전 문단의 30회 상한은 구버전 정보다. 현재 `scripts/progent_system_live.py`는 파일 잠금이 있는 전역 **60요청/추정 USD 2** 상한이다.
+
+독립 Kata 4.4.0 Runtime/Shim/Guest 바이너리를 공식 릴리스에서 다운로드해 SHA-256 검증 후 사용자 영역에 설치했다. 별도 containerd와 Kata Shim이 기동됐으나 Guest는 host cgroup 권한 오류로 부팅되지 않았다. RootlessKit은 `newuidmap` 부재로 실패했고 sudo 인증도 없다. `kata_installation.md`와 `kata_runtime_results.md`의 명령·오류를 참조한다. 이 설치를 VM 기동 성공이라고 소개하면 안 된다.
+
+AgentDojo Suite를 Mock 및 Docker Controller에 연결했다. 최초 두 오프라인 실행은 `make_function`의 필수 인자 스키마가 비어 `TypeError`가 났고, `:param resource_id:` 문서화로 수정했다. 이후 GroundTruth 직접 호출 Mock A/B, Docker A/B가 모두 Utility=True; Docker B는 독립 inspect에서 running→exited였다. 새 `bash scripts/progent_vm.sh agentdojo --backend docker --case A --offline-ground-truth`는 **LLM 없는 진단**이다. `--offline-ground-truth` 없이 실행하면 Luna 기반 원본 AgentDojo Pipeline을 사용하도록 준비했지만 인증 부재로 미실행이다. 원본 Benchmark 전체 평균으로 해석하지 않는다.
+
+원본 Progent와 AgentDojo checkout은 clean pin 그대로다. 기존 `docs/guided_reproduction_20261117/`와 미추적 `scripts/progent_demo*`, `progent_live*`, `progent_guided_effect.py`는 보존한다. 자세한 현재 12개 완료 판정, 회귀 테스트, 미팅 설명은 `regression_results.md`와 `meeting_20261123_final.md`를 참조한다. 새 key 또는 cgroup 위임이 제공되면 각 Run ID별 생성 정책·실제 모델 Tool Call·원본 판정·Controller 진입·독립 Runtime 상태를 다시 확인해야 한다.

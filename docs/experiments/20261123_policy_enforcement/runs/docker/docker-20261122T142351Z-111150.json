@@ -1,0 +1,650 @@
+{
+  "run_id": "docker-20261122T142351Z-111150",
+  "time_utc": "2026-11-22T14:23:51.226092+00:00",
+  "image": "busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+  "input_origin": "direct harness, not LLM",
+  "events": [
+    {
+      "event_id": "get_resource_status-UC-A",
+      "tool": "get_resource_status",
+      "args": {
+        "resource_id": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "SUCCESS",
+      "error": null,
+      "tool_result": "running",
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "SUCCESS",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "stop_resource-UC-B",
+      "tool": "stop_resource",
+      "args": {
+        "resource_id": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "SUCCESS",
+      "error": null,
+      "tool_result": "exited",
+      "docker_commands": [
+        {
+          "argv": [
+            "docker",
+            "stop",
+            "--time",
+            "2",
+            "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+          ],
+          "returncode": 0,
+          "stdout": "Flag --time has been deprecated, use --timeout instead\ncclab-progent-exp-docker-20261122T142351Z-111150-01",
+          "stderr": ""
+        }
+      ],
+      "runtime_before": "running",
+      "runtime_after": "exited",
+      "expected": {
+        "classification": "SUCCESS",
+        "after": "exited",
+        "mutations": 1
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "start_resource-UC-D",
+      "tool": "start_resource",
+      "args": {
+        "resource_id": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "SUCCESS",
+      "error": null,
+      "tool_result": "running",
+      "docker_commands": [
+        {
+          "argv": [
+            "docker",
+            "start",
+            "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+          ],
+          "returncode": 0,
+          "stdout": "cclab-progent-exp-docker-20261122T142351Z-111150-01",
+          "stderr": ""
+        }
+      ],
+      "runtime_before": "exited",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "SUCCESS",
+        "after": "running",
+        "mutations": 1
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "stop_resource-UC-C",
+      "tool": "stop_resource",
+      "args": {
+        "resource_id": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            1,
+            1,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ],
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "POLICY_DENIED",
+      "error": "The tool 'stop_resource' is not allowed.. Please try other tools or arguments and continue to finish the user task: None.",
+      "tool_result": null,
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "POLICY_DENIED",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "get_resource_status-UC-E",
+      "tool": "get_resource_status",
+      "args": {
+        "resource_id": "cclab-progent-exp-docker-20261122T142351Z-111150-02"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "POLICY_DENIED",
+      "error": "The tool 'get_resource_status' is not allowed.. Please try other tools or arguments and continue to finish the user task: None.",
+      "tool_result": null,
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "POLICY_DENIED",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "get_resource_status-BACKEND-FAIL",
+      "tool": "get_resource_status",
+      "args": {
+        "resource_id": "missing-resource"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {},
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "BACKEND_EXECUTION_FAILED",
+      "error": "resource is not in this run's ownership manifest",
+      "tool_result": null,
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "BACKEND_EXECUTION_FAILED",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    }
+  ],
+  "owned": {
+    "cclab-progent-exp-docker-20261122T142351Z-111150-01": "34207156169ee8e7f0f4abaaf48428dcab5c608f1911caa9f7b5194d94327312",
+    "cclab-progent-exp-docker-20261122T142351Z-111150-02": "78eb3f54c7ce635840ec36aa574095c9a2d5c5acfc671ac8b8a67965a594dfaa"
+  },
+  "discovered": [
+    "cclab-progent-exp-docker-20261122T142351Z-111150-01",
+    "cclab-progent-exp-docker-20261122T142351Z-111150-02"
+  ],
+  "status": "PASS",
+  "cleanup": "owned resources removed",
+  "docker_invocations": [
+    {
+      "argv": [
+        "docker",
+        "create",
+        "--name",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-01",
+        "--label",
+        "org.cclab.progent.experiment=docker-20261122T142351Z-111150",
+        "--network",
+        "none",
+        "--memory",
+        "128m",
+        "--cpus",
+        "0.5",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+        "sleep",
+        "3600"
+      ],
+      "returncode": 0,
+      "stdout": "34207156169ee8e7f0f4abaaf48428dcab5c608f1911caa9f7b5194d94327312",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "--name",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-02",
+        "--label",
+        "org.cclab.progent.experiment=docker-20261122T142351Z-111150",
+        "--network",
+        "none",
+        "--memory",
+        "128m",
+        "--cpus",
+        "0.5",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+        "sleep",
+        "3600"
+      ],
+      "returncode": 0,
+      "stdout": "78eb3f54c7ce635840ec36aa574095c9a2d5c5acfc671ac8b8a67965a594dfaa",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-docker-20261122T142351Z-111150-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-02"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-docker-20261122T142351Z-111150-02",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "stop",
+        "--time",
+        "2",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      ],
+      "returncode": 0,
+      "stdout": "Flag --time has been deprecated, use --timeout instead\ncclab-progent-exp-docker-20261122T142351Z-111150-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-docker-20261122T142351Z-111150-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-docker-20261122T142351Z-111150-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "cclab-progent-exp-docker-20261122T142351Z-111150-02"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-docker-20261122T142351Z-111150-02",
+      "stderr": ""
+    }
+  ]
+}

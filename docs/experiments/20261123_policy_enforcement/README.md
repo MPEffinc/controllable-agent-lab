@@ -16,5 +16,8 @@ Phase 0은 환경·소스·과거 기록 조사였다. 이후 사용자의 지�
 | [progress.md](progress.md) | 단계별 진행 상태와 검증 범위 |
 | [handoff.md](handoff.md) | 다음 세션에서 유지할 결정·미결정 사항 |
 | [phase1.md](phase1.md) | 새 Mock VM Tool과 원본 Wrapper 연결 |
+| [phase2.md](phase2.md) | UC01~UC06 실제 수동 정책 실행과 Run ID별 증거 |
+| [live_guide.md](live_guide.md) | 연구자 직접 Manual·LLM Live 실행 절차 |
+| [meeting_summary.md](meeting_summary.md) | 교수님 미팅용 확인 사실과 미검증 경계 |
 
 과거 연구 자료는 로컬 `docs/guided_reproduction_20261117/`, 실행기는 `scripts/progent_*`, 원본 checkout은 `third_party/progent/`, 원본 실행 로그는 `local/guided-reproduction-20261119/` 아래에 있다. 앞의 문서·실행기는 루트 Git에서 **미추적**, checkout·로그는 `.gitignore` 대상이다. 이 문서들은 그 내용을 대체하거나 원본 로그를 Git에 포함하지 않는다.

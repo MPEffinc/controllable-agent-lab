@@ -16,6 +16,7 @@ PIN = "b02783b896d4bf01a2adf24738015e258db8d35b"
 @dataclass
 class MockVMBackend:
     run_id: str
+    active_event_id: str | None = None
     state: dict[str, str] = field(default_factory=lambda: dict(INITIAL_STATE))
     tool_calls: list[dict[str, Any]] = field(default_factory=list)
     backend_calls: list[dict[str, Any]] = field(default_factory=list)
@@ -58,9 +59,10 @@ def make_wrapped_tool(backend: MockVMBackend, event_id: str):
             vm_id: Mock VM identifier.
             action: One of status, shutdown, restart.
         """
-        backend.tool_calls.append({"run_id": backend.run_id, "event_id": event_id,
+        actual_event_id = backend.active_event_id or event_id
+        backend.tool_calls.append({"run_id": backend.run_id, "event_id": actual_event_id,
                                    "vm_id": vm_id, "action": action})
-        return backend.execute(vm_id, action, event_id)
+        return backend.execute(vm_id, action, actual_event_id)
 
     return apply_secure_tool_wrapper(vm_action)
 

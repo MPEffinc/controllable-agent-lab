@@ -10,7 +10,7 @@
 | 시작 시 루트 HEAD | `b86812ced989ecd7be0dfea5f78058fd809ef101`, `exp/r3-delegation-lineage` |
 | 원격 | `origin = git@github.com:MPEffinc/controllable-agent-lab.git` (fetch/push) |
 | Phase 0 브랜치 | `exp/20261123-progent-enforcement-usecase` 신규 생성. 생성 전 로컬·원격에 같은 이름의 브랜치 없음 |
-| 시작 시 Working Tree | 추적 파일 변경 없음. `docs/guided_reproduction_20261117/`의 19개 문서/manifest와 `scripts/progent_*` 9개가 미추적 |
+| 시작 시 Working Tree | 추적 파일 변경 없음. `docs/guided_reproduction_20261117/`의 21개 문서/manifest와 `scripts/progent_*` 9개가 미추적 |
 | 별도 체크아웃·로그 | 루트 `.gitignore:15,18`이 각각 `third_party/`, `local/` 제외. 원본과 원시 로그는 이번 Commit 대상 아님 |
 
 기존 미추적 파일을 이동·삭제·추적하거나 내용을 덮어쓰지 않았다. 현재 브랜치의 실제 HEAD와 Push 결과는 단계 종료 보고에서 별도 기록한다.

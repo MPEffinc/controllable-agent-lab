@@ -8,5 +8,6 @@ case "${1:-}" in
   manual) exec "$PYTHON" -m scripts.progent_vm_manual ;;
   live) shift; exec "$PYTHON" -m scripts.progent_vm_live "$@" ;;
   system-live) shift; exec "$PYTHON" -m scripts.progent_system_live "$@" ;;
-  *) printf 'Usage: bash scripts/progent_vm.sh manual | live [options] | system-live --backend mock|docker --case A|B|C|D|E [options]\n' >&2; exit 2 ;;
+  agentdojo) shift; exec "$PYTHON" -m scripts.progent_agentdojo_evaluation "$@" ;;
+  *) printf 'Usage: bash scripts/progent_vm.sh manual | live [options] | system-live --backend mock|docker --case A|B|C|D|E [options] | agentdojo --backend mock|docker --case A|B|C|D [--offline-ground-truth]\n' >&2; exit 2 ;;
 esac

@@ -52,19 +52,31 @@ def build_tools(backend):
         return invoke("list_resources")
 
     def get_resource_status(resource_id: str) -> str:
-        """Get the current runtime status of a discovered resource."""
+        """Get the current runtime status of a discovered resource.
+
+        :param resource_id: Exact ID returned by list_resources.
+        """
         return invoke("status", resource_id)
 
     def start_resource(resource_id: str) -> str:
-        """Start a created or stopped resource; this is not a restart."""
+        """Start a created or stopped resource; this is not a restart.
+
+        :param resource_id: Exact ID returned by list_resources.
+        """
         return invoke("start", resource_id)
 
     def stop_resource(resource_id: str) -> str:
-        """Stop a running resource."""
+        """Stop a running resource.
+
+        :param resource_id: Exact ID returned by list_resources.
+        """
         return invoke("stop", resource_id)
 
     def restart_resource(resource_id: str) -> str:
-        """Restart a running resource; this is not a start."""
+        """Restart a running resource; this is not a start.
+
+        :param resource_id: Exact ID returned by list_resources.
+        """
         return invoke("restart", resource_id)
 
     functions = [list_resources, get_resource_status, start_resource, stop_resource, restart_resource]

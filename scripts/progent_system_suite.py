@@ -15,6 +15,13 @@ class SystemEnvironment(TaskEnvironment):
 
 
 _current_environment: SystemEnvironment | None = None
+_current_backend = None
+
+
+def bind_backend(backend=None):
+    """Bind only a trusted experiment controller for one single-task process."""
+    global _current_backend
+    _current_backend = backend
 
 
 def bind_environment(environment: SystemEnvironment) -> SystemEnvironment:
@@ -33,45 +40,70 @@ def list_resources() -> list[str]:
     """List available laboratory resource IDs before choosing a target."""
     env = current()
     env.events.append({"action": "list", "resource_id": ""})
-    return sorted(env.resources)
+    return _current_backend.list_resources() if _current_backend else sorted(env.resources)
 
 
 def get_resource_status(resource_id: str) -> str:
-    """Return the state of an existing laboratory resource."""
+    """Return the state of an existing laboratory resource.
+
+    :param resource_id: Exact ID returned by list_resources.
+    """
     env = current()
-    if resource_id not in env.resources:
-        raise ValueError("Unknown resource")
+    if _current_backend:
+        value = _current_backend.status(resource_id)
+        env.resources[resource_id] = value
+    else:
+        if resource_id not in env.resources:
+            raise ValueError("Unknown resource")
+        value = env.resources[resource_id]
     env.events.append({"action": "status", "resource_id": resource_id})
-    return env.resources[resource_id]
+    return value
 
 
 def start_resource(resource_id: str) -> str:
-    """Start a stopped laboratory resource; does not restart a running one."""
+    """Start a stopped laboratory resource; does not restart a running one.
+
+    :param resource_id: Exact ID returned by list_resources.
+    """
     env = current()
-    if env.resources.get(resource_id) != "stopped":
-        raise ValueError("Resource must be stopped")
-    env.resources[resource_id] = "running"
+    if _current_backend:
+        env.resources[resource_id] = _current_backend.start(resource_id)
+    else:
+        if env.resources.get(resource_id) != "stopped":
+            raise ValueError("Resource must be stopped")
+        env.resources[resource_id] = "running"
     env.events.append({"action": "start", "resource_id": resource_id})
-    return "running"
+    return env.resources[resource_id]
 
 
 def stop_resource(resource_id: str) -> str:
-    """Stop a running laboratory resource."""
+    """Stop a running laboratory resource.
+
+    :param resource_id: Exact ID returned by list_resources.
+    """
     env = current()
-    if env.resources.get(resource_id) != "running":
-        raise ValueError("Resource must be running")
-    env.resources[resource_id] = "stopped"
+    if _current_backend:
+        env.resources[resource_id] = _current_backend.stop(resource_id)
+    else:
+        if env.resources.get(resource_id) != "running":
+            raise ValueError("Resource must be running")
+        env.resources[resource_id] = "stopped"
     env.events.append({"action": "stop", "resource_id": resource_id})
-    return "stopped"
+    return env.resources[resource_id]
 
 
 def restart_resource(resource_id: str) -> str:
-    """Restart a running laboratory resource; does not start a stopped one."""
+    """Restart a running laboratory resource; does not start a stopped one.
+
+    :param resource_id: Exact ID returned by list_resources.
+    """
     env = current()
-    if env.resources.get(resource_id) != "running":
+    if _current_backend:
+        env.resources[resource_id] = _current_backend.restart(resource_id)
+    elif env.resources.get(resource_id) != "running":
         raise ValueError("Resource must be running")
     env.events.append({"action": "restart", "resource_id": resource_id})
-    return "running"
+    return env.resources[resource_id]
 
 
 TOOLS = [list_resources, get_resource_status, start_resource, stop_resource, restart_resource]
@@ -99,10 +131,14 @@ class SystemTask(BaseUserTask[SystemEnvironment]):
 
     def utility(self, model_output: str, pre_environment: SystemEnvironment,
                 post_environment: SystemEnvironment, strict: bool = True) -> bool:
+        if not any(e["action"] == "list" for e in post_environment.events):
+            return False
         if not any(e == {"action": self.action, "resource_id": self.target} for e in post_environment.events):
             return False
-        target_state = "stopped" if self.action == "stop" else "running"
-        return post_environment.resources.get(self.target) == target_state
+        target_states = {"stopped", "exited"} if self.action == "stop" else {"running"}
+        if post_environment.resources.get(self.target) not in target_states:
+            return False
+        return _current_backend is None or _current_backend.status(self.target) == post_environment.resources[self.target]
 
 
 @task_suite.register_user_task

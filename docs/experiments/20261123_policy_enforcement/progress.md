@@ -37,6 +37,6 @@ Phase 0은 읽기 전용 조사였다. Phase 1은 Mock Backend와 Wrapper 단위
 | 9. Kata Guest 기동 | FAILED | 독립 containerd/Kata Shim 후 cgroup.procs 권한 거부; 재실행에는 위임 필요 |
 | 10. Luna + Kata | BLOCKED | Guest와 API 두 전제조건 부재 |
 | 11. 회귀 테스트 | DONE | 기존 10건 및 신규 테스트 통과, 실제 Docker 직접 실험 6/6 재실행 |
-| 12. 최종 Commit/Push | NOT RUN | 최종 변경 검증·커밋·원격 SHA 확인 뒤 갱신 |
+| 12. 최종 Commit/Push | DONE | Stage 0 `30dc1d3`, 평가기 `d2423c3`, Kata `9f0ad09`, AgentDojo `9225a1e`, 회귀·요약 `9c4866e`를 push하고 원격 SHA를 확인. 이 최종 상태 갱신도 별도 push 확인 예정 |
 
 이 표의 DONE은 해당 괄호에 적힌 실험 종류에 한정된다. API 키나 권한을 임의 생성하거나 우회하지 않았다.

@@ -1,0 +1,12 @@
+# Kata 4.4.0 user-space installation attempt
+
+2026-11-22 UTC. [Official Kata installation guide](https://github.com/kata-containers/kata-containers/blob/main/docs/installation.md) recommends its release tarball; the [containerd guide](https://github.com/kata-containers/kata-containers/blob/main/docs/how-to/containerd-kata.md) documents `ctr --runtime io.containerd.kata.v2 --runtime-config-path ...`. No shared Docker or containerd configuration was changed.
+
+1. Queried the official GitHub release API. Latest tag `4.4.0`; `kata-static-4.4.0-amd64.tar.zst` size 1,046,924,760 bytes, release digest `sha256:ccbc0cbc591089d0c57012b78da64b23ef43e0bac0f869dc7bfebe8588c33986`.
+2. Downloaded to ignored `local/progent-vm/kata-4.4.0/`, ran `sha256sum`: **exact match**. Extracted there; installed artifact occupies 2.1 GiB. No host `/opt`, `/etc`, or service files were written.
+3. Executed `containerd-shim-kata-v2 --version`: `Kata Containers containerd shim (Rust)`, version `4.4.0`, commit `3fa2b14eec026be731b345ca955eed4cdc74db26`. The release includes QEMU, `vmlinux.container` → `vmlinux-6.18.62-211`, and `kata-containers.img` → `kata-ubuntu-resolute.image`; these files exist. **This proves installation, not guest boot.**
+4. Started an independent `containerd 1.7.27` under `unshare -Ur -m`, with local root/state/socket, a private mount of the extracted artifact at `/opt/kata`, and no changes to the shared daemon. `ctr -a <local socket> version` returned server version `1.7.27`. The first independent daemon lacked a private `/run/containerd` socket directory, fixed by mounting a private tmpfs on `/run` inside only this mount namespace. Both daemon instances were terminated after their diagnostic runs.
+
+`sudo -n -v` and `sudo -n -l`: exit 1, `sudo: a password is required`. `rootlesskit --net=none --subid-source=static id`: exit 1, `newuidmap ... executable file not found in $PATH`; `/etc/subuid` and `/etc/subgid` contain a `cclab` range, but the required setuid helper is absent. No password was guessed, no Docker privilege was used to alter the host, and no sudoers or cgroup permissions were changed.
+
+Reproduction source: [official 4.4.0 release](https://github.com/kata-containers/kata-containers/releases/tag/4.4.0). The downloaded artifact and raw local probe stdout/stderr are ignored by Git. A fresh installation can use the release tarball after checking the digest above.

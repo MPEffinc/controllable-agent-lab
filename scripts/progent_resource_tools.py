@@ -3,6 +3,41 @@
 from secagent import apply_secure_tool_wrapper
 
 
+class MockResourceBackend:
+    def __init__(self):
+        self.resources = {"lab-vm-01": "running", "lab-vm-02": "running"}
+        self.invocations = []
+
+    def list_resources(self) -> list[str]:
+        return sorted(self.resources)
+
+    def status(self, resource_id: str) -> str:
+        if resource_id not in self.resources:
+            raise ValueError("Unknown resource")
+        self.invocations.append({"action": "status", "resource_id": resource_id})
+        return self.resources[resource_id]
+
+    def start(self, resource_id: str) -> str:
+        if self.resources.get(resource_id) != "stopped":
+            raise ValueError("start requires stopped resource")
+        self.resources[resource_id] = "running"
+        self.invocations.append({"action": "start", "resource_id": resource_id})
+        return "running"
+
+    def stop(self, resource_id: str) -> str:
+        if self.resources.get(resource_id) != "running":
+            raise ValueError("stop requires running resource")
+        self.resources[resource_id] = "stopped"
+        self.invocations.append({"action": "stop", "resource_id": resource_id})
+        return "stopped"
+
+    def restart(self, resource_id: str) -> str:
+        if self.resources.get(resource_id) != "running":
+            raise ValueError("restart requires running resource")
+        self.invocations.append({"action": "restart", "resource_id": resource_id})
+        return "running"
+
+
 def build_tools(backend):
     def list_resources() -> list[str]:
         """Discover resource IDs managed by this experiment."""

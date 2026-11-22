@@ -4,7 +4,7 @@
 
 ## 현재 범위
 
-이 커밋은 **Phase 0 환경·소스·과거 기록 조사**만 담는다. 새 Use Case, 정책, LLM 호출, VM 작업, 재실행 결과는 없다. 원본 Progent checkout과 이전 로그는 수정하지 않았다. 다음 단계는 연구자 검토 후 진행한다.
+Phase 0은 환경·소스·과거 기록 조사였다. 이후 사용자의 지시에 따라 Phase 1에서 격리된 Mock VM Tool을 추가했다. 원본 Progent checkout과 이전 로그는 수정하지 않았다.
 
 | 문서 | 내용 |
 | --- | --- |
@@ -15,5 +15,6 @@
 | [findings.md](findings.md) | Phase 0에서 확인한 사실·한계와 ActPlane 대조 위치 |
 | [progress.md](progress.md) | 단계별 진행 상태와 검증 범위 |
 | [handoff.md](handoff.md) | 다음 세션에서 유지할 결정·미결정 사항 |
+| [phase1.md](phase1.md) | 새 Mock VM Tool과 원본 Wrapper 연결 |
 
 과거 연구 자료는 로컬 `docs/guided_reproduction_20261117/`, 실행기는 `scripts/progent_*`, 원본 checkout은 `third_party/progent/`, 원본 실행 로그는 `local/guided-reproduction-20261119/` 아래에 있다. 앞의 문서·실행기는 루트 Git에서 **미추적**, checkout·로그는 `.gitignore` 대상이다. 이 문서들은 그 내용을 대체하거나 원본 로그를 Git에 포함하지 않는다.

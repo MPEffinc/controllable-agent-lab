@@ -1,5 +1,7 @@
 # 연구자 직접 실행: 수동 대화형 및 LLM Live
 
+이 문서는 Phase 2의 기존 `vm_action` 실행기 안내다. 2026-11-22에 추가한 Resource Discovery·Docker·gpt-6-luna 경로는 [live_results.md](live_results.md)의 `system-live` 명령을 사용한다. 아래 `live` 모드의 `RUN` 확인 절차는 기존 실행기에만 적용된다.
+
 ## Mode A: API 없는 수동 대화형 시험
 
 ```bash

@@ -19,5 +19,12 @@ Phase 0은 환경·소스·과거 기록 조사였다. 이후 사용자의 지�
 | [phase2.md](phase2.md) | UC01~UC06 실제 수동 정책 실행과 Run ID별 증거 |
 | [live_guide.md](live_guide.md) | 연구자 직접 Manual·LLM Live 실행 절차 |
 | [meeting_summary.md](meeting_summary.md) | 교수님 미팅용 확인 사실과 미검증 경계 |
+| [runtime_environment.md](runtime_environment.md) | Stage A Docker·Kata 실행 조건 조사 |
+| [custom_suite.md](custom_suite.md) | Stage B AgentDojo Custom Suite |
+| [docker_results.md](docker_results.md) | Stage C 실제 Docker 정책 집행·독립 상태 조회 |
+| [kata_results.md](kata_results.md) | Stage D Kata 실행 시도와 실패 원인 |
+| [live_results.md](live_results.md) | Stage E/F Luna 호환 Runner와 인증 장애 |
+| [comparison.md](comparison.md) | 정책·Controller·Runtime 경계 비교 |
+| [meeting_20261123.md](meeting_20261123.md) | 월요일 미팅용 요약 |
 
 과거 연구 자료는 로컬 `docs/guided_reproduction_20261117/`, 실행기는 `scripts/progent_*`, 원본 checkout은 `third_party/progent/`, 원본 실행 로그는 `local/guided-reproduction-20261119/` 아래에 있다. 앞의 문서·실행기는 루트 Git에서 **미추적**, checkout·로그는 `.gitignore` 대상이다. 이 문서들은 그 내용을 대체하거나 원본 로그를 Git에 포함하지 않는다.

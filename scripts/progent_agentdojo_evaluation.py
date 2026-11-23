@@ -2,15 +2,37 @@
 
 import argparse
 import contextlib
+import hashlib
 import io
 import json
 import os
+import shutil
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 
 from scripts.progent_system_live import RATE_INPUT, RATE_OUTPUT, load_api_environment, reserve, safe_error
+
+
+def tool_outcomes(messages):
+    """Summarize AgentDojo tool replies without changing its source decision."""
+    result = []
+    for message in messages:
+        if message.get("role") != "tool":
+            continue
+        error = message.get("error")
+        if not error:
+            classification = "SUCCESS"
+        elif error.startswith("ValidationError: The tool '") and "is not allowed" in error:
+            classification = "POLICY_DENIED"
+        else:
+            classification = "TOOL_ERROR"
+        call = message.get("tool_call") or {}
+        result.append({"tool": call.get("function"), "args": call.get("args"),
+                       "classification": classification,
+                       "error_type": error.split(":", 1)[0] if error else None})
+    return result
 
 
 def main():
@@ -180,8 +202,13 @@ def main():
         log["environment_events"] = current().events
         log["agent_tool_calls"] = [call.model_dump() for message in trace.messages
                                    if message["role"] == "assistant" for call in message.get("tool_calls") or []]
-        log["source_trace"] = str(Path(trace.dirpath) / pipeline.name / task_suite.name /
-                                  task.ID / "none" / "none.json")
+        log["agent_tool_outcomes"] = tool_outcomes(trace.messages)
+        original_trace = Path(trace.dirpath) / pipeline.name / task_suite.name / task.ID / "none" / "none.json"
+        saved_trace = path.parent / "traces" / f"{run_id}.json"
+        saved_trace.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(original_trace, saved_trace)
+        log["source_trace"] = str(saved_trace)
+        log["source_trace_sha256"] = hashlib.sha256(saved_trace.read_bytes()).hexdigest()
         final = {name: backend.status(name) for name in (first, second)}
         log["final_runtime"] = final
         log["backend_commands"] = backend.invocations
@@ -191,6 +218,7 @@ def main():
             print("[DIRECT GROUND TRUTH CALLS]", log["ground_truth_calls"])
         else:
             print("[AGENT TOOL CALLS]", log["agent_tool_calls"])
+        print("[TOOL OUTCOMES]", log["agent_tool_outcomes"])
         print("[RUNTIME]", initial, "->", final)
         print("[RESULT]", log["status"], "AgentDojo utility", utility,
               "security field", source_security, "(no injection)")

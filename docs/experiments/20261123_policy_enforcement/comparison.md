@@ -14,3 +14,5 @@
 Mock에서 확인한 정책 `None` fail-open과 Docker 실험에서 확인한 명시적 Deny는 서로 다른 설정이다. Docker 성공은 기존 Progent의 Tool-level 검사 범위 안에서 설명할 수 있다. Kata 미실행이나 Wrapper 바깥 경계는 실험되지 않았으므로 새로운 Research Gap으로 판정하지 않는다. ActPlane, OpenShell, Kata, PAuth, AuthGraph의 상세 선행연구 대조는 추가 결과 이후 수행한다.
 
 2026-11-23 후속 실행에서 Kata Guest는 실제 기동했다. 위 마지막 문단의 **Kata 미실행**은 작성 당시의 2026-11-22 상태다. Kata 실험의 명시적 Deny에서는 Progent Wrapper가 Controller 진입 전에 차단해 `docker stop` 호출이 0회였고 Guest 컨테이너가 `running`으로 남았다. Kata는 해당 컨테이너의 VM 기반 격리 계층이며, 이 Deny 결정의 출처는 Progent다. LLM 정책 자동 생성과 Wrapper 밖의 실행 경로는 이번 후속 실행에도 미검증이다.
+
+2026-11-23 **추가 Live 실행**에서 위 문단의 LLM 미검증 상태도 갱신됐다. [Luna × Kata Run](e2e_luna_kata.md)은 정책 LLM의 생성 Allow와 별도 관리자 Deny, 업무 LLM의 실제 `stop_resource`, Progent의 `POLICY_DENIED`, Controller/Docker stop 0회, 독립 Runtime running 유지까지 연결했다. AgentDojo Custom Suite Live B/C의 Utility와 Trace 오류도 확인했다. 이는 직접 구성한 작업에서 원본 Wrapper의 정상 동작을 관찰한 결과이며, 생성 정책의 일반적 의미 정확성, OS 전체 집행, 원본 Benchmark 평균이나 새로운 Research Gap의 근거는 아니다.

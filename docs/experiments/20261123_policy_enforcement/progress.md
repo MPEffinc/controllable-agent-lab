@@ -52,3 +52,7 @@ Phase 0은 읽기 전용 조사였다. Phase 1은 Mock Backend와 Wrapper 단위
 ## 2026-11-23 Stage B/C 후속 완료 상태
 
 위 표는 **Stage A 종료 시점**의 상태다. 사용자가 Root 스크립트를 직접 실행해 설치·Docker 재로드·Runtime 등록을 완료했다. Codex는 `--verify`, 실제 Kata Guest 커널 및 Shim/QEMU 프로세스, 종료·시작·재시작, Progent 수동 정책 6건, runc 회귀 6건, AgentDojo 오프라인 Kata A/B, 전체 단위 테스트 16건을 확인했다. 최종 Progent Kata Run `kata-20261123T004347Z-aa1064`는 6/6 PASS, `source_dirty=false`, 전용 리소스 정리 완료다. 원본 로그와 해석은 `kata_runtime_results.md`, `kata_results.md`에 있다. **새 LLM Live 정책 생성과 자율 Tool Call은 이번 Stage C에서 NOT RUN**이다.
+
+## 2026-11-23 Luna Live 후속 완료 상태
+
+위 Stage C NOT RUN은 해당 시점의 기록이다. 사용자 요청에 따라 이미 저장된 프로젝트 키를 값 비노출 검사로 확인하고 `gpt-6-luna` 정책·Agent Live 실행을 진행했다. Mock A와 Kata A~E Custom Runner는 6개 Run 모두 예상 결과와 일치했다. AgentDojo Custom Suite Live B/C는 각각 허용 stop Utility=True 및 명시적 Deny Utility=False를 원본 Trace와 독립 Runtime 상태로 재확인했다. 중간 실패 `dojo-20261123T013010Z-570998`는 Adapter `AttributeError`로 별도 기록했고, Source Trace 덮어쓰기 문제도 수정했다. 총 요청 원장은 58/60, 추정 예약액 USD 0.0902864다. 단위 테스트 20개 통과. 모든 실험 컨테이너 정리, 기존 SREGym 4개 유지. Run ID별 근거는 `e2e_luna_kata.md`와 `runs/live/luna_kata_20261123_summary.json`에 있다.

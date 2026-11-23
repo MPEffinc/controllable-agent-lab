@@ -56,3 +56,7 @@ Phase 0은 읽기 전용 조사였다. Phase 1은 Mock Backend와 Wrapper 단위
 ## 2026-11-23 Luna Live 후속 완료 상태
 
 위 Stage C NOT RUN은 해당 시점의 기록이다. 사용자 요청에 따라 이미 저장된 프로젝트 키를 값 비노출 검사로 확인하고 `gpt-6-luna` 정책·Agent Live 실행을 진행했다. Mock A와 Kata A~E Custom Runner는 6개 Run 모두 예상 결과와 일치했다. AgentDojo Custom Suite Live B/C는 각각 허용 stop Utility=True 및 명시적 Deny Utility=False를 원본 Trace와 독립 Runtime 상태로 재확인했다. 중간 실패 `dojo-20261123T013010Z-570998`는 Adapter `AttributeError`로 별도 기록했고, Source Trace 덮어쓰기 문제도 수정했다. 총 요청 원장은 58/60, 추정 예약액 USD 0.0902864다. 단위 테스트 20개 통과. 모든 실험 컨테이너 정리, 기존 SREGym 4개 유지. Run ID별 근거는 `e2e_luna_kata.md`와 `runs/live/luna_kata_20261123_summary.json`에 있다.
+
+## 2026-11-23 연구자 실습 가이드와 원본 로그 뷰어
+
+사용자가 직접 Live 실습용 추가 API 요청 20회를 승인해 기존 58회 원장을 보존하고 총 한도를 80회로 늘렸다. `view-run`은 원본 Progent stderr/AgentDojo Trace 파일을 읽기 전용으로 색 강조한다. `budget` 명령은 사용·잔여 요청 수와 로컬 추정 예약액을 보여 준다. 자유 한국어 요청을 Mock에서 실제 Luna 4요청으로 실행해 Run `luna-20261123T040307Z-7efae4`를 얻었고, Discovery·상태 조회가 성공했다. 자유 입력은 Utility를 `UNASSESSED`로 기록한다. 현재 **62/80**, 로컬 추정 예약액 USD 0.096489. 전체 구조·실행법·판정 경계는 `hands_on_guide.md`에 정리했다.

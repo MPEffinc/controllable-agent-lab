@@ -4,6 +4,8 @@
 
 프로젝트 `.env` 파일에 키를 보관하고 값을 출력하지 않는 설정 확인 명령은 [API 환경 설정](api_env.md)을 참조한다. 현재 시스템 관리 Live 실행기를 확인할 때는 `bash scripts/progent_vm.sh check-env`를 먼저 사용한다. 이 명령은 API를 호출하지 않는다.
 
+최신 **Mock·Docker·Kata와 Luna Custom Runner/AgentDojo Custom Suite**의 전체 실행 절차는 [Progent × AgentDojo × Kata 실습 가이드](hands_on_guide.md)를 따른다. 이 문서의 아래 Mode A/B는 과거 `vm_action` 실행기 안내로 보존한다.
+
 ## Mode A: API 없는 수동 대화형 시험
 
 ```bash

@@ -59,3 +59,7 @@ Controller Commit `fb8a3bb2f52601864ec71d25cb3b2290dc5bb3de`는 `DockerBackend(r
 위 58/60은 이전 상태다. 사용자가 추가 Live 실습용 **20요청**을 승인해 `MAX_REQUESTS=80`으로 변경했으며 기존 `local/progent-vm/luna_budget.json`을 초기화하지 않았다. `bash scripts/progent_vm.sh budget`가 현재 **62/80**, 추정 예약액 USD 0.096489를 표시한다. `view-run`은 원본 Progent stderr 조각과 Run별 AgentDojo Trace JSON을 읽기 전용으로 ANSI 색 강조한다. `--color never` 출력은 선택한 원문과 같고 색 코드 제거 테스트도 통과했다. 원본 파일과 원본 checker/TraceLogger 코드는 바꾸지 않았다. `hands_on_guide.md`를 먼저 읽고 API 없는 `manual`·`kata` 후 Luna Live로 넘어간다.
 
 새 `system-live --task`는 `{first}`·`{second}`를 실행 전용 리소스 ID로 치환하며 고정 A~E Utility를 적용하지 않고 `UNASSESSED`로 기록한다. 실제 Run `luna-20261123T040307Z-7efae4`는 한국어 요청, 모델 Discovery·상태 조회 Tool Call, 성공한 Mock 효과를 보여 준다. 원시 요청/응답은 ignored `local/`에 유지했고 Git에는 [검토된 투영](runs/live/luna_hands_on_20261123.json)만 넣는다. 현재 추가 API 호출은 남은 18회와 추정 USD 2 상한을 동시에 지켜야 하며 실제 청구액은 미확인이다. 이전 미추적 파일·원본 checkout·기존 SREGym 4개는 보존한다.
+
+## 후속 로그 계측 정정
+
+기존 `system-live`의 `administrator_policy`와 AgentDojo Live의 `admin_policy`는 원본 Progent가 생성 규칙을 같은 딕셔너리에 추가한 뒤 로그에서도 함께 보였다. 기존 로그·Run 투영은 보존하고 [Live 기록 정정](e2e_luna_kata.md#기존-live-로그의-관리자-정책-필드-정정)을 추가했다. 이후 Run은 초기 관리자 입력을 `copy.deepcopy`로 독립 기록한다. B/C의 실제 적용 정책·Tool 판정·Runtime 효과는 변경되지 않았다. [실습 가이드](hands_on_guide.md)에 A~E의 요청과 새 Tool·추가 파일의 전체 목록을 명시했다. 위 62/80·잔여 18회는 당시 스냅샷이며, 이 정정 시점에 읽기 전용 `budget` 명령은 66/80·잔여 14회를 표시했다. 후속 실행 전 다시 확인한다.

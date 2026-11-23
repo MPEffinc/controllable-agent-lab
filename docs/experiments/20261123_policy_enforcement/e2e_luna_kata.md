@@ -42,3 +42,7 @@ AgentDojo의 출력 `TASK_INCOMPLETE`는 사용자 종료 작업의 Utility=Fals
 ## 2026-11-23 직접 실습 준비 후 갱신
 
 위 58/60 상한은 당시 수치다. 사용자가 직접 실습용 **추가 20요청**을 승인해 기존 원장을 유지하고 총 상한만 80으로 늘렸다. `bash scripts/progent_vm.sh budget`가 현재 수치를 읽기 전용으로 표시한다. 신규 `view-run`은 저장된 원본 Progent stderr 조각이나 AgentDojo Run별 Trace를 ANSI 색으로 강조해 보여 주되, 색을 제거하면 원문이 그대로 복원된다. 자세한 사용법은 [실습 가이드](hands_on_guide.md)에 있다. 자유 한국어 요청의 실제 Mock Run `luna-20261123T040307Z-7efae4`는 [안전한 투영](runs/live/luna_hands_on_20261123.json)에 기록했다. Run 뒤 원장은 **62/80**, 로컬 추정 예약액 USD 0.096489다. 자유 입력 Utility는 미채점(`UNASSESSED`)이며 API/Tool/상태 증거는 그대로 남는다.
+
+## 기존 Live 로그의 관리자 정책 필드 정정
+
+기존 `local/progent-vm/live/*.json`의 `administrator_policy`와 AgentDojo Live의 `admin_policy`는 초기 관리자 입력의 불변 사본이 아니었다. Runner가 원본 `update_security_policy(manual)`에 넘긴 딕셔너리를 그대로 로그에도 붙였고, 원본 `generate_security_policy()`가 같은 객체에 priority 100 생성 규칙을 추가했다. 따라서 [기존 Run 투영](runs/live/luna_kata_20261123_summary.json)의 해당 필드에 생성 규칙까지 포함된다. **기존 필드를 관리자 단독 정책의 증거로 읽으면 안 된다.** B의 초기 관리자 입력은 `list_resources` priority 1 Allow, C는 여기에 대상 `stop_resource` priority 1 Deny를 더한 것이었다. `generated_policy`와 전체 적용 정책(`applied_policy` 또는 AgentDojo Run의 `policy`), Agent Tool Call, Progent 판정 및 Docker 상태 기록은 별개로 보존된다. 원시 기록은 고치지 않고 Runner의 후속 Run 기록을 깊은 복사로 수정했다. 이 정정은 과거 집행 결과를 재분류하지 않는다.

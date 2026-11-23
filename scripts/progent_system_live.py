@@ -1,6 +1,7 @@
 """Bounded Luna policy generation and agent tool calls against isolated resources."""
 
 import argparse
+import copy
 import contextlib
 import fcntl
 import io
@@ -206,7 +207,9 @@ def main():
         with contextlib.redirect_stderr(io.StringIO()) as init_output:
             core.update_security_policy(manual)
         log["source_policy_setup_stderr"] = init_output.getvalue()
-        log["administrator_policy"] = manual
+        # The original generator mutates the installed policy mapping in place.
+        # Preserve the trusted input separately from the later applied policy.
+        log["administrator_policy"] = copy.deepcopy(manual)
         log["policy_input"] = {"tools": core.get_available_tools(), "user_query": task,
                                 "system_prompt": core.get_SYS_PROMPT()}
         if args.verbose:

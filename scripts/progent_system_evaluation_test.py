@@ -91,14 +91,14 @@ class EvaluationTests(unittest.TestCase):
             self.assertEqual(os.environ["OPENAI_API_KEY"], "process-test-key")
             self.assertEqual(os.environ["OPENAI_BASE_URL"], "https://example.invalid/v1")
 
-    def test_request_budget_stops_at_sixty(self):
+    def test_request_budget_stops_at_eighty(self):
         with TemporaryDirectory() as directory:
             ledger = Path(directory) / "ledger.json"
-            ledger.write_text(json.dumps({"requests": 60, "reserved_usd": 0.1}))
+            ledger.write_text(json.dumps({"requests": 80, "reserved_usd": 0.1}))
             with patch.object(live, "LEDGER", ledger):
-                with self.assertRaisesRegex(RuntimeError, "60-request"):
+                with self.assertRaisesRegex(RuntimeError, "80-request"):
                     live.reserve({"model": "gpt-6-luna"}, 1024)
-            self.assertEqual(json.loads(ledger.read_text())["requests"], 60)
+            self.assertEqual(json.loads(ledger.read_text())["requests"], 80)
 
 
 if __name__ == "__main__":

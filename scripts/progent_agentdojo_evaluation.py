@@ -1,6 +1,7 @@
 """Original AgentDojo TaskSuite evaluation with a bounded Luna transport adapter."""
 
 import argparse
+import copy
 import contextlib
 import hashlib
 import io
@@ -164,7 +165,8 @@ def main():
             manual[{"status": "get_resource_status", "stop": "stop_resource"}[action]] = [(10, 0, scoped, 0)]
         with contextlib.redirect_stderr(io.StringIO()) as setup_output:
             core.update_security_policy(manual)
-        log["admin_policy"] = manual
+        # Source policy generation appends rules to the installed mapping.
+        log["admin_policy"] = copy.deepcopy(manual)
         log["policy_setup_stderr"] = setup_output.getvalue()
         log["task"] = prompt
         print("[RUN]", run_id, args.case, args.backend, log["mode"])

@@ -35,3 +35,11 @@ AgentDojo Suite를 Mock 및 Docker Controller에 연결했다. 최초 두 오프
 사용자가 이 개인 연구 서버에서 Root 설치를 직접 실행하기로 승인했다. Codex에는 sudo 인증이 없어 **Stage A만** 진행하며 `scripts/setup_kata_root.sh`와 `kata_root_setup.md`를 준비했다. 현재 Docker 서비스는 active/CanReload=yes, `/etc/docker/daemon.json`과 `/opt/kata`는 없고, 기존 컨테이너 4개가 실행 중이며 `live-restore=false`다. 스크립트 기본값은 `--check`; `--apply`는 공식 4.4.0 SHA 확인, `/opt/kata` 설치, Docker JSON의 `runtimes.kata` 병합·검증·백업, 서비스 **reload**를 수행한다. 기본 경로에서 restart하지 않는다. `--check`·`--dry-run`·병합 단위 테스트만 Codex가 실행했다. Root `--apply`와 실제 Kata Guest는 아직 NOT RUN이다.
 
 사용자가 프로젝트 루트에서 `sudo bash scripts/setup_kata_root.sh --apply`를 실행하면 결과 로그가 `/var/log/cclab-progent-kata-setup/`에 기록된다. 다음 세션은 로그 및 `bash scripts/setup_kata_root.sh --verify` 결과를 확인한 후 Stage C의 Kata Guest 기동과 Progent 실험을 이어간다. 설치 스크립트와 수동 복구 절차는 `kata_root_setup.md`에 있다. 기존 미추적 파일과 원본 checkout을 계속 보존한다.
+
+## 2026-11-23 Stage B/C 실행 후 현재 상태
+
+위 Stage A 계획은 완료됐다. 사용자가 Root `--apply`를 실행했고 `/var/log/cclab-progent-kata-setup/setup-20261123T003621Z-jYb5io.log`에서 SHA·설정 검증·Docker reload·Runtime 등록 성공을 확인했다. Docker 서비스 restart는 없었다. Codex가 전용 BusyBox Kata Guest를 실제 기동해 Guest `6.18.62`, Host `5.15.0-203-generic`, Shim/QEMU PID를 확인했다. Probe의 stop/start/restart를 확인한 후 Probe만 정리했다.
+
+Controller Commit `fb8a3bb2f52601864ec71d25cb3b2290dc5bb3de`는 `DockerBackend(runtime="runc"|"kata")`를 지원한다. 최종 직접 Harness `bash scripts/progent_vm.sh kata`의 Run `kata-20261123T004347Z-aa1064`는 6/6 PASS이며 [전체 JSON](runs/kata/kata-20261123T004347Z-aa1064.json)에 정책·Controller/Docker 호출·독립 상태·Guest 증거가 있다. 명시적 stop Deny는 Controller 0, Docker 0, running 유지였다. runc 회귀 6/6와 AgentDojo Kata 오프라인 A/B Utility True도 별도 JSON에 있다. 모든 실험 Label 리소스는 정리했고 원래 SREGym 4개는 실행 중이다.
+
+다음 세션은 **이 직접 Harness와 오프라인 GroundTruth를 LLM Live라고 소개하지 말 것**. 이번 Stage C에서 새 API 호출·정책 자동 생성·모델 제안 Tool Call은 0회다. Kata VM 격리와 Progent Tool Wrapper 판정도 별도 계층이다. 실제 SSH/Proxmox, OS 전역 정책 집행, Wrapper 밖 실행 경로는 미검증이다. 새 연구 공백은 확정하지 않았다. 현재 Git SHA와 후속 문서 Commit/Push 상태를 확인한 뒤 Live 테스트가 필요한지 연구자와 결정한다.

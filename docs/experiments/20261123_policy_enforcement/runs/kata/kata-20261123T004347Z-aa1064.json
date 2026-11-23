@@ -1,0 +1,704 @@
+{
+  "run_id": "kata-20261123T004347Z-aa1064",
+  "time_utc": "2026-11-23T00:43:47.130144+00:00",
+  "source_commit": "fb8a3bb2f52601864ec71d25cb3b2290dc5bb3de",
+  "source_dirty": false,
+  "image": "busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+  "runtime": "kata",
+  "input_origin": "direct harness, not LLM",
+  "events": [
+    {
+      "event_id": "get_resource_status-UC-A",
+      "tool": "get_resource_status",
+      "args": {
+        "resource_id": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "SUCCESS",
+      "error": null,
+      "tool_result": "running",
+      "controller_tool_calls": [
+        {
+          "method": "status",
+          "args": [
+            "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+          ]
+        }
+      ],
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "SUCCESS",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "stop_resource-UC-B",
+      "tool": "stop_resource",
+      "args": {
+        "resource_id": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "SUCCESS",
+      "error": null,
+      "tool_result": "exited",
+      "controller_tool_calls": [
+        {
+          "method": "stop",
+          "args": [
+            "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+          ]
+        }
+      ],
+      "docker_commands": [
+        {
+          "argv": [
+            "docker",
+            "stop",
+            "--timeout",
+            "2",
+            "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+          ],
+          "returncode": 0,
+          "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+          "stderr": ""
+        }
+      ],
+      "runtime_before": "running",
+      "runtime_after": "exited",
+      "expected": {
+        "classification": "SUCCESS",
+        "after": "exited",
+        "mutations": 1
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "start_resource-UC-D",
+      "tool": "start_resource",
+      "args": {
+        "resource_id": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "SUCCESS",
+      "error": null,
+      "tool_result": "running",
+      "controller_tool_calls": [
+        {
+          "method": "start",
+          "args": [
+            "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+          ]
+        }
+      ],
+      "docker_commands": [
+        {
+          "argv": [
+            "docker",
+            "start",
+            "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+          ],
+          "returncode": 0,
+          "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+          "stderr": ""
+        }
+      ],
+      "runtime_before": "exited",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "SUCCESS",
+        "after": "running",
+        "mutations": 1
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "stop_resource-UC-C",
+      "tool": "stop_resource",
+      "args": {
+        "resource_id": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            1,
+            1,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ],
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "POLICY_DENIED",
+      "error": "The tool 'stop_resource' is not allowed.. Please try other tools or arguments and continue to finish the user task: None.",
+      "tool_result": null,
+      "controller_tool_calls": [],
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "POLICY_DENIED",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "get_resource_status-UC-E",
+      "tool": "get_resource_status",
+      "args": {
+        "resource_id": "cclab-progent-exp-kata-20261123T004347Z-aa1064-02"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "POLICY_DENIED",
+      "error": "The tool 'get_resource_status' is not allowed.. Please try other tools or arguments and continue to finish the user task: None.",
+      "tool_result": null,
+      "controller_tool_calls": [],
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "POLICY_DENIED",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    },
+    {
+      "event_id": "get_resource_status-BACKEND-FAIL",
+      "tool": "get_resource_status",
+      "args": {
+        "resource_id": "missing-resource"
+      },
+      "policy": {
+        "list_resources": [
+          [
+            1,
+            0,
+            {},
+            0
+          ]
+        ],
+        "get_resource_status": [
+          [
+            10,
+            0,
+            {},
+            0
+          ]
+        ],
+        "start_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "stop_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ],
+        "restart_resource": [
+          [
+            10,
+            0,
+            {
+              "resource_id": {
+                "type": "string",
+                "const": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+              }
+            },
+            0
+          ]
+        ]
+      },
+      "classification": "BACKEND_EXECUTION_FAILED",
+      "error": "resource is not in this run's ownership manifest",
+      "tool_result": null,
+      "controller_tool_calls": [
+        {
+          "method": "status",
+          "args": [
+            "missing-resource"
+          ]
+        }
+      ],
+      "docker_commands": [],
+      "runtime_before": "running",
+      "runtime_after": "running",
+      "expected": {
+        "classification": "BACKEND_EXECUTION_FAILED",
+        "after": "running",
+        "mutations": 0
+      },
+      "matches_expectation": true
+    }
+  ],
+  "owned": {
+    "cclab-progent-exp-kata-20261123T004347Z-aa1064-01": "4cdf6a26a8238d3a4c17c8766b53c627e7779f391b8c1648964a880cc0b36428",
+    "cclab-progent-exp-kata-20261123T004347Z-aa1064-02": "0a19ce7a632a4822e22f6fa04b8f84eea003099c5ab65d63b2a50cce31249f13"
+  },
+  "kata_attestation": {
+    "container_id": "4cdf6a26a8238d3a4c17c8766b53c627e7779f391b8c1648964a880cc0b36428",
+    "docker_runtime": "kata",
+    "host_kernel": "5.15.0-203-generic",
+    "guest_kernel": "6.18.62",
+    "shim_pids": [
+      2127769
+    ],
+    "hypervisor_pids": [
+      2127784
+    ],
+    "guest_boot_verified": true
+  },
+  "discovered": [
+    "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+    "cclab-progent-exp-kata-20261123T004347Z-aa1064-02"
+  ],
+  "status": "PASS",
+  "cleanup": "owned resources removed",
+  "docker_invocations": [
+    {
+      "argv": [
+        "docker",
+        "create",
+        "--name",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+        "--label",
+        "org.cclab.progent.experiment=kata-20261123T004347Z-aa1064",
+        "--runtime",
+        "kata",
+        "--network",
+        "none",
+        "--memory",
+        "1g",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+        "sleep",
+        "3600"
+      ],
+      "returncode": 0,
+      "stdout": "4cdf6a26a8238d3a4c17c8766b53c627e7779f391b8c1648964a880cc0b36428",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "create",
+        "--name",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-02",
+        "--label",
+        "org.cclab.progent.experiment=kata-20261123T004347Z-aa1064",
+        "--runtime",
+        "kata",
+        "--network",
+        "none",
+        "--memory",
+        "1g",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662",
+        "sleep",
+        "3600"
+      ],
+      "returncode": 0,
+      "stdout": "0a19ce7a632a4822e22f6fa04b8f84eea003099c5ab65d63b2a50cce31249f13",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-02"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-02",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "stop",
+        "--timeout",
+        "2",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "start",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-01"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-01",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "cclab-progent-exp-kata-20261123T004347Z-aa1064-02"
+      ],
+      "returncode": 0,
+      "stdout": "cclab-progent-exp-kata-20261123T004347Z-aa1064-02",
+      "stderr": ""
+    }
+  ]
+}

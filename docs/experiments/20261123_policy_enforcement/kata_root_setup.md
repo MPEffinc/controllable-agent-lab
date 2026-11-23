@@ -1,5 +1,7 @@
 # Kata 4.4.0 관리자 설치 절차 — Stage A 준비 결과
 
+> 이 문서의 앞부분은 적용 전 검토 기록이다. 사용자의 실제 설치 성공은 끝의 **Stage B 적용 완료** 절에 기록했다.
+
 2026-11-23 UTC. 이 문서는 **사용자가 실행하기 전 검토할 관리자 작업**을 설명한다. Codex는 Root 설치를 실행하지 않았다. 현재 `/opt/kata`와 `/etc/docker/daemon.json`은 없고, Docker 28.3.2에는 `kata` runtime이 등록되지 않았다. Docker 컨테이너 4개가 실행 중이며 모두 restart policy `on-failure`, `live-restore=false`다. `/dev/kvm` 접근은 가능하다. 원본 Progent와 기존 컨테이너는 변경하지 않았다.
 
 ## 검토와 실행
@@ -49,3 +51,9 @@ Kata [공식 설치 문서](https://github.com/kata-containers/kata-containers/b
 - `bash scripts/setup_kata_root.sh --verify`: 설치 전 예상대로 exit 1, `Kata shim, configuration, guest kernel or image missing`.
 
 사용자의 `sudo ... --apply` 결과가 로그에 저장된 후 일반 사용자 권한으로 Docker `kata` 등록, 실제 Guest `uname -r`, Host/Guest 커널 차이, Shim/QEMU 프로세스, 종료·시작·재시작을 확인한다. 그다음 **이 실험에서 생성한 리소스만** 대상으로 Progent Controller의 `runc`/`kata` 선택과 Allow/Deny 및 독립적인 Docker 상태 검증을 수행한다. 그 전까지 Kata Guest 기동과 Progent×Kata 결과는 **NOT RUN**이다.
+
+## 2026-11-23 후속 결과 — Stage B 적용 완료
+
+위 내용은 **설치 전 Stage A 기록**이다. 사용자가 `sudo bash scripts/setup_kata_root.sh --apply`를 직접 실행했다. Root 로그는 `/var/log/cclab-progent-kata-setup/setup-20261123T003621Z-jYb5io.log`이며, 공식 SHA-256 대조, `/opt/kata` 설치, Docker 후보 설정 `dockerd --validate`, `/etc/docker/daemon.json` 작성, `systemctl reload docker`가 모두 exit 0이다. 마지막 줄은 `[PASS] kata runtime active after reload`다. 이전 `daemon.json`은 없었으므로 기존 파일 백업은 없고 복구 절차는 위 문단에 기록했다. Docker **restart는 실행되지 않았다**. 일반 사용자 `--verify`에서도 Shim 4.4.0과 활성 Runtime을 확인했으며, Root 전용 `daemon.json`의 재검증은 설치 로그의 `dockerd --validate` 결과를 사용한다.
+
+실제 Guest 기동과 정책 실험 결과는 [Kata Runtime 후속 기록](kata_runtime_results.md)과 [Kata 정책 결과](kata_results.md)에 있다. 설치 성공과 Guest 실행 성공을 별도 단계로 기록했다.

@@ -48,3 +48,7 @@ Phase 0은 읽기 전용 조사였다. Phase 1은 Mock Backend와 Wrapper 단위
 | A. Root 설치 절차 준비 | DONE | `setup_kata_root.sh`, strict JSON 병합 Helper·테스트, `kata_root_setup.md`; read-only 검사·후보 Docker config validation 통과 |
 | B. 사용자 Root 적용 | NOT RUN | 사용자 터미널의 `sudo bash scripts/setup_kata_root.sh --apply` 필요. Codex는 sudo 인증 없이 시스템 변경하지 않음 |
 | C. Guest/Progent 실험 | NOT RUN | B 로그와 Runtime 등록을 확인한 후 실제 워크로드·Allow/Deny·독립 상태 관측 진행 |
+
+## 2026-11-23 Stage B/C 후속 완료 상태
+
+위 표는 **Stage A 종료 시점**의 상태다. 사용자가 Root 스크립트를 직접 실행해 설치·Docker 재로드·Runtime 등록을 완료했다. Codex는 `--verify`, 실제 Kata Guest 커널 및 Shim/QEMU 프로세스, 종료·시작·재시작, Progent 수동 정책 6건, runc 회귀 6건, AgentDojo 오프라인 Kata A/B, 전체 단위 테스트 16건을 확인했다. 최종 Progent Kata Run `kata-20261123T004347Z-aa1064`는 6/6 PASS, `source_dirty=false`, 전용 리소스 정리 완료다. 원본 로그와 해석은 `kata_runtime_results.md`, `kata_results.md`에 있다. **새 LLM Live 정책 생성과 자율 Tool Call은 이번 Stage C에서 NOT RUN**이다.

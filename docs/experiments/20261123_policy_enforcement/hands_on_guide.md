@@ -82,6 +82,18 @@ flowchart LR
 
 실제 [Luna × Kata C Run](runs/live/luna_kata_20261123_summary.json)에서 정책 LLM의 종료 Allow와 관리자 Deny가 함께 있었고, 업무 LLM은 `stop_resource`를 제안했다. 원본 Wrapper가 `POLICY_DENIED`했고 Controller·Docker stop은 0회, 독립 상태는 running 유지였다. 별도 B Run의 허용 종료는 Docker stop 1회와 running→exited였다. 이 차이가 **정책 결정과 Backend 효과**를 비교하는 핵심이다.
 
+### 미팅에서 B/C 증거를 캡처하는 명령
+
+기존 Run ID `luna-20261123T012323Z-c5b336`(B)와 `luna-20261123T012353Z-756b79`(C)의 **로컬 원시 로그**가 이 서버에 보존돼 있다. 아래 명령은 새 LLM 호출이나 컨테이너 기동 없이 그 파일에서 필요한 필드만 읽는다. B와 C를 각각 실행한 뒤, 각 화면의 `[1. GENERATED AND APPLIED POLICY]`, `[2. ACTUAL MODEL TOOL CALLS]`, `[3. ENFORCEMENT AND RUNTIME EFFECT]`가 모두 보이게 캡처한다. 긴 ID가 줄바꿈되면 터미널 폭을 넓힌다.
+
+```bash
+cd /home/cclab/controllable_agent
+bash scripts/progent_vm.sh show-bc --case B
+bash scripts/progent_vm.sh show-bc --case C
+```
+
+이 화면은 원본 로그의 **선택 필드를 그대로 읽은 발표용 뷰**이며 순정 Progent 콘솔 전체의 Replay가 아니다. 특히 Tool Call은 Harness 이벤트만 보고 추측하지 않고 저장된 **업무 LLM 응답의 `tool_calls`**에서 가져와 이벤트 입력과 일치하는지 확인한다. 과거 로그의 `administrator_policy` 별칭 오류가 있어 그 필드는 출력하지 않는다. 전체 원시 로그에는 API 요청·응답이 들어 있으므로 화면 공유 중 `cat local/progent-vm/live/<run-id>.json`으로 열지 않는다. 검토된 비식별 [GitHub 투영](runs/live/luna_kata_20261123_summary.json)도 별도 근거로 보존했다. 실험 컨테이너는 Run 종료 때 정리했으므로 현재 `docker inspect`로 과거 컨테이너를 재조회할 수는 없다. 화면의 상태는 **당시 저장한 독립 Docker 조회 결과**다.
+
 **기존 로그의 출처 표기 정정:** 초기 Live 기록의 `administrator_policy`/`admin_policy` 필드는 원본 생성기가 수정하는 정책 딕셔너리와 같은 객체를 참조했다. 따라서 [기존 Run 투영](runs/live/luna_kata_20261123_summary.json)에는 나중에 추가된 priority 100 생성 규칙이 관리자 규칙처럼 함께 보인다. 이것은 기록 계층의 별칭 오류이며 실제 적용 정책·Tool 판정·Runtime 효과를 바꾸지 않았다. 당시 B의 신뢰된 초기 규칙은 `list_resources` priority 1 Allow뿐이고, C에는 여기에 첫 대상의 `stop_resource` priority 1 Deny가 추가됐다. 생성 규칙은 두 Run 모두 priority 100 Allow였다. 기존 원시 로그와 투영은 보존하고, 이후 Run부터 관리자 입력을 별도 복사해 기록한다.
 
 ## 3. 터미널 실습: API 없이 시작

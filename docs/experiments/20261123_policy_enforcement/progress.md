@@ -40,3 +40,11 @@ Phase 0은 읽기 전용 조사였다. Phase 1은 Mock Backend와 Wrapper 단위
 | 12. 최종 Commit/Push | DONE | Stage 0 `30dc1d3`, 평가기 `d2423c3`, Kata `9f0ad09`, AgentDojo `9225a1e`, 회귀·요약 `9c4866e`를 push하고 원격 SHA를 확인. 이 최종 상태 갱신도 별도 push 확인 예정 |
 
 이 표의 DONE은 해당 괄호에 적힌 실험 종류에 한정된다. API 키나 권한을 임의 생성하거나 우회하지 않았다.
+
+## 2026-11-23 Kata 관리자 설치 단계
+
+| Stage | 상태 | 근거 |
+| --- | --- | --- |
+| A. Root 설치 절차 준비 | DONE | `setup_kata_root.sh`, strict JSON 병합 Helper·테스트, `kata_root_setup.md`; read-only 검사·후보 Docker config validation 통과 |
+| B. 사용자 Root 적용 | NOT RUN | 사용자 터미널의 `sudo bash scripts/setup_kata_root.sh --apply` 필요. Codex는 sudo 인증 없이 시스템 변경하지 않음 |
+| C. Guest/Progent 실험 | NOT RUN | B 로그와 Runtime 등록을 확인한 후 실제 워크로드·Allow/Deny·독립 상태 관측 진행 |

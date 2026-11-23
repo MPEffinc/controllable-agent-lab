@@ -29,3 +29,9 @@ Phase 1 이후에는 각 실행 ID마다 정책·Agent 제안/직접 Harness 입
 AgentDojo Suite를 Mock 및 Docker Controller에 연결했다. 최초 두 오프라인 실행은 `make_function`의 필수 인자 스키마가 비어 `TypeError`가 났고, `:param resource_id:` 문서화로 수정했다. 이후 GroundTruth 직접 호출 Mock A/B, Docker A/B가 모두 Utility=True; Docker B는 독립 inspect에서 running→exited였다. 새 `bash scripts/progent_vm.sh agentdojo --backend docker --case A --offline-ground-truth`는 **LLM 없는 진단**이다. `--offline-ground-truth` 없이 실행하면 Luna 기반 원본 AgentDojo Pipeline을 사용하도록 준비했지만 인증 부재로 미실행이다. 원본 Benchmark 전체 평균으로 해석하지 않는다.
 
 원본 Progent와 AgentDojo checkout은 clean pin 그대로다. 기존 `docs/guided_reproduction_20261117/`와 미추적 `scripts/progent_demo*`, `progent_live*`, `progent_guided_effect.py`는 보존한다. 자세한 현재 12개 완료 판정, 회귀 테스트, 미팅 설명은 `regression_results.md`와 `meeting_20261123_final.md`를 참조한다. 새 key 또는 cgroup 위임이 제공되면 각 Run ID별 생성 정책·실제 모델 Tool Call·원본 판정·Controller 진입·독립 Runtime 상태를 다시 확인해야 한다.
+
+## 2026-11-23 Kata 관리자 설치 Stage A
+
+사용자가 이 개인 연구 서버에서 Root 설치를 직접 실행하기로 승인했다. Codex에는 sudo 인증이 없어 **Stage A만** 진행하며 `scripts/setup_kata_root.sh`와 `kata_root_setup.md`를 준비했다. 현재 Docker 서비스는 active/CanReload=yes, `/etc/docker/daemon.json`과 `/opt/kata`는 없고, 기존 컨테이너 4개가 실행 중이며 `live-restore=false`다. 스크립트 기본값은 `--check`; `--apply`는 공식 4.4.0 SHA 확인, `/opt/kata` 설치, Docker JSON의 `runtimes.kata` 병합·검증·백업, 서비스 **reload**를 수행한다. 기본 경로에서 restart하지 않는다. `--check`·`--dry-run`·병합 단위 테스트만 Codex가 실행했다. Root `--apply`와 실제 Kata Guest는 아직 NOT RUN이다.
+
+사용자가 프로젝트 루트에서 `sudo bash scripts/setup_kata_root.sh --apply`를 실행하면 결과 로그가 `/var/log/cclab-progent-kata-setup/`에 기록된다. 다음 세션은 로그 및 `bash scripts/setup_kata_root.sh --verify` 결과를 확인한 후 Stage C의 Kata Guest 기동과 Progent 실험을 이어간다. 설치 스크립트와 수동 복구 절차는 `kata_root_setup.md`에 있다. 기존 미추적 파일과 원본 checkout을 계속 보존한다.

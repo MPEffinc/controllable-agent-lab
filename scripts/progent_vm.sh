@@ -15,5 +15,5 @@ case "${1:-}" in
   kata) shift; exec "$PYTHON" -m scripts.progent_docker_experiment --runtime kata "$@" ;;
   view-run) shift; exec "$PYTHON" -m scripts.progent_log_view "$@" ;;
   show-bc) shift; exec "$PYTHON" -m scripts.progent_bc_evidence "$@" ;;
-  *) printf 'Usage: bash scripts/progent_vm.sh check-env [--env-file PATH] | budget | view-run RUN_ID [--section source|trace] [--color auto|always|never] | show-bc [--case B|C|both] | manual | live [options] | docker | kata | system-live --backend mock|docker|kata --case A|B|C|D|E [options] | agentdojo --backend mock|docker|kata --case A|B|C|D [--offline-ground-truth]\n' >&2; exit 2 ;;
+  *) printf 'Usage: bash scripts/progent_vm.sh check-env [--env-file PATH] | budget | view-run RUN_ID [--section source|trace] [--color auto|always|never] | show-bc [--case B|C|both] [--verbose] | manual | live [options] | docker | kata | system-live --backend mock|docker|kata --case A|B|C|D|E [options] | agentdojo --backend mock|docker|kata --case A|B|C|D [--offline-ground-truth]\n' >&2; exit 2 ;;
 esac

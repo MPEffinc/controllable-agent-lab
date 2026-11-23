@@ -84,7 +84,7 @@ flowchart LR
 
 ### 미팅에서 B/C 증거를 캡처하는 명령
 
-기존 Run ID `luna-20261123T012323Z-c5b336`(B)와 `luna-20261123T012353Z-756b79`(C)의 **로컬 원시 로그**가 이 서버에 보존돼 있다. 아래 명령은 새 LLM 호출이나 컨테이너 기동 없이 그 파일에서 필요한 필드만 읽는다. B와 C를 각각 실행한 뒤, 각 화면의 `[1. GENERATED AND APPLIED POLICY]`, `[2. ACTUAL MODEL TOOL CALLS]`, `[3. ENFORCEMENT AND RUNTIME EFFECT]`가 모두 보이게 캡처한다. 긴 ID가 줄바꿈되면 터미널 폭을 넓힌다.
+기존 Run ID `luna-20261123T012323Z-c5b336`(B)와 `luna-20261123T012353Z-756b79`(C)의 **로컬 원시 로그**가 이 서버에 보존돼 있다. 아래 명령은 새 LLM 호출이나 컨테이너 기동 없이 그 파일에서 필요한 필드만 읽는다. B와 C를 각각 실행한 뒤, 각 화면의 `[USER TASK]`, `[1. POLICY GENERATION AND APPLIED POLICY]`, `[2. ACTUAL MODEL TOOL CALLS]`, `[3. TOOL EXECUTION AND RUNTIME EFFECT]`를 확인한다. 화면이 길면 정책 생성, Tool Call, 집행·상태를 나눠 캡처하고 각 캡처에 Run ID를 남긴다. 긴 ID가 줄바꿈되면 터미널 폭을 넓힌다.
 
 ```bash
 cd /home/cclab/controllable_agent
@@ -92,7 +92,9 @@ bash scripts/progent_vm.sh show-bc --case B
 bash scripts/progent_vm.sh show-bc --case C
 ```
 
-이 화면은 원본 로그의 **선택 필드를 그대로 읽은 발표용 뷰**이며 순정 Progent 콘솔 전체의 Replay가 아니다. 특히 Tool Call은 Harness 이벤트만 보고 추측하지 않고 저장된 **업무 LLM 응답의 `tool_calls`**에서 가져와 이벤트 입력과 일치하는지 확인한다. 과거 로그의 `administrator_policy` 별칭 오류가 있어 그 필드는 출력하지 않는다. 전체 원시 로그에는 API 요청·응답이 들어 있으므로 화면 공유 중 `cat local/progent-vm/live/<run-id>.json`으로 열지 않는다. 검토된 비식별 [GitHub 투영](runs/live/luna_kata_20261123_summary.json)도 별도 근거로 보존했다. 실험 컨테이너는 Run 종료 때 정리했으므로 현재 `docker inspect`로 과거 컨테이너를 재조회할 수는 없다. 화면의 상태는 **당시 저장한 독립 Docker 조회 결과**다.
+이 화면은 **우리가 만든 Custom Runner 원시 JSON의 필드를 시간 순서로 표시한 뷰**이며 순정 Progent/AgentDojo 콘솔 로그가 아니다. 사용자 요청, 정책 LLM에 보낸 요청·Tool 이름, 정책 LLM의 원문 응답, 원본 Progent의 정책 설정·갱신 stderr, 실제 적용 정책, 업무 LLM 응답의 Tool Call, Schema 검사·Wrapper 결과·Tool 응답, Controller/Docker 명령, 최종 상태를 구분해 보여준다. 특히 Tool Call은 Harness 이벤트만 보고 추측하지 않고 저장된 **업무 LLM 응답의 `tool_calls`**에서 가져와 이벤트 입력과 일치하는지 확인한다. 과거 로그의 `administrator_policy` 별칭 오류가 있어 그 필드는 출력하지 않는다. 전체 원시 로그에는 API 요청·응답이 들어 있으므로 화면 공유 중 `cat local/progent-vm/live/<run-id>.json`으로 열지 않는다. 검토된 비식별 [GitHub 투영](runs/live/luna_kata_20261123_summary.json)도 별도 근거로 보존했다. 실험 컨테이너는 Run 종료 때 정리했으므로 현재 `docker inspect`로 과거 컨테이너를 재조회할 수는 없다. 화면의 상태는 **당시 저장한 독립 Docker 조회 결과**다.
+
+정책 LLM의 **전체 시스템 프롬프트, Tool Schema, 원본 Progent stderr 전문**까지 읽어야 한다면 `bash scripts/progent_vm.sh show-bc --case C --verbose`를 쓴다. 프롬프트가 길어 미팅 화면보다 사후 코드 분석에 적합하다. 출처를 바꾸지 않은 원본 stderr 구간만 보려면 `bash scripts/progent_vm.sh view-run luna-20261123T012353Z-756b79 --section source --color never`를 쓴다. 이 구간에는 정책 생성·갱신이 있지만 업무 모델 Tool Call과 Docker 효과는 없으므로 두 기록을 함께 읽어야 전체 체인이 된다.
 
 **기존 로그의 출처 표기 정정:** 초기 Live 기록의 `administrator_policy`/`admin_policy` 필드는 원본 생성기가 수정하는 정책 딕셔너리와 같은 객체를 참조했다. 따라서 [기존 Run 투영](runs/live/luna_kata_20261123_summary.json)에는 나중에 추가된 priority 100 생성 규칙이 관리자 규칙처럼 함께 보인다. 이것은 기록 계층의 별칭 오류이며 실제 적용 정책·Tool 판정·Runtime 효과를 바꾸지 않았다. 당시 B의 신뢰된 초기 규칙은 `list_resources` priority 1 Allow뿐이고, C에는 여기에 첫 대상의 `stop_resource` priority 1 Deny가 추가됐다. 생성 규칙은 두 Run 모두 priority 100 Allow였다. 기존 원시 로그와 투영은 보존하고, 이후 Run부터 관리자 입력을 별도 복사해 기록한다.
 
@@ -165,6 +167,13 @@ bash scripts/progent_vm.sh view-run dojo-20261123T013118Z-e697ae --section trace
 ```
 
 `source`는 Adapter가 보존한 원본 Progent stderr 구간을 이어 보여준다. 원본 프로그램 **전체** 실행 로그를 재구성하는 것은 아니다. `trace`는 AgentDojo `TraceLogger`가 저장한 **Run ID별 원본 JSON**이다. 초기 AgentDojo 실행 몇 건은 과거 공통 `none.json` 덮어쓰기 문제가 있어 `view-run`이 해당 Trace를 거부한다. 새 Run은 `local/progent-vm/agentdojo/traces/<run-id>.json`에 보존된다. Model API 요청·응답 전문은 별도의 ignored `local/` 원시 로그에 있고 Git에 포함하지 않는다. 색은 화면 표시에만 적용되며 원본 Trace나 Progent 판정은 변경하지 않는다.
+
+| 명령·파일 | 원본 여부와 포함 범위 |
+| --- | --- |
+| `show-bc` | **발표용 재구성 뷰.** Custom Runner 원시 JSON에서 각 단계의 선택 필드를 출력한다. 순정 Progent/AgentDojo의 원본 단일 로그가 아니다. |
+| `view-run <luna-id> --section source --color never` | 저장된 **원본 Progent stderr 구간의 원문**. 정책 생성·갱신은 보이지만 업무 Agent 호출·Docker 결과는 별도 Runner JSON에 있다. |
+| `view-run <dojo-id> --section trace --color never` | **원본 AgentDojo TraceLogger JSON**을 Run별로 복사해 둔 원문. `dojo-*`는 위 `luna-*`와 별개의 Custom Suite 실행이다. |
+| `local/progent-vm/live/<run-id>.json` | 우리가 만든 Custom Runner의 **원시 실행 기록**. API 요청·응답, 정책, Tool 이벤트, Runtime 상태를 담지만 순정 Benchmark 출력은 아니며 Git에 넣지 않는다. |
 
 ## 6. 무엇을 바꿔 볼 수 있고, 어디까지 알 수 있는가
 

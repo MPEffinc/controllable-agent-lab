@@ -43,3 +43,7 @@ AgentDojo Suite를 Mock 및 Docker Controller에 연결했다. 최초 두 오프
 Controller Commit `fb8a3bb2f52601864ec71d25cb3b2290dc5bb3de`는 `DockerBackend(runtime="runc"|"kata")`를 지원한다. 최종 직접 Harness `bash scripts/progent_vm.sh kata`의 Run `kata-20261123T004347Z-aa1064`는 6/6 PASS이며 [전체 JSON](runs/kata/kata-20261123T004347Z-aa1064.json)에 정책·Controller/Docker 호출·독립 상태·Guest 증거가 있다. 명시적 stop Deny는 Controller 0, Docker 0, running 유지였다. runc 회귀 6/6와 AgentDojo Kata 오프라인 A/B Utility True도 별도 JSON에 있다. 모든 실험 Label 리소스는 정리했고 원래 SREGym 4개는 실행 중이다.
 
 다음 세션은 **이 직접 Harness와 오프라인 GroundTruth를 LLM Live라고 소개하지 말 것**. 이번 Stage C에서 새 API 호출·정책 자동 생성·모델 제안 Tool Call은 0회다. Kata VM 격리와 Progent Tool Wrapper 판정도 별도 계층이다. 실제 SSH/Proxmox, OS 전역 정책 집행, Wrapper 밖 실행 경로는 미검증이다. 새 연구 공백은 확정하지 않았다. 현재 Git SHA와 후속 문서 Commit/Push 상태를 확인한 뒤 Live 테스트가 필요한지 연구자와 결정한다.
+
+## API 환경 파일 준비
+
+연구자 요청에 따라 `scripts/progent_vm.sh check-env`와 `api_env.md`를 추가했다. 기존 `local/progent-vm/.env`는 **존재 여부만** 확인했고 값은 읽거나 출력하지 않았다. 이 파일은 Git에서 제외된다. 연구자가 키를 직접 입력한 후 `check-env`는 내부적으로 비어 있지 않은지만 검사해 PRESENT/ABSENT를 출력한다. 이 명령은 API 요청 0회이며 인증 유효성·모델 접근은 검증하지 않는다. 이 단계에서 Codex는 Live 실행을 시작하지 않았다.

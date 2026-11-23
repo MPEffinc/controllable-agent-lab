@@ -29,6 +29,8 @@ def tool_outcomes(messages):
         else:
             classification = "TOOL_ERROR"
         call = message.get("tool_call") or {}
+        if hasattr(call, "model_dump"):
+            call = call.model_dump()
         result.append({"tool": call.get("function"), "args": call.get("args"),
                        "classification": classification,
                        "error_type": error.split(":", 1)[0] if error else None})

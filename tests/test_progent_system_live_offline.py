@@ -18,13 +18,18 @@ class LiveOfflineTest(unittest.TestCase):
             backend.restart("lab-vm-01")
         self.assertEqual(backend.start("lab-vm-01"), "running")
 
-    def test_global_request_ledger_stops_at_sixty(self):
+    def test_global_request_ledger_stops_at_user_approved_eighty(self):
         with tempfile.TemporaryDirectory() as directory:
             with patch.object(progent_system_live, "LEDGER", Path(directory) / "budget.json"):
-                for _ in range(60):
+                for _ in range(80):
                     progent_system_live.reserve({"messages": [{"content": "test"}]}, 1024)
                 with self.assertRaises(RuntimeError):
                     progent_system_live.reserve({"messages": [{"content": "test"}]}, 1024)
+
+    def test_custom_task_placeholders(self):
+        self.assertEqual(progent_system_live.render_custom_task(
+            "Check {first}, then compare {second}", "owned-01", "owned-02"),
+            "Check owned-01, then compare owned-02")
 
 
 if __name__ == "__main__":

@@ -7,10 +7,12 @@ export PYTHONPATH=.
 case "${1:-}" in
   manual) exec "$PYTHON" -m scripts.progent_vm_manual ;;
   check-env) shift; exec "$PYTHON" -m scripts.progent_api_env_check "$@" ;;
+  budget) shift; exec "$PYTHON" -m scripts.progent_budget_status "$@" ;;
   live) shift; exec "$PYTHON" -m scripts.progent_vm_live "$@" ;;
   system-live) shift; exec "$PYTHON" -m scripts.progent_system_live "$@" ;;
   agentdojo) shift; exec "$PYTHON" -m scripts.progent_agentdojo_evaluation "$@" ;;
   docker) shift; exec "$PYTHON" -m scripts.progent_docker_experiment --runtime runc "$@" ;;
   kata) shift; exec "$PYTHON" -m scripts.progent_docker_experiment --runtime kata "$@" ;;
-  *) printf 'Usage: bash scripts/progent_vm.sh check-env [--env-file PATH] | manual | live [options] | docker | kata | system-live --backend mock|docker|kata --case A|B|C|D|E [options] | agentdojo --backend mock|docker|kata --case A|B|C|D [--offline-ground-truth]\n' >&2; exit 2 ;;
+  view-run) shift; exec "$PYTHON" -m scripts.progent_log_view "$@" ;;
+  *) printf 'Usage: bash scripts/progent_vm.sh check-env [--env-file PATH] | budget | view-run RUN_ID [--section source|trace] [--color auto|always|never] | manual | live [options] | docker | kata | system-live --backend mock|docker|kata --case A|B|C|D|E [options] | agentdojo --backend mock|docker|kata --case A|B|C|D [--offline-ground-truth]\n' >&2; exit 2 ;;
 esac

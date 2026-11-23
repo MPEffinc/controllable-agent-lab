@@ -81,7 +81,7 @@ def reserve(body, output_cap):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--backend", choices=("mock", "docker"), default="mock")
+    parser.add_argument("--backend", choices=("mock", "docker", "kata"), default="mock")
     parser.add_argument("--case", choices=("A", "B", "C", "D", "E"), required=True)
     parser.add_argument("--task", help="optional natural-language override")
     parser.add_argument("--max-turns", type=int, default=5)
@@ -116,10 +116,12 @@ def main():
         raise RuntimeError(f"unexpected Progent policy model: {core.policy_model}")
     client = OpenAI(max_retries=0, timeout=60)
     run_id = "luna-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:6]
-    backend = DockerBackend(run_id) if args.backend == "docker" else MockResourceBackend()
+    backend = (DockerBackend(run_id, runtime="kata" if args.backend == "kata" else "runc")
+               if args.backend != "mock" else MockResourceBackend())
     path = Path("local/progent-vm/live") / f"{run_id}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     log = {"run_id": run_id, "case": args.case, "backend": args.backend,
+           "docker_runtime": backend.runtime if args.backend != "mock" else None,
            "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
            "source_dirty": bool(subprocess.check_output(
                ["git", "status", "--porcelain", "--untracked-files=no"], text=True).strip()),
@@ -131,7 +133,7 @@ def main():
     phase = "runtime_setup"
 
     def observe(name):
-        return runtime_status(name) if args.backend == "docker" else backend.resources[name]
+        return runtime_status(name) if args.backend != "mock" else backend.resources[name]
 
     def api_call(role, messages, *, tools=None):
         body = {"model": "gpt-6-luna", "messages": messages, "reasoning_effort": "none",
@@ -162,7 +164,7 @@ def main():
         return response.choices[0].message.content
 
     try:
-        if args.backend == "docker":
+        if args.backend != "mock":
             first, second = backend.create("01"), backend.create("02")
             backend.start(first)
             backend.start(second)
@@ -304,7 +306,7 @@ def main():
                 final[name] = f"UNAVAILABLE: {type(exc).__name__}"
         log["runtime_final"] = final
         log["budget"] = json.loads(LEDGER.read_text()) if LEDGER.exists() else None
-        if args.backend == "docker":
+        if args.backend != "mock":
             try:
                 backend.cleanup()
                 log["cleanup"] = "owned resources removed"

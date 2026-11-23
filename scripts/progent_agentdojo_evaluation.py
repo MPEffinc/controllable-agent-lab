@@ -15,7 +15,7 @@ from scripts.progent_system_live import RATE_INPUT, RATE_OUTPUT, load_api_enviro
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--backend", choices=("mock", "docker"), default="mock")
+    parser.add_argument("--backend", choices=("mock", "docker", "kata"), default="mock")
     parser.add_argument("--case", choices=("A", "B", "C", "D"), required=True)
     parser.add_argument("--offline-ground-truth", action="store_true",
                         help="direct source ground-truth calls, NOT an LLM evaluation")
@@ -49,7 +49,8 @@ def main():
         raise RuntimeError(f"wrong source policy model: {core.policy_model}")
 
     run_id = "dojo-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:6]
-    backend = DockerBackend(run_id) if args.backend == "docker" else MockResourceBackend()
+    backend = (DockerBackend(run_id, runtime="kata" if args.backend == "kata" else "runc")
+               if args.backend != "mock" else MockResourceBackend())
     path = Path("local/progent-vm/agentdojo") / f"{run_id}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     log = {"run_id": run_id, "source": "original AgentDojo TaskSuite and evaluator with custom transport",
@@ -57,7 +58,8 @@ def main():
            "source_dirty": bool(subprocess.check_output(
                ["git", "status", "--porcelain", "--untracked-files=no"], text=True).strip()),
            "mode": "offline-ground-truth" if args.offline_ground_truth else "live-luna",
-           "backend": args.backend, "case": args.case, "api_config_source": source,
+           "backend": args.backend, "docker_runtime": backend.runtime if args.backend != "mock" else None,
+           "case": args.case, "api_config_source": source,
            "model": None if args.offline_ground_truth else "gpt-6-luna", "api": [],
            "source_policy_model": core.policy_model, "status": "STARTED"}
     client = OpenAI(max_retries=0, timeout=60) if not args.offline_ground_truth else None
@@ -111,7 +113,7 @@ def main():
             return super().query(query, runtime, env, messages, extra_args)
 
     try:
-        if args.backend == "docker":
+        if args.backend != "mock":
             first, second = backend.create("01"), backend.create("02")
             backend.start(first)
             backend.start(second)
@@ -208,7 +210,7 @@ def main():
         log["policy_requests"] = policy_requests
         log["agent_turns"] = agent_turns
         log["tool_calls_count"] = tool_calls
-        if args.backend == "docker":
+        if args.backend != "mock":
             try:
                 backend.cleanup()
                 log["cleanup"] = "owned resources removed"

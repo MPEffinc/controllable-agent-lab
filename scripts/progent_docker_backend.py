@@ -15,15 +15,19 @@ class DockerBackendError(RuntimeError):
 
 
 class DockerBackend:
-    def __init__(self, run_id: str):
+    def __init__(self, run_id: str, runtime: str = "runc"):
+        if runtime not in {"runc", "kata"}:
+            raise ValueError("runtime must be runc or kata")
         self.run_id = run_id
+        self.runtime = runtime
         self.owned: dict[str, str] = {}
         self.invocations: list[dict] = []
 
     def _docker(self, *args: str, record: bool = True) -> str:
         command = ["docker", *args]
         try:
-            process = subprocess.run(command, capture_output=True, text=True, timeout=25, check=False)
+            process = subprocess.run(command, capture_output=True, text=True,
+                                     timeout=90 if self.runtime == "kata" else 25, check=False)
         except (OSError, subprocess.TimeoutExpired) as exc:
             raise DockerBackendError(f"Docker invocation failed: {type(exc).__name__}: {exc}") from exc
         if record:
@@ -40,7 +44,9 @@ class DockerBackend:
         if name in self.owned:
             raise ValueError("resource already owned")
         container_id = self._docker("create", "--name", name, "--label", f"{LABEL_KEY}={self.run_id}",
-            "--network", "none", "--memory", "128m", "--cpus", "0.5", "--pids-limit", "64",
+            "--runtime", self.runtime, "--network", "none",
+            "--memory", "1g" if self.runtime == "kata" else "128m",
+            "--cpus", "1" if self.runtime == "kata" else "0.5", "--pids-limit", "64",
             "--read-only", IMAGE, "sleep", "3600")
         self.owned[name] = container_id
         self._check_owned(name)
@@ -54,7 +60,8 @@ class DockerBackend:
             raise DockerBackendError("resource is not in this run's ownership manifest")
         info = self._inspect(name)
         if (info["Id"] != self.owned[name] or info["Name"] != "/" + name or
-                info["Config"]["Labels"].get(LABEL_KEY) != self.run_id):
+                info["Config"]["Labels"].get(LABEL_KEY) != self.run_id or
+                info["HostConfig"]["Runtime"] != self.runtime):
             raise DockerBackendError("resource ID/name/label ownership mismatch")
         return info
 
@@ -73,13 +80,13 @@ class DockerBackend:
     def stop(self, name: str) -> str:
         if self.status(name) != "running":
             raise DockerBackendError("stop requires running container")
-        self._docker("stop", "--time", "2", name)
+        self._docker("stop", "--timeout", "2", name)
         return self.status(name)
 
     def restart(self, name: str) -> str:
         if self.status(name) != "running":
             raise DockerBackendError("restart requires running container")
-        self._docker("restart", "--time", "2", name)
+        self._docker("restart", "--timeout", "2", name)
         return self.status(name)
 
     def cleanup(self) -> None:

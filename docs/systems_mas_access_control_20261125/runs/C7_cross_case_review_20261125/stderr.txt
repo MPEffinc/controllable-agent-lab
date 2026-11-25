@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C7_cross_case_review_20261125/run.py", line 182, in <module>
+    "verdicts": [(r["model"], r["case_id"], r["form"], r["model_review"]["approve"])
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C7_cross_case_review_20261125/run.py", line 182, in <listcomp>
+    "verdicts": [(r["model"], r["case_id"], r["form"], r["model_review"]["approve"])
+TypeError: 'NoneType' object is not subscriptable

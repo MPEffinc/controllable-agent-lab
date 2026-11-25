@@ -1,0 +1,334 @@
+{
+  "kind": "CROSS_CASE_FORMAL_EQUIVALENCE_AND_BLIND_GOLD_REVIEW",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "corpus_gold_cases": 200,
+  "corpus_false_or_cases": 184,
+  "selected": [
+    "case-001",
+    "case-052",
+    "case-101",
+    "case-151"
+  ],
+  "policies": {
+    "case-001": {
+      "rewrites": 3,
+      "requirement_sha256": "29e8c66f14dee3874d2c225d51a147f072741ea9d62d53eaa4bb0b7144fb8381",
+      "original_sha256": "293668f5580c337d930745cc9317deb244b29312f988996d7a405a7078377731",
+      "normalized_sha256": "63d063bc2fea30cf08cc6227cd6e12ae80305fd2fe5e3f968c2c38121eb4757e"
+    },
+    "case-052": {
+      "rewrites": 1,
+      "requirement_sha256": "971ca0a8bffbdc2a78ce0bcd741f0e969182fa904ab18f2262be9353fe97202a",
+      "original_sha256": "fc6e2a1a78449ef4996ae06a281b412bd8f1f4e6786cfc684f0b04491e09db4c",
+      "normalized_sha256": "90125e0f64ec445bfc495f1c0a24d22d4bbe181f7fa111f6e596d559412ca370"
+    },
+    "case-101": {
+      "rewrites": 1,
+      "requirement_sha256": "defb4b94708df1193a918c1ea215a43f7976bb279740275c8b1ea3b4a2fd98aa",
+      "original_sha256": "9cb59dff8c26fbfb645b70c26b2bc323cf798d0c61e119d52475cb9f5435a45e",
+      "normalized_sha256": "abd8e79e099148de850878b4602658a252205034b3fcfc777d257e656d62d32e"
+    },
+    "case-151": {
+      "rewrites": 1,
+      "requirement_sha256": "b3928944d29340bef6912cc9bb6953d85777ebb16eee984791e4f7537fc51d96",
+      "original_sha256": "b83eb612c76f23c6224c02bc944fea3923c24c1ddaf734252b8630effbe72226",
+      "normalized_sha256": "e64b991931223a292e129a25a06c67c678288ebcbdab247cfb1753dcbcd388f1"
+    }
+  },
+  "verifications": [
+    {
+      "case_id": "case-001",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C7_cross_case_review_20261125/verify_case-001"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "case_id": "case-052",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C7_cross_case_review_20261125/verify_case-052"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "case_id": "case-101",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C7_cross_case_review_20261125/verify_case-101"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "case_id": "case-151",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C7_cross_case_review_20261125/verify_case-151"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    }
+  ],
+  "order": [
+    [
+      "case-001",
+      "original"
+    ],
+    [
+      "case-001",
+      "normalized"
+    ],
+    [
+      "case-052",
+      "normalized"
+    ],
+    [
+      "case-052",
+      "original"
+    ],
+    [
+      "case-101",
+      "original"
+    ],
+    [
+      "case-101",
+      "normalized"
+    ],
+    [
+      "case-151",
+      "normalized"
+    ],
+    [
+      "case-151",
+      "original"
+    ]
+  ],
+  "reviews": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-001",
+      "form": "original",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy correctly implements the user requirements for contract lifecycle access. It permits executeContract only for ContractAdmin role with contract value >= 0, status signed, on corporate network, and if value > 100,000.00 (10000000 cents), requires additional review completion. It permits reviewContract only for Reviewer role with contract value >= 0, status draft, and if value > 100,000.00, the reviewer is not the drafter. It permits signContract for Signatory or ContractAdmin roles with contract value >= 0, signingAuthority and requiredAuthority in {0,1,2}, user's authority at least required authority, MFA used, and no conflicted counterparties. The policy is neither too broad nor too restrictive and matches the stated conditions exactly."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-001",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy correctly implements the user requirements for contract lifecycle access. It permits executeContract only for ContractAdmin role when contract value is at least $0, status is signed, on corporate network, and if value exceeds $100,000 (10000000 cents), the additional review is completed. It permits reviewContract only for Reviewer role when contract value is at least $0, status is draft, and if value exceeds $100,000, the reviewer is not the drafter. It permits signContract for Signatory or ContractAdmin roles when contract value is at least $0, signingAuthority and requiredAuthority are levels 0,1,2, user's authority is at least required authority, MFA was used, and the counterparty is not conflicted. The policy is neither too broad nor too restrictive and matches the stated conditions exactly."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-052",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy precisely implements the user requirement: it permits sending a device command only if the principal has one of the specified roles, the device is active, firmware tags include 'stable', the current time is within the scheduled start and end times, the source IP is within 10.0.0.0/8, and if the device is in maintenance mode, the maintenance command is authorized. It denies all other actions by omission, matching the requirement exactly without being too broad or restrictive."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-052",
+      "form": "original",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy correctly permits sending device commands only when the principal has one of the specified roles, the device is active, firmware tags include 'stable', the current time is within the scheduled window, the source IP is within 10.0.0.0/8, and if the device is in maintenance mode, the maintenance command is authorized. It denies all other actions by omission, matching the user requirement exactly."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-101",
+      "form": "original",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly uses 'resource.region in principal.assignedGroup' which only checks if the resource's region is directly in the user's assigned group, but the requirement states the file's region must be the same group as or a descendant of the user's assigned group. The policy does not handle the descendant relationship. Additionally, the condition '(!(true) || (resource.status == EscrowFileStatusValue::\"funded\"))' simplifies to 'resource.status == funded', which is correct but the use of '!(true) ||' is redundant and confusing. The policy otherwise correctly restricts approval to users with the specified roles and enforces all other stated conditions. However, the missing descendant group check means the policy is too restrictive and does not fully meet the requirement."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-101",
+      "form": "normalized",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly requires the file's region to be exactly in the user's assigned group (resource.region in principal.assignedGroup), but the requirement states the file's region must be the same group as or a descendant of the user's assigned group. The policy does not check for descendant groups. Additionally, the policy permits approval only if resource.region is in principal.assignedGroup, which is likely a set membership check rather than a hierarchical group check. Therefore, the policy is too restrictive and does not fully implement the group hierarchy condition. Otherwise, the policy correctly enforces all other stated conditions and denies all other actions."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-151",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy permits only the 'launchCampaign' action by a User principal on a Campaign resource, and only when all specified conditions are met: the user has the AccountManager or CampaignDirector role, the campaign status is approved, the scheduled start is at or before the current time, the campaign's risk labels include 'high_risk', and the device is trusted. No other actions or permissions are granted, so the policy exactly matches the user requirement."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_id": "case-151",
+      "form": "original",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy permits only the 'launchCampaign' action on Campaign resources, and only when the principal has the AccountManager or CampaignDirector role, the campaign status is approved, the scheduled start is at or before the current time, the campaign risk labels include 'high_risk', and the device is trusted. No other actions are permitted, and no broader permissions are granted. Therefore, the policy exactly matches the user requirement."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-001",
+      "form": "original",
+      "model_review": {
+        "approve": false,
+        "reason": "The candidate policy is too broad and contains logical errors that violate the user requirements. Specifically: (1) The use of '!(true) || ...' is always true, so status checks (e.g., contract must be 'signed' for execute, 'draft' for review) are not enforced. (2) For review, the policy allows reviewers to review contracts they drafted even if value > $100,000.00, due to the same logical error. (3) For sign, the authority comparison is also not enforced due to '!(true) || ...'. (4) The policy does not deny any requests outside the stated conditions, making it too permissive. Therefore, the policy does not grant exactly the permissions required."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-001",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The candidate Cedar policy grants exactly the permissions stated in the user requirement for each contract activity (execute, review, sign), with all required conditions enforced and no extraneous permissions. Each permit clause matches the specified roles, contract value thresholds, status checks, and additional conditions (such as network, review completion, authority levels, MFA, and conflict checks). No over-broad or missing permissions are present."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-052",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The candidate policy grants permission to send a device command only if: (1) the principal has at least one of the required roles (operator, technician, fleet admin); (2) the device is active; (3) the device's firmware tags include 'stable'; (4) the current time is at or after the scheduled start and strictly before the scheduled end; (5) the source IP is within 10.0.0.0/8; (6) if the device is in maintenance mode, the maintenance command is authorized. No other actions or principals are permitted. The logic matches the user requirement exactly, with no over-broad or missing conditions."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-052",
+      "form": "original",
+      "model_review": null,
+      "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 34)",
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-101",
+      "form": "original",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too restrictive and incorrect in several ways: (1) The region check only allows exact matches (resource.region in principal.assignedGroup), but the requirement allows approval if the file\u2019s region is the same group or a descendant of the user\u2019s assigned group. (2) The clause (!(true) || (resource.status == EscrowFileStatusValue::\"funded\")) is always equivalent to (resource.status == EscrowFileStatusValue::\"funded\"), which is correct. (3) The policy does not authorize any other actions, which is correct. (4) The numeric checks for heldAmount and payeeCount are correct. (5) The lien status check is correct. (6) The time check is correct. However, the region/group hierarchy requirement is not enforced as specified, so the policy is too restrictive and does not grant all required permissions."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-101",
+      "form": "normalized",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too restrictive regarding the region requirement. It only allows approval if the file's region is exactly in the user's assignedGroup, but the requirement allows approval if the file's region is the same group or a descendant of the user's assigned group. The policy does not account for descendant regions. All other conditions are correctly enforced, but this omission makes the policy too restrictive."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-151",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The candidate policy grants permission to launch a campaign only if: (1) the principal has the AccountManager or CampaignDirector role, (2) the campaign is approved, (3) the campaign's scheduled start is at or before the current time, (4) the campaign's risk labels include 'high_risk', and (5) the device is trusted. No other actions or roles are permitted. The policy is neither too broad nor too restrictive and matches the user requirement exactly."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_id": "case-151",
+      "form": "original",
+      "model_review": {
+        "approve": true,
+        "reason": "The candidate policy grants permission to launch a campaign only if: (1) the principal has the AccountManager or CampaignDirector role, (2) the campaign status is approved, (3) the scheduled start is at or before the current time, (4) the campaign's risk labels include 'high_risk', and (5) the device is trusted. No other actions or roles are permitted. The logic matches the user requirement exactly, and no extra permissions are granted."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    }
+  ],
+  "costs": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "calls": 8,
+      "input_tokens": 3322,
+      "output_tokens": 1059,
+      "estimated_cost_usd": 0.0030232
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "calls": 8,
+      "input_tokens": 3322,
+      "output_tokens": 1181,
+      "estimated_cost_usd": 0.016092
+    }
+  ],
+  "total_estimated_cost_usd": 0.0191152
+}

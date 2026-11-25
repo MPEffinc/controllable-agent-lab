@@ -31,6 +31,8 @@
 
 [C6](runs/C6_normalized_review_20261125/result.md)는 바로 그 7개 정책을 공식 verifier의 양방향 포함으로 동치 확인한 뒤 간단히 정규화했다. 두 모델 모두 7/7로 거짓 거부를 없앴다. 따라서 C4/C5의 표기 민감성은 **실제로 관측됐으나 기존 정형 검증을 활용한 의미 보존 정규화로 해결되는 범위**다. 이를 신규 메커니즘 Need로 올리지 않는다. 공식 gold 200개 중 184개에 동일 `(!(true) ||` 형태가 있으므로 유사 실패의 범위를 C7에서 사전 선택한 다른 case로 확인한다. 184/200은 표기 빈도일 뿐 오류율이 아니다.
 
+[C7](runs/C7_cross_case_review_20261125/result.md)은 네 구간 사전 선택 공식 gold의 원본/동치 정규화를 두 모델에 블라인드 검토시켰다. `001`에서 강한 모델의 원본 표기 오거부는 정규화로 해결됐지만 `101`에서는 두 모델 모두 원본·정규화를 오거부했다. 두 모델은 Cedar `in`이 직접 그룹만 검사한다고 설명했으나 [공식 언어 명세](https://docs.cedarpolicy.com/syntax-operators.html)는 전이적·반사적 계층 검사를 명시한다. 따라서 **모델 기반 전체 정책 reviewer가 도메인 연산자 의미를 오해해 정상 정책을 보류하는 조건부 평가 Gap**이 추가로 관측됐다. 실제 정책 Gold가 계층 요청을 허용하는지는 C8에서 검증한다. 기존 Cedar 실행·동치 verifier·사람 전문 검토가 직접 대안이므로 새로운 메커니즘 Need는 여전히 `UNVERIFIED`. 이 실험은 원본 AutoCedar atom reviewer 성능이 아니다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

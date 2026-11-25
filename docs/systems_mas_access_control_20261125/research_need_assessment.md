@@ -1,5 +1,7 @@
 # Research Gap / Need / Contribution 현재 판정 — 2026-11-25
 
+후속 [H1–H19 전수 재감사](phase1_full_reassessment.md)에서 이전 H15/B1·H18/B3 중심 순서를 다시 평가했다. 현재 정보 가치 순서는 **정책 target 의미 정확성(C) → 자연어 event/lineage 수집(D) → 원본 위임 대안 적용(A) → 교차 계층 활성 정책(B)**이다. 이는 실증 순서이며 독립 Need 확정이 아니다.
+
 ## 확인된 좁은 Gap
 
 1. **H14 공개 MAP-Graph 보조 구현:** `tool_output.derived_from`가 observed memory·agent write의 ancestry에서 빠지며 원문 tool text는 prompt에 들어간다. [원본 메서드+결정적 로컬 outbox](../access_control_empirical_20261124/runs/H11_context_path_20261125/result.md)는 부정확 계보에서 비인가 모의 effect 1, 정확 edge 또는 current service PEP에서 0/정상+1을 보였다. 저자 41건의 원인은 미확정.

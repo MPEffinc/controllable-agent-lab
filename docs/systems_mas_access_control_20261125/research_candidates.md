@@ -1,5 +1,7 @@
 # Phase A-4: 반증 가능한 상위 후보 (2026-11-25)
 
+**이 표는 이전 실행 순서의 기록이다.** 2026-11-25 후속 [H1–H19 전수 재감사](phase1_full_reassessment.md#track별-반증-질문과-재선정-우선순위)에서 연구 우선순위를 C→D→A→B로 다시 정했다. H15/B1이나 H18/B3를 중심 주제로 고정하지 않는다.
+
 새로운 메커니즘 필요를 가정하지 않고, 동일 입력에서 safety·normal completion·cost를 측정할 수 있는 순서로 선정했다. K01–K15 [기존 coverage](../access_control_empirical_20261124/coverage_matrix.md)와 [H1–H14 재평가](hypothesis_reassessment.md)를 바탕으로 하며, 각 후보의 `Gap`은 현재 확정 전이다.
 
 | 순위 | RQ / 연결 | 위협·신뢰 모델 | 최강 대안 | 성공/기각 기준 | 최소 비용 |

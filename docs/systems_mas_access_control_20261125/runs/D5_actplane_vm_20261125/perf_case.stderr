@@ -1,0 +1,2 @@
+/work/perf_case.sh: line 25: /work/forbidden: Operation not permitted
+/bin/bash: line 1: /work/forbidden: Operation not permitted

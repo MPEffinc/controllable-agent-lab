@@ -1,0 +1,6 @@
+🚫 KILLED: process 'true' (pid 191, ppid 188) — /bin/true
+   effect: kill
+   reason: D5 child execution denied
+   provenance: pid 188 exec bash -> label AGENT
+true_rc:137
+done

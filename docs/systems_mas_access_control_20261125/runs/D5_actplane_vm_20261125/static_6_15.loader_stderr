@@ -1,0 +1,4 @@
+ActPlane: 1 updates, 1 rules
+ActPlane: enforce mode (BPF LSM is active)
+ActPlane: seeded pid 103 label 0x1
+ActPlane: ready

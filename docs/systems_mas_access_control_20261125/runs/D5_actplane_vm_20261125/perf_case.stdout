@@ -1,0 +1,11 @@
+baseline_1_ns:71496305
+baseline_2_ns:64130959
+baseline_3_ns:63921023
+ready_count:1
+enforced_1_ns:152960257
+enforced_2_ns:155108816
+enforced_3_ns:176881480
+direct_rc:1
+child_rc:1
+forbidden_content:baseline
+allowed_bytes:0

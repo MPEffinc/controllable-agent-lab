@@ -2,7 +2,7 @@
 
 ## 현재 검증 질문
 
-H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 **자연어 승인→정책 target의 의미 오류를 독립 oracle·원본 검증기가 같은 입력에서 얼마나 찾아내며 정상 업무를 유지하는가**이다. 자동 event/lineage 수집의 정확·비용(D), 실제 위임 대안 적용(A), 교차 계층 활성 정책(B)을 순차 대조한다. AutoCedar full author C1–C1c는 후보 생성 전 종료됐고 재시도 상한에 도달했으므로, C2는 원본 verifier와 독립 gold 요청 oracle로 분리한다.
+2026-11-25 재개 지시에 따라 [네 후보 출발점](four_track_checkpoint_20261125.md)을 만들고 **OS 집행 Track D를 독립 핵심 후보**로 우선 실행했다. [D5](runs/D5_actplane_vm_20261125/result.md)에서 ActPlane 원본 정적 eBPF/LSM loader가 격리 6.15 VM의 직접·자식 금지 파일 쓰기를 `EPERM`으로 막고 정상 쓰기를 유지함을 확인했다. 6.8의 원본 tracepoint `kill`도 관측했으나 파일 `block`은 CLI matcher 예약과 정적 loader의 verifier 제약으로 실패했다. 이는 원본 경로별 보장·호환성 차이이며 새 Research Need를 확정하지 않는다. 다음은 A 실제 위임/provider, B 동일 효과 경계 비교, C 원본 Authoring 재현, 이어 D의 task binding·철회·서비스 효과를 반박한다.
 
 2026-11-25 후속 지시의 [Phase 1 H1–H19 전수 재감사](phase1_full_reassessment.md)를 완료했다. 원문·원본 메서드·독립 fixture와 강한 대안을 19행에서 구분하고 Track A–D별 반증 질문을 재선정했다. B1/B3/H17을 중심으로 고정하지 않는다. AutoCedar는 Python 3.11+, Cedar/SymCC/CVC5 및 모델 설정이 필요한 실제 authoring 경로를 확인했다. 해당 전체 경로의 즉시 실행 가능성은 추가 환경 감사 대상이다.
 
@@ -36,23 +36,24 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [C10 oracle 후보 노출 대조](runs/C10_oracle_refinement_bias_20261125/result.md): 공식 gold vs equality-only 후보 Cedar 4요청 확인; 자손 두 정상 요청은 후보 과거부. mini blind/exposed 각 4/4, 강한 모델 각 3/4, 자손 요청 label flip 0. 16 calls/$0.016092, **누적 추정 $0.0714836 / $5**. `south` 사례의 강한 모델 ALLOW는 입력에서 간선 목록 완전성이 빠져 오류로 단정하지 않는다. Reparo 원본 성능 아님.
 - [C10b 완전한 관계 입력](runs/C10b_complete_hierarchy_20261125/result.md): `south` 부모 없음·간선 목록 완전성 명시 후 두 모델 blind/exposed 4/4 DENY. 4 calls/$0.0039552, **누적 추정 $0.0754388 / $5**. C10 고정 입력의 oracle 오염 Need 기각; 원본 Reparo 검증 아님.
 - [C11 AutoCedar unscoped action](runs/C11_unscoped_action_20261125/result.md): 공식 case-011 요구+연구자 schema action 확장. 원본 verifier merge-only 2/2 PASS/loss0에도 후보 delete ALLOW·로컬 SQLite 효과 +1, gold delete DENY/0; delete 포함 검사 추가 시 원본 verifier FAIL/loss1·counterexample, 정상 merge 양쪽 +1. API $0. [H22 좁은 Gap](h22_unscoped_action_closure.md) `GAP_SUPPORTED`; 기존 추가 scope 검사가 해결해 새 정형 메커니즘 Need는 기각.
+- [D5 ActPlane 실제 OS 집행](runs/D5_actplane_vm_20261125/result.md): 고정 SHA 원본 CLI/정적 loader. 격리 6.8 guest에서 `kill exec` 자식 종료(exit 137), 정상 exec 성공. 파일 `block` CLI는 matcher 미예약으로 정책 설치 실패, 정적 loader는 6.8 verifier 544-byte stack 거부. 격리 6.15 guest의 같은 정적 loader는 `ready`, 정상 쓰기 1/1·직접/자식 금지 쓰기 차단 2/2·파일 무변경·커널 위반 이벤트 2건. 5,000회 허용 쓰기 3쌍 예비 중앙값 64.13/155.11 ms; 일반 성능 수치 아님. ContractWarden 원문은 승인 contract·pidfd 실행 gate·객체 정보흐름의 강한 대안으로 확인, 공개 구현 실행은 미완료. 유료 API $0, **누적 $0.0754388 / $5**. D2/D3/D4와 신규 Need는 미검증.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. H22 반박: AutoCedar 실제 authoring이 같은 확장 schema에서 추가 action permit을 만들거나 거부하는지 원본 atom reviewer·candidate synthesis까지 추적한다. C1–C1c API 호환성 원인을 해결할 수 있는 최소 원본 경로를 먼저 확인한다. 생성기 실패 빈도는 아직 모른다.
-2. H21 반박: 저자 19개 target-plan mismatch의 raw target/atom decisions 확보 가능 여부를 재감사하고, 사람/모델 atom review와 Reparo식 독립 요청 oracle의 동일 조건 비교를 설계한다. 공개되지 않은 결과를 추정하지 않는다.
+1. Track A: Agent libOS 원본의 task manifest/child attenuation을 실제 Provider 요청에 결속하고 정상·비인가·위임/철회 최소 대조를 사전등록한다. CONTINUITY 원본의 최종 효과 PEP와 동일 범위로 비교한다.
+2. Track B: 같은 요청·승인·SQLite 효과에 대해 dispatch, OS, service PEP의 정상/금지 효과와 비용을 대조한다. ARES 원본 LAM은 공개 코드가 없으므로 fixture로 가장하지 않는다.
+3. Track C: C1–C1c 호환성 원인을 수정 가능한 adapter에서 감사해 원본 Authoring 최소 사례를 재현한다. H21/H22는 실제 생성 candidate와 정확한 gold target에 한정해 판정한다.
+4. Track D: OpenShell 원본에 같은 파일 경계를 설정해 정상/금지와 직접 subprocess 효과를 비교한다. ActPlane 6.15 결과를 기준으로 task→OS subject, 동적 delta/철회, 열린 FD·서비스 효과를 별도 사전등록한다. ContractWarden 원본 공개 여부와 보장 범위를 계속 확인한다.
 
 재개 첫 명령(읽기 전용):
 
 ```bash
-git status --short
-sed -n '1,180p' docs/systems_mas_access_control_20261125/runs/C1c_autocedar_case011_20261125/result.md
-rg -n 'review_atom_against_requirements|_call_parse|reasoning.effort|request_dict' third_party/K06-autocedar/autocedar/llm.py
+git status --short --branch
+git ls-remote origin refs/heads/exp/20261125-systems-mas-access-control
+sed -n '1,180p' docs/systems_mas_access_control_20261125/runs/D5_actplane_vm_20261125/result.md
 ```
 
-H22a를 재실행할 때는 원본 `third_party/K06-autocedar`를 수정하지 말고 새 Run ID·사전등록·비용 상한을 만든다. C11의 원시 결과는 보존한다.
-2. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
-3. Track D4/A5+: 장기 승인 history와 원본 Agent libOS provider effect 경로를 각기 별도 사전등록. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
+각 주요 후속 실험은 새 Run ID·사전등록 commit/push→실행→원시 로그·결과 commit/push를 유지한다. H22a를 재실행할 때 원본 `third_party/K06-autocedar`와 C11 기록을 보존한다. H17 공개 raw 41건이 없으므로 반복 모델 호출을 보류한다.
 
 Git 체크포인트: 현재 브랜치 `exp/20261125-systems-mas-access-control`. 최신 commit은 `git log -1 --oneline`, 원격 동기화는 `git ls-remote origin refs/heads/exp/20261125-systems-mas-access-control`로 확인한다. 이 세션의 각 단계는 실행 전에 사전등록 commit, 실행 뒤 결과 commit을 별도로 push했다. 이전 자료/원저자 clone은 변경하지 않았다.

@@ -1,0 +1,11 @@
+ActPlane: 1 updates, 1 rules
+ActPlane: enforce mode (BPF LSM is active)
+libbpf: prog 'trace_rename_exit': BPF program load failed: -EACCES
+libbpf: prog 'trace_rename_exit': -- BEGIN PROG LOAD LOG --
+combined stack size of 7 calls is 544. Too large
+processed 344842 insns (limit 1000000) max_states_per_insn 52 total_states 17707 peak_states 4676 mark_read 177
+-- END PROG LOAD LOG --
+libbpf: prog 'trace_rename_exit': failed to load: -EACCES
+libbpf: failed to load object 'process_bpf'
+libbpf: failed to load BPF skeleton 'process_bpf': -EACCES
+Failed to load BPF skeleton

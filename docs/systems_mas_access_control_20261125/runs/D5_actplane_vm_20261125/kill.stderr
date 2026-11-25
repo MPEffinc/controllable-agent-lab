@@ -1,0 +1,3 @@
+ActPlane: running pid 188 under COMMAND label 0x1; feedback /.actplane/runs/run-185-1795644262700311526/feedback.txt
+
+/bin/bash: line 1:   191 Killed                  /bin/true

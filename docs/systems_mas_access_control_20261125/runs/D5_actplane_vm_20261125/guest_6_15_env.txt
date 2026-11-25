@@ -1,0 +1,7 @@
+Linux (none) 6.15.0-061500-generic #202505260036 SMP PREEMPT_DYNAMIC Mon May 26 01:07:21 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+root=/dev/vda rw rootfstype=ext4 console=ttyS0 init=/sbin/d5-init lsm=lockdown,capability,landlock,yama,apparmor,bpf quiet loglevel=3
+
+lockdown,capability,landlock,yama,apparmor,bpf,ima,evm
+4cd5a66a97907d1d02f724bdc9906cb824b8d246ab1362d6a1a829705328e21a  /usr/local/bin/actplane
+a62372ff5e94f913ed6693e0b5d4bc7cb33863039f690d9e2949c3d6f4fb34db  /usr/local/bin/actplane-process
+ed320ef42b066f73751679342fcd40c1c7239dcc0e5a0ac14d06e20635b1c11a  /work/policy.bin

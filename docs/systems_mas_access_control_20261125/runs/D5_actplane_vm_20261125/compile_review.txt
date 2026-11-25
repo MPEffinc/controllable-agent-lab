@@ -1,0 +1,44 @@
+ActPlane policy review
+policy: --rule
+domain: none (flat policy)
+rules: 1 DSL rule(s), 1 lowered kernel matcher(s)
+
+host/backend:
+  - active LSMs: lockdown,capability,landlock,yama,apparmor,bpf
+  - BPF-LSM pre-op block: available
+  - engine profile: policy-selected attach set; runtime deltas cannot add hook classes or path contains/suffix matcher classes after load
+  - review scope: selected policy and current host support, not a live loaded-engine guarantee
+
+runtime delta admission:
+  - append policy delta approval: not required
+  - admission model: metadata_only
+
+labels:
+  - AGENT = 0x1
+
+sources and flows:
+  - source AGENT = exec "**/bash"
+    flow: matching exec adds the label to the process and fork descendants
+    support: supported; exec source labels are applied on process exec
+  - coverage note: ordinary flows use the loaded hook profile; advanced mmap/mprotect, SCM_RIGHTS, Unix-socket IPC, pipe/socketpair, sendfile, copy_file_range, and splice coverage requires advanced hooks or the full hook profile
+  - coverage note: shared memory, IPv6, hostname endpoint globs, batch UDP syscalls, and unbounded fd/provenance chains remain limited or unsupported
+
+transforms:
+  - none
+
+rules:
+  1. rule protect
+     reason: D5 forbidden path
+     clause 1: block write file "/work/forbidden" if AGENT
+       enforcement: supported; pre-op block via BPF-LSM file/path hooks
+       timing: pre-operation denial before syscall commit
+       backend: bpf-lsm; pre_op=true
+       lowered: 1 kernel matcher(s), rule_id(s) [0], kernel_op(s) [write]
+
+violation event/audit semantics:
+  - reports exact lowered clause effect, declared op, kernel op, target kind, target pattern, and optional argv token
+  - matched_label_details enumerates positive required label bits for the selected lowered matcher, not labels that appear only in `not` terms
+  - causal_chain is a reported single-hop origin when available, not a complete provenance graph
+  - append policy delta is the authority-checked runtime mutation path
+
+warnings: none

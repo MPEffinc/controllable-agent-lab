@@ -1,0 +1,14 @@
+Linux (none) 6.8.0-149-generic #149~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Oct 28 20:58:45 UTC  x86_64 x86_64 x86_64 GNU/Linux
+root=/dev/vda rw rootfstype=ext4 console=ttyS0 init=/sbin/d5-init lsm=lockdown,capability,landlock,yama,apparmor,bpf quiet loglevel=3
+
+lockdown,capability,landlock,yama,apparmor,bpf
+4cd5a66a97907d1d02f724bdc9906cb824b8d246ab1362d6a1a829705328e21a  /usr/local/bin/actplane
+🚫 KILLED: process 'true' (pid 191, ppid 188) — /bin/true
+   effect: kill
+   reason: D5 child execution denied
+   provenance: pid 188 exec bash -> label AGENT
+true_rc:137
+done
+ActPlane: running pid 188 under COMMAND label 0x1; feedback /.actplane/runs/run-185-1795644262700311526/feedback.txt
+
+/bin/bash: line 1:   191 Killed                  /bin/true

@@ -2,6 +2,8 @@
 
 ## 현재 검증 질문
 
+2026-11-25 [D7b suffix rule](runs/D7b_actplane_pattern_20261125/result.md)은 CLI 컴파일 성공 후 원본 loader의 `trace_openat_exit`가 kernel verifier 100만 instruction 제한(`-E2BIG`)으로 설치 실패. `ActPlane: ready` 부재라 agent 파일 변화는 집행 결과가 아니다. D7의 열린 FD 조건은 계속 미해결이며 exact basename 규칙으로 한 차례 범위/정상성 반박 예정. API 비용 $0.
+
 2026-11-25 [D7 ActPlane 이미 열린 FD](runs/D7_actplane_open_fd_20261125/result.md): 원본 BPF-LSM loader가 PID 100을 정책에 넣고 ready가 된 뒤, **attach 전에 열린 금지 파일 FD의 `write` 10 bytes는 성공**해 파일이 변했다. 같은 파일의 새 open은 `EPERM`/원본 BPF block event, 정상 파일 쓰기는 성공. exact-path rule·활성화 순서의 좁은 구현 조건을 실증했지만, 이는 동적 policy-delta/revoke API 실행이 아니고 기존 inode/FD 효과 PEP나 다른 rule pattern 대안을 아직 반박하지 않는다. API $0. 다음은 기존 정책 표현만 바꿔 이 조건을 해결할 수 있는지 대조하고, MAS task→OS subject 및 실제 철회 의미를 확인한다.
 
 2026-11-25 [D6 OpenShell 원본 파일 집행](runs/D6_openshell_file_20261125/result.md): 새 전용 Gateway/sandbox에서 effective policy `/tmp` read-only·Landlock hard requirement version/hash 활성. 정상 `/sandbox` 쓰기 성공, `/tmp` 직접·내부 자식 쓰기 2/2 거부·파일 부재. 이번 run은 workload Docker 로그 필터 오류로 Landlock 단독 원인 귀속에 한계가 있고, 이전 공식 직접 실행의 workload Landlock 적용 로그/outer Docker 설정을 별도로 참조한다. 전용 자원 정리 확인, API $0. D5 ActPlane과 같은 파일 효과 범주에서 기존 OS PEP가 작동하므로 고정 집행 Need 기각. 남은 우선순위는 task→OS/service 신원, 동적 철회·열린 FD, 기존 ContractWarden/CONTINUITY 보장과의 실제 대조다.

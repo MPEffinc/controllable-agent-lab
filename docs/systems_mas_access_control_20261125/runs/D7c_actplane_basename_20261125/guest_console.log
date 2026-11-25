@@ -1,0 +1,45 @@
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.svm [bit 2]
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.svm [bit 2]
+c[?7l[2J[0mSeaBIOS (version 1.15.0-1)
+Booting from ROM...
+c[?7l[2Jmount: /dev: devtmpfs already mounted on /dev.
+       dmesg(1) may have more information after failed mount system call.
+D7C_GUEST_READY
+lockdown,capability,landlock,yama,apparmor,bpf,ima,evmD7C_RUN_EXIT:0
+[   11.773616] sysrq: Power Off
+/init: 16: sle[e p :  I1n1p.u7t8/0o9u9t0] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007e00
+[   11.781373] CPU: 1 UID: 0 PID: 1 Comm: init Not tainted 6.15.0-061500-generic #202505260036 PREEMPT(voluntary) 
+p[u t   e1r1r.o7r81
+373] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.15.0-1 04/01/2014
+[   11.781373] Call Trace:
+[   11.781373]  <TASK>
+[   11.781373]  show_stack+0x49/0x60
+[   11.781373]  dump_stack_lvl+0x5f/0x90
+[   11.781373]  dump_stack+0x10/0x18
+[   11.781373]  panic+0x169/0x338
+[   11.781373]  do_exit.cold+0x15/0x15
+[   11.781373]  do_group_exit+0x34/0x90
+[   11.781373]  __x64_sys_exit_group+0x18/0x20
+[   11.781373]  x64_sys_call+0x141b/0x2320
+[   11.781373]  do_syscall_64+0x7e/0x10c0
+[   11.781373]  ? __do_sys_rt_sigreturn+0xe0/0xf0
+[   11.781373]  ? arch_exit_to_user_mode_prepare.isra.0+0x22/0xd0
+[   11.781373]  ? syscall_exit_to_user_mode+0x38/0x1d0
+[   11.781373]  ? do_syscall_64+0x8a/0x10c0
+[   11.781373]  ? arch_exit_to_user_mode_prepare.isra.0+0x22/0xd0
+[   11.781373]  ? syscall_exit_to_user_mode+0x38/0x1d0
+[   11.781373]  ? do_syscall_64+0x8a/0x10c0
+[   11.781373]  ? do_syscall_64+0x8a/0x10c0
+[   11.781373]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[   11.781373] RIP: 0033:0x7790807c0409
+[   11.781373] Code: 00 4c 8b 05 f9 e9 0f 00 be e7 00 00 00 ba 3c 00 00 00 eb 12 0f 1f 44 00 00 89 d0 0f 05 48 3d 00 f0 ff ff 77 1c f4 89 f0 0f 05 <48> 3d 00 f0 ff ff 76 e7 f7 d8 64 41 89 00 eb df 0f 1f 80 00 00 00
+[   11.781373] RSP: 002b:00007fff953027f8 EFLAGS: 00000206 ORIG_RAX: 00000000000000e7
+[   11.781373] RAX: ffffffffffffffda RBX: 00007fff95302a48 RCX: 00007790807c0409
+[   11.781373] RDX: 000000000000003c RSI: 00000000000000e7 RDI: 000000000000007e
+[   11.781373] RBP: 0000000000000002 R08: ffffffffffffff80 R09: 00006105df0a53a0
+[   11.781373] R10: 7db6ce05e0b6cb9d R11: 0000000000000206 R12: 0000000000000000
+[   11.781373] R13: 00007fff95302a60 R14: 00006105b083ee38 R15: 000077908090d020
+[   11.781373]  </TASK>
+[   11.781373] Kernel Offset: 0x32e00000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[   11.781373] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007e00 ]---
+qemu-system-x86_64: terminating on signal 15 from pid 1347923 (/bin/bash)

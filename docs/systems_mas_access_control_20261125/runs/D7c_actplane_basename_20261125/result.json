@@ -1,0 +1,9 @@
+{
+  "loader_ready": false,
+  "agent_exit": 0,
+  "agent_stdout": "{\"pid\": 100, \"preopened_write_bytes\": 10, \"preopened_write_errno\": null, \"other_preopened_write_bytes\": 17, \"other_preopened_write_errno\": null, \"new_open_errno\": null, \"allowed_write_errno\": null}\n",
+  "agent_stderr": "",
+  "forbidden_content": "baseline\npreopened\n",
+  "other_forbidden_content": "baseline\nunrelated normal\n",
+  "allowed_content": "normal\n"
+}

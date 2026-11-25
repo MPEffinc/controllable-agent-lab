@@ -2,6 +2,8 @@
 
 ## 현재 검증 질문
 
+2026-11-25 [D7c basename rule](runs/D7c_actplane_basename_20261125/result.md) 역시 D7b와 같은 `trace_openat_exit` verifier 100만 instruction `-E2BIG`로 attach 실패했다. D7의 exact-path pre-open FD 현상은 실제 원본 실행으로 유지되지만, DSL 패턴 변경의 해결 여부는 두 번 모두 `NOT_RUN_ENFORCEMENT`; 더 많은 유사 변이를 중단한다. 기존 FD-aware OS PEP/서비스 효과 PEP 대조와 공유 MAS Worker 신원 결속이 다음 실험 후보. API 비용 $0, 누적 $0.1211516/$5.
+
 2026-11-25 [D7b suffix rule](runs/D7b_actplane_pattern_20261125/result.md)은 CLI 컴파일 성공 후 원본 loader의 `trace_openat_exit`가 kernel verifier 100만 instruction 제한(`-E2BIG`)으로 설치 실패. `ActPlane: ready` 부재라 agent 파일 변화는 집행 결과가 아니다. D7의 열린 FD 조건은 계속 미해결이며 exact basename 규칙으로 한 차례 범위/정상성 반박 예정. API 비용 $0.
 
 2026-11-25 [D7 ActPlane 이미 열린 FD](runs/D7_actplane_open_fd_20261125/result.md): 원본 BPF-LSM loader가 PID 100을 정책에 넣고 ready가 된 뒤, **attach 전에 열린 금지 파일 FD의 `write` 10 bytes는 성공**해 파일이 변했다. 같은 파일의 새 open은 `EPERM`/원본 BPF block event, 정상 파일 쓰기는 성공. exact-path rule·활성화 순서의 좁은 구현 조건을 실증했지만, 이는 동적 policy-delta/revoke API 실행이 아니고 기존 inode/FD 효과 PEP나 다른 rule pattern 대안을 아직 반박하지 않는다. API $0. 다음은 기존 정책 표현만 바꿔 이 조건을 해결할 수 있는지 대조하고, MAS task→OS subject 및 실제 철회 의미를 확인한다.

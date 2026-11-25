@@ -41,6 +41,8 @@
 
 [C10b](runs/C10b_complete_hierarchy_20261125/result.md)는 부모 부재·간선 목록 완전성만 명시하자 무관 그룹의 두 모델 blind/exposed가 모두 **4/4 DENY**로 바뀌었다. 이 고정 조건에서 잘못된 후보 결정 노출이 oracle을 오염시킨다는 가설과, 충분한 사실을 받은 model oracle이 필연적으로 틀린다는 가설을 기각한다. 실제 저장소에서 관계 증거 누락을 찾아내는 문제는 별도로 남지만 이 입력만으로 새 Need를 주장하지 않는다.
 
+[C11](runs/C11_unscoped_action_20261125/result.md)은 [AutoCedar §III-B가 직접 밝힌 미검사 범위](https://arxiv.org/html/2607.03656v2)를 원본 verifier와 효과로 확인했다. 공식 case-011 요구·gold에 연구자 schema action `deletePullRequest`를 더하고, 후보에 그 unconditional permit을 넣었다. **merge scope만 검사하는 원본 verifier는 PASS/loss0인데, 비인가 delete는 Cedar ALLOW/SQLite 효과+1**이었다. delete action 포함 검사를 추가한 같은 원본 verifier는 FAIL/loss1·반례를 냈고 정상 merge는 양쪽 정책에서 유지됐다. 따라서 [H22](h22_unscoped_action_closure.md)는 **조건부 `GAP_SUPPORTED`**. 새 정형 검증기 필요성은 기각하지만, 문서의 “다른 action 금지”를 확장 schema/tool registry의 닫힌 검사 범위로 만들고 활성본까지 유지하는 과정의 평가 Need는 `UNVERIFIED`. 원저자 생성기가 실제 추가 permit을 만들었다는 증거는 없다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

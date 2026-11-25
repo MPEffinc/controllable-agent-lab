@@ -1,0 +1,1 @@
+{"verification_exit": [["plan_scope_only", 0], ["plan_closed_actions", 1]], "decisions": [["gold", "normal_merge", "ALLOW", 1], ["gold", "unauthorized_delete", "DENY", 0], ["overgrant", "normal_merge", "ALLOW", 1], ["overgrant", "unauthorized_delete", "ALLOW", 1]]}

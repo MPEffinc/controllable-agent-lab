@@ -1,0 +1,149 @@
+{
+  "kind": "AUTOCEDAR_UNSCOPED_ACTION_VERIFIER_AND_LOCAL_EFFECT",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "schema_extension": "action deletePullRequest appliesTo { principal: [User], resource: [PullRequest], context: {} };",
+  "candidate_extra_permit": "permit (principal is User, action == Action::\"deletePullRequest\", resource is PullRequest);",
+  "verifications": [
+    {
+      "arm": "plan_scope_only",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/plan_scope_only"
+      ],
+      "exit_code": 0,
+      "stdout": "merge_candidate_implies_gold: PASS (implies)\ngold_implies_merge_candidate: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "arm": "plan_closed_actions",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/plan_closed_actions"
+      ],
+      "exit_code": 1,
+      "stdout": "merge_candidate_implies_gold: PASS (implies)\ngold_implies_merge_candidate: PASS (implies)\ndelete_candidate_implies_gold: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"deletePullRequest\", resource: PullRequest::\"\"\ncontext: {}\nentities: [\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  Role::\"Reviewer\",\n  Role::\"Developer\",\n  RepositoryStatusValue::\"incubating\",\n  PullRequestStatusValue::\"merged\",\n  PullRequestStatusValue::\"closed\",\n  PullRequestStatusValue::\"open\",\n  RepositoryStatusValue::\"active\",\n  Role::\"SecurityLead\",\n  Role::\"Maintainer\",\n  RepositoryStatusValue::\"archived\",\n  Action::\"mergePullRequest\",\n  User::\"\" {\n    clearance: 0,\n    roles: [],\n  },\n  Action::\"deletePullRequest\",\n  PullRequest::\"\" {\n    approvalCount: 0,\n    approvedBy: User::\"\",\n    author: User::\"\",\n    linesChanged: 0,\n    repo: Repository::\"\",\n    requiresSecurityReview: false,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"\",\n  },\n  PullRequestStatusValue::\"approved\",\n]\nloss: 1\n",
+      "stderr": ""
+    }
+  ],
+  "decisions": [
+    {
+      "policy": "gold",
+      "request": "normal_merge",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/gold.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "state_before": "open",
+      "state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy": "gold",
+      "request": "unauthorized_delete",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/gold.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"deletePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/empty_context.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "state_before": "open",
+      "state_after": "open",
+      "effect_delta": 0
+    },
+    {
+      "policy": "overgrant",
+      "request": "normal_merge",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/overgrant.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "state_before": "open",
+      "state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy": "overgrant",
+      "request": "unauthorized_delete",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/overgrant.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"deletePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C11_unscoped_action_20261125/empty_context.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy1\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "state_before": "open",
+      "state_after": "deleted",
+      "effect_delta": 1
+    }
+  ],
+  "api_cost_usd": 0
+}

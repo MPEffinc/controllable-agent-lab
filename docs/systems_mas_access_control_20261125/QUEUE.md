@@ -16,6 +16,7 @@
 | C1 | K06의 생성 target 오류를 같은 자연어/gold case에서 원본 verifier·독립 요청 oracle로 얼마나 찾는가 | 공식 데이터/CLI toolchain·논문 평가 commit 차이 감사 후 prereg; 정상/비인가 요청과 비용 | [C1](runs/C1_autocedar_case011_20261125/result.md)·[C1b](runs/C1b_autocedar_case011_20261125/result.md) API 호환성 오류, [C1c](runs/C1c_autocedar_case011_20261125/result.md) 3 calls 뒤 필수 필드 누락으로 종료. 후보/의미/effect `NOT_ESTABLISHED`; 같은 full author 재시도 중단. 누적 $0.0043872/5 |
 | D1 | 자연어 grant 축소와 tool-output write-back의 신뢰 evidence를 실제 agent가 자동 획득할 수 있는가 | WTB 강한 대안과 같은 요청·정상성·효과·비용; 사전등록 | 2순위, 정확 evidence를 이미 준 fixture 재실행은 중단 |
 | A5 | 현행 Agent libOS가 host-authored task manifest, child attenuation, effect ceiling을 실제로 집행하는가 | 고정 SHA 공식 단위 실행, 논문 평가판 차이·정상/거부/실효과 구분 | [원저자 4 tests 통과](runs/A5_agent_libos_manifest_20261125/result.md), 정상/비인가 내부 decision 확인, provider effect 미시험. 단순 자식 확대 Gap은 해당 신뢰 조건에서 기각 |
-| C2 | 원본 K06 verifier는 잘못 생성된 target과 독립 gold 의미 차이를 같은 요청에서 드러내는가 | 별도 사전등록, 정답 정책/오류 정책, 원본 검증기 결과와 Cedar 요청 oracle, 정상/거부 상태 | 후보 생성 실패와 분리해 실행할 Track C 다음 질문. gold 없이는 의미 정답 보장 불가라는 대안 한계 함께 기록 |
+| C2 | 원본 K06 verifier는 잘못 생성된 target과 독립 gold 의미 차이를 같은 요청에서 드러내는가 | 별도 사전등록, 정답 정책/오류 정책, 원본 검증기 결과와 Cedar 요청 oracle, 정상/거부 상태 | [완료](runs/C2_target_semantics_20261125/result.md). self target 2/2 pass, gold target VPN 반례. off-VPN 로컬 effect gold 0/오류 1, 정상 effect 둘 다 1. 정형 검증 메커니즘 Need 기각; 독립 target의 획득/검토 비용 미측정 |
+| C3 | 승인 원문으로부터 target을 독립 검토하는 사람이 실제로 오류를 찾는가 | 공개 저자 후보·blind review 또는 독립 고정 정책 변이, 정상성·시간·비용 포함 | 검토 프로토콜/자료 접근 감사 필요. C2의 이미 주어진 gold를 실제 검토 성능으로 대체하지 않음 |
 
 각 실험의 실패가 기존 방법으로 해결되면 그 조건의 Need를 기각한다. 저자 코드와 독립 adapter를 혼동하지 않는다.

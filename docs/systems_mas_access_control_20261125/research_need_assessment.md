@@ -17,6 +17,8 @@
 
 [C1–C1c AutoCedar 원본/호환성 실행](runs/C1c_autocedar_case011_20261125/result.md)은 API 필드·strict schema·필수 JSON 필드 오류로 후보 생성 전에 끝났다. 논문이 보고한 gold와 다른 19 plan이나 사용자 의도 검토의 공백을 재현한 결과가 아니다. 현재 C1은 형식·환경 재현 한계만 입증한다. [A5 Agent libOS v1.6.0 원저자 테스트](runs/A5_agent_libos_manifest_20261125/result.md)는 host가 정확한 manifest를 준 경우 자식 권한·effect ceiling을 좁히는 대안을 4/4로 확인했다. 외부 provider effect와 자연어→manifest 정확성은 시험하지 않았다.
 
+[C2](runs/C2_target_semantics_20261125/result.md)는 case-011 gold에서 VPN 조건만 제거한 **연구자 후보**를 원본 verifier에 넣었다. 후보 자체를 target으로 주면 2/2 pass, 독립 gold target이면 `onVpn=false` 반례로 fail; 로컬 PR 효과도 off-VPN에서 gold 0/오류 후보 1, 정상 양쪽 1이었다. 이 경우 기존 verifier+정확한 독립 target이 오류를 직접 해결하므로 새 정형 메커니즘 Gap은 기각한다. 남는 좁은 평가 질문은 정확한 target의 획득·인간 검토 성능과 비용이다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

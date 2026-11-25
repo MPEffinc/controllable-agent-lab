@@ -1,0 +1,1 @@
+{"verifier": [["self_reference", 0], ["independent_gold", 1]], "effects": [["gold", "normal", "ALLOW", "merged"], ["gold", "off_vpn", "DENY", "open"], ["gold", "self_author", "DENY", "open"], ["missing_vpn", "normal", "ALLOW", "merged"], ["missing_vpn", "off_vpn", "ALLOW", "merged"], ["missing_vpn", "self_author", "DENY", "open"]], "hypothesis_supported": true}

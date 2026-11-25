@@ -21,12 +21,13 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [B3 ARES ARP 관계식 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)는 API 비용 0, SQLite 실제 전후 상태 6행을 남겼다. 가능 경로만으로 preflight하면 정상 branch 0/1·금지 효과 0; origin-aware effect PEP는 정상 1/1·금지 효과 0. ARES 원저자 LAM·4개 cloud 구현 재현이 아니며 그 정상성은 `UNVERIFIED`.
 - [K06 AutoCedar C1–C1c](runs/C1c_autocedar_case011_20261125/result.md): 원본 API에서 unsupported reasoning, strict schema incompatibility; 실험 adapter로 3 calls 진행 후 model atom의 필수 `rationale` 누락. 후보 및 의미·effect 판정 불가. 세 시도 원시 로그 보존. 추가 추정 $0.0032656, **누적 $0.0043872 / $5**. 동일 author 재시도는 중단.
 - [A5 Agent libOS v1.6.0 원저자 네 테스트](runs/A5_agent_libos_manifest_20261125/result.md): 고정 SHA, lock 의존성, exit 0, 4 passed. Host manifest hash/영속화, child parent intersection, effect ceiling 확대 거부, 빈 ceiling deny를 관측. 내부 decision만이며 provider effect `DECISION_ONLY`. 현행 강한 대안으로 단순 자식 권한 확대 Need를 기각.
+- [C2 AutoCedar 원본 verifier + 독립 target/effect oracle](runs/C2_target_semantics_20261125/result.md): 같은 VPN 조건 누락 후보의 self-reference target은 2/2 PASS, 독립 gold target에서는 `onVpn=false` 반례. 로컬 PR 상태는 gold에서 off-VPN `open`, 잘못된 후보에서 `merged`; 정상 요청은 양쪽 `merged`. 원본 verifier가 정확 gold를 받으면 해결하므로 새 검증 메커니즘 Need 기각. 생성기 평가나 실서비스 effect가 아님. 비용 $0, **누적 $0.0043872 / $5**.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. Track C2: K06 원본 `verify`/`synthesize` 입력 형식을 확인한 뒤 gold와 의미가 다른 정책 target을 같은 case-011에서 검증하고, 독립 Cedar 요청 oracle로 정상·비인가 효과 차이를 확인한다. 검증기가 실제 보장하는 성질만 보고한다.
-2. Track D1: H10/H12/H14의 신뢰 event/lineage 자동 수집과 WTB 등 강한 대안을 같은 입력에서 준비한다. 정확 evidence를 이미 준 fixture를 반복하지 않는다.
+1. Track D1: H10/H12/H14의 신뢰 event/lineage 자동 수집과 WTB 등 강한 대안을 같은 입력에서 준비한다. 정확 evidence를 이미 준 fixture를 반복하지 않는다.
+2. Track C3: 실제 사람이 AutoCedar target을 검토할 때 오류 검출·정상 승인·시간이 gold oracle과 얼마나 차이나는지, 공개 raw 후보가 없으면 별도 고정 후보로 측정 가능한지 확인한다. C2의 'gold가 있으면 검출'을 신규 Need로 과장하지 않는다.
 3. Track A5+: 현행 Agent libOS의 실제 provider effect 경로와 동적 철회 테스트를 확인해 내부 decision 결과의 한계를 좁힌다. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 
 Git 체크포인트: 현재 브랜치 `exp/20261125-systems-mas-access-control`. 최신 commit은 `git log -1 --oneline`, 원격 동기화는 `git ls-remote origin refs/heads/exp/20261125-systems-mas-access-control`로 확인한다. 이 세션의 각 단계는 실행 전에 사전등록 commit, 실행 뒤 결과 commit을 별도로 push했다. 이전 자료/원저자 clone은 변경하지 않았다.

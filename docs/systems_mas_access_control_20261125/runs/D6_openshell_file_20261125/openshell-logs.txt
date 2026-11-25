@@ -1,0 +1,21 @@
+[1795646365.917] [sandbox] [INFO ] [openshell_supervisor] Starting sandbox supervision command=["sh", "-c", "sleep 3600"]
+[1795646365.917] [sandbox] [INFO ] [openshell_sandbox_backend::runtime_initiated] Runtime-initiated Sandbox Protocol listener ready
+[1795646366.117] [sandbox] [INFO ] [openshell_supervisor] Fetching sandbox policy via gRPC endpoint=https://127.0.0.1:18084 sandbox=d6file01 sandbox_id=c5248fc0-3d2c-4bfc-83b4-4281ddde71ed
+[1795646366.142] [sandbox] [INFO ] [openshell_supervisor_network::opa] Configured OPA runtime binary identity mode require_binary_identity=true source=proto
+[1795646366.143] [sandbox] [OCSF ] [ocsf] CONFIG:CONFIGURED [INFO] OPA runtime binary identity mode configured [source:proto require_binary_identity:true] [source:proto]
+[1795646366.162] [sandbox] [OCSF ] [ocsf] CONFIG:DISABLED [INFO] OTLP agent trace relay inactive: not enabled by the gateway
+[1795646366.166] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary attached backend=openshell-sandbox
+[1795646366.167] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary enforcement confirmed backend=openshell-sandbox
+[1795646366.171] [sandbox] [OCSF ] [ocsf] CONFIG:ENABLED [INFO] TLS termination enabled: ephemeral CA generated
+[1795646366.171] [sandbox] [OCSF ] [ocsf] CONFIG:READY [INFO] Policy DNS connected to isolation boundary
+[1795646366.171] [sandbox] [OCSF ] [ocsf] NET:LISTEN [INFO] 127.0.0.1:3128
+[1795646366.171] [sandbox] [WARN ] [openshell_supervisor_network::proxy] host.openshell.internal maps to a non-link-local IP; trusted-gateway SSRF exemption disabled ip=127.0.0.1
+[1795646366.193] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary agent started backend=openshell-sandbox
+[1795646366.195] [sandbox] [OCSF ] [ocsf] SSH:LISTEN [INFO]
+[1795646366.195] [sandbox] [INFO ] [openshell_supervisor] Control-mode access plane started backend=openshell-sandbox
+[1795646366.239] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] 127.0.0.1:18084
+[1795646366.307] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Acknowledged initial policy revision as loaded [version:1] [hash:5dcb76a41064372c9784aff6b82161b45d8df7a1419d365acb40713cc9f47377]
+[1795646366.385] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=2daa45ad-2655-4279-81b3-e0d82ef2eca2, target=unix:/run/openshell/ssh.sock)
+[1795646366.385] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795646366.399] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=2daa45ad-2655-4279-81b3-e0d82ef2eca2, target=unix:/run/openshell/ssh.sock)
+[1795646366.466] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=384e8701-b5c3-4b8a-9f80-cfe785a6b933, target=unix:/run/openshell/ssh.sock)

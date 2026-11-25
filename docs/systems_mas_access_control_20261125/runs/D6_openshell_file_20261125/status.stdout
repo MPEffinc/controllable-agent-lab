@@ -1,0 +1,7 @@
+Server Status
+
+  Gateway: d6file
+  Server: https://127.0.0.1:18084
+  Status: Connected
+  Authentication: Authenticated (mTLS transport)
+  Version: 0.1.9

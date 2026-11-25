@@ -1,0 +1,1 @@
+{"cells": 48, "model_mismatched_cells": 0, "model_invalid_cases": 0, "gold_normal_effects": 48, "gold_unauthorized_effects": 0, "model_normal_effects": 48, "model_unauthorized_effects": 0, "input_tokens": 1390, "output_tokens": 477, "estimated_cost_usd": 0.0013192}

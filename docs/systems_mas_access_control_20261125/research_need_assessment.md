@@ -23,6 +23,8 @@
 
 [D2](runs/D2_restricted_regeneration_20261125/result.md)에서 [Permissive IFC의 제한 context 재생성](https://arxiv.org/html/2410.03055v2)이라는 기존 직접 대안을 D1 동일 입력에 적용했다. A가 폐기 `r1`을 받지 않게 하고 새 journal을 만들자 code-owned 출처가 `r2`만 남아 정상 1/1·비인가 0이었다. **D1 과차단의 새로운 메커니즘 Gap 가설은 기각**한다. [LMLineage](https://arxiv.org/html/2611.22511v1)는 sentence-span attribution을 하지만 §6에서 보안 적용은 범위 밖이라 명시한다. [NeuroTaint](https://arxiv.org/html/2604.23374v1)는 실행 후 source-to-sink audit이며 [A³Bench](https://arxiv.org/html/2609.33676v1)는 action attribution 평가를 제공한다. 이들은 출처 관측의 직접 대안/평가 기준이지 D2의 online 승인 집행과 동일 보장은 아니다. 남는 질문은 제한할 입력을 고르기 위한 신뢰된 owner event·scope의 자동 획득이며 `UNVERIFIED`다.
 
+[D3](runs/D3_owner_event_scope_20261125/result.md)에서는 명료한 여섯 합성 owner history의 scope/철회/시점 48칸을 실제 모델이 모두 정확히 구조화했고, 로컬 service 효과도 정상 48/48·비인가 0/48이었다. D2의 'event를 골라야 한다'는 전제를 **이 조건에서는** 충족했다. 이 실패 가설도 범위 한정 기각. 실제 권한자 식별·긴 승인 이력의 상충·모호한 조직 언어·공격자 제어 문서에 대한 새 Need는 여전히 `UNVERIFIED`다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

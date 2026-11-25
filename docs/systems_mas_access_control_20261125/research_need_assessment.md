@@ -25,6 +25,8 @@
 
 [D3](runs/D3_owner_event_scope_20261125/result.md)에서는 명료한 여섯 합성 owner history의 scope/철회/시점 48칸을 실제 모델이 모두 정확히 구조화했고, 로컬 service 효과도 정상 48/48·비인가 0/48이었다. D2의 'event를 골라야 한다'는 전제를 **이 조건에서는** 충족했다. 이 실패 가설도 범위 한정 기각. 실제 권한자 식별·긴 승인 이력의 상충·모호한 조직 언어·공격자 제어 문서에 대한 새 Need는 여전히 `UNVERIFIED`다.
 
+[C3](runs/C3_autocedar_release_gate_20261125/result.md)는 AutoCedar의 저장된 **수동 AITL CyberChair** 저자 trace에서 candidate 42 verifier pass·CLI 완료 true와 최종 human semantic approval false의 분리를 확인했다. 완료만 소비하는 독립 로컬 서비스는 후보를 적용했으며 명시 승인 gate는 보류했다. 이것은 **승인 확인 없이 CLI 완료를 배포 허가로 쓰는 소비자 조건의 `GAP_SUPPORTED`**다. 원본 코드가 이 분리를 의도적으로 문서화하고 approval 필드를 제공하므로, 그 필드를 검사하는 기존 간단한 gate가 고정 문제를 해결한다. **신규 메커니즘 Need는 이 조건에서 기각**하고, 여러 생성기와 활성 PEP에 걸쳐 검증 대상·승인자·정책 hash를 결속하는 시스템 문제가 남는지 H20으로 감시한다. 실제 저자 무승인 배포나 19개 gold 오류의 원인으로 확대하지 않는다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

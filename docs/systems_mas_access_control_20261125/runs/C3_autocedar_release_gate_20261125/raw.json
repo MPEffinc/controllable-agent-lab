@@ -1,0 +1,74 @@
+{
+  "kind": "ARCHIVED_AUTHOR_CANDIDATE_INDEPENDENT_CONSUMER_EFFECT",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "archive_kind": "manual AITL target debugging trace, not paper 19 error candidates",
+  "candidate_sha256": "dd986d5dd4de5474fffaab7e9c18b673aad529c0b0203b99f9bf7666f723d62f",
+  "schema_sha256": "0f5a497387711c2fcbcfdf155e268505b48cddc339dc4967ec7363099d85f519",
+  "decision_sha256": "10d1a2f98f4e283d1c42415a90ff3d3046cffcbb7a03f7820ed9cd5978f29fda",
+  "approval_record": {
+    "approved": false,
+    "reason": "Synthesis completed, but automated or plumbing-only approvals do not constitute human semantic intent approval."
+  },
+  "completion": {
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+      "-c",
+      "from pathlib import Path; from types import SimpleNamespace; from autocedar.cli import _authoring_completed; import sys; print(_authoring_completed(SimpleNamespace(candidate_path=Path(sys.argv[1]), final_user_approved=False)))",
+      "/home/cclab/controllable_agent/third_party/K06-autocedar/experiments/fig2_cyberchair/haiku-4-5-2026-10-27/output/cyberchair-haiku45/harness_runs/scenario/candidate.cedar"
+    ],
+    "exit_code": 0,
+    "stdout": "True\n",
+    "stderr": "",
+    "completed": true
+  },
+  "verify": {
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+      "-c",
+      "import sys; from autocedar.cli import main; sys.exit(main())",
+      "verify",
+      "/home/cclab/controllable_agent/third_party/K06-autocedar/experiments/fig2_cyberchair/haiku-4-5-2026-10-27/output/cyberchair-haiku45/harness_runs/scenario"
+    ],
+    "exit_code": 0,
+    "stdout": "floor__submitstep1__slice_p0003: PASS (implies)\nceiling__submitstep1: PASS (implies)\nfloor__submitfullpaper__slice_p0004: PASS (implies)\nceiling__submitfullpaper: PASS (implies)\nfloor__updatestep1info__slice_p0005: PASS (implies)\nceiling__updatestep1info: PASS (implies)\nfloor__submitcameraready__slice_p0006: PASS (implies)\nceiling__submitcameraready: PASS (implies)\nfloor__downloadpaper__slice_p0007: PASS (implies)\nceiling__downloadpaper: PASS (implies)\nfloor__submitreview__slice_p0008_submit: PASS (implies)\nceiling__submitreview: PASS (implies)\nfloor__updatereview__slice_p0008_update: PASS (implies)\nceiling__updatereview: PASS (implies)\nfloor__readotherreviews__slice_p0009: PASS (implies)\nceiling__readotherreviews: PASS (implies)\nfloor__declareconflict__slice_p0010: PASS (implies)\nceiling__declareconflict: PASS (implies)\nfloor__volunteerforconflictingpaper__slice_p0011: PASS (implies)\nceiling__volunteerforconflictingpaper: PASS (implies)\nfloor__monitorreviewprocess__slice_p0012: PASS (implies)\nceiling__monitorreviewprocess: PASS (implies)\nfloor__askadditionalreviewer__slice_p0013: PASS (implies)\nceiling__askadditionalreviewer: PASS (implies)\nfloor__accessreviewerdirectory__slice_p0014_dir: PASS (implies)\nceiling__accessreviewerdirectory: PASS (implies)\nfloor__readreviewfile__slice_p0014_file: PASS (implies)\nceiling__readreviewfile: PASS (implies)\nno_runtime_errors__submitStep1__User__Submission: PASS (never-errors)\nno_runtime_errors__submitFullPaper__User__Submission: PASS (never-errors)\nno_runtime_errors__updateStep1Info__User__Submission: PASS (never-errors)\nno_runtime_errors__submitCameraReady__User__Submission: PASS (never-errors)\nno_runtime_errors__downloadPaper__User__Submission: PASS (never-errors)\nno_runtime_errors__submitReview__User__Submission: PASS (never-errors)\nno_runtime_errors__updateReview__User__Submission: PASS (never-errors)\nno_runtime_errors__readOtherReviews__User__Submission: PASS (never-errors)\nno_runtime_errors__declareConflict__User__Submission: PASS (never-errors)\nno_runtime_errors__volunteerForConflictingPaper__User__Submission: PASS (never-errors)\nno_runtime_errors__monitorReviewProcess__User__ReviewOverview: PASS (never-errors)\nno_runtime_errors__askAdditionalReviewer__User__ReviewOverview: PASS (never-errors)\nno_runtime_errors__accessReviewerDirectory__User__ReviewerDirectory: PASS (never-errors)\nno_runtime_errors__readReviewFile__User__ReviewFile: PASS (never-errors)\nloss: 0\n",
+    "stderr": ""
+  },
+  "authorize": {
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+      "authorize",
+      "--policies",
+      "/home/cclab/controllable_agent/third_party/K06-autocedar/experiments/fig2_cyberchair/haiku-4-5-2026-10-27/output/cyberchair-haiku45/harness_runs/scenario/candidate.cedar",
+      "--entities",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C3_autocedar_release_gate_20261125/entities.json",
+      "--principal",
+      "User::\"author\"",
+      "--action",
+      "Action::\"submitStep1\"",
+      "--resource",
+      "Submission::\"paper\"",
+      "--context",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C3_autocedar_release_gate_20261125/context.json",
+      "--verbose"
+    ],
+    "exit_code": 0,
+    "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+    "stderr": "",
+    "decision": "ALLOW"
+  },
+  "effects": [
+    {
+      "arm": "completion_only",
+      "before": 0,
+      "after": 1,
+      "effect_delta": 1
+    },
+    {
+      "arm": "approval_gate",
+      "before": 0,
+      "after": 0,
+      "effect_delta": 0
+    }
+  ],
+  "predicted": true
+}

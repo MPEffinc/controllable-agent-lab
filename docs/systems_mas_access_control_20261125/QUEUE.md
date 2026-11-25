@@ -21,5 +21,7 @@
 | A5 | 현행 Agent libOS가 host-authored task manifest, child attenuation, effect ceiling을 실제로 집행하는가 | 고정 SHA 공식 단위 실행, 논문 평가판 차이·정상/거부/실효과 구분 | [원저자 4 tests 통과](runs/A5_agent_libos_manifest_20261125/result.md), 정상/비인가 내부 decision 확인, provider effect 미시험. 단순 자식 확대 Gap은 해당 신뢰 조건에서 기각 |
 | C2 | 원본 K06 verifier는 잘못 생성된 target과 독립 gold 의미 차이를 같은 요청에서 드러내는가 | 별도 사전등록, 정답 정책/오류 정책, 원본 검증기 결과와 Cedar 요청 oracle, 정상/거부 상태 | [완료](runs/C2_target_semantics_20261125/result.md). self target 2/2 pass, gold target VPN 반례. off-VPN 로컬 effect gold 0/오류 1, 정상 effect 둘 다 1. 정형 검증 메커니즘 Need 기각; 독립 target의 획득/검토 비용 미측정 |
 | C3 | 승인 원문으로부터 target을 독립 검토하는 사람이 실제로 오류를 찾는가 | 공개 저자 후보·blind review 또는 독립 고정 정책 변이, 정상성·시간·비용 포함 | 검토 프로토콜/자료 접근 감사 필요. C2의 이미 주어진 gold를 실제 검토 성능으로 대체하지 않음 |
+| C3a | AutoCedar 공개 저자 trace에서 `completed`와 `final_user_approved`가 release 소비자에서 결속되는가 | 고정 archive·원본 verify·서로 다른 로컬 소비자의 효과 비교 | [CyberChair 원본 trace 감사 완료](runs/C3_autocedar_release_gate_20261125/result.md): verify 42 pass, approval false, 완료만 소비한 효과 1/승인 gate 0. 조건부 인터페이스 Gap, 실제 저자 배포·의도 오류 아님 |
+| H20 | 여러 policy 생성기/PEP에서 사람 승인 artifact·검증 target·활성 hash를 결속하지 않으면 같은 범위 누락이 반복되는가 | AutoCedar 외 실제 원본 deployment 경로와 기존 승인·서명·active-hash gate의 같은 입력 검증 | C3a는 AutoCedar 소비자 misconfiguration만. 기존 explicit approval gate가 해결해 넓은 새 Need `UNVERIFIED` |
 
 각 실험의 실패가 기존 방법으로 해결되면 그 조건의 Need를 기각한다. 저자 코드와 독립 adapter를 혼동하지 않는다.

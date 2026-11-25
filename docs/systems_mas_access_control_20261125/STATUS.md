@@ -25,11 +25,12 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [D1 실제 모델 A→B write-back](runs/D1_live_writeback_20261125/result.md): 3 calls, $0.000312. A journal은 최신 2명 규칙을 정확히 기록하고 B는 1명 거부/2명 허용. 원본 M4 status guard는 journal을 보존. 입력 전체 code-owned ancestor는 폐기 `r1`도 포함해 보수적 lineage가 정상 2명을 과차단(0/1); 현재 local service PEP는 정상 1/1·비인가 0. 모델 `support_ids=[r2]`는 자기 보고여서 독립 증거 아님. **누적 추정 $0.0046992 / $5.**
 - [D2 제한 context 재생성](runs/D2_restricted_regeneration_20261125/result.md): Permissive IFC의 기존 대안을 D1 동일 요청에 독립 적용. 폐기 `r1`을 A 입력에서 제거한 새 journal은 `r2`만 code-owned ancestor로 갖고, 정상 2명 1/1·비인가 1명 0을 달성. 3 calls/$0.000306. D1 과차단의 새 메커니즘 Need 기각. **누적 추정 $0.0050052 / $5.** 남은 조건은 어떤 최신 owner event가 정확히 신뢰·적용되는지 식별하는 과정.
 - [D3 owner event scope/time 실제 모델 추출](runs/D3_owner_event_scope_20261125/result.md): 고정 합성 6 history·48 policy cell 전부 gold 일치, 모의 정상 효과 48/48·비인가 0/48. 6 calls/$0.0013192. 명료한 입력의 실패 가설 기각. **누적 추정 $0.0063244 / $5.** 장기/모호/공격자 제어·권한자 식별은 미평가.
+- [C3 AutoCedar 저자 archive/원본 verifier](runs/C3_autocedar_release_gate_20261125/result.md): 수동 AITL CyberChair trace의 후보가 42/42 verifier pass·완료 true이나 `final_user_approved=false`. 원본 CLI는 완료/승인을 의도적으로 분리하고 후보 존재 시 exit 0. 완료만 보는 독립 SQLite 소비자 effect +1, 승인 확인 소비자 0. **조건부 배포 인터페이스 Gap**, 원저자 실제 무승인 배포 아님. 기존 승인 필드 gate로 해당 고정 문제 해결. API 비용 $0, 누적 $0.0063244/5.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. Track C3: K06 공개 archive에 저자가 생성한 plan과 gold가 같은 case ID로 남아 있는지 조사. 있으면 실제 불일치 후보의 독립 검토/정상성/비용을 평가하고 C1의 합성 후보와 분리한다.
+1. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
 2. Track D4: D3 성공을 기준으로 더 긴 실제적 승인 history와 권한자·scope 충돌을 사전등록할지, EAL/WTB/독립 검토자가 같은 조건을 해결하는지 확인한다. 실패를 위해 사후 문장 조정하지 않는다.
 3. Track A5+: 현행 Agent libOS의 실제 provider effect 경로와 동적 철회 테스트를 확인해 내부 decision 결과의 한계를 좁힌다. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 

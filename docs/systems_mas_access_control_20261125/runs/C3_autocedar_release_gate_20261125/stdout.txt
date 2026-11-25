@@ -1,0 +1,1 @@
+{"completed": true, "approval": false, "verify_exit": 0, "authorize": "ALLOW", "effects": [["completion_only", 1], ["approval_gate", 0]], "predicted": true}

@@ -1,0 +1,28 @@
+[
+  {
+    "uid": {
+      "type": "User",
+      "id": "author"
+    },
+    "attrs": {},
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "Submission",
+      "id": "paper"
+    },
+    "attrs": {
+      "authors": [
+        {
+          "__entity": {
+            "type": "User",
+            "id": "author"
+          }
+        }
+      ],
+      "step1Open": true
+    },
+    "parents": []
+  }
+]

@@ -16,6 +16,8 @@
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 
+**H19 감시 질문:** [ARES Fig.1/§III.2](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 사용자의 직접 DB Deny와 함수 호출 허용을 합쳐 DB로 도달하는 경로를 우회라고 정의한다. [AWS 실행 역할](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)은 함수가 별도 권한 주체임을 분명히 한다. 따라서 `사용자 직접 DB write 불허`가 `해당 함수를 통한 승인된 대리 DB write도 불허`를 뜻하는지 **정책 의도 oracle**이 필요하다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)의 actor/subject 위임, [RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)의 세부 승인, K04/K15가 강한 기존 해법이다. ARES가 애초 모든 간접 write 금지를 보안 요구로 둔다면 H19는 그 논문의 범위 밖이다. 현재 `UNVERIFIED`, 신규 Need 아님.
+
 ## 아직 필요한 검증과 기각 조건
 
 | 후보 | 필요 증거 | 기각 조건 |

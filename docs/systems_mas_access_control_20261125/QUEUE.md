@@ -12,5 +12,6 @@
 | B2 | H14 원본 provenance 소실 경로에서 **같은 visible text**의 revoked/current 출처가 실제 LLM proposal→gate→outbox에 어떤 차이를 주는가 | [사전등록](runs/B2_mapgraph_llm_20261125/prereg.md), 원본 메서드·model raw·같은 support의 4arm·정상/비인가 effect | [2 calls 및 원저자 parser 사후 재생 완료](runs/B2_mapgraph_llm_20261125/result.md); 외부 tool/provider effect `NOT_RUN`; H17 평가 귀속 Gap 발견 |
 | A2b | MAP-Graph Exp-5 41건 중 원저자 fallback 발생 비율과 실제 action/effect 관계를 확인할 수 있는가 | raw model output/trace 또는 공식 재실행, 기존 evaluator의 판정과 paired 비교 | [공개 CSV 감사 완료](runs/A2b_mapgraph_result_audit_20261125/result.md): 41/450 label 재확인, raw trace 원저자 공개 archive에서 제외. 비율/인과/효과 `NOT_ESTABLISHED`; full rerun은 비용·시간 판단 후 별도 사전등록 |
 | B3 | ARES 명시 ARP의 정적 도달 가능성만으로 정상/금지 branch를 구별해 preflight할 수 있는가 | [사전등록](runs/B3_ares_reachability_fixture_20261125/prereg.md), 독립 SQLite fixture 2 branch × 3 arm의 정상 완료·금지 효과·서비스 전후 상태 | [독립 fixture 완료](runs/B3_ares_reachability_fixture_20261125/result.md): 관계식 단독은 정상 0/1, 금지 효과 0; effect PEP 정상 1/1, 금지 효과 0. 실제 ARES LAM 성능 `UNVERIFIED` |
+| A3b | H19: 사용자 직접 DB Deny가 승인된 대리 DB effect까지 금지하는지, 정책 목표 oracle가 어디서 정해지는가 | ARES 위협 모델·승인 명세, AWS 역할 의미, RFC 8693/9396·K04/K15의 같은 조건을 구분 | [문헌 감시 질문](new_hypotheses.md) 등록. 직접 Deny만으로 위임 의도 판정 불가; 새 Need `UNVERIFIED` |
 
 각 실험의 실패가 기존 방법으로 해결되면 그 조건의 Need를 기각한다. 저자 코드와 독립 adapter를 혼동하지 않는다.

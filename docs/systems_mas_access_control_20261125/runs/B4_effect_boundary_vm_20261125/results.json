@@ -1,0 +1,194 @@
+[
+  {
+    "mode": "none",
+    "key": "A",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 1,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 38738306, \"request\": {\"task\": \"A\", \"key\": \"A\"}, \"direct_db_open\": null, \"elapsed_ns\": 95852693}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "none",
+    "key": "B",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 1
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 37260141, \"request\": {\"task\": \"A\", \"key\": \"B\"}, \"direct_db_open\": null, \"elapsed_ns\": 91056326}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "preflight",
+    "key": "A",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"decision\": \"preflight_deny_reachable_B\", \"request\": {\"task\": \"A\", \"key\": \"A\"}, \"direct_db_open\": null, \"elapsed_ns\": 3263}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "preflight",
+    "key": "B",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"decision\": \"preflight_deny_reachable_B\", \"request\": {\"task\": \"A\", \"key\": \"B\"}, \"direct_db_open\": null, \"elapsed_ns\": 3584}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "dispatch",
+    "key": "A",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 1,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 34650170, \"request\": {\"task\": \"A\", \"key\": \"A\"}, \"direct_db_open\": null, \"elapsed_ns\": 86086786}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "dispatch",
+    "key": "B",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"decision\": \"dispatch_deny\", \"request\": {\"task\": \"A\", \"key\": \"B\"}, \"direct_db_open\": null, \"elapsed_ns\": 3781}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "os",
+    "key": "A",
+    "os_ready": true,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 1,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 35661619, \"request\": {\"task\": \"A\", \"key\": \"A\"}, \"direct_db_open\": \"PermissionError:1\", \"elapsed_ns\": 88136942}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "os",
+    "key": "B",
+    "os_ready": true,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 1
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 36197937, \"request\": {\"task\": \"A\", \"key\": \"B\"}, \"direct_db_open\": \"PermissionError:1\", \"elapsed_ns\": 87676202}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "service",
+    "key": "A",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 1,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 34693821, \"request\": {\"task\": \"A\", \"key\": \"A\"}, \"direct_db_open\": null, \"elapsed_ns\": 87053622}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "service",
+    "key": "B",
+    "os_ready": null,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 403, \"decision\": \"service_deny\", \"duration_ns\": 3832, \"request\": {\"task\": \"A\", \"key\": \"B\"}, \"direct_db_open\": null, \"elapsed_ns\": 52637813}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "combined",
+    "key": "A",
+    "os_ready": true,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 1,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 200, \"decision\": \"committed\", \"duration_ns\": 40810650, \"request\": {\"task\": \"A\", \"key\": \"A\"}, \"direct_db_open\": \"PermissionError:1\", \"elapsed_ns\": 91770057}",
+    "client_stderr": ""
+  },
+  {
+    "mode": "combined",
+    "key": "B",
+    "os_ready": true,
+    "before": {
+      "A": 0,
+      "B": 0
+    },
+    "after": {
+      "A": 0,
+      "B": 0
+    },
+    "client_exit": 0,
+    "client_stdout": "{\"status\": 403, \"decision\": \"service_deny\", \"duration_ns\": 3520, \"request\": {\"task\": \"A\", \"key\": \"B\"}, \"direct_db_open\": \"PermissionError:1\", \"elapsed_ns\": 54516702}",
+    "client_stderr": ""
+  }
+]

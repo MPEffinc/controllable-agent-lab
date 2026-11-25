@@ -1,0 +1,5 @@
+ActPlane: 1 updates, 1 rules
+ActPlane: enforce mode (BPF LSM is active)
+ActPlane: seeded pid 114 label 0x1
+ActPlane: ready
+{"timestamp":11742330156,"event":"TAINT_VIOLATION","effect":"block","blocked":true,"killed":false,"comm":"python3.12","pid":114,"ppid":100,"op":2,"domain_id":0,"session_root":114,"target":"/work/service.sqlite","rule_id":0,"taint_label":1,"matched_label":1,"matched_labels":1,"provenance":{"label":1,"timestamp_ns":11650704178,"pid":114,"op":0,"ip":0,"target":"python3.12"}}

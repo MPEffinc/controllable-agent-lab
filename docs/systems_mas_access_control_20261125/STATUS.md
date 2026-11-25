@@ -2,6 +2,8 @@
 
 ## 현재 검증 질문
 
+2026-11-25 [B4 동일 효과 경계 VM 실행](runs/B4_effect_boundary_vm_20261125/result.md): 원본 ActPlane BPF-LSM이 agent의 SQLite 파일 직접 열기를 4/4 `EPERM`/event로 막았으나, 별도 서비스에 보낸 task A의 B row 요청은 HTTP 200·B=1로 적용됐다. 연구자 service PEP는 정상 A=1을 유지하고 B=0/403으로 차단했으며 OS+service 조합도 동일 업무 효과와 직접 파일 차단을 달성했다. 정적 preflight fixture는 정상 A를 과거부했고 dispatch fixture는 이 고정 입력에서 정상/비인가를 분리했다. 각 조건 1회, 철회·비동기·실제 공유 Worker identity는 미시험. **고정 사례의 신규 집행 메커니즘 Need 기각; task→OS/service subject 및 철회 결속의 독립 Need는 미확정.** API 비용 $0, 누적 추정 $0.0754388/$5. 다음은 C 원본 Authoring 호환성 및 D/OpenShell·A2A task binding 검증이다.
+
 2026-11-25 재개 지시에 따라 [네 후보 출발점](four_track_checkpoint_20261125.md)을 만들고 **OS 집행 Track D를 독립 핵심 후보**로 우선 실행했다. [D5](runs/D5_actplane_vm_20261125/result.md)에서 ActPlane 원본 정적 eBPF/LSM loader가 격리 6.15 VM의 직접·자식 금지 파일 쓰기를 `EPERM`으로 막고 정상 쓰기를 유지함을 확인했다. 6.8의 원본 tracepoint `kill`도 관측했으나 파일 `block`은 CLI matcher 예약과 정적 loader의 verifier 제약으로 실패했다. 이는 원본 경로별 보장·호환성 차이이며 새 Research Need를 확정하지 않는다. 다음은 A 실제 위임/provider, B 동일 효과 경계 비교, C 원본 Authoring 재현, 이어 D의 task binding·철회·서비스 효과를 반박한다.
 
 2026-11-25 후속 지시의 [Phase 1 H1–H19 전수 재감사](phase1_full_reassessment.md)를 완료했다. 원문·원본 메서드·독립 fixture와 강한 대안을 19행에서 구분하고 Track A–D별 반증 질문을 재선정했다. B1/B3/H17을 중심으로 고정하지 않는다. AutoCedar는 Python 3.11+, Cedar/SymCC/CVC5 및 모델 설정이 필요한 실제 authoring 경로를 확인했다. 해당 전체 경로의 즉시 실행 가능성은 추가 환경 감사 대상이다.

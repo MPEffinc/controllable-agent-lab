@@ -14,12 +14,11 @@
 - [H1–H14 네 축 재평가표](hypothesis_reassessment.md) 초안을 작성했다. H14 결과 존재와 전체 LLM workflow 미검증을 분리했다. [연구실 시스템 대조](systems_comparison.md)에는 KubeAegis §VII-C의 의미 충돌, ALPS 원본 verifier, KubeTeus/Bambda 원문, K04/K15/Agent libOS/다중-target DSL의 강한 반박을 기록했다. 출판 목록만 확인한 POLARIS/ARES 세부는 `UNKNOWN`으로 보존한다.
 - [ALPS 공식 Python verifier 12-test 실행](runs/A3_alps_runtime_20261125/result.md): exit 0, 결정 전용. `context`는 decision 키가 아니라 violation 기록에만 사용. 실제 클라우드/Agent effect는 미시험.
 - [상위 3개 반증 후보](research_candidates.md)를 H15 공유 worker, H13/H14 event·출처, H16 교차 계층 충돌로 선정했다. H15/H16은 **Gap 판정 아님**. B1 실제 LLM·공식 ALPS+독립 task/service PEP 실험을 [사전등록](runs/B1_shared_worker_llm_20261125/prereg.md)하고 실행 코드를 작성·문법 확인했다.
-- `local/progent-vm/.env`에 비어 있지 않은 `OPENAI_API_KEY` 항목이 있고 값은 출력하지 않았다. 이번 후속 연구의 유료 API 사용액 **USD 0 / 총 상한 USD 5**. 실제 서비스 effect 0.
+- `local/progent-vm/.env`의 API key는 값 출력 없이 실제 모델 endpoint로 확인했다. [B1 실제 LLM/로컬 효과](runs/B1_shared_worker_llm_20261125/result.md)는 12 calls, 비용 상한 USD 0.0007984, 총 **USD 0.0007984 / USD 5**. 외부 서비스 effect 0. A→B 요청에서 ALPS-only는 합성 B row를 변경했고, task/service PEP는 차단하며 정상 A/B는 보존했다. 비신뢰 row instruction은 이번 모델 실행에서 무시됐다. 이 고정 구성의 새 메커니즘 필요 가설은 기각.
 
 ## 다음 실행
 
-1. B1 `python3 docs/systems_mas_access_control_20261125/runs/B1_shared_worker_llm_20261125/run.py`를 **1회** 실행하고 summary/raw·비용을 확인한다.
-2. H13/H14를 동일 입력의 실제 LLM+service PEP로 시험할지 B1 결과를 보고 결정한다.
-3. POLARIS/ARES 원문 OCR 또는 저자 자료, KubeAegis cross-policy conflict 기존 대안을 더 확인한다. A1 표의 원문 링크를 행별 보강한다.
+1. [B2 사전등록](runs/B2_mapgraph_llm_20261125/prereg.md)을 별도 commit/push 후, `PYTHONDONTWRITEBYTECODE=1 python3 -B docs/systems_mas_access_control_20261125/runs/B2_mapgraph_llm_20261125/run.py` 1회 실행한다.
+2. POLARIS/ARES 원문 OCR 또는 저자 자료, KubeAegis cross-policy conflict 기존 대안을 더 확인한다. A1 표의 원문 링크를 행별 보강한다.
 
-Git: 초기 체크포인트 `3545acb` push 성공. 이번 A1–A4 문서·B1 사전등록은 별도 commit/push 후 실행한다.
+Git: 초기 체크포인트 `3545acb`, A1–A4/B1 사전등록 `3e7f901` push 성공. B1 결과와 B2 사전등록은 다음 commit/push 대상.

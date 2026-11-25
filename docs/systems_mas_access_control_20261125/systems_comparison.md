@@ -17,9 +17,10 @@
 
 ## 직접적인 대안과 관계
 
-- [Agent libOS](https://os-for-agent.github.io/papers/AgenticOS_SOSP_2026_paper_8.pdf) §§1–2,5는 stable AgentProcess identity·typed capability·scoped approval·provider primitive를 결합해 **공유 프로세스 안에서도 actor authority를 자원 효과에 연결**하는 직접 대안이다. 저자 80 시나리오/720 modeled row와 24 real-model trial을 구별해야 한다. 코드 [공식 후보](https://github.com/yingqi-z20/Agent-libOS)는 이번 동일 입력에 미적용. H15의 새 메커니즘 필요성에 강한 반박.
+- [Agent libOS](https://os-for-agent.github.io/papers/AgenticOS_SOSP_2026_paper_8.pdf) §§1–2,5는 stable AgentProcess identity·typed capability·scoped approval·provider primitive를 결합해 **공유 프로세스 안에서도 actor authority를 자원 효과에 연결**하는 직접 대안이다. 저자 80 시나리오/720 modeled row와 24 real-model trial을 구별해야 한다. [저자 현행 코드](https://github.com/yingqi-z20/Agent-libOS) SHA `85e8ff94...`의 `TaskAuthorityManifest`는 Host-authored authorized capability와 effect ceiling, child intersection을 명시한다; 아직 동일 B1 입력에 실행하지 않았고 논문 평가판과 현행 기능의 동일성도 미확인. H15의 새 메커니즘 필요성에 강한 반박.
 - [Semantic Router 다중 target 논문](https://arxiv.org/html/2603.27299v1) §§3,6은 같은 DSL에서 agent gate·MCP/A2A·NetworkPolicy/Sandbox를 생성하는 **직접 교차 계층 대안**이다. §7.1은 **position paper**, production workload/실제 protocol server 통합 미평가라고 직접 말한다. 교차 계층 컴파일 원리 부재 주장은 기각되며, 의미 보존·효과·정상성의 통합 평가가 남는지 검증해야 한다.
 - [GrassHopper](https://www.researchgate.net/publication/388127444_Elastic_Cross-Layer_Orchestration_of_Network_Policies_in_the_Kubernetes_Stack)는 Kubernetes NetworkPolicy→VM Security Group의 동적 변환을 다루는 인접 연구다. 논문 원문/코드 직접 재확인 전 KubeAegis의 **network↔system syscall** 의미 충돌을 해결했다는 edge는 부여하지 않는다.
+- [Alsaleh et al., SafeConfig 2012](https://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/40606.pdf)는 network 장치와 higher-service RBAC를 **통합 상태기계/BDD·CTL model checker**로 분석해, network allow/application deny 및 역방향 충돌을 질의·반례화한다(§I, §V). 즉 **교차 계층 의미 충돌 분석 원리 부재**는 이미 거짓이다. KubeAegis의 특정 network↔syscall adapter 및 동적 MAS task mapping의 비용·정확성이 같은 원리로 실현되는지는 별개 실증 질문이다.
 - [AuthBench](https://arxiv.org/abs/2605.14859v2)는 120 coding-agent task의 사람 검토 파일 권한과 실행 validator로 안전·정상 동시 평가를 한다. H1/H15에 대한 강한 평가·정책 생성 반박이나 multi-agent delegation + service effect의 동일 조건 증거는 아직 아니다.
 
 ## 분리된 보안 질문

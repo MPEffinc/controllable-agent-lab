@@ -10,5 +10,6 @@
 | Bambda | [IEEE Access 2025 원문](https://cclab.info/papers/2025_shin_access.pdf) | 공개 공식 코드 미확인 | 미확보 | 함수 호출 관계·caller 신원 결속을 원문에서 재확인 필요 |
 | POLARIS | [연구실 출판 목록](https://www.cclab.info/publications), Journal of Cloud Computing 2026 to appear | 공개 공식 코드 미확인 | 미확보 | 파일 접근 정책, 정확 원문 링크 확인 필요 |
 | ARES | [연구실 출판 목록](https://www.cclab.info/publications), 국내 학술대회 2026 | 공개 공식 코드 미확인 | 미확보 | 4쪽 PDF의 텍스트 추출 제한; 동명 외부 ARES와 혼동 금지 |
+| Agent libOS (강한 외부 대안) | [SOSP AgenticOS 2026 논문](https://os-for-agent.github.io/papers/AgenticOS_SOSP_2026_paper_8.pdf) | [저자 공개 코드](https://github.com/yingqi-z20/Agent-libOS), Apache-2.0 | `third_party/ALT_Agent_libOS` `85e8ff94c1e562bfb1f891714e3bf4bed9795690`, clone clean·실행 전 | 현행 v1.6.0 코드의 Host-authored TaskAuthorityManifest는 논문 평가 version과 동일성 미확인. 현행 기능을 이전 논문의 관측 성능으로 소급하지 않음 |
 
 `code confirmed`는 `method reproduced`를 뜻하지 않는다. 신규 코드의 license 및 고정 버전 확인 전 설치·실행하지 않는다.

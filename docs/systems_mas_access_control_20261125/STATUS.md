@@ -25,4 +25,4 @@
 2. H13/H14: 실제 Agent의 자연어 event·tool-output lineage 자동 수집을 같은 강한 service PEP/정상 업무에 비교한다. B1/B2의 고정 합성 사례를 일반화하지 않는다.
 3. [B3](runs/B3_ares_reachability_fixture_20261125/result.md)의 실제 저자 LAM 여부는 공식 코드/세부 evaluation을 확보해야 검증 가능하다. H19의 승인된 대리 실행 oracle를 K04/K15/RFC와 대조한다. POLARIS 전문·KubeAegis cross-policy 대안, A1 표의 원문 링크를 보강한다.
 
-Git: 초기 `3545acb`, A1–A4/B1 사전등록 `3e7f901`, B1 결과/B2 사전등록 `b385ba9`, B2 결과/A2b 감사 `0cee6aa`, B3 사전등록/ARES·POLARIS `273b541`, B3 결과 `eac2ff2`까지 push 확인. H19 문헌 감시 기록은 다음 checkpoint 대상.
+Git 체크포인트: 현재 브랜치 `exp/20261125-systems-mas-access-control`. 최신 commit은 `git log -1 --oneline`, 원격 동기화는 `git ls-remote origin refs/heads/exp/20261125-systems-mas-access-control`로 확인한다. 이 세션의 각 단계는 실행 전에 사전등록 commit, 실행 뒤 결과 commit을 별도로 push했다. 이전 자료/원저자 clone은 변경하지 않았다.

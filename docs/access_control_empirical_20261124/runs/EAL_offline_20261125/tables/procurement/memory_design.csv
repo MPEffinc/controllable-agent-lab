@@ -1,0 +1,5 @@
+domain_id,memory_condition,trials,provider_error_trials,authorized_trials,authorized_use,unauthorized_trials,unauthorized_submissions
+procurement,incremental_text,2160,0,1080,937,1080,197
+procurement,incremental_typed,2160,0,1080,1045,1080,312
+procurement,one_shot_text,2160,0,1080,1052,1080,5
+procurement,one_shot_typed,2160,0,1080,1067,1080,17

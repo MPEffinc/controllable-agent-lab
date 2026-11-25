@@ -1,0 +1,99 @@
+[
+  {
+    "mode": "host",
+    "policy": {
+      "run_job": [
+        [
+          1,
+          0,
+          {
+            "task_id": {
+              "const": "approved"
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "tool_args": {
+      "task_id": "approved"
+    },
+    "before": {
+      "normal": false,
+      "unauthorized": false
+    },
+    "after": {
+      "normal": true,
+      "unauthorized": true
+    },
+    "execution": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "command": [
+        "sh",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/H5_dispatch_effect/runner.sh",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/H5_dispatch_effect/out_host"
+      ]
+    },
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "mode": "docker",
+    "policy": {
+      "run_job": [
+        [
+          1,
+          0,
+          {
+            "task_id": {
+              "const": "approved"
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "tool_args": {
+      "task_id": "approved"
+    },
+    "before": {
+      "normal": false,
+      "unauthorized": false
+    },
+    "after": {
+      "normal": true,
+      "unauthorized": false
+    },
+    "execution": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--read-only",
+        "--user",
+        "1000:1000",
+        "--mount",
+        "type=bind,src=/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/H5_dispatch_effect/runner.sh,dst=/work/runner.sh,readonly",
+        "--mount",
+        "type=bind,src=/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/H5_dispatch_effect/src/input.txt,dst=/work/input.txt,readonly",
+        "--mount",
+        "type=bind,src=/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/H5_dispatch_effect/out_docker,dst=/out",
+        "--workdir",
+        "/work",
+        "busybox:1.36.1",
+        "sh",
+        "/work/runner.sh",
+        "/out"
+      ]
+    },
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  }
+]

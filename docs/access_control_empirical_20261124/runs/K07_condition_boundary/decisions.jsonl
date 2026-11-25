@@ -1,0 +1,6 @@
+{"mode":"BROAD","registration_open":false,"association_exported":true,"pm_allow":true,"app_allow":true,"pdp_invoked":true,"final_decision":"ALLOW","effect_before":0,"effect_after":1}
+{"mode":"BROAD","registration_open":true,"association_exported":true,"pm_allow":true,"app_allow":true,"pdp_invoked":true,"final_decision":"ALLOW","effect_before":0,"effect_after":1}
+{"mode":"STRICT","registration_open":false,"association_exported":false,"pm_allow":false,"app_allow":true,"pdp_invoked":true,"final_decision":"DENY_PM","effect_before":0,"effect_after":0}
+{"mode":"STRICT","registration_open":true,"association_exported":false,"pm_allow":false,"app_allow":true,"pdp_invoked":true,"final_decision":"DENY_PM","effect_before":0,"effect_after":0}
+{"mode":"APP_PM","registration_open":false,"association_exported":true,"pm_allow":true,"app_allow":false,"pdp_invoked":false,"final_decision":"DENY_APP","effect_before":0,"effect_after":0}
+{"mode":"APP_PM","registration_open":true,"association_exported":true,"pm_allow":true,"app_allow":true,"pdp_invoked":true,"final_decision":"ALLOW","effect_before":0,"effect_after":1}

@@ -1,0 +1,16 @@
+domain_id,seed,writer_target,matches,pairs
+procurement,20260719,nemotron_3_ultra_baseten,282,288
+procurement,20260719,kimi_baseten,279,288
+procurement,20260719,glm_5_2_baseten,283,288
+procurement,20260719,grok_4_3_openrouter,280,288
+procurement,20260719,qwen_plus_0728_openrouter,278,288
+procurement,20260821,nemotron_3_ultra_baseten,287,288
+procurement,20260821,kimi_baseten,283,288
+procurement,20260821,glm_5_2_baseten,280,288
+procurement,20260821,grok_4_3_openrouter,286,288
+procurement,20260821,qwen_plus_0728_openrouter,280,288
+procurement,20260822,nemotron_3_ultra_baseten,282,288
+procurement,20260822,kimi_baseten,284,288
+procurement,20260822,glm_5_2_baseten,283,288
+procurement,20260822,grok_4_3_openrouter,284,288
+procurement,20260822,qwen_plus_0728_openrouter,279,288

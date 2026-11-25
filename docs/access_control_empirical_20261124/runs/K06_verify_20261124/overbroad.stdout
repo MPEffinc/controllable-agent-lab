@@ -1,0 +1,27 @@
+view_safety: FAIL (implies)
+✗ Policy set 1 implies policy set 2: DOES NOT HOLD
+  Counterexample found:
+principal: User::"", action: Action::"View", resource: Document::""
+context: {isCompliantDevice: true, networkRiskScore: -1}
+entities: [
+  Role::"PrincipalInvestigator",
+  User::"" {
+    clearanceLevel: -1,
+    department: "",
+  },
+  Document::"" {
+    classification: "HighlyRestricted",
+    projectManagingDepartment: "",
+    projectStatus: "",
+  },
+  Action::"Edit",
+  Role::"ClinicalResearcher",
+  Action::"View",
+  Role::"GlobalAuditor",
+]
+edit_safety: PASS (implies)
+auditor_loophole_view: PASS (implies)
+auditor_loophole_edit: PASS (implies)
+liveness_view: PASS (always-denies (liveness))
+liveness_edit: PASS (always-denies (liveness))
+loss: 1

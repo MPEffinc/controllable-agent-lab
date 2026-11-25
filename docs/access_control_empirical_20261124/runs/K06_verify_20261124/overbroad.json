@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+    "-c",
+    "import sys; from autocedar.cli import main; sys.exit(main())",
+    "verify",
+    "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/input_overbroad"
+  ],
+  "cwd": "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124",
+  "returncode": 1,
+  "elapsed_seconds": 0.404,
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "cedar_version": "4.12.0 experimental",
+  "cvc5_version": "1.4.2",
+  "model": null,
+  "seed": null,
+  "api_cost_usd": 0,
+  "input_sha256": {
+    "__pycache__/verification_plan.cpython-311.pyc": "e554dc85785f185e19c30d7f9aaf02d0f4432578e74095a9cbf7b761f8d03d16",
+    "candidate.cedar": "441f4cbb4ddf8283388fe837338f4430cedc3c136cae1ab18909d19fcb05a2cf",
+    "policy_spec.md": "00589fdb725d6972c03cebc93b6c971e57df92c4e7921a9882a3497695ab83f1",
+    "policy_store.cedar": "ffc9b1c7a7d237fb7162a3c93f25a823d30560942f776328ec0bc7325d1be136",
+    "references/ceiling_edit.cedar": "6428fd8aa8d525ff4501dfe7a0f7074e4506456c6977079361bb25edea0f9039",
+    "references/ceiling_view.cedar": "1859c86dc477ce3fc4990d48e775db37b4d86beba923a89fa582e28877f6da65",
+    "references/floor_auditor_edit.cedar": "aa0a284c76e60dc83ae0825ddcc5cb0892476ed5f015672c485d937c5b0737b9",
+    "references/floor_auditor_view.cedar": "676554f180e0204307c01ccbcd3feeb156bde5b78d76a7da0ad3c054fe7300a5",
+    "schema.cedarschema": "5b19fb7ded0f92f8107d4b4f40e6ea7a3db3a0458c0174aef1832a28f5df3b5e",
+    "verification_plan.py": "a33cdcb03aec41d80181d2e7b8b6f809373b68f493018ed07f476acf9ea745b5"
+  }
+}

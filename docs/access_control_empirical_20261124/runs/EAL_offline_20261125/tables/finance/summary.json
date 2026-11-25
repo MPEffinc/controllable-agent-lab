@@ -1,0 +1,38 @@
+{
+  "schema_version": "paper_result_summary_v1",
+  "domain_id": "finance",
+  "release_id": "finance_redesign_v1",
+  "paper": "https://arxiv.org/html/2609.01836v1#A2.SS2",
+  "seeds": [
+    20260816,
+    20260821,
+    20260822
+  ],
+  "treatment": {
+    "corpus_version": "benchmark_v1",
+    "presentation_hash": "2b4b9f2bb396a0d16b0db3b0e8c5ef1bde5a28df0959a422e88f992a513208b9",
+    "memory_implementation_id": "langmem_profile",
+    "memory_implementation_hash": "e19c96fdcf904476b6e469775566b05d288232cc2e0143b5167f4656d4f33bdb"
+  },
+  "writer_routes": 15,
+  "raw_trial_routes_verified": 0,
+  "ordinary_pooled": {
+    "trials": 7680,
+    "provider_error_trials": 0,
+    "authorized_trials": 3840,
+    "authorized_use": 3686,
+    "unauthorized_trials": 3840,
+    "unauthorized_submissions": 816
+  },
+  "requested_action_agreement": {
+    "matches": 3802,
+    "pairs": 3840
+  },
+  "raw_artifacts": {
+    "expected": 255,
+    "verified": 0,
+    "missing": 255
+  },
+  "evidence_basis": "Hash-linked saved counts; available raw trials are recounted.",
+  "limits": "Count verification does not rerun the oracle or recreate missing bootstrap inputs."
+}

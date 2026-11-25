@@ -1,0 +1,16 @@
+domain_id,seed,writer_target,matches,pairs
+cybersecurity,20260812,nemotron_3_ultra_baseten,512,512
+cybersecurity,20260812,kimi_baseten,512,512
+cybersecurity,20260812,glm_5_2_baseten,512,512
+cybersecurity,20260812,grok_4_3_openrouter,498,512
+cybersecurity,20260812,qwen_plus_0728_openrouter,505,512
+cybersecurity,20260821,nemotron_3_ultra_baseten,512,512
+cybersecurity,20260821,kimi_baseten,508,512
+cybersecurity,20260821,glm_5_2_baseten,512,512
+cybersecurity,20260821,grok_4_3_openrouter,508,512
+cybersecurity,20260821,qwen_plus_0728_openrouter,509,512
+cybersecurity,20260822,nemotron_3_ultra_baseten,511,512
+cybersecurity,20260822,kimi_baseten,512,512
+cybersecurity,20260822,glm_5_2_baseten,511,512
+cybersecurity,20260822,grok_4_3_openrouter,511,512
+cybersecurity,20260822,qwen_plus_0728_openrouter,509,512

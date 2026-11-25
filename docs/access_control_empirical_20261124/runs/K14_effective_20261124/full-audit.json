@@ -1,0 +1,58 @@
+{
+  "active_version": 3,
+  "created_at_ms": 1795539518978,
+  "hash": "7bee0f4ee9e7ec4b1765f396dce0be778fb127fe3726864b04ce60de3d7bfc3b",
+  "loaded_at_ms": 1795539527949,
+  "policy": {
+    "filesystem_policy": {
+      "include_workdir": true,
+      "read_only": [
+        "/bin",
+        "/usr",
+        "/lib",
+        "/proc",
+        "/dev/urandom",
+        "/etc",
+        "/var/log"
+      ],
+      "read_write": [
+        "/tmp",
+        "/dev/null"
+      ]
+    },
+    "landlock": {
+      "compatibility": "best_effort"
+    },
+    "network_policies": {
+      "h2local": {
+        "binaries": [
+          {
+            "path": "/bin/wget"
+          }
+        ],
+        "endpoints": [
+          {
+            "enforcement": "audit",
+            "host": "172.17.0.1",
+            "port": 18083,
+            "protocol": "rest",
+            "rules": [
+              {
+                "allow": {
+                  "method": "GET",
+                  "path": "/ok"
+                }
+              }
+            ]
+          }
+        ],
+        "name": "h2local"
+      }
+    },
+    "version": 1
+  },
+  "sandbox": "h2eff-01",
+  "scope": "sandbox",
+  "status": "superseded",
+  "version": 2
+}

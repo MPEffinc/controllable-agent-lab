@@ -1,0 +1,49 @@
+# H3 심층 대조: 위임 권한, 철회, 비동기 provider 최종 효과
+
+검토일: 2026-11-24 UTC. **판정: `UNVERIFIED` (독립 Research Gap 0건).** 이 문서는 H3를 채택하려는 증명이 아니라, 같은 보안 조건에 대한 가장 강한 기존 해결을 먼저 대조한 독립 검토다. 원문은 아래 링크의 절·표에서 직접 확인했고, 로컬 원본 코드와 R2/R3 저장 결과를 별도로 확인했다. 저자 평가 수치는 독립 재현 수치로 바꾸지 않았다.
+
+**후속 체크포인트:** 아래의 “VERA 미실행”과 “최소 fixture 미실행”은 이 최초 문헌 감사 당시 상태다. 이후 [VERA L2 함수 호출 + 독립 메모리 sink 결과](runs/H3_edge_fence/result.md)를 저장했다. 또한 EffectBound의 GitHub MCP SHA 누락은 저자가 고정한 revision에만 해당하고, 공식 MCP는 2026-09-01에 필드를 추가했다. [버전 교정과 최신 H3 판정](h3_gap_verdict.md)을 우선한다.
+
+## 1. 고정 질문과 의미
+
+**질문.** 사용자 루트 권한 A에서 A→B→C로 작업과 권한이 이동하고, B→C의 위임 간선이 철회되거나 루트 A가 철회된 뒤, 이미 큐/콜백/공급자에 들어간 작업이 보호 효과를 낼 수 있는가? C에 독립 루트 X도 있을 때 X가 충분한 승인이라면 정상 작업을 계속할 수 있는가?
+
+- 공격자: 신뢰 경계 밖의 agent/하위 agent/메시지·작업 스케줄러. 신뢰된 발급자·서명 키·원자적 sink를 공격자가 바꾸지 못한다는 조건과, 아예 이런 전제가 성립하지 않는 배치를 구분한다.
+- 효과 판정: 단순 tool Allow, 작업 완료 표시, cancellation ack와 provider의 **인가 민감 commit/admission**을 분리한다. 이미 commit을 통과한 효과가 나중에 현실화되는 것은 철회 후 새 승인과 같지 않다. 정상성은 독립 충분 승인 X의 불필요한 중단 여부까지 포함한다.
+- 단일한 보장으로 “철회”를 합치지 않는다. `간선 철회 대상 계산`, `루트 종료·진행 작업 정산`, `현재 승인에 맞는 정확한 효과 commit`, `provider 인터페이스의 효과 폐쇄 가능성`은 서로 다른 명제다.
+
+## 2. 가장 강한 기존 해법과 검증된 범위
+
+| 연구·원문 | 메커니즘과 실제 PEP/정형 목표 | 저자 평가와 분모 | 결정적 가정·남는 범위 |
+|---|---|---|---|
+| [CONTINUITY](https://arxiv.org/html/2609.05269) §5.4–6.8, §8, §12; [공식 코드](https://github.com/zast-ai/continuity) | 서명된 root grant→전이 증거→effect-bound permit. `FinalitySink`가 subject/action·policy epoch·revocation·nonce를 효과 직전에 재검사한다. 로컬 고정 소스 `third_party/continuity/src/continuity/core.py:1411`, `:1443`, `:1503`. | 저자 합성 32 fault×4 domain×20=2,560 공격, 700 정상, 200 ambiguous; full 설정에서 해당 코퍼스의 harmful effect 0. R2 18조건과 R3 원본 의미 4조건은 **별도** A2A 합성 통합 관측. | 서명된 사실의 **진실성**과 모든 등가 effect 경로의 sink 통과는 보장 밖. 최종 세계/nonce/idempotency는 인메모리 원자 모델. R2/R3의 한 경로·순차 실행으로 실제 provider, 동시성, 동적 경로 완전성을 증명하지 못한다. [§9.7, §12](https://arxiv.org/html/2609.05269). |
+| [VERA](https://arxiv.org/html/2608.30091) §III–VII, IX; [저자 링크 artifact](https://anonymous.4open.science/r/ictai2026-agent-revocation-artifact-14BA/README.md) | 서명된 다중 부모 DAG에서 간선 e 철회 후 권한을 잃는 노드 집합 `reach(G) − reach(G\{e})`를 정확히 계산·증명. 독립 경로 하나가 남으면 C의 authority는 유지. 로컬 익명 artifact의 `src/revocation/granularity.py:44`에 target 계산이 있으나 이번 H3에서 실행하지 않았다. | E16 LangGraph 통제형 25 cell×20=500 trace, target proof 500/500. 대안 부모가 있는 320 철회에서 공유 agent 320/320 보존. E17–E19는 총 9 trace/53 signed event의 **스키마 이식성** 평가; 완전한 A2A provider effect 평가가 아니다. [§VI Table IV](https://arxiv.org/html/2608.30091). | disjunctive 경로 승인만. conjunctive/threshold는 명시적 비목표. 철회 이벤트의 전달·stale 상태와 보호 효과의 finality는 해결하지 않는다. [§III-C, §IX](https://arxiv.org/html/2608.30091). |
+| [Authorization Revocation](https://arxiv.org/html/2609.21284) §3–7, §10 | durable root-epoch cut, issuer freeze, sink별 fence, carrier/전달 token 정산, provider frontier certificate를 결합해 루트 상대적 `QUIESCENT`를 검증. root support antichain은 독립·conjunctive 승인을 모두 표현하고, 독립 지원으로의 atomic rebind는 정상 X 작업을 살린다. | 저자 **provider-free** durable-ledger 17 등록 사례/17 일치, 별도 checker 17/17, 의미 변이 44/44 거부. cut만 한 대조군의 늦은 effect와 cut+fence의 차이를 시험. 원격 운영 provider 보장은 이 분모에 없다. [§7 Table 6](https://arxiv.org/html/2609.21284). | A1 발급 경로 중재, A6 모든 runtime/provider/sink/channel의 manifest, A7 전송 token 정산, A8 atomic rebind, A9 내구성이 보안 전제. 불투명 endpoint는 긍정적 종료 인증이 아닌 `INDETERMINATE`. **root epoch** 철회와 provider 수락 경계의 정리이며 VERA의 중간 간선 철회를 직접 구현한 증거는 없다. [§3 Table 2, §10](https://arxiv.org/html/2609.21284). 공개 artifact URL은 원문에서 확인하지 못해 코드 재현은 `UNKNOWN`. |
+| [CTA / CommitGate](https://arxiv.org/pdf/2607.10487v2) §3–6, App. B–D; [저자 artifact](https://anonymous.4open.science/r/commit-time-authorization/) | 정확한 효과에 대해 **하나의 완전하고 현재인** 승인 후보(현재 grant·premise·dependency·effect binding·path)를 선택. 보호 sink가 같은 원자적 commit에서 재검사하거나 단기 일회용 파생 grant를 소비. Lean 정리는 모든 쓰기가 원자 sink를 거치고 정책이 `Auth`에 대해 sound일 때의 조건부 안전이다. | 17 고정 advisory는 문제 근거(그중 13건 한 제품); LangChain/OpenHands/서비스/거래 런타임의 저자 구성 정책으로 보호 효과 관측. OpenHands의 GPT·Fable·Sonnet 조건: 무보호 철회 생산 배포 12/12, 보호 조건 철회 생산 배포 0/12, 정상 12/12. [§5 Table 8, §6](https://arxiv.org/pdf/2607.10487v2). 이 수치를 다른 모델·서비스에 일반화하지 않는다. | 필요한 사실의 누락·틀린 정책은 그대로 위험. 파생 lease는 **발급 뒤 source 철회에도 만료까지 유효**할 수 있으며 즉각 철회에는 revocable reservation/조정 commit이 필요하다고 저자가 명시. 외부 approval ledger의 정직성·의미 출처·분산 복구는 정리 밖. [§4.2–4.3, §6, App. C](https://arxiv.org/pdf/2607.10487v2). |
+| [EffectBound](https://arxiv.org/html/2609.02866) §II–V, App. A; [저자 artifact](https://anonymous.4open.science/r/effectbound/) | provider 정책과 effect frontier까지의 증거 기반 **유한 계약**에서 Bind/Re-enter/Fence가 안전과 정상 완료를 모두 만족하는지 판정. 해법/불가능 인증/증거 부족을 구분. 계약·경로는 분석자가 제공하며 도구가 자동 발견하지 않는다. | 4 provider 계열 6 경로: GitHub 25/25 moved head→SHA binding 후 0/25, NATS purge 30/30 delayed append→tracked drain 후 0/30, Kafka old request 10/10 append→fence 후 0/10; 각각 정상 완료 분모도 동수. Kafka 4.3.1은 고정 broker·동기 비트랜잭션 append만. [§V Table III, §V-C](https://arxiv.org/html/2609.02866). | 특정 MCP API의 `head SHA` 원자 조건 결여는 **인터페이스 제약**으로 구체적이며, 저자는 native REST precondition으로 해결함을 시험. 불완전한 provider 경로 inventory·틀린 frontier·변경된 구성에 대한 자동 보장은 없다. 증거 부족이면 `Unsupported`. [§IV-A, §IV-C, §VI](https://arxiv.org/html/2609.02866). |
+| [PAuth v2](https://arxiv.org/html/2603.17170) §II–VI | 신뢰된 서버가 사용자 task에서 자신의 NL slice를 만들고 signed operand envelope을 검사하는 **서버측 per-call** 인가. 도구 인자의 값·출처를 bound하며 agent가 공격받아도 서버가 독립 판단. | AuthBench: refined 100/100 정상 자동 허용, 634/634 adversarial call 차단. 원래 미명확 task는 **71/100 자동 허용, 29/100 사용자 확인**이 정확한 정상 분모다. [§V-C Table III](https://arxiv.org/html/2603.17170). | 승인 문장이 명확하고 서버의 NL→code 번역 및 authoritative data가 정확하다는 TCB. 서버 transaction/가격 고정은 범위 밖. 따라서 서명된 operand provenance가 provider의 늦은 effect나 root 철회 closure를 단독 해결한다는 근거는 없다. [§III-A, §VI](https://arxiv.org/html/2603.17170). 저자 코드 링크는 살핀 원문에서 `NOT_ESTABLISHED`. |
+
+**공개 구현 상태 주의.** CONTINUITY는 저자 연결 GitHub 원본을 로컬 SHA `59cfe60930d2`에 고정·실행했다. VERA는 저자가 연결한 익명 artifact를 로컬에 압축 해제해 정적 감사했으나 이번 검토에서 실행하지 않았다. CTA·EffectBound는 원문에 익명 artifact URL이 있고, 이 문서 작성 시 repo commit/라이선스/실행 성공은 확인하지 않았다. Authorization Revocation과 PAuth는 원문에서 실행 구현 서술은 확인했으나 지금 확인한 공식 공개 코드 URL이 없다. `코드 미발견`을 `코드 없음`으로 바꾸지 않는다.
+
+## 3. 기존 R2/R3와 후속 논문의 교차 판정
+
+- [R2 저장 판정](../../results/r2/expectation-check-01.json): 18/18 사전 예측 일치, `needs_triage=0`. 원본 CONTINUITY를 쓴 순차 A2A 합성 테스트에서 통제 조건의 비인가 effect 0이며, 방어 체크 제거 4조건은 결과가 뒤집혔다. 해당 provider는 인메모리 효과 경로 하나였다. 이 결과는 EffectBound가 묻는 실제 provider frontier·인터페이스 제어 능력에 대한 답이 아니다.
+- [R3 저장 판정](../../results/r3/expectation-check-01.json): G0–G2 네 실행 조건의 예상 관측 일치, G3–G5는 `NOT_RUN`/CONTINUITY의 grant 의미 밖. VERA의 간선·대안 경로, Authorization Revocation의 다중 지원·fence가 가장 강한 반박이다. [R3 판정](../R3_GAP_VERDICT.md)의 “한 논문이 셋을 동시에 주장하지 않는다”는 사실만으로 미해결 보안 실패는 성립하지 않는다.
+- **같은 조건을 해결하는 현실적 조합 [추론].** 신뢰된 서버 task slice 또는 검토된 명세로 승인 범위를 고정(PAuth 등) → 위임 간선의 현재 목표 집합을 정확히 계산(VERA) → 오래된 루트의 진행 작업과 provider 수락을 fence/정산(Authorization Revocation) → 정확한 현재 효과를 원자 commit에서 확인(CTA), provider가 그 제어를 제공하는지 분석(EffectBound). 각 방법의 **가정이 함께 성립해야** 하며, 이 조합 자체가 원저자의 검증된 시스템은 아니다. 그러나 이 방법들이 같은 조건에서 함께 실패한다는 관측도 아직 없다.
+
+## 4. 잠재 잔여 조건과 기각 조건
+
+| 가설 | 현재 근거·반박 | 판정 및 기각 조건 |
+|---|---|---|
+| **H3a: 중간 간선 철회 + conjunctive/대안 승인 + 진행 중 provider effect를 함께 처리해도 잘못된 효과가 남는다.** | VERA의 disjunctive 간선 목표와 Revocation의 root support/fence는 서로 다른 원자다. 어떤 한 논문의 완전 결합 보장도 확인되지 않았다. 그러나 간선 e의 의존을 root support에 명시적으로 매핑하고 매니페스트된 provider fence를 쓰면 해결될 수 있다. 지금은 그 매핑 불가능성, 잘못된 effect, 정상 X 손실 어느 것도 관측되지 않았다. | `UNVERIFIED`. **기각:** 신뢰된 e→support 매핑·현재 그래프 snapshot·atomic rebind와 provider fence를 갖춘 기존 프로토콜/실험이 A 철회 effect 0과 독립 X 정상 완료를 함께 보이면. **지지 조건:** 그런 강한 대조군에서도 동일 승인 의미 아래 비인가 commit 또는 필수 정상 과제 거부가 재현되고 다른 해법이 이를 설명하지 못할 때. |
+| **H3b: 고정된 얕은 provider API에서는 승인과 최종 효과를 원자 결속할 수 없다.** | EffectBound의 GitHub MCP head-SHA 부재 사례는 해당 인터페이스에 대한 구체적 불가능성 근거다. 같은 연구가 native REST의 SHA 조건으로 안전 merge·정상 완료를 보였다. CTA도 원자 sink가 있으면 해결한다. | **좁은 API 조건은 `PARTIALLY_RESOLVED`; 범용 새 Need는 `REJECTED_HYPOTHESIS`.** **기각:** provider-native precondition이나 아래 계층 PEP가 같은 effect의 safety/utility를 만족하면. 특정 API만 반드시 써야 한다는 현실 제약과 비용이 있다면 그 조건을 별도로 문서화해야 한다. |
+| **H3c: 파생 grant lease나 철회 ack 뒤에 남은 작업이 항상 무권한 effect를 만든다.** | CTA는 짧은 lease가 source 철회 후 유효할 수 있음을 **명시된 의미**로 취급하고 즉시 철회에는 조정 commit을 요구한다. Revocation은 pre-fence 수락을 receipt로 정산하고 post-fence old-root 수락을 금한다. 승인이 언제 끝나는지 정의하지 않고 단순 `post-cut effect`만 세면 잘못된 양성이다. | `REJECTED_HYPOTHESIS`(“항상” 주장). **기각:** 수락·철회·fence의 순서를 넣은 명세에서 해당 효과가 허용된 pre-fence commitment 또는 유효 lease임이 확인되면. `UNVERIFIED` 잔여는 배치가 약속한 즉시 철회 의미와 실제 lease/commit 의미의 불일치 여부다. |
+| **H3d: 서명된 인자 출처가 있으면 승인 의미와 provider 최종 효과가 자동으로 맞는다.** | PAuth는 authoritative 서버 값과 task slice의 call consistency를 강하게 다루지만 NL 번역 진실성 및 transaction을 가정한다. CONTINUITY도 인증된 사실의 진실성을 증명하지 않는다. CTA는 선언된 현재 premise를 commit에서 검사하지만 어떤 premise가 사용자 의도에 필수인지는 외부 정책이다. | `REJECTED_HYPOTHESIS`(자동 보장). 새 Need 여부는 `UNVERIFIED`. **기각:** 독립 사용자가 검토한 target/확인 응답, authoritative data와 원자 서비스 API가 정상 과제를 수행하면서 잘못된 효과를 차단하면. |
+
+## 5. 다음 검증 질문과 실험 게이트
+
+**다음 질문(문헌 우선):** 기존 protocol/profile이 `중간 간선 e`의 의존을 Revocation의 root atom 또는 selected witness로 표현하고, 동일한 effect envelope을 CTA의 원자 sink까지 유지하는 **공개 구현**이 있는가? 원문 구현·보장·평가를 같은 신뢰 가정으로 확인한다. 공개 근거가 없다면 작고 안전한 독립 fixture를 사전 등록한다.
+
+**사전 등록할 최소 fixture의 조건(미실행):** 3 agent, 간선 A→C와 독립 X→C, 각각의 selected witness, 하나의 큐와 하나의 원자 인메모리 effect sink. 정상 X 유지, A 단독 철회, 간선 철회, pre/post fence 수락, 대안 rebind, conjunctive A∧X를 분리한다. `검증 질문`: 강한 조합에서도 A 의존 post-fence commit이 있거나 X 정상 효과가 부당하게 막히는가? `예상`: 올바른 mapping/fence면 위반 0·X 정상 1. `반증`: 정확한 권한 그래프·독립 oracle·효과 state에서 위반/과차단 1건. `비용`: 모델/API 0, 로컬 Python 수초. `완료`: 각 조건의 승인 witness·fence·effect 전후 상태와 원본 method 대조. 단순히 새 결합 fixture를 구현해서 PASS가 나와도 신규 Gap을 증명하지 않는다.
+
+**이번 단계에서 실행하지 않은 이유:** R2/R3가 단일 경로의 원본 CONTINUITY 관측을 이미 제공하고, H3a의 핵심은 기존 해법 **조합이 불가능하거나 실패하는 구체 조건**이다. 현재는 그 조건/원문 구현을 확정하지 못했다. 임의 adapter를 만들면 그 adapter의 오류가 연구 전체의 Gap으로 오인될 위험이 더 크다. 먼저 위 공개 구현과 policy 의미를 고정한 뒤 결과가 판정을 바꿀 때만 실행한다. 유료 API·실서비스 호출 0.

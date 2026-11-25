@@ -1,0 +1,113 @@
+{
+  "recorded_at_utc": "2026-11-17T07:57:44.052577+00:00",
+  "user_timezone": "Asia/Seoul",
+  "sources": [
+    {
+      "name": "progent",
+      "path": "third_party/progent",
+      "paper_version": "2504.11703v3",
+      "remote": "https://github.com/sunblaze-ucb/progent.git",
+      "sha": "b02783b896d4bf01a2adf24738015e258db8d35b",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "sasy-standalone",
+      "path": "third_party/sasy",
+      "paper_version": "2602.16708v4",
+      "remote": "https://github.com/sasy-labs/sasy.git",
+      "sha": "7dc9e524c5b1979b91d16b9d573219e358a6c332",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "forge",
+      "path": "third_party/guided-forge-ecc5ff9",
+      "paper_version": "2602.16708v4",
+      "remote": "https://github.com/sasy-labs/forge.git",
+      "sha": "ecc5ff9f7576f2669249609d9002c07674947913",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "sasy-for-forge",
+      "path": "third_party/guided-sasy-for-forge-6dedd2b",
+      "paper_version": "2602.16708v4",
+      "remote": "https://github.com/sasy-labs/sasy.git",
+      "sha": "6dedd2bc15da491d14ec07f87c0f1ef4d339efd6",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "openshell",
+      "path": "third_party/guided-openshell-2e5589b",
+      "paper_version": null,
+      "remote": "https://github.com/NVIDIA/OpenShell.git",
+      "sha": "2e5589b2180dd432320adda124c4f7bcede119b5",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "multicamel",
+      "path": "third_party/multiagentdojo",
+      "paper_version": "2610.05640v1",
+      "remote": "https://github.com/james-pete/multiagentdojo.git",
+      "sha": "e71647382155dc6949d6ccf9a9d7ec7cf429b856",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "continuity",
+      "path": "third_party/continuity",
+      "paper_version": "2609.05269v1",
+      "remote": "https://github.com/zast-ai/continuity.git",
+      "sha": "59cfe60930d247d1890b366ded686c718020a11e",
+      "tracked_status": "",
+      "scope": "Tracked source obtained. Git submodule content is separate. Source acquisition is not runtime validation."
+    },
+    {
+      "name": "controlvalve",
+      "paper_version": "2510.17276v2",
+      "source_status": "Official runnable repository not verified as of 2026-11-17; not proof of absence",
+      "sha": null,
+      "path": null,
+      "runtime": "NOT_PREPARED_NO_VERIFIED_ARTIFACT"
+    },
+    {
+      "name": "pauth",
+      "paper_version": "2603.17170v2",
+      "source_status": "Official runnable repository not verified as of 2026-11-17; not proof of absence",
+      "sha": null,
+      "path": null,
+      "runtime": "NOT_PREPARED_NO_VERIFIED_ARTIFACT"
+    }
+  ],
+  "environments": {
+    "progent_agentdojo": {
+      "path": "local/guided-reproduction-20261117/envs/progent-agentdojo",
+      "status": "INSTALLED_IMPORT_HELP_DEPENDENCY_CHECK_EXIT_0",
+      "dependency_lock": "local/guided-reproduction-20261117/setup/progent-agentdojo-resolved-v2.txt",
+      "upstream_lock": false,
+      "model_calls": "NOT_RUN",
+      "policy_demo": "NOT_RUN",
+      "tool_effect_exercise": "NOT_RUN"
+    },
+    "continuity": {
+      "path": "third_party/continuity/.venv",
+      "status": "EXISTING_METADATA_VERIFIED_NOT_RERUN"
+    },
+    "forge_sasy": "SOURCE_READY_ENGINE_NOT_INSTALLED_SUBMODULE_NOT_INITIALIZED",
+    "openshell": "SOURCE_READY_HOST_LANDLOCK_ABI1_BELOW_REQUIRED3_PROVER_NOT_BUILT",
+    "multicamel": "SOURCE_AND_UPSTREAM_LOCK_READY_ENV_NOT_INSTALLED",
+    "controlvalve": "NO_VERIFIED_RUNNABLE_ARTIFACT",
+    "pauth": "NO_VERIFIED_RUNNABLE_ARTIFACT"
+  },
+  "existing_environment_metadata_unchanged": {
+    "progent": true,
+    "camel": true,
+    "continuity": true
+  },
+  "results_root": "local/guided-reproduction-20261117/runs",
+  "no_commits_or_pushes": true,
+  "new_experiments_executed": false
+}

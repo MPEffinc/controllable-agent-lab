@@ -1,0 +1,51 @@
+Warning: log buffer contains only the last 107 lines; --since results may be incomplete.
+[1795539417.604] [sandbox] [INFO ] [openshell_supervisor] Starting sandbox supervision command=["sh", "-c", "sleep 3600"]
+[1795539417.607] [sandbox] [INFO ] [openshell_sandbox_backend::runtime_initiated] Runtime-initiated Sandbox Protocol listener ready
+[1795539417.747] [sandbox] [INFO ] [openshell_supervisor] Fetching sandbox policy via gRPC endpoint=https://127.0.0.1:18081 sandbox=h2eff-01 sandbox_id=262e9833-40f2-4046-8a5b-af8e7ec8ad5e
+[1795539417.770] [sandbox] [OCSF ] [ocsf] CONFIG:DISCOVERY [INFO] Server returned no policy; attempting local discovery
+[1795539417.792] [sandbox] [INFO ] [openshell_supervisor_network::opa] Configured OPA runtime binary identity mode require_binary_identity=true source=proto
+[1795539417.792] [sandbox] [OCSF ] [ocsf] CONFIG:CONFIGURED [INFO] OPA runtime binary identity mode configured [source:proto require_binary_identity:true] [source:proto]
+[1795539417.812] [sandbox] [OCSF ] [ocsf] CONFIG:DISABLED [INFO] OTLP agent trace relay inactive: not enabled by the gateway
+[1795539417.814] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary attached backend=openshell-sandbox
+[1795539417.816] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary enforcement confirmed backend=openshell-sandbox
+[1795539417.819] [sandbox] [OCSF ] [ocsf] CONFIG:ENABLED [INFO] TLS termination enabled: ephemeral CA generated
+[1795539417.819] [sandbox] [OCSF ] [ocsf] CONFIG:READY [INFO] Policy DNS connected to isolation boundary
+[1795539417.819] [sandbox] [OCSF ] [ocsf] NET:LISTEN [INFO] 127.0.0.1:3128
+[1795539417.819] [sandbox] [WARN ] [openshell_supervisor_network::proxy] host.openshell.internal maps to a non-link-local IP; trusted-gateway SSRF exemption disabled ip=127.0.0.1
+[1795539417.837] [sandbox] [INFO ] [openshell_supervisor] Isolation boundary agent started backend=openshell-sandbox
+[1795539417.838] [sandbox] [OCSF ] [ocsf] SSH:LISTEN [INFO]
+[1795539417.838] [sandbox] [INFO ] [openshell_supervisor] Control-mode access plane started backend=openshell-sandbox
+[1795539417.881] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] 127.0.0.1:18081
+[1795539417.926] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Acknowledged initial policy revision as loaded [version:1] [hash:a45a8ff3564f00ae26cbd66f1131f37eedd8b54a66fbfec103d65a204c19c6e8]
+[1795539447.852] [sandbox] [OCSF ] [ocsf] CONFIG:DETECTED [INFO] Settings poll: config change detected [old_revision:16709790733110020355 new_revision:3672533791780593937 policy_changed:true provider_env_changed:true]
+[1795539447.856] [sandbox] [INFO ] [openshell_supervisor_network::opa] Configured OPA runtime binary identity mode require_binary_identity=true source=proto
+[1795539447.856] [sandbox] [OCSF ] [ocsf] CONFIG:CONFIGURED [INFO] OPA runtime binary identity mode configured [source:proto require_binary_identity:true] [source:proto]
+[1795539447.859] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Policy reloaded successfully [policy_hash:aeab0d8ef7119b4188e1c949cdf4d9f87a5cd91fdd08c37e79837dd2a8704826] [hash:aeab0d8ef7119b4188e1c949cdf4d9f87a5cd91fdd08c37e79837dd2a8704826]
+[1795539463.504] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=e7535379-6eed-420f-8530-b5553c2446a5, target=unix:/run/openshell/ssh.sock)
+[1795539463.504] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795539463.523] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=e7535379-6eed-420f-8530-b5553c2446a5, target=unix:/run/openshell/ssh.sock)
+[1795539527.941] [sandbox] [OCSF ] [ocsf] CONFIG:DETECTED [INFO] Settings poll: config change detected [old_revision:3672533791780593937 new_revision:9449659106727175417 policy_changed:true provider_env_changed:true]
+[1795539527.945] [sandbox] [INFO ] [openshell_supervisor_network::opa] Configured OPA runtime binary identity mode require_binary_identity=true source=proto
+[1795539527.945] [sandbox] [OCSF ] [ocsf] CONFIG:CONFIGURED [INFO] OPA runtime binary identity mode configured [source:proto require_binary_identity:true] [source:proto]
+[1795539527.948] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Policy reloaded successfully [policy_hash:8c58ca1f4bfe68a116adc49c9210f4b2a294f892256979a5f1eb0ceae6df26eb] [hash:8c58ca1f4bfe68a116adc49c9210f4b2a294f892256979a5f1eb0ceae6df26eb]
+[1795539527.952] [sandbox] [WARN ] [openshell_supervisor::endpoint_status] Endpoint status report failed transiently; retaining immutable snapshot attempt=1 error=code: 'The system is not in a state required for the operation's execution', message: "tool server endpoint status revisions do not match the current sandbox configuration"
+[1795539536.311] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=99b81524-1919-4015-9ca4-d21fd7299d4e, target=unix:/run/openshell/ssh.sock)
+[1795539536.311] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795539536.330] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /bin/wget(0) -> 172.17.0.1:18083 [policy:h2local engine:opa]
+[1795539536.332] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://172.17.0.1:18083/blocked [policy:h2local engine:l7] [http_event_kind:decision request_sequence:1]
+[1795539536.334] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=99b81524-1919-4015-9ca4-d21fd7299d4e, target=unix:/run/openshell/ssh.sock)
+[1795539547.993] [sandbox] [OCSF ] [ocsf] CONFIG:DETECTED [INFO] Settings poll: config change detected [old_revision:9449659106727175417 new_revision:3172369758482670080 policy_changed:true provider_env_changed:true]
+[1795539547.997] [sandbox] [INFO ] [openshell_supervisor_network::opa] Configured OPA runtime binary identity mode require_binary_identity=true source=proto
+[1795539547.997] [sandbox] [OCSF ] [ocsf] CONFIG:CONFIGURED [INFO] OPA runtime binary identity mode configured [source:proto require_binary_identity:true] [source:proto]
+[1795539548.000] [sandbox] [OCSF ] [ocsf] CONFIG:LOADED [INFO] Policy reloaded successfully [policy_hash:c7ade023c38bb27c38df9b4085779c5791ecc6b835f696ce40cb034012e3ced6] [hash:c7ade023c38bb27c38df9b4085779c5791ecc6b835f696ce40cb034012e3ced6]
+[1795539548.004] [sandbox] [WARN ] [openshell_supervisor::endpoint_status] Endpoint status report failed transiently; retaining immutable snapshot attempt=1 error=code: 'The system is not in a state required for the operation's execution', message: "tool server endpoint status revisions do not match the current sandbox configuration"
+[1795539554.628] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=6dc26160-78e6-427d-a8c1-b0ba58c41510, target=unix:/run/openshell/ssh.sock)
+[1795539554.628] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795539554.645] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /bin/wget(0) -> 172.17.0.1:18083 [policy:h2local engine:opa]
+[1795539554.647] [sandbox] [OCSF ] [ocsf] HTTP:GET [MED] DENIED GET http://172.17.0.1:18083/blocked [policy:h2local engine:l7] [http_event_kind:decision request_sequence:1 reason:L7_REQUEST deny GET 172.17.0.1:18083/blocked reason=GET /blocked not permitted by policy]
+[1795539554.649] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=6dc26160-78e6-427d-a8c1-b0ba58c41510, target=unix:/run/openshell/ssh.sock)
+[1795539560.720] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay open (channel_id=a394df47-da2f-400a-be21-a786a9997eec, target=unix:/run/openshell/ssh.sock)
+[1795539560.720] [sandbox] [OCSF ] [ocsf] SSH:OPEN [INFO] ALLOWED
+[1795539560.734] [sandbox] [OCSF ] [ocsf] NET:OPEN [INFO] ALLOWED /bin/wget(0) -> 172.17.0.1:18083 [policy:h2local engine:opa]
+[1795539560.735] [sandbox] [OCSF ] [ocsf] HTTP:GET [INFO] ALLOWED GET http://172.17.0.1:18083/ok [policy:h2local engine:l7] [http_event_kind:decision request_sequence:1]
+[1795539560.737] [sandbox] [OCSF ] [ocsf] EVENT [INFO] ssh relay closed (channel_id=a394df47-da2f-400a-be21-a786a9997eec, target=unix:/run/openshell/ssh.sock)

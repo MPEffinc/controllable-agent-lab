@@ -1,0 +1,4 @@
+# Isolated, reproducible K07 tool/cache/worktree; source test is archived in docs.
+/K07_maven_tool/
+/K07_m2_cache/
+/K07_pm_worktree/

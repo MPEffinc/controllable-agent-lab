@@ -1,0 +1,5 @@
+domain_id,memory_condition,trials,provider_error_trials,authorized_trials,authorized_use,unauthorized_trials,unauthorized_submissions
+cybersecurity,incremental_text,3840,1,1920,1770,1920,113
+cybersecurity,incremental_typed,3840,0,1920,1704,1920,200
+cybersecurity,one_shot_text,3840,0,1920,1851,1920,21
+cybersecurity,one_shot_typed,3840,2,1920,1855,1920,16

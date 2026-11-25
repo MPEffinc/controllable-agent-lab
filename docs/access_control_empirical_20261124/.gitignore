@@ -1,0 +1,4 @@
+env/
+runs/K06_verify_20261124/env/
+__pycache__/
+runs/progent_manual_boundary/ledger.json

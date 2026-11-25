@@ -1,0 +1,44 @@
+{
+  "mutation_id": "8b2cadee-d2a2-418a-be9b-bc138a760ba3",
+  "targets": [
+    {
+      "evaluated_time": "2026-11-24T16:57:37.850101493Z",
+      "network_instance_id": "4320b62f-868d-45bb-b914-cd5496e902ab",
+      "observed": {
+        "attachment_epoch": "559a0725-9136-4594-8c1d-77d85fe9720e",
+        "config_revision": "3672533791780593937",
+        "credentials_installed": true,
+        "launch_environment_installed": true,
+        "policy_active": true,
+        "policy_hash": "aeab0d8ef7119b4188e1c949cdf4d9f87a5cd91fdd08c37e79837dd2a8704826",
+        "process_instance_id": "8f13d2bc-d20b-df03-18b7-572ab480d5f4",
+        "provider_env_revision": "6171957439817884032",
+        "reason": "unspecified",
+        "sequence": "13",
+        "session_id": "0bf7a36e-eb2c-48ed-a714-6910a59f7dfa"
+      },
+      "observed_time": "2026-11-24T16:57:37.843851158Z",
+      "reason": "unspecified",
+      "receipt": {
+        "desired": {
+          "attachment_epoch": "559a0725-9136-4594-8c1d-77d85fe9720e",
+          "config_revision": "3672533791780593937",
+          "policy_hash": "aeab0d8ef7119b4188e1c949cdf4d9f87a5cd91fdd08c37e79837dd2a8704826",
+          "provider_env_revision": "6171957439817884032",
+          "provider_id": "dc601f69-6806-4a95-8e62-da1bfca1f927",
+          "provider_resource_version": "1",
+          "sandbox": "h2eff-01",
+          "sandbox_id": "262e9833-40f2-4046-8a5b-af8e7ec8ad5e"
+        },
+        "kind": "observe",
+        "mutation_id": "8b2cadee-d2a2-418a-be9b-bc138a760ba3",
+        "persisted_time": "2026-11-24T16:57:37.832204691Z",
+        "provider": "h2pypi",
+        "receipt_id": "4b613c94-6b81-86db-bd4b-59a98567fdce",
+        "workspace": "default"
+      },
+      "state": "ready",
+      "wait_outcome": "not_requested"
+    }
+  ]
+}

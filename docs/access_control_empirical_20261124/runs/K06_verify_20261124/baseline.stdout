@@ -1,0 +1,7 @@
+view_safety: PASS (implies)
+edit_safety: PASS (implies)
+auditor_loophole_view: PASS (implies)
+auditor_loophole_edit: PASS (implies)
+liveness_view: PASS (always-denies (liveness))
+liveness_edit: PASS (always-denies (liveness))
+loss: 0

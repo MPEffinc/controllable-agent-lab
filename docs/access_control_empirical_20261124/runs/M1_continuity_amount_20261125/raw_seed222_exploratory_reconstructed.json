@@ -1,0 +1,119 @@
+{
+  "artifact_commit": "59cfe60930d247d1890b366ded686c718020a11e",
+  "model_calls": 0,
+  "paid_api_usd": 0,
+  "world_type": "CONTINUITY SimulatedWorld",
+  "shared_world": true,
+  "shared_nonce_ledger": true,
+  "cases": [
+    {
+      "case": "N_normal_root_120_action_120",
+      "scenario_id": "benign:finance:NONE:111",
+      "root_grant_id": "grant:finance:benign:NONE:111",
+      "root_issuer": "key:authority",
+      "root_max_amount_cents": 12000,
+      "action_amount_cents": 12000,
+      "currency": "EUR",
+      "verifier_allowed": true,
+      "verifier_reason_codes": [],
+      "sink": {
+        "accepted": true,
+        "reason": "EXECUTED",
+        "receipt": {
+          "effect_id": "effect:0",
+          "status": "COMMITTED",
+          "state_digest": "sha256:cd74bbadd7fa509772d62dfc6eff986ca7dfaba21cf9d128fc7c6eaa30b5f361"
+        }
+      },
+      "before": {
+        "count": 0,
+        "digest": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "after": {
+        "count": 1,
+        "digest": "sha256:cd74bbadd7fa509772d62dfc6eff986ca7dfaba21cf9d128fc7c6eaa30b5f361"
+      }
+    },
+    {
+      "case": "A_root_120_action_9000",
+      "scenario_id": "attack:finance:ROOT_FIELD_CONSTRAINT_BYPASS:111",
+      "root_grant_id": "grant:finance:attack:ROOT_FIELD_CONSTRAINT_BYPASS:111",
+      "root_issuer": "key:authority",
+      "root_max_amount_cents": 12000,
+      "action_amount_cents": 900000,
+      "currency": "EUR",
+      "verifier_allowed": false,
+      "verifier_reason_codes": [
+        "E_ROOT_FIELD_CONSTRAINT:/action/parameters/amount_cents",
+        "E_UNDISCHARGED_ASSUMPTION:0:root-authenticated",
+        "E_UNDISCHARGED_ASSUMPTION:1:memory-context-preserved",
+        "E_UNDISCHARGED_ASSUMPTION:2:policy-authorized"
+      ],
+      "sink": {
+        "accepted": false,
+        "reason": "VERIFIER_DENY",
+        "receipt": null
+      },
+      "before": {
+        "count": 1,
+        "digest": "sha256:cd74bbadd7fa509772d62dfc6eff986ca7dfaba21cf9d128fc7c6eaa30b5f361"
+      },
+      "after": {
+        "count": 1,
+        "digest": "sha256:cd74bbadd7fa509772d62dfc6eff986ca7dfaba21cf9d128fc7c6eaa30b5f361"
+      }
+    },
+    {
+      "case": "W_wide_root_9000_action_9000",
+      "scenario_id": "benign:finance:NONE:222",
+      "root_grant_id": "grant:finance:benign:NONE:222",
+      "root_issuer": "key:authority",
+      "root_max_amount_cents": 900000,
+      "action_amount_cents": 900000,
+      "currency": "EUR",
+      "verifier_allowed": true,
+      "verifier_reason_codes": [],
+      "sink": {
+        "accepted": true,
+        "reason": "EXECUTED",
+        "receipt": {
+          "effect_id": "effect:1",
+          "status": "COMMITTED",
+          "state_digest": "sha256:2359df04cd053765ee6c055adbc4169ba8ca2ba4417ae5a355da93cbf7b5ec99"
+        }
+      },
+      "before": {
+        "count": 1,
+        "digest": "sha256:cd74bbadd7fa509772d62dfc6eff986ca7dfaba21cf9d128fc7c6eaa30b5f361"
+      },
+      "after": {
+        "count": 2,
+        "digest": "sha256:2359df04cd053765ee6c055adbc4169ba8ca2ba4417ae5a355da93cbf7b5ec99"
+      }
+    }
+  ],
+  "final_effects": [
+    {
+      "ordinal": 0,
+      "operation": "payment.transfer",
+      "resource": "account:111",
+      "destination": "bankacct:merchant:111",
+      "parameters": {
+        "amount_cents": 12000,
+        "currency": "EUR"
+      },
+      "effect_class": "STATE_MUTATION"
+    },
+    {
+      "ordinal": 1,
+      "operation": "payment.transfer",
+      "resource": "account:222",
+      "destination": "bankacct:merchant:222",
+      "parameters": {
+        "amount_cents": 900000,
+        "currency": "EUR"
+      },
+      "effect_class": "STATE_MUTATION"
+    }
+  ]
+}

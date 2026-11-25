@@ -1,0 +1,16 @@
+domain_id,seed,writer_target,matches,pairs
+finance,20260816,nemotron_3_ultra_baseten,256,256
+finance,20260816,kimi_baseten,256,256
+finance,20260816,glm_5_2_baseten,256,256
+finance,20260816,grok_4_3_openrouter,253,256
+finance,20260816,qwen_plus_0728_openrouter,244,256
+finance,20260821,nemotron_3_ultra_baseten,255,256
+finance,20260821,kimi_baseten,256,256
+finance,20260821,glm_5_2_baseten,255,256
+finance,20260821,grok_4_3_openrouter,248,256
+finance,20260821,qwen_plus_0728_openrouter,248,256
+finance,20260822,nemotron_3_ultra_baseten,256,256
+finance,20260822,kimi_baseten,256,256
+finance,20260822,glm_5_2_baseten,256,256
+finance,20260822,grok_4_3_openrouter,256,256
+finance,20260822,qwen_plus_0728_openrouter,251,256

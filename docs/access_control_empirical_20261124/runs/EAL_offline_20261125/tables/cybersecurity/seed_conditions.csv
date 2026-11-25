@@ -1,0 +1,13 @@
+domain_id,seed,memory_condition,trials,provider_error_trials,authorized_trials,authorized_use,unauthorized_trials,unauthorized_submissions
+cybersecurity,20260812,incremental_text,1280,0,640,583,640,39
+cybersecurity,20260812,incremental_typed,1280,0,640,592,640,48
+cybersecurity,20260812,one_shot_text,1280,0,640,628,640,3
+cybersecurity,20260812,one_shot_typed,1280,0,640,620,640,8
+cybersecurity,20260821,incremental_text,1280,1,640,612,640,22
+cybersecurity,20260821,incremental_typed,1280,0,640,564,640,72
+cybersecurity,20260821,one_shot_text,1280,0,640,629,640,7
+cybersecurity,20260821,one_shot_typed,1280,2,640,619,640,0
+cybersecurity,20260822,incremental_text,1280,0,640,575,640,52
+cybersecurity,20260822,incremental_typed,1280,0,640,548,640,80
+cybersecurity,20260822,one_shot_text,1280,0,640,594,640,11
+cybersecurity,20260822,one_shot_typed,1280,0,640,616,640,8

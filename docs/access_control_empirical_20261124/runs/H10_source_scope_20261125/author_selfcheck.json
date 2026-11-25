@@ -1,0 +1,20 @@
+{
+  "contract": {
+    "all_cited_sources_authority_capable": 24,
+    "authority_capable_sources": 28,
+    "cases": 12,
+    "domain_id": "procurement",
+    "future_provenance": 12,
+    "gate_uses_oracle": false,
+    "gate_uses_turn_content": false,
+    "missing_provenance": 24,
+    "mixed_citations": 12,
+    "non_authority_capable_sources": 866,
+    "source_not_authority_capable": 24,
+    "source_turns": 894,
+    "status": "passed",
+    "unknown_provenance": 12,
+    "unrelated_authority_chatter": 12
+  },
+  "sources": []
+}

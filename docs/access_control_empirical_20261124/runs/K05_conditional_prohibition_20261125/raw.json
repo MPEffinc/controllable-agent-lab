@@ -1,0 +1,73 @@
+{
+  "kind": "INDEPENDENT_CEDAR_CONDITIONAL_PROHIBITION",
+  "version": "cedar-policy-cli 4.12.0",
+  "sha256": {
+    "docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar": "5536ba20b7f2073a47ff471693630e90d162ee3f56d66363b1dcf58717e10fd1",
+    "docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/policy.cedar": "3656236e7405398ce2c4538b9cd9915eaa7154ddd1366fe1cb5e9c9a3f63a4ef",
+    "docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/entities.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/context_false.json": "75b88d8b6c12dfb5b1fb51d40baac041f17574c1a9bfcc0bef0c9b31e91f078a",
+    "docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/context_true.json": "820af7931ccf6b7c3a0b000cfb81e7749ab5bf6078f975c118dad2d985f777e4"
+  },
+  "cases": [
+    {
+      "registration_open": false,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/context_false.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: this decision was due to the following policies:\n  policy1\n\n",
+      "stderr": "",
+      "decision": "DENY",
+      "effect_before": 0,
+      "effect_after": 0
+    },
+    {
+      "registration_open": true,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_conditional_prohibition_20261125/context_true.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "effect_before": 0,
+      "effect_after": 1
+    }
+  ],
+  "ledger": [
+    {
+      "action": "read",
+      "resource": "doc",
+      "registration_open": true
+    }
+  ],
+  "pass": true
+}

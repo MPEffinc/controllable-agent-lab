@@ -1,0 +1,127 @@
+[
+  {
+    "case": "approved",
+    "policy": {
+      "transfer": [
+        [
+          1,
+          0,
+          {
+            "recipient": {
+              "const": "approved"
+            },
+            "amount": {
+              "const": 10
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "input": {
+      "recipient": "approved",
+      "amount": 10
+    },
+    "before": [],
+    "after": [
+      {
+        "recipient": "approved",
+        "amount": 10
+      }
+    ],
+    "outcome": {
+      "kind": "return",
+      "value": "recorded"
+    },
+    "stderr": "",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "case": "denied",
+    "policy": {
+      "transfer": [
+        [
+          1,
+          0,
+          {
+            "recipient": {
+              "const": "approved"
+            },
+            "amount": {
+              "const": 10
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "input": {
+      "recipient": "unapproved",
+      "amount": 10
+    },
+    "before": [],
+    "after": [],
+    "outcome": {
+      "kind": "exception",
+      "type": "ValidationError",
+      "message": "The tool 'transfer' is not allowed.. Please try other tools or arguments and continue to finish the user task: None."
+    },
+    "stderr": "",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "case": "overbroad",
+    "policy": {
+      "transfer": [
+        [
+          1,
+          0,
+          {},
+          0
+        ]
+      ]
+    },
+    "input": {
+      "recipient": "unapproved",
+      "amount": 10
+    },
+    "before": [],
+    "after": [
+      {
+        "recipient": "unapproved",
+        "amount": 10
+      }
+    ],
+    "outcome": {
+      "kind": "return",
+      "value": "recorded"
+    },
+    "stderr": "",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "case": "unset",
+    "policy": null,
+    "input": {
+      "recipient": "unapproved",
+      "amount": 10
+    },
+    "before": [],
+    "after": [
+      {
+        "recipient": "unapproved",
+        "amount": 10
+      }
+    ],
+    "outcome": {
+      "kind": "return",
+      "value": "recorded"
+    },
+    "stderr": "Warning: security policy is not set.\n",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  }
+]

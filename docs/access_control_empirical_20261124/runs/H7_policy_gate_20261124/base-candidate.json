@@ -1,0 +1,22 @@
+{
+  "filesystem_policy": {
+    "include_workdir": true,
+    "read_only": [
+      "/bin",
+      "/usr",
+      "/lib",
+      "/proc",
+      "/dev/urandom",
+      "/etc",
+      "/var/log"
+    ],
+    "read_write": [
+      "/tmp",
+      "/dev/null"
+    ]
+  },
+  "landlock": {
+    "compatibility": "best_effort"
+  },
+  "version": 1
+}

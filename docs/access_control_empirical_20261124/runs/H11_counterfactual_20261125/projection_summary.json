@@ -1,0 +1,26 @@
+{
+  "clean_allow_crossing_count": 0,
+  "clean_allow_saved_count": 379,
+  "counterfactual_final_decisions_established": 0,
+  "group_oracle_counts": {
+    "exp_1_utility_clean|ALLOW": 450,
+    "exp_5_action_risk_sensitivity|ALLOW": 60,
+    "exp_5_action_risk_sensitivity|BLOCK": 240,
+    "exp_5_action_risk_sensitivity|REDACT": 60,
+    "exp_5_action_risk_sensitivity|REVERIFY": 90
+  },
+  "saved_unsafe_crossing_count": 11,
+  "saved_unsafe_exp5_count": 41,
+  "selected_rows": 900,
+  "threshold_crossing_by_group": {
+    "exp_5_action_risk_sensitivity": 139
+  },
+  "threshold_crossing_by_group_oracle": {
+    "exp_5_action_risk_sensitivity|BLOCK": 139
+  },
+  "total_rows": 21600,
+  "type_match_counts": {
+    "False": 540,
+    "True": 360
+  }
+}

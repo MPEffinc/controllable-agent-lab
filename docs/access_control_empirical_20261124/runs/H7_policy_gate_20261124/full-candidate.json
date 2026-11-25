@@ -1,0 +1,73 @@
+{
+  "filesystem_policy": {
+    "include_workdir": true,
+    "read_only": [
+      "/bin",
+      "/usr",
+      "/lib",
+      "/proc",
+      "/dev/urandom",
+      "/etc",
+      "/var/log"
+    ],
+    "read_write": [
+      "/tmp",
+      "/dev/null"
+    ]
+  },
+  "landlock": {
+    "compatibility": "best_effort"
+  },
+  "network_policies": {
+    "_provider_h2pypi": {
+      "binaries": [
+        {
+          "path": "/sandbox/.venv/bin/python"
+        },
+        {
+          "path": "/sandbox/.venv/bin/python3"
+        },
+        {
+          "path": "/app/.venv/bin/python"
+        },
+        {
+          "path": "/app/.venv/bin/python3"
+        },
+        {
+          "path": "/usr/local/bin/uv"
+        },
+        {
+          "path": "/sandbox/.uv/python/**"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "pypi.org",
+          "port": 443
+        },
+        {
+          "host": "files.pythonhosted.org",
+          "port": 443
+        },
+        {
+          "host": "github.com",
+          "port": 443
+        },
+        {
+          "host": "objects.githubusercontent.com",
+          "port": 443
+        },
+        {
+          "host": "api.github.com",
+          "port": 443
+        },
+        {
+          "host": "downloads.python.org",
+          "port": 443
+        }
+      ],
+      "name": "_provider_h2pypi"
+    }
+  },
+  "version": 1
+}

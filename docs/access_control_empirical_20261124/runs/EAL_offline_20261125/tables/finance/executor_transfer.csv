@@ -1,0 +1,3 @@
+domain_id,executor_target,trials,provider_error_trials,authorized_trials,authorized_use,unauthorized_trials,unauthorized_submissions
+finance,deepseek_baseten,3840,0,1920,1849,1920,418
+finance,gptoss_baseten,3840,0,1920,1837,1920,398

@@ -1,0 +1,32 @@
+{
+  "active_version": 1,
+  "config_revision": 3672533791780593937,
+  "hash": "aeab0d8ef7119b4188e1c949cdf4d9f87a5cd91fdd08c37e79837dd2a8704826",
+  "policy": {
+    "filesystem_policy": {
+      "include_workdir": true,
+      "read_only": [
+        "/bin",
+        "/usr",
+        "/lib",
+        "/proc",
+        "/dev/urandom",
+        "/etc",
+        "/var/log"
+      ],
+      "read_write": [
+        "/tmp",
+        "/dev/null"
+      ]
+    },
+    "landlock": {
+      "compatibility": "best_effort"
+    },
+    "version": 1
+  },
+  "policy_source": "sandbox",
+  "sandbox": "h2eff-01",
+  "scope": "sandbox",
+  "status": "effective",
+  "version": 1
+}

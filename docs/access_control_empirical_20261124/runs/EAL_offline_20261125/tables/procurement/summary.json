@@ -1,0 +1,38 @@
+{
+  "schema_version": "paper_result_summary_v1",
+  "domain_id": "procurement",
+  "release_id": "procurement_v1",
+  "paper": "https://arxiv.org/html/2609.01836v1#A2.SS2",
+  "seeds": [
+    20260719,
+    20260821,
+    20260822
+  ],
+  "treatment": {
+    "corpus_version": "benchmark_v1",
+    "presentation_hash": "907945a6c03f738899e366e86cd54f6fbf8171fed9b88581dabcda97dda66b0d",
+    "memory_implementation_id": "langmem_profile",
+    "memory_implementation_hash": "bf9a1583ab4f3e70bf8e075b988a2149d9cb170c3443f3646964840193d5655a"
+  },
+  "writer_routes": 15,
+  "raw_trial_routes_verified": 0,
+  "ordinary_pooled": {
+    "trials": 8640,
+    "provider_error_trials": 0,
+    "authorized_trials": 4320,
+    "authorized_use": 4101,
+    "unauthorized_trials": 4320,
+    "unauthorized_submissions": 531
+  },
+  "requested_action_agreement": {
+    "matches": 4230,
+    "pairs": 4320
+  },
+  "raw_artifacts": {
+    "expected": 230,
+    "verified": 0,
+    "missing": 230
+  },
+  "evidence_basis": "Hash-linked saved counts; available raw trials are recounted.",
+  "limits": "Count verification does not rerun the oracle or recreate missing bootstrap inputs."
+}

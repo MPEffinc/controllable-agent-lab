@@ -1,0 +1,311 @@
+{
+  "assertions": "all_passed",
+  "environment": {
+    "api_calls": 0,
+    "elapsed_ms": 5.655,
+    "estimated_external_cost_usd": 0,
+    "fixture_sha256": "cc427962c93e68663d72ad6df7ddd2cbf0b78dcd9ec58b5b39958792556a31de",
+    "model_calls": 0,
+    "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
+    "python": "3.12.15",
+    "vera_dag_sha256": "c0a10b038563c272be0f06fc489306164e17b34a734470903724454cf30df720",
+    "vera_granularity_sha256": "d762ec14a46568e3c1bd3220fd204eb149f673d3a6b0d242f361f90f44d1e039"
+  },
+  "method": "original VERA L2 target function + independent deterministic in-memory sink",
+  "schedules": {
+    "S1_pre_fence_receipt": {
+      "after": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [
+          {
+            "accepted_generation": 0,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "classification": "pre_fence_receipt_settled_later",
+            "request_id": "s1_old_A",
+            "settled_generation": 1
+          }
+        ],
+        "fence_generation": 1,
+        "receipts": {
+          "s1_old_A": {
+            "accepted_generation": 0,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "selected_witness": [
+              "a_c"
+            ],
+            "settled": true,
+            "stale_control": false
+          }
+        }
+      },
+      "after_accept": {
+        "active_edges": [
+          "a_c",
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 0,
+        "receipts": {
+          "s1_old_A": {
+            "accepted_generation": 0,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "selected_witness": [
+              "a_c"
+            ],
+            "settled": false,
+            "stale_control": false
+          }
+        }
+      },
+      "after_fence_before_settle": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 1,
+        "receipts": {
+          "s1_old_A": {
+            "accepted_generation": 0,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "selected_witness": [
+              "a_c"
+            ],
+            "settled": false,
+            "stale_control": false
+          }
+        }
+      },
+      "before": {
+        "active_edges": [
+          "a_c",
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 0,
+        "receipts": {}
+      },
+      "events": [
+        {
+          "event": "accept_decision",
+          "generation": 0,
+          "reason": "accepted",
+          "receipt_created": true,
+          "request_id": "s1_old_A",
+          "selected_witness": [
+            "a_c"
+          ]
+        },
+        {
+          "edge": "a_c",
+          "event": "revoke_and_fence",
+          "generation": 1
+        },
+        {
+          "accepted_generation": 0,
+          "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+          "classification": "pre_fence_receipt_settled_later",
+          "event": "effect_settled",
+          "request_id": "s1_old_A",
+          "settled_generation": 1
+        },
+        {
+          "event": "accept_decision",
+          "generation": 1,
+          "reason": "selected_witness_revoked_at_fence",
+          "receipt_created": false,
+          "request_id": "s1_new_A",
+          "selected_witness": [
+            "a_c"
+          ]
+        }
+      ]
+    },
+    "S2_post_fence_deny": {
+      "after": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 1,
+        "receipts": {}
+      },
+      "before": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 1,
+        "receipts": {}
+      },
+      "events": [
+        {
+          "edge": "a_c",
+          "event": "revoke_and_fence",
+          "generation": 1
+        },
+        {
+          "event": "accept_decision",
+          "generation": 1,
+          "reason": "selected_witness_revoked_at_fence",
+          "receipt_created": false,
+          "request_id": "s2_A",
+          "selected_witness": [
+            "a_c"
+          ]
+        },
+        {
+          "event": "accept_decision",
+          "generation": 1,
+          "reason": "selected_witness_revoked_at_fence",
+          "receipt_created": false,
+          "request_id": "s2_AND",
+          "selected_witness": [
+            "a_c",
+            "x_c"
+          ]
+        }
+      ]
+    },
+    "S3_independent_OR": {
+      "after": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [
+          {
+            "accepted_generation": 1,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "classification": "current_generation_receipt",
+            "request_id": "s3_X",
+            "settled_generation": 1
+          }
+        ],
+        "fence_generation": 1,
+        "receipts": {
+          "s3_X": {
+            "accepted_generation": 1,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "selected_witness": [
+              "x_c"
+            ],
+            "settled": true,
+            "stale_control": false
+          }
+        }
+      },
+      "before": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 1,
+        "receipts": {}
+      },
+      "events": [
+        {
+          "edge": "a_c",
+          "event": "revoke_and_fence",
+          "generation": 1
+        },
+        {
+          "event": "accept_decision",
+          "generation": 1,
+          "reason": "accepted",
+          "receipt_created": true,
+          "request_id": "s3_X",
+          "selected_witness": [
+            "x_c"
+          ]
+        },
+        {
+          "accepted_generation": 1,
+          "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+          "classification": "current_generation_receipt",
+          "event": "effect_settled",
+          "request_id": "s3_X",
+          "settled_generation": 1
+        }
+      ]
+    },
+    "negative_stale_control": {
+      "after": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [
+          {
+            "accepted_generation": 1,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "classification": "current_generation_receipt",
+            "request_id": "negative_stale_A",
+            "settled_generation": 1
+          }
+        ],
+        "fence_generation": 1,
+        "receipts": {
+          "negative_stale_A": {
+            "accepted_generation": 1,
+            "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+            "selected_witness": [
+              "a_c"
+            ],
+            "settled": true,
+            "stale_control": true
+          }
+        }
+      },
+      "before": {
+        "active_edges": [
+          "r_a",
+          "x_c"
+        ],
+        "effects": [],
+        "fence_generation": 1,
+        "receipts": {}
+      },
+      "events": [
+        {
+          "edge": "a_c",
+          "event": "revoke_and_fence",
+          "generation": 1
+        },
+        {
+          "event": "accept_decision",
+          "generation": 1,
+          "reason": "accepted",
+          "receipt_created": true,
+          "request_id": "negative_stale_A",
+          "selected_witness": [
+            "a_c"
+          ]
+        },
+        {
+          "accepted_generation": 1,
+          "action_digest": "e5da622d5bb3e22856dd828164b8f30d8d3cfc3d3601cdc222b0c2635ff658a6",
+          "classification": "current_generation_receipt",
+          "event": "effect_settled",
+          "request_id": "negative_stale_A",
+          "settled_generation": 1
+        }
+      ]
+    }
+  },
+  "vera_original_component": {
+    "original_function": "revocation.granularity.target_set_l2",
+    "target_with_alternate_x": [],
+    "target_without_alternate_x": [
+      "C"
+    ]
+  }
+}

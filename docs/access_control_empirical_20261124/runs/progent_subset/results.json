@@ -1,0 +1,189 @@
+[
+  {
+    "case": "identical",
+    "old": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "new": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "subset": true,
+    "stderr": "{'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)]} {'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)]}\n[(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)] [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)]\n{'type': 'string', 'enum': ['approved', 'second']} {'type': 'string', 'enum': ['approved', 'second']}\nFound type: string\n",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "case": "narrow",
+    "old": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "new": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "subset": true,
+    "stderr": "{'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)]} {'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved']}}, 0)]}\n[(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)] [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved']}}, 0)]\n{'type': 'string', 'enum': ['approved', 'second']} {'type': 'string', 'enum': ['approved']}\nFound type: string\n",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "case": "wide",
+    "old": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "new": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second",
+                "unapproved"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "subset": false,
+    "stderr": "{'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)]} {'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second', 'unapproved']}}, 0)]}\n[(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)] [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second', 'unapproved']}}, 0)]\n{'type': 'string', 'enum': ['approved', 'second']} {'type': 'string', 'enum': ['approved', 'second', 'unapproved']}\nFound type: string\nFound counter example: \"unapproved\"\n",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  },
+  {
+    "case": "new_tool",
+    "old": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "new": {
+      "transfer": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved",
+                "second"
+              ]
+            }
+          },
+          0
+        ]
+      ],
+      "export": [
+        [
+          100,
+          0,
+          {
+            "recipient": {
+              "type": "string",
+              "enum": [
+                "approved"
+              ]
+            }
+          },
+          0
+        ]
+      ]
+    },
+    "subset": false,
+    "stderr": "{'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)]} {'transfer': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved', 'second']}}, 0)], 'export': [(100, 0, {'recipient': {'type': 'string', 'enum': ['approved']}}, 0)]}\n",
+    "model_calls": 0,
+    "external_api_cost_usd": 0
+  }
+]

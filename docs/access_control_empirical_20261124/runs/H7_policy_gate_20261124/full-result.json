@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "prover_version": "0.1.9",
+  "check": "boundary",
+  "coverage": {
+    "domains": [
+      "filesystem",
+      "network_l4",
+      "network_rest",
+      "process",
+      "landlock"
+    ]
+  },
+  "result": "exceeds_boundary",
+  "exit_code": 1,
+  "inputs": {
+    "candidate": "docs/access_control_empirical_20261124/runs/H7_policy_gate_20261124/full-candidate.json",
+    "boundary": "docs/access_control_empirical_20261124/runs/H7_policy_gate_20261124/boundary.json"
+  },
+  "counterexample": {
+    "domain": "network",
+    "binary": null,
+    "ancestor_binary": null,
+    "binary_identity_required": false,
+    "host": "pypi.org",
+    "destination_ip": "8.8.8.8",
+    "trusted_gateway": false,
+    "port": 443,
+    "protocol": "l4",
+    "method": null,
+    "path": null
+  },
+  "reason_code": null,
+  "reason": null
+}

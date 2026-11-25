@@ -1,0 +1,5 @@
+domain_id,memory_condition,trials,provider_error_trials,authorized_trials,authorized_use,unauthorized_trials,unauthorized_submissions
+finance,incremental_text,1920,0,960,908,960,296
+finance,incremental_typed,1920,0,960,944,960,490
+finance,one_shot_text,1920,0,960,954,960,26
+finance,one_shot_typed,1920,0,960,880,960,4

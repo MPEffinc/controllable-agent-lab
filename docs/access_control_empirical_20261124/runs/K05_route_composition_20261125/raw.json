@@ -1,0 +1,216 @@
+{
+  "kind": "INDEPENDENT_CEDAR_ROUTE_COMPOSITION",
+  "version": "cedar-policy-cli 4.12.0",
+  "sha256": {
+    "docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar": "5536ba20b7f2073a47ff471693630e90d162ee3f56d66363b1dcf58717e10fd1",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar": "308590fb714fca58c6b526b93e7e0131737da1376629a702696eeb9aa5f5c2b2",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_closed_none.json": "e9fe8e23dd2b223134376b5af8c432dc15c17184246dfd17e967d9efe9a0528b",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_open_conditional.json": "4942f831c02ac89d703c5ecf86e57ba400aa74fd09a3ad2f7c85f8d1670afe81",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_closed_alternate.json": "5fd9eaa3c50fecea69b095c9570d81aa0ec70ccb9232a92afd9b9ab5a10fe604",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_open_both.json": "900b36f6748291a5a66d5f69a7d73bd881108e3bfaa6fd757423987828867737",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_closed_alternate_embargo.json": "800cae01c3e5945e8fbe12df6427823fce04f01c79bbb1c057dd8bc0313c6042",
+    "docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_open_both_embargo.json": "92d0d594b6f553d5d0c57cc8440c94b79bf8d575c65ec0a53485ecd6f0f88506"
+  },
+  "cases": [
+    {
+      "case": "closed_none",
+      "context": {
+        "alternate_allow": false,
+        "embargo_active": false,
+        "registration_open": false
+      },
+      "expected_allow": false,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_closed_none.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "effect_before": 0,
+      "effect_after": 0,
+      "matches_expected": true
+    },
+    {
+      "case": "open_conditional",
+      "context": {
+        "alternate_allow": false,
+        "embargo_active": false,
+        "registration_open": true
+      },
+      "expected_allow": true,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_open_conditional.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "effect_before": 0,
+      "effect_after": 1,
+      "matches_expected": true
+    },
+    {
+      "case": "closed_alternate",
+      "context": {
+        "alternate_allow": true,
+        "embargo_active": false,
+        "registration_open": false
+      },
+      "expected_allow": true,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_closed_alternate.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy1\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "effect_before": 0,
+      "effect_after": 1,
+      "matches_expected": true
+    },
+    {
+      "case": "open_both",
+      "context": {
+        "alternate_allow": true,
+        "embargo_active": false,
+        "registration_open": true
+      },
+      "expected_allow": true,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_open_both.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy1\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "effect_before": 0,
+      "effect_after": 1,
+      "matches_expected": true
+    },
+    {
+      "case": "closed_alternate_embargo",
+      "context": {
+        "alternate_allow": true,
+        "embargo_active": true,
+        "registration_open": false
+      },
+      "expected_allow": false,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_closed_alternate_embargo.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: this decision was due to the following policies:\n  policy2\n\n",
+      "stderr": "",
+      "decision": "DENY",
+      "effect_before": 0,
+      "effect_after": 0,
+      "matches_expected": true
+    },
+    {
+      "case": "open_both_embargo",
+      "context": {
+        "alternate_allow": true,
+        "embargo_active": true,
+        "registration_open": true
+      },
+      "expected_allow": false,
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/policy.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/entities.json",
+        "--principal",
+        "User::\"student\"",
+        "--action",
+        "Action::\"read\"",
+        "--resource",
+        "Document::\"doc\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K05_route_composition_20261125/context_open_both_embargo.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: this decision was due to the following policies:\n  policy2\n\n",
+      "stderr": "",
+      "decision": "DENY",
+      "effect_before": 0,
+      "effect_after": 0,
+      "matches_expected": true
+    }
+  ],
+  "pass": true
+}

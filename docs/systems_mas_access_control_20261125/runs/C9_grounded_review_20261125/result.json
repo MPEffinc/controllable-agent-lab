@@ -1,0 +1,68 @@
+{
+  "kind": "OFFICIAL_CEDAR_SEMANTICS_GROUNDED_BLIND_REVIEW",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "operator_reference": "https://docs.cedarpolicy.com/syntax-operators.html",
+  "reviews": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "form": "original",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly includes '!(true) || (resource.status == EscrowFileStatusValue::\"funded\")', which simplifies to 'false || condition', effectively requiring the file status to be 'funded' as intended. However, the use of '!(true) ||' is redundant and confusing but not incorrect logically. The main issue is that the policy does not explicitly check that the resource.region is the same group as or a descendant of the principal.assignedGroup; it uses 'resource.region in principal.assignedGroup', which means resource.region equals or is a descendant of principal.assignedGroup, which is correct. The policy permits only the 'approveClearToClose' action and only when all conditions are met, which aligns with the requirement. Therefore, the policy is not too broad or restrictive and matches the user requirement. The only minor issue is the redundant '!(true) ||' expression, which does not affect correctness. Given the instructions to reject if too broad or restrictive, and this policy matches the requirement exactly, it should be approved."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "form": "normalized",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy almost matches the user requirement but is too restrictive in the region check. The user requirement states the file's region must be the same group as or a descendant of the user's assigned group, but the policy only allows if resource.region is in principal.assignedGroup, which means resource.region must be equal to or a descendant of principal.assignedGroup. This is reversed from the requirement. The correct check should be principal.assignedGroup in resource.region or resource.region in principal.assignedGroup depending on the hierarchy direction. Also, the policy does not explicitly deny any other actions, but since this is the only permit policy, other actions are implicitly denied, which matches the requirement. Therefore, the main issue is the incorrect region hierarchy check."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "form": "original",
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too restrictive and contains a logic error: the clause '(!(true) || (resource.status == EscrowFileStatusValue::\"funded\"))' always evaluates to 'resource.status == EscrowFileStatusValue::\"funded\"', which is correct. However, the region check 'resource.region in principal.assignedGroup' is too restrictive: it only allows the file's region to be the user's assigned group or a descendant, but not an ancestor, which matches the requirement. The rest of the conditions (roles, heldAmount, payeeCount, titleCleared, lienStatus, closingDate) are correct. However, the policy does not explicitly deny all other actions or resources, so actions other than 'approveClearToClose' are implicitly denied, which is correct for a single-permit policy. The logic is correct except for the region check, which matches the requirement. Therefore, the policy is correct and not too broad or restrictive. However, the use of '(!(true) || ...)' is unnecessary and confusing, but does not affect correctness. Approve."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "form": "normalized",
+      "model_review": {
+        "approve": true,
+        "reason": "The policy grants approval only if: (1) the user has the required role (TitleOfficer or EscrowManager); (2) the file's region is the same as or a descendant of the user's assigned group (using Cedar's 'in' operator, which covers both equality and descendant); (3) the file is funded, has heldAmount >= 0, payeeCount >= 0, and cleared title; (4) lienStatus does not contain 'tax_lien'; (5) current time is on or before closing date. The policy only permits the specified action and resource, and no other actions or resources are allowed. All requirements are enforced exactly as stated, with no over-broad or missing permissions."
+      },
+      "error": null,
+      "gold_approve": true,
+      "correct": true
+    }
+  ],
+  "costs": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "calls": 2,
+      "input_tokens": 862,
+      "output_tokens": 387,
+      "estimated_cost_usd": 0.000964
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "calls": 2,
+      "input_tokens": 862,
+      "output_tokens": 393,
+      "estimated_cost_usd": 0.004868
+    }
+  ],
+  "total_estimated_cost_usd": 0.005832
+}

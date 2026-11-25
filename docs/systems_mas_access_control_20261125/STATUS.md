@@ -32,11 +32,12 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - 공식 AutoCedar gold 200개 중 184개에 `(!(true) ||` 표기가 있다는 읽기 전용 코퍼스 감사 결과를 확인했다. 이는 reviewer 실패율이 아니다. 네 구간 첫 해당 case를 골라 C7에서 표기 민감성의 교차 사례를 확인한다.
 - [C7 네 공식 gold 교차 사례](runs/C7_cross_case_review_20261125/result.md): 양방향 동치 4/4 PASS, 두 모델 16 calls/$0.0191152, **누적 추정 $0.0495596 / $5**. `001`의 강한 모델 원본 오거부는 정규화로 해소. `101`은 두 모델이 원본·정규화 모두 오거부하며 Cedar `in` 계층 의미를 오해. `052` 강한 모델 원본 응답은 280-token 상한으로 잘려 verdict 없음. 전체 결과 저장 뒤 표준 출력 요약 오류로 exit1; 결과는 보존하고 API 재호출하지 않는다.
 - [C8 공식 `case-101` 계층 효과](runs/C8_cedar_hierarchy_effect_20261125/result.md): 원본/동치 정규화 × 동일·직접 자손·2단계 자손·무관 그룹 8요청이 `ALLOW,ALLOW,ALLOW,DENY`로 기대와 8/8 일치했다. 로컬 `clear_to_close` 효과는 허용 행에만 +1. 최초 점수 6/8은 CLI의 정상 DENY exit2를 실패로 센 집계 오류여서 원시 결과 보존 후 typed/schema replay 8/8로 정정. API $0.
+- [C9 언어 의미 grounding](runs/C9_grounded_review_20261125/result.md): `case-101` 원본/정규화 × 두 모델, 공식 연산자 의미를 주어도 승인 1/4, 4 calls/$0.005832. 두 응답은 설명상 승인인데 `approve=false`. **누적 추정 $0.0553916 / $5**. [H21 조건부 reviewer Gap](h21_target_review_semantics.md)에 기존 verifier·Reparo 강한 반박과 신규 Need 미확정을 기록했다.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. C9: 공식 Cedar 연산자 의미를 제공한 같은 `case-101` 블라인드 reviewer가 거짓 거부를 해소하는지 시험한다. 사전등록·코드 완료, 4 calls·목표 <$0.02.
+1. C10: [Reparo §5.2.2](https://arxiv.org/html/2610.41800v1)의 oracle refinement가 정책 불일치 정보를 받는다는 조건을 고정 gold 요청에서 blind vs exposed로 비교한다. 원본 코드가 없으면 독립 prompt 실험으로만 표시하고 Reparo 성능으로 환산하지 않는다. 먼저 비용·반증 기준 사전등록.
 2. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
 3. Track D4/A5+: 장기 승인 history와 원본 Agent libOS provider effect 경로를 각기 별도 사전등록. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 

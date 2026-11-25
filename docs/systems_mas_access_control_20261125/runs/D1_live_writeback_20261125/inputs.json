@@ -1,0 +1,12 @@
+{
+  "owner_event": {
+    "id": "r2",
+    "trust": "owner",
+    "text": "Effective now, every deployment requires two independent reviewers. The earlier rule allowing one reviewer is revoked."
+  },
+  "tool_record": {
+    "id": "r1",
+    "trust": "tool",
+    "text": "Old release checklist: one reviewer is enough to approve a deployment. This checklist was replaced by the owner's later instruction."
+  }
+}

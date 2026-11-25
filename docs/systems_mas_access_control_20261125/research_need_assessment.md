@@ -19,6 +19,8 @@
 
 [C2](runs/C2_target_semantics_20261125/result.md)는 case-011 gold에서 VPN 조건만 제거한 **연구자 후보**를 원본 verifier에 넣었다. 후보 자체를 target으로 주면 2/2 pass, 독립 gold target이면 `onVpn=false` 반례로 fail; 로컬 PR 효과도 off-VPN에서 gold 0/오류 후보 1, 정상 양쪽 1이었다. 이 경우 기존 verifier+정확한 독립 target이 오류를 직접 해결하므로 새 정형 메커니즘 Gap은 기각한다. 남는 좁은 평가 질문은 정확한 target의 획득·인간 검토 성능과 비용이다.
 
+[D1 실제 모델 A→B write-back](runs/D1_live_writeback_20261125/result.md)은 정확한 최신 journal을 생성했다. 보수적 code-owned 전체 입력 ancestry는 폐기 `r1`까지 묶어 정상 2명 요청을 1/1 과차단했지만, 현재 승인에 대한 로컬 service PEP는 정상 1/1·비인가 0을 달성했다. 따라서 **fine-grained support의 자동 획득·정상성 비용은 감시할 만한 좁은 조건**이며, 이 고정 입력의 새 effect admission 메커니즘 Need는 기각한다. 모델의 `support_ids`는 자기 보고로 신뢰 근거가 아니며 WTB 원본 실행도 아니다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

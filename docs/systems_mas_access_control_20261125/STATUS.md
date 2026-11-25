@@ -22,11 +22,12 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [K06 AutoCedar C1–C1c](runs/C1c_autocedar_case011_20261125/result.md): 원본 API에서 unsupported reasoning, strict schema incompatibility; 실험 adapter로 3 calls 진행 후 model atom의 필수 `rationale` 누락. 후보 및 의미·effect 판정 불가. 세 시도 원시 로그 보존. 추가 추정 $0.0032656, **누적 $0.0043872 / $5**. 동일 author 재시도는 중단.
 - [A5 Agent libOS v1.6.0 원저자 네 테스트](runs/A5_agent_libos_manifest_20261125/result.md): 고정 SHA, lock 의존성, exit 0, 4 passed. Host manifest hash/영속화, child parent intersection, effect ceiling 확대 거부, 빈 ceiling deny를 관측. 내부 decision만이며 provider effect `DECISION_ONLY`. 현행 강한 대안으로 단순 자식 권한 확대 Need를 기각.
 - [C2 AutoCedar 원본 verifier + 독립 target/effect oracle](runs/C2_target_semantics_20261125/result.md): 같은 VPN 조건 누락 후보의 self-reference target은 2/2 PASS, 독립 gold target에서는 `onVpn=false` 반례. 로컬 PR 상태는 gold에서 off-VPN `open`, 잘못된 후보에서 `merged`; 정상 요청은 양쪽 `merged`. 원본 verifier가 정확 gold를 받으면 해결하므로 새 검증 메커니즘 Need 기각. 생성기 평가나 실서비스 effect가 아님. 비용 $0, **누적 $0.0043872 / $5**.
+- [D1 실제 모델 A→B write-back](runs/D1_live_writeback_20261125/result.md): 3 calls, $0.000312. A journal은 최신 2명 규칙을 정확히 기록하고 B는 1명 거부/2명 허용. 원본 M4 status guard는 journal을 보존. 입력 전체 code-owned ancestor는 폐기 `r1`도 포함해 보수적 lineage가 정상 2명을 과차단(0/1); 현재 local service PEP는 정상 1/1·비인가 0. 모델 `support_ids=[r2]`는 자기 보고여서 독립 증거 아님. **누적 추정 $0.0046992 / $5.**
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. Track D1: H10/H12/H14의 신뢰 event/lineage 자동 수집과 WTB 등 강한 대안을 같은 입력에서 준비한다. 정확 evidence를 이미 준 fixture를 반복하지 않는다.
+1. Track D2: A→B journal의 모델 자기 보고 support 대신 신뢰된 segment-level derivation을 얻을 기존 방법(IFC/WTB/실행 기록 등)을 같은 입력에 적용할 수 있는지 원문·원본 코드와 비교한다. 정확 현재 service PEP가 없는 경우만 별도 가설로 정의한다.
 2. Track C3: 실제 사람이 AutoCedar target을 검토할 때 오류 검출·정상 승인·시간이 gold oracle과 얼마나 차이나는지, 공개 raw 후보가 없으면 별도 고정 후보로 측정 가능한지 확인한다. C2의 'gold가 있으면 검출'을 신규 Need로 과장하지 않는다.
 3. Track A5+: 현행 Agent libOS의 실제 provider effect 경로와 동적 철회 테스트를 확인해 내부 decision 결과의 한계를 좁힌다. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 

@@ -13,6 +13,8 @@
 
 **Phase 2 갱신(2026-11-25):** [C1–C1c](runs/C1c_autocedar_case011_20261125/result.md)는 AutoCedar full author가 후보 생성 전에 API/출력 형식 문제로 종료됨을 기록했다. [C2](runs/C2_target_semantics_20261125/result.md)는 연구자 작성 target 대조에서 self-reference 검사는 VPN 조건 누락을 못 찾았지만 독립 gold reference를 받은 원본 verifier는 반례를 찾고 정상 요청을 보존함을 확인했다. H1의 좁은 잔여 질문은 정확한 target을 실제 승인 과정에서 얼마나 잘·싸게 확보하는가이다. [A5](runs/A5_agent_libos_manifest_20261125/result.md)는 현행 Agent libOS 원저자 4개 테스트로 host-authored child attenuation/effect ceiling을 확인해 H15의 단순 권한 확대 가설을 더 약화했다. 두 결과 모두 실제 외부 provider 효과를 입증하지 않는다.
 
+**Phase 2 D1 갱신:** [실제 모델 A→B write-back](runs/D1_live_writeback_20261125/result.md)에서 A는 최신 규칙을 정확히 journal로 만들고 B는 정상/비인가를 올바르게 나눴다. Code-owned 전체 입력 lineage는 폐기 기록이 A 입력에 있었다는 이유로 정상 요청을 과차단했으며, 정확 current service PEP는 정상·안전을 함께 달성했다. H13의 잔여는 모델이 직접 주장한 support가 아닌 **신뢰 가능한 세분화된 derivation을 정상성 비용과 함께 얻는 문제**로 좁힌다. 현재 service PEP가 가능한 이 입력은 새 차단 기법 Gap의 근거가 아니다.
+
 ## H1–H10: 원문·실행·반박
 
 각 행의 마지막 칸은 **남는 질문 → 기각 조건 → 잠정 판정/기여** 순서다. `해결`은 명시된 조건에만 적용한다.

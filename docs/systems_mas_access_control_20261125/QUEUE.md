@@ -26,7 +26,8 @@
 | C5 | 강한 모델 검토자가 C4 정상 gold 오거부를 동일 prompt에서 바로잡는가 | 고정 7개 verdict, 원시 응답/비용, 동일 gold/효과 대조 | [완료](runs/C5_stronger_review_20261125/result.md): `gpt-4.1`도 6/7, 정답 정책 거짓 거부. 7 calls/$0.011748. 모델 교체 단독 반박 실패 |
 | C6 | 형식적으로 동치인 간단한 정규화로 두 모델의 정답 거짓 거부를 고칠 수 있는가 | 원본 verifier 양방향 포함 7/7, 동일 prompt·순서·모델별 7 verdict, 정상·비인가 의미 보존 | [완료](runs/C6_normalized_review_20261125/result.md): 동치 7/7, 두 모델 7/7; 고정 조건의 새 메커니즘 Need 기각 |
 | C7 | case-011 밖 공식 gold에서도 `(!(true) ||` 표기가 reviewer 거짓 거부에 영향을 주는가 | 200개 중 표기 빈도·네 구간 사전 선택 case, 각 동치 verifier, 4 paired 원본/정규화 × 2 모델·비용 | [완료](runs/C7_cross_case_review_20261125/result.md): 정형 동치 4/4, 16 calls/$0.0191152. `001` 정규화로 강한 모델 오거부 해소, `101` 두 모델 오거부 지속. `052` 한 응답 출력 잘림. 보존된 결과 후 출력 요약 오류 |
-| C8 | C7 `case-101`의 그룹 자손을 Cedar `in`이 실제 허용하는가 | 동일 공식 정책·정규화 정책, 4 그룹 관계×2 정책 decision와 SQLite 전후 effect | [사전등록](runs/C8_cedar_hierarchy_effect_20261125/prereg.md), 실행 대기, API $0 |
+| C8 | C7 `case-101`의 그룹 자손을 Cedar `in`이 실제 허용하는가 | 동일 공식 정책·정규화 정책, 4 그룹 관계×2 정책 decision와 SQLite 전후 effect | [완료](runs/C8_cedar_hierarchy_effect_20261125/result.md): CLI decision/schema replay 8/8, 허용만 effect +1. 최초 6/8 점수는 정상 DENY exit2 집계 오류; 원시 보존·별도 정정. API $0 |
+| C9 | 공식 Cedar 연산자 의미를 reviewer에 주면 C7 `case-101` 거짓 거부가 사라지는가 | 같은 요구·정책 2종×모델 2종, 의미 문장만 추가, 원시 결과·비용 | [사전등록](runs/C9_grounded_review_20261125/prereg.md), 코드 고정, 4 calls 예정 |
 | H20 | 여러 policy 생성기/PEP에서 사람 승인 artifact·검증 target·활성 hash를 결속하지 않으면 같은 범위 누락이 반복되는가 | AutoCedar 외 실제 원본 deployment 경로와 기존 승인·서명·active-hash gate의 같은 입력 검증 | C3a는 AutoCedar 소비자 misconfiguration만. 기존 explicit approval gate가 해결해 넓은 새 Need `UNVERIFIED` |
 
 각 실험의 실패가 기존 방법으로 해결되면 그 조건의 Need를 기각한다. 저자 코드와 독립 adapter를 혼동하지 않는다.

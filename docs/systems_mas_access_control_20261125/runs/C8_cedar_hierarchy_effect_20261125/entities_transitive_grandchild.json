@@ -1,0 +1,108 @@
+[
+  {
+    "uid": {
+      "type": "Group",
+      "id": "root"
+    },
+    "attrs": {},
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "Group",
+      "id": "child"
+    },
+    "attrs": {},
+    "parents": [
+      {
+        "type": "Group",
+        "id": "root"
+      }
+    ]
+  },
+  {
+    "uid": {
+      "type": "Group",
+      "id": "leaf"
+    },
+    "attrs": {},
+    "parents": [
+      {
+        "type": "Group",
+        "id": "child"
+      }
+    ]
+  },
+  {
+    "uid": {
+      "type": "Group",
+      "id": "south"
+    },
+    "attrs": {},
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "User",
+      "id": "officer"
+    },
+    "attrs": {
+      "assignedGroup": {
+        "__entity": {
+          "type": "Group",
+          "id": "root"
+        }
+      },
+      "roles": [
+        {
+          "__entity": {
+            "type": "Role",
+            "id": "TitleOfficer"
+          }
+        }
+      ],
+      "authorityLevel": 0
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "EscrowFile",
+      "id": "escrow-transitive_grandchild"
+    },
+    "attrs": {
+      "closingDate": {
+        "__extn": {
+          "fn": "datetime",
+          "arg": "2026-12-01T00:00:00Z"
+        }
+      },
+      "disbursementTier": 0,
+      "escrowOfficer": {
+        "__entity": {
+          "type": "User",
+          "id": "officer"
+        }
+      },
+      "fileCode": "escrow-transitive_grandchild",
+      "heldAmount": 0,
+      "lienStatus": [],
+      "parties": [],
+      "payeeCount": 0,
+      "region": {
+        "__entity": {
+          "type": "Group",
+          "id": "leaf"
+        }
+      },
+      "status": {
+        "__entity": {
+          "type": "EscrowFileStatusValue",
+          "id": "funded"
+        }
+      },
+      "titleCleared": true
+    },
+    "parents": []
+  }
+]

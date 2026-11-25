@@ -1,0 +1,13 @@
+{
+  "currentTime": {
+    "__extn": {
+      "fn": "datetime",
+      "arg": "2026-11-25T00:00:00Z"
+    }
+  },
+  "dualControlVerified": false,
+  "emergencyDeclared": false,
+  "enhancedDueDiligenceCompleted": false,
+  "enhancedDueDiligenceParties": [],
+  "onCorporateNetwork": true
+}

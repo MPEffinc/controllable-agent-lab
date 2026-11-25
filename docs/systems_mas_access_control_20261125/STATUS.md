@@ -2,6 +2,8 @@
 
 ## 현재 검증 질문
 
+2026-11-25 [D7 ActPlane 이미 열린 FD](runs/D7_actplane_open_fd_20261125/result.md): 원본 BPF-LSM loader가 PID 100을 정책에 넣고 ready가 된 뒤, **attach 전에 열린 금지 파일 FD의 `write` 10 bytes는 성공**해 파일이 변했다. 같은 파일의 새 open은 `EPERM`/원본 BPF block event, 정상 파일 쓰기는 성공. exact-path rule·활성화 순서의 좁은 구현 조건을 실증했지만, 이는 동적 policy-delta/revoke API 실행이 아니고 기존 inode/FD 효과 PEP나 다른 rule pattern 대안을 아직 반박하지 않는다. API $0. 다음은 기존 정책 표현만 바꿔 이 조건을 해결할 수 있는지 대조하고, MAS task→OS subject 및 실제 철회 의미를 확인한다.
+
 2026-11-25 [D6 OpenShell 원본 파일 집행](runs/D6_openshell_file_20261125/result.md): 새 전용 Gateway/sandbox에서 effective policy `/tmp` read-only·Landlock hard requirement version/hash 활성. 정상 `/sandbox` 쓰기 성공, `/tmp` 직접·내부 자식 쓰기 2/2 거부·파일 부재. 이번 run은 workload Docker 로그 필터 오류로 Landlock 단독 원인 귀속에 한계가 있고, 이전 공식 직접 실행의 workload Landlock 적용 로그/outer Docker 설정을 별도로 참조한다. 전용 자원 정리 확인, API $0. D5 ActPlane과 같은 파일 효과 범주에서 기존 OS PEP가 작동하므로 고정 집행 Need 기각. 남은 우선순위는 task→OS/service 신원, 동적 철회·열린 FD, 기존 ContractWarden/CONTINUITY 보장과의 실제 대조다.
 
 2026-11-25 [C13 최소 AutoCedar Authoring 완료](runs/C13_autocedar_minimal_20261125/result.md): 원본 pipeline이 확장 schema(`readDocument`, `deleteDocument`)에서 소유자 읽기 정책을 합성하고 원본 verifier 3/3 PASS/loss0, CLI exit0으로 수렴했다. 원본 Atom Reviewer는 조건 atom 1개 승인, 사람 승인 `false`. 독립 Cedar/SQLite는 정상 읽기 1/1 효과, 비소유자 읽기·삭제 0/2. 후보에 delete permit 없음. API 호환 어댑터가 있으므로 원본 provider 완전 재현은 아니고 H22 일반 생성 위험은 미확정. 16 calls/$0.0169264, 누적 $0.1211516/$5. 고정 사례의 신규 메커니즘 Need 기각. 다음 우선순위는 D6 OpenShell 원본 동일 파일 경계 및 A2A task→OS/service binding·철회다.

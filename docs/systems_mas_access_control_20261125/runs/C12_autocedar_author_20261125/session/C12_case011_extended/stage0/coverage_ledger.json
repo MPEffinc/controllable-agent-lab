@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source_nodes": 4,
+  "authorization_nodes": [
+    "src.root.p0002.l3",
+    "src.root.p0003.l3"
+  ],
+  "schema_packet_ids": [],
+  "property_packet_ids": [
+    "condition.0002.step0001",
+    "condition.0003.step0002"
+  ],
+  "completed_property_node_ids": [
+    "src.root.p0002.l3",
+    "src.root.p0003.l3"
+  ],
+  "open_property_node_ids": []
+}

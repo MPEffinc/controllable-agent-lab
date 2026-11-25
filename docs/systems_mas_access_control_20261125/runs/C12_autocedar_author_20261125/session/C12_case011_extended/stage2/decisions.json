@@ -1,0 +1,26 @@
+[
+  {
+    "atom_name": "Req0002MergePullRequestUserPullRequestCondition",
+    "action": "approve",
+    "reason": "",
+    "edit_delta": {
+      "review_channel": "model",
+      "model_review": "The atom exactly encodes the condition that a user may merge a pull request only if the user has the maintainer role, is not the pull request's author, and is connected to the VPN, matching the requirements and applying to the mergePullRequest action with User principal and PullRequest resource.",
+      "review_model": "openai:gpt-4.1-mini-2025-04-14"
+    },
+    "intent_acknowledged_by_user": false,
+    "symbolic_verified": true
+  },
+  {
+    "atom_name": "Req0003MergePullRequestUserPullRequestCondition",
+    "action": "approve",
+    "reason": "",
+    "edit_delta": {
+      "review_channel": "model",
+      "model_review": "The atom encodes exactly the requirement that the pull request must have at least one approval and its target branch name must begin with \"hotfix/\" for the mergePullRequest action by User on PullRequest, matching the source sentence precisely and complementing the other conditions without over- or under-approximating.",
+      "review_model": "openai:gpt-4.1-mini-2025-04-14"
+    },
+    "intent_acknowledged_by_user": false,
+    "symbolic_verified": true
+  }
+]

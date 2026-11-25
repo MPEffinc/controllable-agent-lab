@@ -1,0 +1,16 @@
+{
+  "loss": 1,
+  "results": [
+    {
+      "check_name": "syntax",
+      "check_type": "syntax",
+      "description": "Cedar parse / syntax validation",
+      "passed": false,
+      "counterexample": "× failed to parse policy set\n  ╰─▶ `startsWith` is not a valid method\n   ╭─[6:8]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch.startsWith(\"hotfix/\")\n   ·        ───────────────────────────────────────────\n 7 │ };\n   ╰────",
+      "tool_error": false
+    }
+  ],
+  "solver_time_s": 0.0,
+  "reused_verification": false,
+  "prompt_characters": 16752
+}

@@ -1,0 +1,12 @@
+{
+  "iteration": 3,
+  "loss": 1,
+  "checks_passed": 0,
+  "checks_total": 3,
+  "solver_time_s": 0.0,
+  "counterexample_count": 1,
+  "syntax_valid": false,
+  "status": "syntax_error",
+  "input_tokens": 3966,
+  "output_tokens": 81
+}

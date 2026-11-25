@@ -1,0 +1,168 @@
+[
+  {
+    "name": "Req0002MergePullRequestUserPullRequestCondition",
+    "rationale": "This condition encodes exactly the requirement that merging a pull request requires the user to hold the maintainer role, not be the author, and be using VPN, per the source text.",
+    "plain_english_summary": "A user may merge a pull request only if they have the maintainer role, are not the author of the pull request, and are connected to the VPN.",
+    "source_excerpt": "[source_id: src.root.p0002.l3] A user may merge a pull request only if the user holds the maintainer role, is not the pull request\u2019s author, and is using the VPN.",
+    "constraint_type": "condition",
+    "action": "mergePullRequest",
+    "principal_types": [
+      "User"
+    ],
+    "resource_types": [
+      "PullRequest"
+    ],
+    "reference_cedar": "permit(principal is User, action == Action::\"mergePullRequest\", resource is PullRequest) when {\n    principal.roles.contains(Role::\"Maintainer\") &&\n    !(principal == resource.author) &&\n    context.onVpn == true\n};",
+    "required_schema_support": [
+      {
+        "kind": "entity",
+        "name": "User",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "entity",
+        "name": "PullRequest",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "action",
+        "name": "mergePullRequest",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "action_principal",
+        "name": "principal",
+        "entity": "",
+        "action": "mergePullRequest",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "action_resource",
+        "name": "resource",
+        "entity": "",
+        "action": "mergePullRequest",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "context",
+        "name": "onVpn",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "attribute",
+        "name": "",
+        "entity": "User",
+        "action": "",
+        "field_name": "roles",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "attribute",
+        "name": "",
+        "entity": "PullRequest",
+        "action": "",
+        "field_name": "author",
+        "type_name": "",
+        "reason": ""
+      }
+    ],
+    "examples_adversarial": [],
+    "alternatives_considered": [],
+    "symbolic_verified": true,
+    "symbolic_verification_log": [
+      "type-correct: ok",
+      "condition-shape: ok",
+      "identity-consistency: ok",
+      "satisfiable: ok",
+      "never-errors: ok",
+      "match-vacuity: ok (policy match condition is reachable)",
+      "match-broadness: ok (not universal)",
+      "sugar-universal: ok (not applicable to primitives)"
+    ],
+    "intent_acknowledged_by_user": false,
+    "traceback_clauses": [],
+    "traceback_flags": [],
+    "rate_limit_window": null,
+    "rate_limit_threshold": null,
+    "rate_limit_counter_attr": null,
+    "disjoint_with": null,
+    "disjoint_target_body": null
+  },
+  {
+    "name": "Req0003MergePullRequestUserPullRequestCondition",
+    "rationale": "Encode the specific requirement that the pull request being merged must have at least one approval (approvalCount >= 1) and the target branch name must start with 'hotfix/'. This condition complements the previously approved conditions (maintainer role, not author, VPN usage) without repeating them.",
+    "plain_english_summary": "The pull request must have at least one approval and its target branch name must begin with \"hotfix/\".",
+    "source_excerpt": "[source_id: src.root.p0003.l3] The pull request must have at least one approval, and its target branch name must begin with \u201chotfix/\u201d.",
+    "constraint_type": "condition",
+    "action": "mergePullRequest",
+    "principal_types": [
+      "User"
+    ],
+    "resource_types": [
+      "PullRequest"
+    ],
+    "reference_cedar": "permit(principal is User, action == Action::\"mergePullRequest\", resource is PullRequest) when { resource.approvalCount >= 1 && resource.targetBranch like \"hotfix/*\" };",
+    "required_schema_support": [
+      {
+        "kind": "entity",
+        "name": "PullRequest",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "attribute",
+        "name": "approvalCount",
+        "entity": "PullRequest",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "attribute",
+        "name": "targetBranch",
+        "entity": "PullRequest",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      }
+    ],
+    "examples_adversarial": [],
+    "alternatives_considered": [],
+    "symbolic_verified": false,
+    "symbolic_verification_log": [],
+    "intent_acknowledged_by_user": false,
+    "traceback_clauses": [],
+    "traceback_flags": [],
+    "rate_limit_window": null,
+    "rate_limit_threshold": null,
+    "rate_limit_counter_attr": null,
+    "disjoint_with": null,
+    "disjoint_target_body": null
+  }
+]

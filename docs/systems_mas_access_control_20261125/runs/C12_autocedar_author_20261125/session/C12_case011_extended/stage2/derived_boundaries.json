@@ -1,0 +1,61 @@
+{
+  "atoms": [
+    {
+      "name": "floor__scope_mergepullrequest_user_pullrequest__slice_mergepullrequest_user_pullrequest_1",
+      "rationale": "Calculated from the intent map and its approved condition atoms.",
+      "plain_english_summary": "Requests in slice 'User holds maintainer role, is not author of the pull request, uses VPN, pull request has approval and target branch starts with 'hotfix/'.' must be allowed.",
+      "source_excerpt": "[source_id: src.root.p0002.l3] [source_id: src.root.p0003.l3]",
+      "constraint_type": "floor",
+      "action": "mergePullRequest",
+      "principal_types": [
+        "User"
+      ],
+      "resource_types": [
+        "PullRequest"
+      ],
+      "reference_cedar": "permit (\n  principal is User,\n  action == Action::\"mergePullRequest\",\n  resource is PullRequest\n)\nwhen {\n    principal.roles.contains(Role::\"Maintainer\") &&\n    !(principal == resource.author) &&\n    context.onVpn == true\n}\nwhen { resource.approvalCount >= 1 && resource.targetBranch like \"hotfix/*\" };",
+      "required_schema_support": [],
+      "examples_adversarial": [],
+      "alternatives_considered": [],
+      "symbolic_verified": true,
+      "symbolic_verification_log": [],
+      "intent_acknowledged_by_user": false,
+      "traceback_clauses": [],
+      "traceback_flags": [],
+      "rate_limit_window": null,
+      "rate_limit_threshold": null,
+      "rate_limit_counter_attr": null,
+      "disjoint_with": null,
+      "disjoint_target_body": null
+    },
+    {
+      "name": "ceiling__scope_mergepullrequest_user_pullrequest",
+      "rationale": "Calculated from the intent map and its approved condition atoms.",
+      "plain_english_summary": "Only requests in one of this scope's slices may be allowed.",
+      "source_excerpt": "[source_id: src.root.p0002.l3] [source_id: src.root.p0003.l3]",
+      "constraint_type": "ceiling",
+      "action": "mergePullRequest",
+      "principal_types": [
+        "User"
+      ],
+      "resource_types": [
+        "PullRequest"
+      ],
+      "reference_cedar": "permit (\n  principal is User,\n  action == Action::\"mergePullRequest\",\n  resource is PullRequest\n)\nwhen {\n    principal.roles.contains(Role::\"Maintainer\") &&\n    !(principal == resource.author) &&\n    context.onVpn == true\n}\nwhen { resource.approvalCount >= 1 && resource.targetBranch like \"hotfix/*\" };",
+      "required_schema_support": [],
+      "examples_adversarial": [],
+      "alternatives_considered": [],
+      "symbolic_verified": true,
+      "symbolic_verification_log": [],
+      "intent_acknowledged_by_user": false,
+      "traceback_clauses": [],
+      "traceback_flags": [],
+      "rate_limit_window": null,
+      "rate_limit_threshold": null,
+      "rate_limit_counter_attr": null,
+      "disjoint_with": null,
+      "disjoint_target_body": null
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,16 @@
+{
+  "loss": 1,
+  "results": [
+    {
+      "check_name": "syntax",
+      "check_type": "syntax",
+      "description": "Cedar parse / syntax validation",
+      "passed": false,
+      "counterexample": "× failed to parse policy set\n  ╰─▶ `len` is not a valid method\n   ╭─[6:8]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch.len() >= 7\n   ·        ───────────────────────────\n 7 │     && resource.targetBranch[0] == \"h\"\n   ╰────\n\nError: \n  × invalid string literal: 0\n   ╭─[7:30]\n 6 │     && resource.targetBranch.len() >= 7\n 7 │     && resource.targetBranch[0] == \"h\"\n   ·                              ─\n 8 │     && resource.targetBranch[1] == \"o\"\n   ╰────\n\nError: \n  × invalid string literal: 1\n   ╭─[8:30]\n 7 │     && resource.targetBranch[0] == \"h\"\n 8 │     && resource.targetBranch[1] == \"o\"\n   ·                              ─\n 9 │     && resource.targetBranch[2] == \"t\"\n   ╰────\n\nError: \n  × invalid string literal: 2\n    ╭─[9:30]\n  8 │     && resource.targetBranch[1] == \"o\"\n  9 │     && resource.targetBranch[2] == \"t\"\n    ·                              ─\n 10 │     && resource.targetBranch[3] == \"f\"\n    ╰────\n\nError: \n  × invalid string literal: 3\n    ╭─[10:30]\n  9 │     && resource.targetBranch[2] == \"t\"\n 10 │     && resource.targetBranch[3] == \"f\"\n    ·                              ─\n 11 │     && resource.targetBranch[4] == \"i\"\n    ╰────\n\nError: \n  × invalid string literal: 4\n    ╭─[11:30]\n 10 │     && resource.targetBranch[3] == \"f\"\n 11 │     && resource.targetBranch[4] == \"i\"\n    ·                              ─\n 12 │     && resource.targetBranch[5] == \"x\"\n    ╰────\n\nError: \n  × invalid string literal: 5\n    ╭─[12:30]\n 11 │     && resource.targetBranch[4] == \"i\"\n 12 │     && resource.targetBranch[5] == \"x\"\n    ·                              ─\n 13 │     && resource.targetBranch[6] == \"/\"\n    ╰────\n\nError: \n  × invalid string literal: 6\n    ╭─[13:30]\n 12 │     && resource.targetBranch[5] == \"x\"\n 13 │     && resource.targetBranch[6] == \"/\"\n    ·                              ─\n 14 │ };\n    ╰────",
+      "tool_error": false
+    }
+  ],
+  "solver_time_s": 0.0,
+  "reused_verification": false,
+  "prompt_characters": 16587
+}

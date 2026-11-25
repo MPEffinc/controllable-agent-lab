@@ -1,0 +1,31 @@
+{"ts": "2026-11-25T22:32:55.908377Z", "event": "input.spec_written", "filename": "requirement.md", "size": 412}
+{"ts": "2026-11-25T22:32:55.933086Z", "event": "stage0.source_index", "nodes": 4, "authorization_relevant_nodes": 4}
+{"ts": "2026-11-25T22:32:55.956978Z", "event": "stage0.intent_dag", "source_nodes": 4, "schema_packets": 0, "property_packets": 0, "schema_atoms": 0, "property_atoms": 0, "schema_gaps": 0}
+{"ts": "2026-11-25T22:32:55.981121Z", "event": "stage0.coverage_ledger", "open_property_nodes": 4, "completed_property_nodes": 0}
+{"ts": "2026-11-25T22:32:56.010608Z", "event": "stage1.schema_validation", "attempts": 1}
+{"ts": "2026-11-25T22:32:56.035629Z", "event": "stage1.proposed", "count": 0}
+{"ts": "2026-11-25T22:32:56.059009Z", "event": "stage1.attributions_logged", "count": 0}
+{"ts": "2026-11-25T22:32:56.082426Z", "event": "stage1.decisions_logged", "count": 0}
+{"ts": "2026-11-25T22:32:56.105964Z", "event": "stage1.schema_written", "size": 1218}
+{"ts": "2026-11-25T22:33:03.932650Z", "event": "stage0.context_packet", "packet_id": "condition.0002.step0001", "kind": "condition", "focus_node_ids": ["src.root.p0002.l3"]}
+{"ts": "2026-11-25T22:33:07.779550Z", "event": "stage2.proposed", "count": 1}
+{"ts": "2026-11-25T22:33:07.802729Z", "event": "stage2.attributions_logged", "count": 1}
+{"ts": "2026-11-25T22:33:09.676186Z", "event": "stage2.approved", "count": 1}
+{"ts": "2026-11-25T22:33:09.700325Z", "event": "stage2.decisions_logged", "count": 1}
+{"ts": "2026-11-25T22:33:09.723345Z", "event": "stage2.verification_logged", "atom_count": 1}
+{"ts": "2026-11-25T22:33:09.760526Z", "event": "stage0.coverage_ledger", "open_property_nodes": 1, "completed_property_nodes": 1}
+{"ts": "2026-11-25T22:33:09.797767Z", "event": "stage0.context_packet", "packet_id": "condition.0003.step0002", "kind": "condition", "focus_node_ids": ["src.root.p0003.l3"]}
+{"ts": "2026-11-25T22:33:13.032764Z", "event": "stage2.proposed", "count": 2}
+{"ts": "2026-11-25T22:33:13.058388Z", "event": "stage2.attributions_logged", "count": 2}
+{"ts": "2026-11-25T22:33:14.488938Z", "event": "stage2.approved", "count": 2}
+{"ts": "2026-11-25T22:33:14.512734Z", "event": "stage2.decisions_logged", "count": 2}
+{"ts": "2026-11-25T22:33:14.538357Z", "event": "stage2.verification_logged", "atom_count": 2}
+{"ts": "2026-11-25T22:33:14.576488Z", "event": "stage0.coverage_ledger", "open_property_nodes": 0, "completed_property_nodes": 2}
+{"ts": "2026-11-25T22:33:14.627560Z", "event": "stage1_5.amendments", "count": 0}
+{"ts": "2026-11-25T22:33:14.651113Z", "event": "stage2.decisions_logged", "count": 2}
+{"ts": "2026-11-25T22:33:14.677506Z", "event": "stage2.approved", "count": 2}
+{"ts": "2026-11-25T22:33:14.703309Z", "event": "stage2.intent_graph", "properties": 2}
+{"ts": "2026-11-25T22:33:14.726752Z", "event": "stage2.verification_logged", "atom_count": 2}
+{"ts": "2026-11-25T22:33:14.750774Z", "event": "stage2.adversarial_examples", "atom_count": 2}
+{"ts": "2026-11-25T22:33:14.864337Z", "event": "stage1_75.consistency_check", "unsat": false, "core": []}
+{"ts": "2026-11-25T22:33:14.911851Z", "event": "stage2.plan_written", "reference_count": 2}

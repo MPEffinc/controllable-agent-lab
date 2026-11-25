@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "property:Req0002MergePullRequestUserPullRequestCondition",
+      "kind": "property",
+      "name": "Req0002MergePullRequestUserPullRequestCondition",
+      "constraint_type": "condition",
+      "summary": "A user may merge a pull request only if they have the maintainer role, are not the author of the pull request, and are connected to the VPN.",
+      "source_excerpt": "[source_id: src.root.p0002.l3] A user may merge a pull request only if the user holds the maintainer role, is not the pull request\u2019s author, and is using the VPN.",
+      "symbolic_verified": true,
+      "intent_acknowledged_by_user": false
+    },
+    {
+      "id": "action:mergePullRequest",
+      "kind": "action",
+      "name": "mergePullRequest"
+    },
+    {
+      "id": "principal_type:User",
+      "kind": "principal_type",
+      "name": "User"
+    },
+    {
+      "id": "resource_type:PullRequest",
+      "kind": "resource_type",
+      "name": "PullRequest"
+    },
+    {
+      "id": "property:Req0003MergePullRequestUserPullRequestCondition",
+      "kind": "property",
+      "name": "Req0003MergePullRequestUserPullRequestCondition",
+      "constraint_type": "condition",
+      "summary": "The pull request must have at least one approval and its target branch name must begin with \"hotfix/\".",
+      "source_excerpt": "[source_id: src.root.p0003.l3] The pull request must have at least one approval, and its target branch name must begin with \u201chotfix/\u201d.",
+      "symbolic_verified": true,
+      "intent_acknowledged_by_user": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "property:Req0002MergePullRequestUserPullRequestCondition",
+      "target": "action:mergePullRequest",
+      "type": "uses_action"
+    },
+    {
+      "source": "property:Req0002MergePullRequestUserPullRequestCondition",
+      "target": "principal_type:User",
+      "type": "uses_principal_type"
+    },
+    {
+      "source": "property:Req0002MergePullRequestUserPullRequestCondition",
+      "target": "resource_type:PullRequest",
+      "type": "uses_resource_type"
+    },
+    {
+      "source": "property:Req0003MergePullRequestUserPullRequestCondition",
+      "target": "action:mergePullRequest",
+      "type": "uses_action"
+    },
+    {
+      "source": "property:Req0003MergePullRequestUserPullRequestCondition",
+      "target": "principal_type:User",
+      "type": "uses_principal_type"
+    },
+    {
+      "source": "property:Req0003MergePullRequestUserPullRequestCondition",
+      "target": "resource_type:PullRequest",
+      "type": "uses_resource_type"
+    }
+  ],
+  "summary": {
+    "properties": 2
+  }
+}

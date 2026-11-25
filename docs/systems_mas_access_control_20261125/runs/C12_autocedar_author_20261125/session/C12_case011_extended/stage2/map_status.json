@@ -1,0 +1,18 @@
+{
+  "root_solved": true,
+  "scopes": {
+    "scope.mergePullRequest.User.PullRequest": true
+  },
+  "slices": {
+    "slice.mergePullRequest.User.PullRequest.1": true
+  },
+  "conditions": {
+    "src.root.p0002.l3": {
+      "scope.mergePullRequest.User.PullRequest": true
+    },
+    "src.root.p0003.l3": {
+      "scope.mergePullRequest.User.PullRequest": true
+    }
+  },
+  "blocking_conditions": []
+}

@@ -1,0 +1,16 @@
+{
+  "loss": 1,
+  "results": [
+    {
+      "check_name": "validation",
+      "check_type": "validation",
+      "description": "Cedar type-check / schema validation",
+      "passed": false,
+      "counterexample": "× policy set validation failed\n  ╰─▶ the types Long and String are not compatible\n   ╭─[6:8]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch == \"hotfix/\" + resource.targetBranch.offset(7)\n   ·        ────────────────────────────────────────────────────────────────────\n 7 │ };\n   ╰────\n  help: for policy `policy0`, both operands to a `==` expression must have\n        compatible types. Types must be exactly equal to be compatible\n\nError: \n  × for policy `policy0`, unexpected type: expected Long but saw String\n   ╭─[6:33]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch == \"hotfix/\" + resource.targetBranch.offset(7)\n   ·                                 ─────────\n 7 │ };\n   ╰────\n  help: Cedar does not support string concatenation\n\nError: \n  × for policy `policy0`, attribute `context` on entity type `Action` not\n  │ found\n   ╭─[4:8]\n 3 │     && principal != resource.author\n 4 │     && action.context.onVpn\n   ·        ────────────────────\n 5 │     && resource.approvalCount >= 1\n   ╰────\n\nError: \n  × for policy `policy0`, unexpected type: expected datetime but saw String\n   ╭─[6:45]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch == \"hotfix/\" + resource.targetBranch.offset(7)\n   ·                                             ───────────────────────────────\n 7 │ };\n   ╰────\n\nError: \n  × for policy `policy0`, unexpected type: expected duration but saw Long\n   ╭─[6:74]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch == \"hotfix/\" + resource.targetBranch.offset(7)\n   ·                                                                          ─\n 7 │ };\n   ╰────\n\nError: \n  × for policy `policy0`, unexpected type: expected Long but saw datetime\n   ╭─[6:45]\n 5 │     && resource.approvalCount >= 1\n 6 │     && resource.targetBranch == \"hotfix/\" + resource.targetBranch.offset(7)\n   ·                                             ───────────────────────────────\n 7 │ };\n   ╰────",
+      "tool_error": false
+    }
+  ],
+  "solver_time_s": 0.0,
+  "reused_verification": false,
+  "prompt_characters": 16096
+}

@@ -1,0 +1,16 @@
+{
+  "loss": 1,
+  "results": [
+    {
+      "check_name": "syntax",
+      "check_type": "syntax",
+      "description": "Cedar parse / syntax validation",
+      "passed": false,
+      "counterexample": "× failed to parse policy set\n  ╰─▶ unexpected token `principal`\n   ╭─[2:5]\n 1 │ permit(principal, action, resource) when\n 2 │     principal is User\n   ·     ────┬────\n   ·         ╰── expected `{`\n 3 │     && action == readDocument\n   ╰────",
+      "tool_error": false
+    }
+  ],
+  "solver_time_s": 0.0,
+  "reused_verification": true,
+  "prompt_characters": 11446
+}

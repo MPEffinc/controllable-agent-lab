@@ -1,0 +1,16 @@
+{"operation": "IntentMapResponse", "request_id": "resp_0188b0fcba6734ed016b0762a2ddd087d082e51cfe506b0fd6", "input_tokens": 1322, "output_tokens": 146, "estimated_usd": 0.0007624, "cumulative_estimated_usd": 0.0007624}
+{"operation": "MapReviewResponse", "request_id": "resp_000406e4614be2ce016b0762a5324c87d0b200d4a610090108", "input_tokens": 1427, "output_tokens": 68, "estimated_usd": 0.0006796, "cumulative_estimated_usd": 0.001442}
+{"operation": "PropertyAtomsResponse", "request_id": "resp_0ac6ae5c331c9c23016b0762a6a42887d0a4c712ad63829f4a", "input_tokens": 2211, "output_tokens": 271, "estimated_usd": 0.001318, "cumulative_estimated_usd": 0.00276}
+{"operation": "AtomReviewResponse", "request_id": "resp_0c201960a27e0f47016b0762a8f95887d08b853da571c29b5c", "input_tokens": 1472, "output_tokens": 79, "estimated_usd": 0.0007152, "cumulative_estimated_usd": 0.0034752}
+{"operation": "text", "request_id": "resp_0d2afd286b5d70f7016b0762aa8d3087d0b958b820b7339f71", "input_tokens": 2303, "output_tokens": 32, "estimated_usd": 0.0009724, "cumulative_estimated_usd": 0.0044476}
+{"operation": "text", "request_id": "resp_002aaf2d7b83d013016b0762ab890887d081c95c9d266c55ae", "input_tokens": 2514, "output_tokens": 32, "estimated_usd": 0.0010568, "cumulative_estimated_usd": 0.0055044}
+{"operation": "text", "request_id": "resp_076ab98a30042212016b0762acbc1887d0a8f1ec455493a63c", "input_tokens": 2709, "output_tokens": 36, "estimated_usd": 0.0011412, "cumulative_estimated_usd": 0.0066456}
+{"operation": "text", "request_id": "resp_01bb1f9db7ef5d90016b0762adf40087d08d9ef1fb1a8d1f34", "input_tokens": 2711, "output_tokens": 36, "estimated_usd": 0.001142, "cumulative_estimated_usd": 0.0077876}
+{"operation": "text", "request_id": "resp_0eaf5a0b36f5e4c9016b0762aee61c87d0bc1f3d95ce8f8625", "input_tokens": 2716, "output_tokens": 36, "estimated_usd": 0.001144, "cumulative_estimated_usd": 0.0089316}
+{"operation": "text", "request_id": "resp_071f294c85631d94016b0762afe39487d084452721963bf1b3", "input_tokens": 2848, "output_tokens": 23, "estimated_usd": 0.001176, "cumulative_estimated_usd": 0.0101076}
+{"operation": "text", "request_id": "resp_01813eed85ae3514016b0762b0e15c87d0a5cc18fa168babfd", "input_tokens": 2846, "output_tokens": 24, "estimated_usd": 0.0011768, "cumulative_estimated_usd": 0.0112844}
+{"operation": "text", "request_id": "resp_03a395f932716935016b0762b1b91087d0b5387e2c3ed1a015", "input_tokens": 2697, "output_tokens": 23, "estimated_usd": 0.0011156, "cumulative_estimated_usd": 0.0124}
+{"operation": "text", "request_id": "resp_030b39c7c6bdb45d016b0762b28b2487d0ba7f383fa989f50b", "input_tokens": 2829, "output_tokens": 19, "estimated_usd": 0.001162, "cumulative_estimated_usd": 0.013562}
+{"operation": "text", "request_id": "resp_00997617aba5728a016b0762b3820487d0b9b2c066bd095bf8", "input_tokens": 2823, "output_tokens": 18, "estimated_usd": 0.001158, "cumulative_estimated_usd": 0.01472}
+{"operation": "text", "request_id": "resp_052fc80af45009cd016b0762b449c087d0923a0074bd079183", "input_tokens": 2674, "output_tokens": 19, "estimated_usd": 0.0011, "cumulative_estimated_usd": 0.01582}
+{"operation": "text", "request_id": "resp_00a95ff871957c47016b0762b5189c87d09797ab4e2fa17cb0", "input_tokens": 2678, "output_tokens": 22, "estimated_usd": 0.0011064, "cumulative_estimated_usd": 0.0169264}

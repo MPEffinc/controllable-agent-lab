@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "document",
+      "kind": "document",
+      "summary": "raw requirements document"
+    },
+    {
+      "id": "src.root.p0001.l1",
+      "text": "Document read access",
+      "start_line": 1,
+      "end_line": 1,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 1,
+      "kind": "source"
+    },
+    {
+      "id": "src.root.p0002.l3",
+      "text": "A user may read a document only when that user is the document's owner.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 2,
+      "kind": "source"
+    },
+    {
+      "id": "src.root.p0003.l3",
+      "text": "These are the only permissions.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 3,
+      "kind": "source"
+    },
+    {
+      "id": "src.root.p0004.l3",
+      "text": "All other actions, including deleting a document, are denied.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 4,
+      "kind": "source"
+    },
+    {
+      "id": "packet:condition.0002.step0001",
+      "kind": "condition_packet",
+      "focus_node_ids": [
+        "src.root.p0002.l3"
+      ]
+    },
+    {
+      "id": "property_atom:condition.0002.step0001 for scope.readDocument.User.Document",
+      "kind": "property_atom",
+      "atom": {
+        "name": "condition.0002.step0001 for scope.readDocument.User.Document",
+        "rationale": "This condition enforces that the principal User must be the owner of the Document resource in order to permit the readDocument action, exactly as required.",
+        "plain_english_summary": "A user may read a document only when that user is the document's owner.",
+        "source_excerpt": "[source_id: src.root.p0002.l3] A user may read a document only when that user is the document's owner.",
+        "constraint_type": "condition",
+        "action": "readDocument",
+        "principal_types": [
+          "User"
+        ],
+        "resource_types": [
+          "Document"
+        ],
+        "reference_cedar": "permit(principal is User, action == Action::\"readDocument\", resource is Document) when {\n    principal == resource.owner\n};",
+        "required_schema_support": [
+          {
+            "kind": "entity",
+            "name": "User",
+            "entity": "",
+            "action": "",
+            "field_name": "",
+            "type_name": "",
+            "reason": ""
+          },
+          {
+            "kind": "entity",
+            "name": "Document",
+            "entity": "",
+            "action": "",
+            "field_name": "",
+            "type_name": "",
+            "reason": ""
+          },
+          {
+            "kind": "action",
+            "name": "readDocument",
+            "entity": "",
+            "action": "",
+            "field_name": "",
+            "type_name": "",
+            "reason": ""
+          },
+          {
+            "kind": "action_principal",
+            "name": "",
+            "entity": "",
+            "action": "readDocument",
+            "field_name": "",
+            "type_name": "",
+            "reason": ""
+          },
+          {
+            "kind": "action_resource",
+            "name": "",
+            "entity": "",
+            "action": "readDocument",
+            "field_name": "",
+            "type_name": "",
+            "reason": ""
+          },
+          {
+            "kind": "attribute",
+            "name": "",
+            "entity": "Document",
+            "action": "",
+            "field_name": "owner",
+            "type_name": "",
+            "reason": ""
+          }
+        ],
+        "examples_adversarial": [],
+        "alternatives_considered": [],
+        "symbolic_verified": true,
+        "symbolic_verification_log": [
+          "type-correct: ok",
+          "condition-shape: ok",
+          "identity-consistency: ok",
+          "satisfiable: ok",
+          "never-errors: ok",
+          "match-vacuity: ok (policy match condition is reachable)",
+          "match-broadness: ok (not universal)",
+          "sugar-universal: ok (not applicable to primitives)"
+        ],
+        "intent_acknowledged_by_user": false,
+        "traceback_clauses": [
+          "permit(principal, action == Action::\"readDocument\", resource) when { resource.owner == principal };"
+        ],
+        "traceback_flags": [],
+        "rate_limit_window": null,
+        "rate_limit_threshold": null,
+        "rate_limit_counter_attr": null,
+        "disjoint_with": null,
+        "disjoint_target_body": null
+      },
+      "source_node_ids": [
+        "src.root.p0002.l3"
+      ]
+    },
+    {
+      "id": "map:root",
+      "kind": "policy_store"
+    },
+    {
+      "id": "scope.readDocument.User.Document",
+      "kind": "scope",
+      "action": "readDocument",
+      "principal_type": "User",
+      "resource_type": "Document",
+      "exhaustive": true,
+      "summary": ""
+    },
+    {
+      "id": "slice.readDocument.User.Document.1",
+      "kind": "slice",
+      "scope_id": "scope.readDocument.User.Document",
+      "summary": "User may read a document only when the user is the document's owner."
+    }
+  ],
+  "edges": [
+    {
+      "source": "document",
+      "target": "src.root.p0001.l1",
+      "type": "contains"
+    },
+    {
+      "source": "document",
+      "target": "src.root.p0002.l3",
+      "type": "contains"
+    },
+    {
+      "source": "document",
+      "target": "src.root.p0003.l3",
+      "type": "contains"
+    },
+    {
+      "source": "document",
+      "target": "src.root.p0004.l3",
+      "type": "contains"
+    },
+    {
+      "source": "src.root.p0001.l1",
+      "target": "src.root.p0002.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0002.l3",
+      "target": "src.root.p0003.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0003.l3",
+      "target": "src.root.p0004.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0002.l3",
+      "target": "packet:condition.0002.step0001",
+      "type": "expands_into"
+    },
+    {
+      "source": "src.root.p0003.l3",
+      "target": "packet:condition.0002.step0001",
+      "type": "context_for"
+    },
+    {
+      "source": "src.root.p0004.l3",
+      "target": "packet:condition.0002.step0001",
+      "type": "context_for"
+    },
+    {
+      "source": "src.root.p0002.l3",
+      "target": "property_atom:condition.0002.step0001 for scope.readDocument.User.Document",
+      "type": "grounds_property_atom"
+    },
+    {
+      "source": "scope:scope.readDocument.User.Document",
+      "target": "map:root",
+      "type": "or_child_of"
+    },
+    {
+      "source": "slice:slice.readDocument.User.Document.1",
+      "target": "scope:scope.readDocument.User.Document",
+      "type": "or_alternative_of"
+    },
+    {
+      "source": "src.root.p0002.l3",
+      "target": "slice:slice.readDocument.User.Document.1",
+      "type": "and_condition_of"
+    },
+    {
+      "source": "src.root.p0003.l3",
+      "target": "map:root",
+      "type": "interprets"
+    },
+    {
+      "source": "src.root.p0004.l3",
+      "target": "map:root",
+      "type": "interprets"
+    }
+  ],
+  "summary": {
+    "source_nodes": 4,
+    "schema_packets": 0,
+    "property_packets": 1,
+    "schema_atoms": 0,
+    "property_atoms": 1,
+    "schema_gaps": 0
+  }
+}

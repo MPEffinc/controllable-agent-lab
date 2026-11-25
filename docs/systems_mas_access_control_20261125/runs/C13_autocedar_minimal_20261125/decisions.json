@@ -1,0 +1,104 @@
+[
+  {
+    "case": "owner_read",
+    "decision": "ALLOW",
+    "exit_code": 0,
+    "before": [
+      0,
+      0
+    ],
+    "after": [
+      1,
+      0
+    ],
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+      "authorize",
+      "--policies",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/session/C13_owner_read/harness_runs/scenario/candidate.cedar",
+      "--schema",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/schema.cedarschema",
+      "--entities",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/entities.json",
+      "--principal",
+      "User::\"alice\"",
+      "--action",
+      "Action::\"readDocument\"",
+      "--resource",
+      "Document::\"doc1\"",
+      "--context",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/context.json",
+      "--verbose"
+    ],
+    "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+    "stderr": ""
+  },
+  {
+    "case": "nonowner_read",
+    "decision": "DENY",
+    "exit_code": 2,
+    "before": [
+      1,
+      0
+    ],
+    "after": [
+      1,
+      0
+    ],
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+      "authorize",
+      "--policies",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/session/C13_owner_read/harness_runs/scenario/candidate.cedar",
+      "--schema",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/schema.cedarschema",
+      "--entities",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/entities.json",
+      "--principal",
+      "User::\"bob\"",
+      "--action",
+      "Action::\"readDocument\"",
+      "--resource",
+      "Document::\"doc1\"",
+      "--context",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/context.json",
+      "--verbose"
+    ],
+    "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+    "stderr": ""
+  },
+  {
+    "case": "owner_delete",
+    "decision": "DENY",
+    "exit_code": 2,
+    "before": [
+      1,
+      0
+    ],
+    "after": [
+      1,
+      0
+    ],
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+      "authorize",
+      "--policies",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/session/C13_owner_read/harness_runs/scenario/candidate.cedar",
+      "--schema",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/schema.cedarschema",
+      "--entities",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/entities.json",
+      "--principal",
+      "User::\"alice\"",
+      "--action",
+      "Action::\"deleteDocument\"",
+      "--resource",
+      "Document::\"doc1\"",
+      "--context",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C13_autocedar_minimal_20261125/context.json",
+      "--verbose"
+    ],
+    "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+    "stderr": ""
+  }
+]

@@ -20,4 +20,4 @@
 
 **가설 기각 조건:** AutoCedar의 실제 authoring 경로 또는 다른 현행 시스템이 입력 문서·schema/tool registry 변화에도 모든 unmentioned action을 명시적으로 닫고, 정상 action의 성공을 유지하면서 과권한 추가를 검출/차단한다는 원본 코드·실험이 나오면 넓은 Need를 기각한다. 스키마 확장만으로 비인가 효과가 자동 발생한다는 주장도 하지 않는다. 후보가 delete permit을 추가한 **조건**이 필요하다.
 
-**다음 최소 검증 질문:** 원본 AutoCedar `author`가 확장 schema의 `case-011`에서 승인되지 않은 `delete` permit을 만들 확률·조건은 무엇인가? API 호환성 C1–C1c 문제를 고친 뒤 원본 atom review·candidate synthesis를 같은 입력으로 실행하고, 생성된 plan의 검사 scope와 최종 active policy/effect를 대조해야 한다. 그 전에는 C11의 구성 가능성을 저자 공격 성공률로 표시하지 않는다.
+**후속 원본 실행:** [C12](runs/C12_autocedar_author_20261125/result.md)는 API 호환 어댑터로 공식 case-011 확장 schema의 원본 Stage 2 atom/target과 Stage 3 후보까지 진행했으나 `hotfix/` Cedar 문자열 인덱싱 구문 반복으로 원본 oscillation gate에서 중단됐다. [C13](runs/C13_autocedar_minimal_20261125/result.md)는 접두사 없는 최소 소유자 읽기 + 미언급 삭제 schema에서 원본 author가 완주했다. 최종 후보는 read만 permit하고 delete는 Cedar/SQLite에서 DENY·효과0, 정상 read 효과1이었다. 원본 Atom Reviewer 1개 승인과 verifier 3/3 PASS를 확인했지만 사용자 최종 승인 `false`이며 실제 활성화 없음. 이 1회 결과는 **미승인 action 생성 가설을 지지하지 않으며** C11의 조건부 target coverage Gap이나 더 넓은 action-registry 변경 시 문제를 일반적으로 기각하지 않는다. 현재 추가 유사 변이보다 승인·활성본 결속과 다른 Track의 미검증 효과 경계를 우선한다.

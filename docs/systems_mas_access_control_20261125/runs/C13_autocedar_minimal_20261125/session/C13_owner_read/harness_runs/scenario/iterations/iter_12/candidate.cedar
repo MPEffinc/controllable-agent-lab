@@ -1,0 +1,1 @@
+permit(principal, action == Action::"readDocument", resource) when { resource.owner == principal };

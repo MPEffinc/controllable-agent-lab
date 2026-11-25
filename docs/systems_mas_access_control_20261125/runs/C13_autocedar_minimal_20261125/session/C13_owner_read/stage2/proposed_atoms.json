@@ -1,0 +1,85 @@
+[
+  {
+    "name": "condition.0002.step0001 for scope.readDocument.User.Document",
+    "rationale": "This condition enforces that the principal User must be the owner of the Document resource in order to permit the readDocument action, exactly as required.",
+    "plain_english_summary": "A user may read a document only when that user is the document's owner.",
+    "source_excerpt": "[source_id: src.root.p0002.l3] A user may read a document only when that user is the document's owner.",
+    "constraint_type": "condition",
+    "action": "readDocument",
+    "principal_types": [
+      "User"
+    ],
+    "resource_types": [
+      "Document"
+    ],
+    "reference_cedar": "permit(principal is User, action == Action::\"readDocument\", resource is Document) when {\n    principal == resource.owner\n};",
+    "required_schema_support": [
+      {
+        "kind": "entity",
+        "name": "User",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "entity",
+        "name": "Document",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "action",
+        "name": "readDocument",
+        "entity": "",
+        "action": "",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "action_principal",
+        "name": "",
+        "entity": "",
+        "action": "readDocument",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "action_resource",
+        "name": "",
+        "entity": "",
+        "action": "readDocument",
+        "field_name": "",
+        "type_name": "",
+        "reason": ""
+      },
+      {
+        "kind": "attribute",
+        "name": "",
+        "entity": "Document",
+        "action": "",
+        "field_name": "owner",
+        "type_name": "",
+        "reason": ""
+      }
+    ],
+    "examples_adversarial": [],
+    "alternatives_considered": [],
+    "symbolic_verified": false,
+    "symbolic_verification_log": [],
+    "intent_acknowledged_by_user": false,
+    "traceback_clauses": [],
+    "traceback_flags": [],
+    "rate_limit_window": null,
+    "rate_limit_threshold": null,
+    "rate_limit_counter_attr": null,
+    "disjoint_with": null,
+    "disjoint_target_body": null
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "property:condition.0002.step0001 for scope.readDocument.User.Document",
+      "kind": "property",
+      "name": "condition.0002.step0001 for scope.readDocument.User.Document",
+      "constraint_type": "condition",
+      "summary": "A user may read a document only when that user is the document's owner.",
+      "source_excerpt": "[source_id: src.root.p0002.l3] A user may read a document only when that user is the document's owner.",
+      "symbolic_verified": true,
+      "intent_acknowledged_by_user": false
+    },
+    {
+      "id": "action:readDocument",
+      "kind": "action",
+      "name": "readDocument"
+    },
+    {
+      "id": "principal_type:User",
+      "kind": "principal_type",
+      "name": "User"
+    },
+    {
+      "id": "resource_type:Document",
+      "kind": "resource_type",
+      "name": "Document"
+    }
+  ],
+  "edges": [
+    {
+      "source": "property:condition.0002.step0001 for scope.readDocument.User.Document",
+      "target": "action:readDocument",
+      "type": "uses_action"
+    },
+    {
+      "source": "property:condition.0002.step0001 for scope.readDocument.User.Document",
+      "target": "principal_type:User",
+      "type": "uses_principal_type"
+    },
+    {
+      "source": "property:condition.0002.step0001 for scope.readDocument.User.Document",
+      "target": "resource_type:Document",
+      "type": "uses_resource_type"
+    }
+  ],
+  "summary": {
+    "properties": 1
+  }
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "atom_name": "condition.0002.step0001 for scope.readDocument.User.Document",
+    "span_text": "[source_id: src.root.p0002.l3] A user may read a document only when that user is the document's owner.",
+    "alternatives_considered": [],
+    "user_objected_to_attribution": false
+  }
+]

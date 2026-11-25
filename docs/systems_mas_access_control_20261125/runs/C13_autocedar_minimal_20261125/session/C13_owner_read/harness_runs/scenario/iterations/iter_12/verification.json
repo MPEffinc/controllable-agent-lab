@@ -1,0 +1,32 @@
+{
+  "loss": 0,
+  "results": [
+    {
+      "check_name": "floor__scope_readdocument_user_document__slice_readdocument_user_document_1",
+      "check_type": "implies",
+      "description": "Requests in slice 'User may read a document only when the user is the document's owner.' must be allowed.",
+      "passed": true,
+      "counterexample": "",
+      "tool_error": false
+    },
+    {
+      "check_name": "ceiling__scope_readdocument_user_document",
+      "check_type": "implies",
+      "description": "Only requests in one of this scope's slices may be allowed.",
+      "passed": true,
+      "counterexample": "",
+      "tool_error": false
+    },
+    {
+      "check_name": "no_runtime_errors__readDocument__User__Document",
+      "check_type": "never-errors",
+      "description": "The policy must never raise an evaluation error for readDocument requests (principal User, resource Document).",
+      "passed": true,
+      "counterexample": "",
+      "tool_error": false
+    }
+  ],
+  "solver_time_s": 0.033517857984406874,
+  "reused_verification": false,
+  "prompt_characters": 11464
+}

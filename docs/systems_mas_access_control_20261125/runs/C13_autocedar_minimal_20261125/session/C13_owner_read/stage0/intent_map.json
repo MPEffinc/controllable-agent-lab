@@ -1,0 +1,120 @@
+{
+  "approved": true,
+  "map": {
+    "scopes": [
+      {
+        "id": "scope.readDocument.User.Document",
+        "action": "readDocument",
+        "principal_type": "User",
+        "resource_type": "Document",
+        "exhaustive": true,
+        "summary": ""
+      }
+    ],
+    "slices": [
+      {
+        "id": "slice.readDocument.User.Document.1",
+        "scope_id": "scope.readDocument.User.Document",
+        "summary": "User may read a document only when the user is the document's owner."
+      }
+    ],
+    "sentences": [
+      {
+        "node_id": "src.root.p0002.l3",
+        "kind": "condition",
+        "slice_ids": [
+          "slice.readDocument.User.Document.1"
+        ],
+        "restricts_scope_ids": [],
+        "note": ""
+      },
+      {
+        "node_id": "src.root.p0003.l3",
+        "kind": "interpretation",
+        "slice_ids": [],
+        "restricts_scope_ids": [],
+        "note": ""
+      },
+      {
+        "node_id": "src.root.p0004.l3",
+        "kind": "interpretation",
+        "slice_ids": [],
+        "restricts_scope_ids": [],
+        "note": ""
+      }
+    ]
+  },
+  "decision": {
+    "atom_name": "intent_map",
+    "action": "approve",
+    "reason": "",
+    "edit_delta": {
+      "review_channel": "model",
+      "model_review": "The map correctly places the access condition under the readDocument action for User on Document, includes the interpretation sentences as rules for interpretation, marks the readDocument scope as exhaustive as stated, and excludes the title from conditions; no access-constraining sentences are left out or misplaced.",
+      "review_model": "openai:gpt-4.1-mini-2025-04-14"
+    },
+    "intent_acknowledged_by_user": false,
+    "symbolic_verified": false
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "map": {
+        "scopes": [
+          {
+            "id": "scope.readDocument.User.Document",
+            "action": "readDocument",
+            "principal_type": "User",
+            "resource_type": "Document",
+            "exhaustive": true,
+            "summary": ""
+          }
+        ],
+        "slices": [
+          {
+            "id": "slice.readDocument.User.Document.1",
+            "scope_id": "scope.readDocument.User.Document",
+            "summary": "User may read a document only when the user is the document's owner."
+          }
+        ],
+        "sentences": [
+          {
+            "node_id": "src.root.p0002.l3",
+            "kind": "condition",
+            "slice_ids": [
+              "slice.readDocument.User.Document.1"
+            ],
+            "restricts_scope_ids": [],
+            "note": ""
+          },
+          {
+            "node_id": "src.root.p0003.l3",
+            "kind": "interpretation",
+            "slice_ids": [],
+            "restricts_scope_ids": [],
+            "note": ""
+          },
+          {
+            "node_id": "src.root.p0004.l3",
+            "kind": "interpretation",
+            "slice_ids": [],
+            "restricts_scope_ids": [],
+            "note": ""
+          }
+        ]
+      },
+      "decision": {
+        "atom_name": "intent_map",
+        "action": "approve",
+        "reason": "",
+        "edit_delta": {
+          "review_channel": "model",
+          "model_review": "The map correctly places the access condition under the readDocument action for User on Document, includes the interpretation sentences as rules for interpretation, marks the readDocument scope as exhaustive as stated, and excludes the title from conditions; no access-constraining sentences are left out or misplaced.",
+          "review_model": "openai:gpt-4.1-mini-2025-04-14"
+        },
+        "intent_acknowledged_by_user": false,
+        "symbolic_verified": false
+      }
+    }
+  ]
+}

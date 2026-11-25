@@ -1,0 +1,14 @@
+[
+  {
+    "atom_name": "condition.0002.step0001 for scope.readDocument.User.Document",
+    "action": "approve",
+    "reason": "",
+    "edit_delta": {
+      "review_channel": "model",
+      "model_review": "The atom exactly encodes the requirement that a user may read a document only when that user is the document's owner. It applies to the correct action (readDocument), principal type (User), and resource type (Document), and its when clause precisely enforces that principal == resource.owner, matching the requirement's statement without adding or omitting conditions.",
+      "review_model": "openai:gpt-4.1-mini-2025-04-14"
+    },
+    "intent_acknowledged_by_user": false,
+    "symbolic_verified": true
+  }
+]

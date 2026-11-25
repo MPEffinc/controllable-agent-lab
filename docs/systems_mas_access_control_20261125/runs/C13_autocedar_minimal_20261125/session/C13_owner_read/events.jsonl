@@ -1,0 +1,30 @@
+{"ts": "2026-11-25T22:35:13.702774Z", "event": "input.spec_written", "filename": "requirement.md", "size": 188}
+{"ts": "2026-11-25T22:35:13.728535Z", "event": "stage0.source_index", "nodes": 4, "authorization_relevant_nodes": 3}
+{"ts": "2026-11-25T22:35:13.753130Z", "event": "stage0.intent_dag", "source_nodes": 4, "schema_packets": 0, "property_packets": 0, "schema_atoms": 0, "property_atoms": 0, "schema_gaps": 0}
+{"ts": "2026-11-25T22:35:13.778544Z", "event": "stage0.coverage_ledger", "open_property_nodes": 3, "completed_property_nodes": 0}
+{"ts": "2026-11-25T22:35:13.807998Z", "event": "stage1.schema_validation", "attempts": 1}
+{"ts": "2026-11-25T22:35:13.832198Z", "event": "stage1.proposed", "count": 0}
+{"ts": "2026-11-25T22:35:13.856061Z", "event": "stage1.attributions_logged", "count": 0}
+{"ts": "2026-11-25T22:35:13.882263Z", "event": "stage1.decisions_logged", "count": 0}
+{"ts": "2026-11-25T22:35:13.906152Z", "event": "stage1.schema_written", "size": 227}
+{"ts": "2026-11-25T22:35:18.558593Z", "event": "stage0.context_packet", "packet_id": "condition.0002.step0001", "kind": "condition", "focus_node_ids": ["src.root.p0002.l3"]}
+{"ts": "2026-11-25T22:35:20.821881Z", "event": "stage2.proposed", "count": 1}
+{"ts": "2026-11-25T22:35:20.846348Z", "event": "stage2.attributions_logged", "count": 1}
+{"ts": "2026-11-25T22:35:22.019190Z", "event": "stage2.approved", "count": 1}
+{"ts": "2026-11-25T22:35:22.042706Z", "event": "stage2.decisions_logged", "count": 1}
+{"ts": "2026-11-25T22:35:22.066488Z", "event": "stage2.verification_logged", "atom_count": 1}
+{"ts": "2026-11-25T22:35:22.106025Z", "event": "stage0.coverage_ledger", "open_property_nodes": 0, "completed_property_nodes": 1}
+{"ts": "2026-11-25T22:35:22.168225Z", "event": "stage1_5.amendments", "count": 0}
+{"ts": "2026-11-25T22:35:22.192610Z", "event": "stage2.decisions_logged", "count": 1}
+{"ts": "2026-11-25T22:35:22.217608Z", "event": "stage2.approved", "count": 1}
+{"ts": "2026-11-25T22:35:22.244464Z", "event": "stage2.intent_graph", "properties": 1}
+{"ts": "2026-11-25T22:35:22.269150Z", "event": "stage2.verification_logged", "atom_count": 1}
+{"ts": "2026-11-25T22:35:22.293564Z", "event": "stage2.adversarial_examples", "atom_count": 1}
+{"ts": "2026-11-25T22:35:22.379659Z", "event": "stage1_75.consistency_check", "unsat": false, "core": []}
+{"ts": "2026-11-25T22:35:22.428088Z", "event": "stage2.plan_written", "reference_count": 2}
+{"ts": "2026-11-25T22:35:33.848305Z", "event": "stage3.iteration", "iter": 1, "verifier_passed": true, "critic_mean": 4}
+{"ts": "2026-11-25T22:35:33.872025Z", "event": "stage3.final_candidate", "size": 99}
+{"ts": "2026-11-25T22:35:33.897436Z", "event": "stage2_5.traceback", "atom_count": 1}
+{"ts": "2026-11-25T22:35:33.921468Z", "event": "stage2_5.final_decision", "approved": false}
+{"ts": "2026-11-25T22:35:33.946551Z", "event": "stage0.intent_dag", "source_nodes": 4, "schema_packets": 0, "property_packets": 1, "schema_atoms": 0, "property_atoms": 1, "schema_gaps": 0}
+{"ts": "2026-11-25T22:35:33.970758Z", "event": "stage0.coverage_ledger", "open_property_nodes": 0, "completed_property_nodes": 1}

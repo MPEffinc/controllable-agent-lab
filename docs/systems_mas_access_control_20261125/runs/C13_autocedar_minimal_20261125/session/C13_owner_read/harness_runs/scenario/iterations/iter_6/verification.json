@@ -1,0 +1,16 @@
+{
+  "loss": 1,
+  "results": [
+    {
+      "check_name": "syntax",
+      "check_type": "syntax",
+      "description": "Cedar parse / syntax validation",
+      "passed": false,
+      "counterexample": "× failed to parse policy set\n  ╰─▶ unexpected token `resource`\n   ╭─[2:8]\n 1 │ permit(principal: User, action == readDocument, resource: Document)\n 2 │   when resource.owner == principal;\n   ·        ────┬───\n   ·            ╰── expected `{`\n   ╰────",
+      "tool_error": false
+    }
+  ],
+  "solver_time_s": 0.0,
+  "reused_verification": false,
+  "prompt_characters": 12028
+}

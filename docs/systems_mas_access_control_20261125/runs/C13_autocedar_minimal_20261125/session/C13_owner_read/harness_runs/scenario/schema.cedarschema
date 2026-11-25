@@ -1,0 +1,4 @@
+entity User {};
+entity Document { owner: User };
+action readDocument appliesTo { principal: [User], resource: [Document], context: {} };
+action deleteDocument appliesTo { principal: [User], resource: [Document], context: {} };

@@ -1,0 +1,15 @@
+{
+  "root_solved": true,
+  "scopes": {
+    "scope.readDocument.User.Document": true
+  },
+  "slices": {
+    "slice.readDocument.User.Document.1": true
+  },
+  "conditions": {
+    "src.root.p0002.l3": {
+      "scope.readDocument.User.Document": true
+    }
+  },
+  "blocking_conditions": []
+}

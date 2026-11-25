@@ -1,0 +1,10 @@
+[
+  {
+    "attempt_number": 1,
+    "schema_text": "entity User {};\nentity Document { owner: User };\naction readDocument appliesTo { principal: [User], resource: [Document], context: {} };\naction deleteDocument appliesTo { principal: [User], resource: [Document], context: {} };\n",
+    "validator_passed": true,
+    "validator_error": "",
+    "llm_was_called": false,
+    "schema_override": true
+  }
+]

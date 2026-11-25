@@ -1,0 +1,61 @@
+{
+  "atoms": [
+    {
+      "name": "floor__scope_readdocument_user_document__slice_readdocument_user_document_1",
+      "rationale": "Calculated from the intent map and its approved condition atoms.",
+      "plain_english_summary": "Requests in slice 'User may read a document only when the user is the document's owner.' must be allowed.",
+      "source_excerpt": "[source_id: src.root.p0002.l3]",
+      "constraint_type": "floor",
+      "action": "readDocument",
+      "principal_types": [
+        "User"
+      ],
+      "resource_types": [
+        "Document"
+      ],
+      "reference_cedar": "permit (\n  principal is User,\n  action == Action::\"readDocument\",\n  resource is Document\n)\nwhen {\n    principal == resource.owner\n};",
+      "required_schema_support": [],
+      "examples_adversarial": [],
+      "alternatives_considered": [],
+      "symbolic_verified": true,
+      "symbolic_verification_log": [],
+      "intent_acknowledged_by_user": false,
+      "traceback_clauses": [],
+      "traceback_flags": [],
+      "rate_limit_window": null,
+      "rate_limit_threshold": null,
+      "rate_limit_counter_attr": null,
+      "disjoint_with": null,
+      "disjoint_target_body": null
+    },
+    {
+      "name": "ceiling__scope_readdocument_user_document",
+      "rationale": "Calculated from the intent map and its approved condition atoms.",
+      "plain_english_summary": "Only requests in one of this scope's slices may be allowed.",
+      "source_excerpt": "[source_id: src.root.p0002.l3]",
+      "constraint_type": "ceiling",
+      "action": "readDocument",
+      "principal_types": [
+        "User"
+      ],
+      "resource_types": [
+        "Document"
+      ],
+      "reference_cedar": "permit (\n  principal is User,\n  action == Action::\"readDocument\",\n  resource is Document\n)\nwhen {\n    principal == resource.owner\n};",
+      "required_schema_support": [],
+      "examples_adversarial": [],
+      "alternatives_considered": [],
+      "symbolic_verified": true,
+      "symbolic_verification_log": [],
+      "intent_acknowledged_by_user": false,
+      "traceback_clauses": [],
+      "traceback_flags": [],
+      "rate_limit_window": null,
+      "rate_limit_threshold": null,
+      "rate_limit_counter_attr": null,
+      "disjoint_with": null,
+      "disjoint_target_body": null
+    }
+  ],
+  "issues": []
+}

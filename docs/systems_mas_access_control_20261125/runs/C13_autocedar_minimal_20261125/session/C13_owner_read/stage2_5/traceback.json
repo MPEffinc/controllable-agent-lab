@@ -1,0 +1,9 @@
+[
+  {
+    "atom_name": "condition.0002.step0001 for scope.readDocument.User.Document",
+    "clauses": [
+      "permit(principal, action == Action::\"readDocument\", resource) when { resource.owner == principal };"
+    ],
+    "flags": []
+  }
+]

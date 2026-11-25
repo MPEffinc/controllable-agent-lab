@@ -1,0 +1,2 @@
+permit(principal, action == readDocument, resource)
+  when resource.owner == principal;

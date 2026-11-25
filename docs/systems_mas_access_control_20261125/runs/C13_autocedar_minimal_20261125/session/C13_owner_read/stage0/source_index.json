@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "src.root.p0001.l1",
+      "text": "Document read access",
+      "start_line": 1,
+      "end_line": 1,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 1
+    },
+    {
+      "id": "src.root.p0002.l3",
+      "text": "A user may read a document only when that user is the document's owner.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 2
+    },
+    {
+      "id": "src.root.p0003.l3",
+      "text": "These are the only permissions.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 3
+    },
+    {
+      "id": "src.root.p0004.l3",
+      "text": "All other actions, including deleting a document, are denied.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 4
+    }
+  ],
+  "edges": [
+    {
+      "source": "src.root.p0001.l1",
+      "target": "src.root.p0002.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0002.l3",
+      "target": "src.root.p0003.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0003.l3",
+      "target": "src.root.p0004.l3",
+      "type": "next_sibling"
+    }
+  ],
+  "summary": {
+    "nodes": 4,
+    "authorization_relevant_nodes": 3
+  }
+}

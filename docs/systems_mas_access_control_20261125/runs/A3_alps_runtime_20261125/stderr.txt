@@ -1,0 +1,17 @@
+test_action_and_prefix (test_runtime.TestCatalog) ... ok
+test_resource_construction (test_runtime.TestCatalog) ... ok
+test_vendor_resources (test_runtime.TestCatalog) ... ok
+test_env_change_repoints_allowlist (test_runtime.TestConfigurationChange) ... ok
+test_unset_variable_falls_back (test_runtime.TestConfigurationChange) ... ok
+test_allowlisted (test_runtime.TestDecisions) ... ok
+test_key_wildcard (test_runtime.TestDecisions) ... ok
+test_monitor_mode (test_runtime.TestDecisions) ... ok
+test_other_resource_denied (test_runtime.TestDecisions) ... ok
+test_unused_action_denied (test_runtime.TestDecisions) ... ok
+test_expand (test_runtime.TestMatching) ... ok
+test_glob (test_runtime.TestMatching) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+OK

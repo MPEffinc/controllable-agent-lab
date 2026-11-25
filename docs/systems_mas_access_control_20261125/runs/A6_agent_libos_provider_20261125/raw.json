@@ -1,0 +1,223 @@
+{
+  "subjects": {
+    "A": "pid_eed176b632764115",
+    "B": "pid_f1d12dae2f1441fd",
+    "C": "pid_44630212411a42c0",
+    "deny_effect": "pid_ffd4882291d54fd6"
+  },
+  "manifests_before_revoke": {
+    "A": {
+      "pid": "pid_eed176b632764115",
+      "manifest_id": "authm_d8c0b5e20df74e70",
+      "parent_manifest_id": null,
+      "permitted_effects": [
+        "filesystem.*"
+      ],
+      "authorized_resources": [
+        "filesystem:workspace:A.txt",
+        "filesystem:workspace:B.txt"
+      ],
+      "capabilities": [
+        {
+          "cap_id": "cap_cc8ac3569762445b",
+          "resource": "filesystem:workspace:B.txt",
+          "parent_cap_id": null,
+          "active": true
+        },
+        {
+          "cap_id": "cap_f224aaf99a7f4bb3",
+          "resource": "filesystem:workspace:A.txt",
+          "parent_cap_id": null,
+          "active": true
+        }
+      ]
+    },
+    "B": {
+      "pid": "pid_f1d12dae2f1441fd",
+      "manifest_id": "authm_4cf9bc9bf2044ecd",
+      "parent_manifest_id": "authm_d8c0b5e20df74e70",
+      "permitted_effects": [
+        "filesystem.*"
+      ],
+      "authorized_resources": [
+        "filesystem:workspace:A.txt"
+      ],
+      "capabilities": [
+        {
+          "cap_id": "cap_8fc71fa323a44028",
+          "resource": "filesystem:workspace:A.txt",
+          "parent_cap_id": "cap_f224aaf99a7f4bb3",
+          "active": true
+        }
+      ]
+    },
+    "C": {
+      "pid": "pid_44630212411a42c0",
+      "manifest_id": "authm_bb58eb3c67d1444a",
+      "parent_manifest_id": "authm_4cf9bc9bf2044ecd",
+      "permitted_effects": [
+        "filesystem.*"
+      ],
+      "authorized_resources": [
+        "filesystem:workspace:A.txt"
+      ],
+      "capabilities": [
+        {
+          "cap_id": "cap_9a43e28f9b324ff9",
+          "resource": "filesystem:workspace:A.txt",
+          "parent_cap_id": "cap_8fc71fa323a44028",
+          "active": true
+        }
+      ]
+    },
+    "deny_effect": {
+      "pid": "pid_ffd4882291d54fd6",
+      "manifest_id": "authm_8e02dffe19e2480a",
+      "parent_manifest_id": "authm_d8c0b5e20df74e70",
+      "permitted_effects": [],
+      "authorized_resources": [
+        "filesystem:workspace:A.txt"
+      ],
+      "capabilities": [
+        {
+          "cap_id": "cap_4693bf17cbff4aa2",
+          "resource": "filesystem:workspace:A.txt",
+          "parent_cap_id": "cap_f224aaf99a7f4bb3",
+          "active": true
+        }
+      ]
+    }
+  },
+  "revoked_parent_cap_id": "cap_f224aaf99a7f4bb3",
+  "revoked_parent_cap_active": false,
+  "rows": [
+    {
+      "case": "parent_B_normal",
+      "actor_pid": "pid_eed176b632764115",
+      "target": "B.txt",
+      "status": "return",
+      "error": null,
+      "result_type": "FileWriteResult",
+      "elapsed_ns": 650466803,
+      "before": {
+        "A.txt": "baseline\n",
+        "B.txt": "baseline\n"
+      },
+      "after": {
+        "A.txt": "baseline\n",
+        "B.txt": "parent B normal\n"
+      }
+    },
+    {
+      "case": "child_A_normal",
+      "actor_pid": "pid_f1d12dae2f1441fd",
+      "target": "A.txt",
+      "status": "return",
+      "error": null,
+      "result_type": "FileWriteResult",
+      "elapsed_ns": 657596143,
+      "before": {
+        "A.txt": "baseline\n",
+        "B.txt": "parent B normal\n"
+      },
+      "after": {
+        "A.txt": "child A normal\n",
+        "B.txt": "parent B normal\n"
+      }
+    },
+    {
+      "case": "grandchild_A_normal",
+      "actor_pid": "pid_44630212411a42c0",
+      "target": "A.txt",
+      "status": "return",
+      "error": null,
+      "result_type": "FileWriteResult",
+      "elapsed_ns": 673587485,
+      "before": {
+        "A.txt": "child A normal\n",
+        "B.txt": "parent B normal\n"
+      },
+      "after": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      }
+    },
+    {
+      "case": "child_B_forbidden",
+      "actor_pid": "pid_f1d12dae2f1441fd",
+      "target": "B.txt",
+      "status": "exception",
+      "error": "CapabilityDenied: pid_f1d12dae2f1441fd lacks write on filesystem:workspace:B.txt",
+      "result_type": null,
+      "elapsed_ns": 191152432,
+      "before": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      },
+      "after": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      }
+    },
+    {
+      "case": "child_effect_ceiling_empty",
+      "actor_pid": "pid_ffd4882291d54fd6",
+      "target": "A.txt",
+      "status": "exception",
+      "error": "CapabilityDenied: task authority manifest authm_8e02dffe19e2480a does not permit effect class filesystem.write_text",
+      "result_type": null,
+      "elapsed_ns": 152405708,
+      "before": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      },
+      "after": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      }
+    },
+    {
+      "case": "grandchild_A_after_parent_revoke",
+      "actor_pid": "pid_44630212411a42c0",
+      "target": "A.txt",
+      "status": "exception",
+      "error": "CapabilityDenied: pid_44630212411a42c0 lacks write on filesystem:workspace:A.txt",
+      "result_type": null,
+      "elapsed_ns": 188945569,
+      "before": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      },
+      "after": {
+        "A.txt": "grandchild A normal\n",
+        "B.txt": "parent B normal\n"
+      }
+    }
+  ],
+  "external_effects": [
+    {
+      "provider": "filesystem",
+      "operation": "write_text",
+      "state_mutation": true,
+      "effect_state": "finalized",
+      "transaction_state": "committed",
+      "pid": "pid_eed176b632764115"
+    },
+    {
+      "provider": "filesystem",
+      "operation": "write_text",
+      "state_mutation": true,
+      "effect_state": "finalized",
+      "transaction_state": "committed",
+      "pid": "pid_f1d12dae2f1441fd"
+    },
+    {
+      "provider": "filesystem",
+      "operation": "write_text",
+      "state_mutation": true,
+      "effect_state": "finalized",
+      "transaction_state": "committed",
+      "pid": "pid_44630212411a42c0"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/A6_agent_libos_provider_20261125/run.py", line 124, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/A6_agent_libos_provider_20261125/run.py", line 63, in main
+    b = runtime.process.spawn_child(a, "task A child", authority_manifest={
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/boundary_installer.py", line 209, in sync_wrapper
+    return method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/boundary_installer.py", line 159, in sync_wrapper
+    return operation_wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/operation_manager.py", line 1878, in sync_wrapper
+    result = function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/process_manager.py", line 885, in spawn_child
+    return self._finish_failed_launch(publication_id, child_pid, exc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/process_manager.py", line 4202, in _finish_failed_launch
+    raise error
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/process_manager.py", line 808, in spawn_child
+    self._publish_child_launch_authority(
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/process_manager.py", line 3185, in _publish_child_launch_authority
+    self._compile_child_authority(
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/process_manager.py", line 3225, in _compile_child_authority
+    self.capabilities.derive_authority(
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/boundary_installer.py", line 209, in sync_wrapper
+    return method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/runtime/operation_manager.py", line 1878, in sync_wrapper
+    result = function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/capability/admission.py", line 100, in wrapper
+    return __method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/capability/manager.py", line 653, in derive_authority
+    self._find_delegation_parent(source_subject, selected)
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/capability/manager.py", line 2319, in _find_delegation_parent
+    raise first_error
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/capability/manager.py", line 2312, in _find_delegation_parent
+    self._validate_delegation_parent(candidate, spec)
+  File "/home/cclab/controllable_agent/third_party/ALT_Agent_libOS/agent_libos/capability/manager.py", line 2414, in _validate_delegation_parent
+    raise CapabilityDenied("delegated capability cannot be delegable after depth exhaustion")
+agent_libos.models.exceptions.CapabilityDenied: delegated capability cannot be delegable after depth exhaustion

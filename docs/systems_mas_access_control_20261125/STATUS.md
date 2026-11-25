@@ -37,14 +37,14 @@
 - [C10b 완전한 관계 입력](runs/C10b_complete_hierarchy_20261125/result.md): `south` 부모 없음·간선 목록 완전성 명시 후 두 모델 blind/exposed 4/4 DENY. 4 calls/$0.0039552, **누적 추정 $0.0754388 / $5**. C10 고정 입력의 oracle 오염 Need 기각; 원본 Reparo 검증 아님.
 - [C11 AutoCedar unscoped action](runs/C11_unscoped_action_20261125/result.md): 공식 case-011 요구+연구자 schema action 확장. 원본 verifier merge-only 2/2 PASS/loss0에도 후보 delete ALLOW·로컬 SQLite 효과 +1, gold delete DENY/0; delete 포함 검사 추가 시 원본 verifier FAIL/loss1·counterexample, 정상 merge 양쪽 +1. API $0. [H22 좁은 Gap](h22_unscoped_action_closure.md) `GAP_SUPPORTED`; 기존 추가 scope 검사가 해결해 새 정형 메커니즘 Need는 기각.
 - [D5 ActPlane 실제 OS 집행](runs/D5_actplane_vm_20261125/result.md): 고정 SHA 원본 CLI/정적 loader. 격리 6.8 guest에서 `kill exec` 자식 종료(exit 137), 정상 exec 성공. 파일 `block` CLI는 matcher 미예약으로 정책 설치 실패, 정적 loader는 6.8 verifier 544-byte stack 거부. 격리 6.15 guest의 같은 정적 loader는 `ready`, 정상 쓰기 1/1·직접/자식 금지 쓰기 차단 2/2·파일 무변경·커널 위반 이벤트 2건. 5,000회 허용 쓰기 3쌍 예비 중앙값 64.13/155.11 ms; 일반 성능 수치 아님. ContractWarden 원문은 승인 contract·pidfd 실행 gate·객체 정보흐름의 강한 대안으로 확인, 공개 구현 실행은 미완료. 유료 API $0, **누적 $0.0754388 / $5**. D2/D3/D4와 신규 Need는 미검증.
+- [A6 Agent libOS 원본 Provider 효과](runs/A6_agent_libos_provider_20261125/result.md): 실제 로컬 filesystem Provider에 A→B→C `AgentProcess` Capability 계보를 연결. 정상 파일 효과 3/3, 범위 밖·effect ceiling 빈 목록·부모 grant 철회 뒤 비인가 효과 0/3. 원본 장부에 정상 `finalized/committed` 3건만 존재. 원저자 선택 HTTP Provider·철회 테스트 2 passed. 첫 두 연구자 드라이버 오류는 보존·분리. 기존 [R3](../R3_EXPERIMENT_REPORT.md)는 CONTINUITY 원본의 3-agent A2A **작업 전달** 4/4를 이미 확인했지만 파생 권한 의미는 미정의. A6은 OS PID/A2A/독립 서비스가 아니라 같은 Python Runtime의 실제 로컬 Provider 경계. $0, 누적 $0.0754388/5.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. Track A: Agent libOS 원본의 task manifest/child attenuation을 실제 Provider 요청에 결속하고 정상·비인가·위임/철회 최소 대조를 사전등록한다. CONTINUITY 원본의 최종 효과 PEP와 동일 범위로 비교한다.
-2. Track B: 같은 요청·승인·SQLite 효과에 대해 dispatch, OS, service PEP의 정상/금지 효과와 비용을 대조한다. ARES 원본 LAM은 공개 코드가 없으므로 fixture로 가장하지 않는다.
-3. Track C: C1–C1c 호환성 원인을 수정 가능한 adapter에서 감사해 원본 Authoring 최소 사례를 재현한다. H21/H22는 실제 생성 candidate와 정확한 gold target에 한정해 판정한다.
-4. Track D: OpenShell 원본에 같은 파일 경계를 설정해 정상/금지와 직접 subprocess 효과를 비교한다. ActPlane 6.15 결과를 기준으로 task→OS subject, 동적 delta/철회, 열린 FD·서비스 효과를 별도 사전등록한다. ContractWarden 원본 공개 여부와 보장 범위를 계속 확인한다.
+1. Track B: 같은 요청·승인·SQLite 효과에 대해 dispatch, OS, service PEP의 정상/금지 효과와 비용을 대조한다. ARES 원본 LAM은 공개 코드가 없으므로 fixture로 가장하지 않는다.
+2. Track C: C1–C1c 호환성 원인을 수정 가능한 adapter에서 감사해 원본 Authoring 최소 사례를 재현한다. H21/H22는 실제 생성 candidate와 정확한 gold target에 한정해 판정한다.
+3. Track D/A 교차: OpenShell 원본에 같은 파일 경계를 설정해 정상/금지와 직접 subprocess 효과를 비교한다. Agent libOS task→OS subject, ActPlane 동적 delta/철회, 열린 FD·service effect를 별도 사전등록한다. ContractWarden 원본 공개 여부와 보장 범위를 계속 확인한다.
 
 재개 첫 명령(읽기 전용):
 

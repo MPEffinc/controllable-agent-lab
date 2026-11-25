@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/A6_agent_libos_provider_20261125/run.py", line 124, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/A6_agent_libos_provider_20261125/run.py", line 84, in main
+    "authorized_resources": [s.resource for s in manifest.authorized_capabilities] if manifest else [],
+                             ^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'resource'

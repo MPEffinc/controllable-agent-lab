@@ -16,11 +16,12 @@
 - [상위 3개 반증 후보](research_candidates.md)를 H15 공유 worker, H13/H14 event·출처, H16 교차 계층 충돌로 선정했다. B1/B2 결과로 [새 H15–H17](new_hypotheses.md)을 재구성했다. H15의 고정 메커니즘 Need는 기각. H16은 KubeAegis 구현 한정 의미 충돌 Gap이지만 [SafeConfig 2012](https://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/40606.pdf)가 교차 계층 모델 검사를 이미 구현했다. H17은 MAP-Graph 공개 보조 artifact의 평가 귀속 Gap이며 [AgentEval](https://arxiv.org/abs/2610.21177)/[SABENCH](https://arxiv.org/abs/2610.34167)가 강한 평가 대안. 독립 Need는 `UNVERIFIED`.
 - `local/progent-vm/.env`의 API key는 값 출력 없이 실제 모델 endpoint로 확인했다. [B1 실제 LLM/로컬 효과](runs/B1_shared_worker_llm_20261125/result.md)는 12 calls, 비용 상한 USD 0.0007984. A→B 요청에서 ALPS-only는 합성 B row를 변경했고, task/service PEP는 차단하며 정상 A/B는 보존했다. 비신뢰 row instruction은 이번 모델 실행에서 무시됐다. 이 고정 구성의 새 메커니즘 필요 가설은 기각.
 - [B2 실제 LLM+MAP-Graph 원본 메서드](runs/B2_mapgraph_llm_20261125/result.md)는 2 calls, USD 0.0003232. **누적 USD 0.0011216 / 5**, 외부 서비스 effect `NOT_RUN`. 모델은 tool call이 아니라 JSON 텍스트를 반환했다. 초기 tool-call 해석을 수정해 원저자 parser를 저장 응답에 API 없이 재생하니 둘 다 task의 `expected_action` fallback으로 gate에 들어갔고, revoked source는 정확 edge adapter에서 BLOCK, 원본 support에서는 ALLOW였다. 일반 거부 문장도 fallback simulated ALLOW인 반례 확인. 이는 저자 41건 원인이나 실제 provider effect가 아니다. [A2b 공개 CSV 감사](runs/A2b_mapgraph_result_audit_20261125/result.md)는 41/450 label을 확인했지만 원시 출력이 공개 archive에서 빠져 fallback 비율은 `NOT_ESTABLISHED`로 닫았다.
+- [B3 ARES ARP 관계식 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)는 API 비용 0, SQLite 실제 전후 상태 6행을 남겼다. 가능 경로만으로 preflight하면 정상 branch 0/1·금지 효과 0; origin-aware effect PEP는 정상 1/1·금지 효과 0. ARES 원저자 LAM·4개 cloud 구현 재현이 아니며 그 정상성은 `UNVERIFIED`.
 
 ## 다음 실행
 
 1. H17: [A2b](runs/A2b_mapgraph_result_audit_20261125/result.md)에서 공개 archive의 한계선을 확인했다. 원시 trace가 별도 공개될 때 41건의 model response/fallback/action/effect를 paired 재채점한다. 현 자료의 `executed`는 실제 서비스 효과가 아니다.
 2. H13/H14: 실제 Agent의 자연어 event·tool-output lineage 자동 수집을 같은 강한 service PEP/정상 업무에 비교한다. B1/B2의 고정 합성 사례를 일반화하지 않는다.
-3. [B3 ARES 관계식 fixture](runs/B3_ares_reachability_fixture_20261125/prereg.md)를 실행해 정상 branch 과차단과 강한 effect PEP를 같은 SQLite 상태에서 비교한다. 원저자 LAM 성능으로 소급하지 않는다. 그 뒤 POLARIS 전문·KubeAegis cross-policy 대안, A1 표의 원문 링크를 보강한다.
+3. [B3](runs/B3_ares_reachability_fixture_20261125/result.md)의 실제 저자 LAM 여부는 공식 코드/세부 evaluation을 확보해야 검증 가능하다. POLARIS 전문·KubeAegis cross-policy 대안, A1 표의 원문 링크를 보강한다.
 
-Git: 초기 `3545acb`, A1–A4/B1 사전등록 `3e7f901`, B1 결과/B2 사전등록 `b385ba9`, B2 결과/A2b 감사 `0cee6aa`까지 push·remote SHA 확인. B3 사전등록과 ARES/POLARIS 재감사는 다음 checkpoint 대상.
+Git: 초기 `3545acb`, A1–A4/B1 사전등록 `3e7f901`, B1 결과/B2 사전등록 `b385ba9`, B2 결과/A2b 감사 `0cee6aa`, B3 사전등록/ARES·POLARIS `273b541`까지 push 확인. B3 결과는 다음 checkpoint 대상.

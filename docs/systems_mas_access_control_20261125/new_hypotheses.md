@@ -1,0 +1,11 @@
+# 새 가설 H15–H17
+
+2026-11-25. [H1–H14 재평가](hypothesis_reassessment.md)의 연장이다. 각 가설은 안전/적용성/정확·정상/시스템 기여를 별도로 평가한다.
+
+| ID | 주장·관측 | Security Gap | Applicability | Correctness & Utility | System Contribution / 가장 강한 반박·기각 조건 |
+|---|---|---|---|---|---|
+| H15 | **공유 worker의 function-level allowlist는 invocation의 origin grant보다 넓을 수 있다.** [B1 실제 LLM](runs/B1_shared_worker_llm_20261125/result.md)은 A grant/B 요청에서 LLM B 제안→ALPS 단독 B local effect1, 독립 task/service PEP effect0; 정상 A/B 유지 | ALPS의 **범위 적용 한계** 직접 확인. ALPS 논문 위반/새 보안 원리 Gap 아님 | 하나의 worker credential/프로세스가 다수 Agent/task를 처리할 때 중요 | 같은 proposal replay에서 강한 PEP 정상 3case 유지 | K04/K15/**현행 Agent libOS TaskAuthorityManifest** 직접 반박. 이들 원본을 같은 공유 worker·동적 위임/철회에 적용해 안전·정상·비용을 충족하면 신규 Need 기각. 현재 `UNVERIFIED` |
+| H16 | **MAS task intent→tool/network/OS/service policy의 의미와 활성 상태가 서로 다를 수 있다.** [KubeAegis §VII-C](https://cclab.info/papers/2024_kim_access_kubeaegis.pdf)는 network allow/system deny 충돌 인정; 공개 `KapValidator`는 존재·사전조건만 호출 | KubeAegis 구현 내 의미 충돌 검출 경계는 좁은 `GAP_SUPPORTED`; MAS 비인가 effect는 미관측 | 여러 PEP·정책 갱신에서 중요 | network allow+OS deny는 정상성 실패 가능, 비인가 성공 아님 | [SafeConfig 2012](https://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/40606.pdf)의 BDD/CTL network+service RBAC 통합 검증, [2026 다중-target DSL](https://arxiv.org/html/2603.27299v1)으로 ‘분석 원리 부재’ 기각. 동적 MAS identity/의도 mapping·runtime mode/effect의 같은 입력 비교가 필요. 기존 도구가 이를 정상성 포함 처리하면 Need 기각 |
+| H17 | **평가 harness가 모델의 실제 제안과 task oracle을 혼합할 수 있다.** [B2 source-native replay](runs/B2_mapgraph_llm_20261125/result.md)에서 실제 모델 JSON 2개 모두 parser 미인식→`expected_action` fallback; [일반 거부 문장 control](runs/B2_mapgraph_llm_20261125/fallback_probe.json)도 fallback send_email→simulated ALLOW | 공개 MAP-Graph 보조 artifact의 평가 귀속 경계 `GAP_SUPPORTED`, 실제 provider effect 또는 저자 논문의 41건 인과는 `UNVERIFIED` | decision-only MAS 안전 평가의 지표 해석에 중요 | explicit structured BLOCK은 올바르게 차단; parser 실패를 ‘모델 제안’으로 잘못 볼 수 있음. 정상 응답 parse/완료 손실도 측정 필요 | [AgentEval](https://arxiv.org/abs/2610.21177), [SABENCH](https://arxiv.org/abs/2610.34167), effect-state oracle 등 강한 기존 평가 대안. 동일 raw task에서 action trace·effect oracle 재채점이 저자 결론을 유지하면 독립 Need 기각. 현재 raw author trace 부재 |
+
+**새 기여 판정:** H15와 H16은 기존 메커니즘으로 풀리는 조건이 직접 있다. H17은 이 구현의 확정적인 소스 경계이지만 고쳐야 할 일반적 미충족 Need는 아직 증명되지 않았다. 한계의 존재와 새로운 방어/평가 방법의 필요성을 분리한다.

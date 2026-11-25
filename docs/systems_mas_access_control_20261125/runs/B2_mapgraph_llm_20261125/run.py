@@ -53,8 +53,11 @@ def call_model(key: str, case: str, prompt: str) -> tuple[dict, dict]:
     start = time.monotonic()
     with urllib.request.urlopen(request, timeout=45) as response:
         raw = json.load(response)
-    return raw["choices"][0]["message"], {"case": case, "request": body,
-        "response": raw, "latency_s": round(time.monotonic() - start, 3)}
+    log = {"case": case, "request": body, "response": raw,
+           "latency_s": round(time.monotonic() - start, 3)}
+    with (HERE / "raw_model.jsonl").open("a", encoding="utf-8") as f:
+        f.write(json.dumps(log, ensure_ascii=False) + "\n")
+    return raw["choices"][0]["message"], log
 
 def run_case(revoked: bool, key: str, source_types: tuple) -> tuple[dict, list[dict]]:
     MemoryRecord, Engine, memory_module, roles, workflow_module = source_types
@@ -141,7 +144,6 @@ def main() -> None:
     cost = (usage["input_tokens"] * 0.40 + usage["output_tokens"] * 1.60) / 1_000_000
     if cost > 0.10:
         raise RuntimeError("unexpected API cost above preregistered envelope")
-    (HERE / "raw_model.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in logs))
     (HERE / "raw_effects.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in rows))
     summary = {"model": MODEL, "seed": 20261125, "temperature": 0,
                "calls": len(logs), **usage, "cost_upper_usd": round(cost, 8),

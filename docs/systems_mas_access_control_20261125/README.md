@@ -10,4 +10,6 @@
 4. 원시 결과는 새 Run ID에만 저장한다. 키 값, 실제 서비스 데이터, 비용이 큰 호출은 원장에 넣지 않는다.
 5. 검증 뒤 [hypothesis_reassessment.md](hypothesis_reassessment.md), [systems_comparison.md](systems_comparison.md), [research_need_assessment.md](research_need_assessment.md)를 갱신한다.
 
+이번 후속 결과는 [새 가설 H15–H17](new_hypotheses.md) 및 [B1 실제 서비스 모의](runs/B1_shared_worker_llm_20261125/result.md), [B2 실제 모델·원저자 parser](runs/B2_mapgraph_llm_20261125/result.md)에 있다. B2는 모델이 tool call을 하지 않았고 저자 workflow는 simulated action을 기록하므로 두 뜻을 분리해 읽는다.
+
 기존 공식 코드 checkout은 `third_party/`에 위치한다. 새 연구실 코드 checkout은 `third_party/LAB_*`에 고정하고 commit SHA를 [source_registry.md](source_registry.md)에 기록한다. `third_party` checkout과 환경 파일은 연구 결과가 아니다.

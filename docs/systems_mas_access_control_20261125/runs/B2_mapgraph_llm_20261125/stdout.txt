@@ -1,0 +1,9 @@
+{"model": "gpt-4.1-mini-2025-04-14", "seed": 20261125, "temperature": 0, "calls": 2, "input_tokens": 600, "output_tokens": 52, "cost_upper_usd": 0.0003232}
+revoked_source_one_current_reviewer original_clean_support False NO_PROPOSAL 0
+revoked_source_one_current_reviewer original_plus_observed_output False NO_PROPOSAL 0
+revoked_source_one_current_reviewer complete_context_lineage_adapter False NO_PROPOSAL 0
+revoked_source_one_current_reviewer service_current_state_pep False NO_PROPOSAL 0
+current_source_two_current_reviewers original_clean_support False NO_PROPOSAL 0
+current_source_two_current_reviewers original_plus_observed_output False NO_PROPOSAL 0
+current_source_two_current_reviewers complete_context_lineage_adapter False NO_PROPOSAL 0
+current_source_two_current_reviewers service_current_state_pep False NO_PROPOSAL 0

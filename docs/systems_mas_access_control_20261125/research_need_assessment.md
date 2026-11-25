@@ -39,6 +39,8 @@
 
 [C10](runs/C10_oracle_refinement_bias_20261125/result.md)은 Reparo식 독립 oracle의 한 위험을 저자 원본이 아닌 통제 fixture에서 반박했다. 공식 gold는 `case-101` 자손 두 요청을 허용하지만 equality-only 후보는 거부했다. 모델 oracle은 blind와 잘못된 후보의 decision/불일치 정보를 본 arm에서 **같은 자손 기대 ALLOW**를 유지해, 정책 노출로 gold label을 지우는 실패는 이 조건에서 없었다. 다른 무관 그룹의 강한 모델 ALLOW 2건은 입력이 부모 간선 목록의 완전성을 명시하지 않아 모델 오류와 정보 누락을 구별할 수 없다. C10b에서 그 사실만 보충한다. Reparo의 실제 oracle refinement 결과가 아님.
 
+[C10b](runs/C10b_complete_hierarchy_20261125/result.md)는 부모 부재·간선 목록 완전성만 명시하자 무관 그룹의 두 모델 blind/exposed가 모두 **4/4 DENY**로 바뀌었다. 이 고정 조건에서 잘못된 후보 결정 노출이 oracle을 오염시킨다는 가설과, 충분한 사실을 받은 model oracle이 필연적으로 틀린다는 가설을 기각한다. 실제 저장소에서 관계 증거 누락을 찾아내는 문제는 별도로 남지만 이 입력만으로 새 Need를 주장하지 않는다.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

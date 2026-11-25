@@ -29,7 +29,8 @@
 | C8 | C7 `case-101`의 그룹 자손을 Cedar `in`이 실제 허용하는가 | 동일 공식 정책·정규화 정책, 4 그룹 관계×2 정책 decision와 SQLite 전후 effect | [완료](runs/C8_cedar_hierarchy_effect_20261125/result.md): CLI decision/schema replay 8/8, 허용만 effect +1. 최초 6/8 점수는 정상 DENY exit2 집계 오류; 원시 보존·별도 정정. API $0 |
 | C9 | 공식 Cedar 연산자 의미를 reviewer에 주면 C7 `case-101` 거짓 거부가 사라지는가 | 같은 요구·정책 2종×모델 2종, 의미 문장만 추가, 원시 결과·비용 | [완료](runs/C9_grounded_review_20261125/result.md): 1/4 승인, 두 설명/구조화 verdict 불일치. 4 calls/$0.005832. 단순 grounding 해결 가설 기각 |
 | C10 | 독립 요청 oracle을 정책 결과와 불일치한 뒤 재해석하면 gold label이 잘못 바뀌는가 | 사전 gold 요청, blind vs wrong-policy-exposed 동일 증거·모델, label flip과 effect, Reparo 원본과 독립 fixture 분리 | [완료](runs/C10_oracle_refinement_bias_20261125/result.md): 두 자손 요청 label flip 0. mini 양 arm 4/4, 강한 모델 양 arm 3/4. `south` 입력 완전성 미표시라 오류 원인 미확정. 노출 오염 가설 이 조건에서 기각 |
-| C10b | `south` oracle 오류가 빠진 부모/그래프 완전성 정보 때문인가 | 같은 1 요청×2 arm×2 모델, 사실 입력만 보강, 4 verdict·비용 | [사전등록](runs/C10b_complete_hierarchy_20261125/prereg.md), 실행 대기 |
+| C10b | `south` oracle 오류가 빠진 부모/그래프 완전성 정보 때문인가 | 같은 1 요청×2 arm×2 모델, 사실 입력만 보강, 4 verdict·비용 | [완료](runs/C10b_complete_hierarchy_20261125/result.md): 4/4 DENY, 불완전 관계 입력의 영향 확인. 4 calls/$0.0039552 |
+| C11 | AutoCedar target에 없는 action의 추가 permit이 원본 verifier를 통과할 수 있는가 | 공식 case-011 요구+연구자 schema action 확장, scope-only vs closed-actions 원본 verify, 정상/비인가 Cedar decision·SQLite 효과 | [사전등록](runs/C11_unscoped_action_20261125/prereg.md), 코드 고정, API $0 |
 | H20 | 여러 policy 생성기/PEP에서 사람 승인 artifact·검증 target·활성 hash를 결속하지 않으면 같은 범위 누락이 반복되는가 | AutoCedar 외 실제 원본 deployment 경로와 기존 승인·서명·active-hash gate의 같은 입력 검증 | C3a는 AutoCedar 소비자 misconfiguration만. 기존 explicit approval gate가 해결해 넓은 새 Need `UNVERIFIED` |
 
 각 실험의 실패가 기존 방법으로 해결되면 그 조건의 Need를 기각한다. 저자 코드와 독립 adapter를 혼동하지 않는다.

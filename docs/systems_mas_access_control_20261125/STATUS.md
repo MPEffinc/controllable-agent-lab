@@ -34,11 +34,12 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [C8 공식 `case-101` 계층 효과](runs/C8_cedar_hierarchy_effect_20261125/result.md): 원본/동치 정규화 × 동일·직접 자손·2단계 자손·무관 그룹 8요청이 `ALLOW,ALLOW,ALLOW,DENY`로 기대와 8/8 일치했다. 로컬 `clear_to_close` 효과는 허용 행에만 +1. 최초 점수 6/8은 CLI의 정상 DENY exit2를 실패로 센 집계 오류여서 원시 결과 보존 후 typed/schema replay 8/8로 정정. API $0.
 - [C9 언어 의미 grounding](runs/C9_grounded_review_20261125/result.md): `case-101` 원본/정규화 × 두 모델, 공식 연산자 의미를 주어도 승인 1/4, 4 calls/$0.005832. 두 응답은 설명상 승인인데 `approve=false`. **누적 추정 $0.0553916 / $5**. [H21 조건부 reviewer Gap](h21_target_review_semantics.md)에 기존 verifier·Reparo 강한 반박과 신규 Need 미확정을 기록했다.
 - [C10 oracle 후보 노출 대조](runs/C10_oracle_refinement_bias_20261125/result.md): 공식 gold vs equality-only 후보 Cedar 4요청 확인; 자손 두 정상 요청은 후보 과거부. mini blind/exposed 각 4/4, 강한 모델 각 3/4, 자손 요청 label flip 0. 16 calls/$0.016092, **누적 추정 $0.0714836 / $5**. `south` 사례의 강한 모델 ALLOW는 입력에서 간선 목록 완전성이 빠져 오류로 단정하지 않는다. Reparo 원본 성능 아님.
+- [C10b 완전한 관계 입력](runs/C10b_complete_hierarchy_20261125/result.md): `south` 부모 없음·간선 목록 완전성 명시 후 두 모델 blind/exposed 4/4 DENY. 4 calls/$0.0039552, **누적 추정 $0.0754388 / $5**. C10 고정 입력의 oracle 오염 Need 기각; 원본 Reparo 검증 아님.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. C10b: `south`의 부모 부재와 간선 목록 완전성을 명시해 C10 강한 모델의 두 ALLOW가 해결되는지 같은 4 독립 호출로 확인한다. 사전등록·코드 완료, 목표 <$0.02.
+1. C11: AutoCedar §III-B가 직접 인정한 target 밖 action을 공식 case-011의 연구자 확장 스키마에서 원본 verifier·Cedar 효과로 검증한다. 사전등록·코드 완료, API $0.
 2. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
 3. Track D4/A5+: 장기 승인 history와 원본 Agent libOS provider effect 경로를 각기 별도 사전등록. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 

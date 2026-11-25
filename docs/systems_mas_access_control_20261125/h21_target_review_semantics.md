@@ -17,6 +17,7 @@
 - [AutoCedar v2 §V-D2/Table VI](https://arxiv.org/html/2607.03656v2)는 완료 197/200 중 **178 gold-equivalent**, **19는 생성된 검증 plan은 통과했으나 gold와 다른 target**이라고 보고한다. §V-D3의 14명/98 probe는 artifact 선호도 실험이고 **실제 human atom review의 오류 검출률은 평가하지 않았다고 명시**한다. 따라서 target review 정확성은 저자도 인정하는 평가 공백이다. 그러나 C4–C9의 모델 오류가 그 19건의 원인이라는 증거는 없다.
 - **정확한 독립 target이 있으면** 기존 AutoCedar/Cedar 양방향 포함이 C2·C4·C6·C7에서 오류·동치를 정확히 검사했다. [Cedar 공식 문서](https://docs.cedarpolicy.com/syntax-operators.html)와 C8의 실제 실행도 `in` 의미를 제공한다. 이 조건의 새 정형 검증 메커니즘 Need는 기각한다.
 - [Reparo v1 §5.2, §7](https://arxiv.org/html/2610.41800v1)는 별도 LLM이 repository code/comment/doc에서 구체 요청과 기대 결정을 만들고 공식 정책 엔진으로 검사한다. 390 oracle 사례를 사람이 평가해 91.5–96.9%의 정답률을 보고한다. **가장 강한 직접 대안**이지만 같은 연구의 §5.2.2는 정책과 불일치한 oracle case를 재해석·정정하기도 한다. 그 운영 방식과 AutoCedar의 human atom 검토를 동일 조건에서 비교한 결과는 없다. 논문 수치를 C4–C9와 직접 비교하지 않는다.
+- [C10/C10b 독립 대조](runs/C10b_complete_hierarchy_20261125/result.md)는 Reparo식 요청 oracle의 원리를 공식 case-101에서 별도 시험했다. 독립 모델 oracle이 equality-only 오류 후보의 자손 두 과거부를 blind/후보 결과 노출 양쪽에서 정확히 잡았고 label flip은 0이었다. 무관 그룹의 최초 오류는 관계 간선의 완전성 정보를 제공하자 해소됐다. **원저자 Reparo 성능 재현은 아니다.** 이 대조는 충분한 신뢰 증거가 주어지면 기존 실행 가능한 요청 oracle가 H21의 고정 정책 오류를 해결할 수 있음을 보인다.
 
 ## 판정과 반증 조건
 
@@ -26,4 +27,4 @@
 
 **기각 조건:** Reparo식 독립 요청 oracle, 전문 사람 review, 또는 원본 AutoCedar atom reviewer가 같은 source-only 요구사항·공식 semantics·정상/비인가 요청에서 높은 오류 검출력과 낮은 정상 과거부를 비용 상한 내 보이고, 오류를 고친 target hash가 실제 활성 PEP에 결속된다면 새로운 Need를 기각한다. 반대로 실제 저자 target 오류 19종 또는 독립 실서비스 사례에서 그런 대안이 실패하는 paired 결과와 보안·정상 업무 영향을 보여야 Need를 승격한다. 현재 C4–C9만으로 일반 MAS 보장을 주장하지 않는다.
 
-**다음 질문:** 정책과 불일치한 oracle의 기대 label을 사후 재해석하는 평가가 알려진 gold 오류를 놓칠 수 있는가? 원본 Reparo artifact·저자 지표를 먼저 확인하고, 없으면 **독립 통제 실험**임을 명시해 모델에 정책 불일치 정보를 주는 arm과 blind arm을 비교한다.
+**다음 질문:** 공식 AutoCedar의 실제 atom별 reviewer·사람 검토가 저자가 보고한 19개 plan 불일치를 얼마나 발견하는가? 공개된 그 19건의 원시 target/decisions가 없고, C1–C1c의 현행 API 호환성 실패로 원본 authoring 완주가 막힌 상태다. 저자 artifact를 확보하거나, 동일 조건의 수정 가능한 최소 원본 경로를 재현한 뒤 비용·정상성·검출력을 측정한다. C10의 독립 oracle 대조만으로 이 질문을 해결했다고 보지 않는다.

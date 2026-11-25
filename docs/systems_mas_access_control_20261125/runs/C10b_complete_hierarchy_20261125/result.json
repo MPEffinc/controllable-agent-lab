@@ -1,0 +1,67 @@
+{
+  "kind": "C10_UNRELATED_COMPLETE_HIERARCHY_FACT_CONTROL",
+  "c10_source": "docs/systems_mas_access_control_20261125/runs/C10_oracle_refinement_bias_20261125",
+  "reviews": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "arm": "blind",
+      "gold_expected": "DENY",
+      "response": {
+        "decision": "DENY",
+        "reason": "The file's region 'south' is not the same group as, nor a descendant of, the user's assigned group 'root' according to the provided group hierarchy. Therefore, the user is not authorized to approve the escrow file as clear to close."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "arm": "exposed",
+      "gold_expected": "DENY",
+      "response": {
+        "decision": "DENY",
+        "reason": "The user's assigned group is 'root' and the file's region is 'south'. The group hierarchy edges provided do not include 'south', so it cannot be confirmed that 'south' is the same group as or a descendant of 'root'. Therefore, the user does not have the required group relationship to approve the file as clear to close."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "arm": "blind",
+      "gold_expected": "DENY",
+      "response": {
+        "decision": "DENY",
+        "reason": "The user's assigned group is 'root' and the file's region is 'south'. There is no evidence in the group hierarchy that 'south' is the same as, a descendant of, or a child of 'root'. The group_parent_edges do not show any relationship between 'south' and 'root'. Therefore, the user does not meet the group requirement."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "arm": "exposed",
+      "gold_expected": "DENY",
+      "response": {
+        "decision": "DENY",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The file's region is 'south', and the user's assigned group is 'root'. The group hierarchy is provided, but there is no evidence that 'south' is the same as, a descendant of, or a child of 'root'. The field 'south_parent_group' is null and 'south_is_not_root' is true, indicating 'south' is not 'root' and has no parent, so it is not a descendant of 'root'. Therefore, the region requirement is not met."
+      },
+      "error": null,
+      "correct": true
+    }
+  ],
+  "costs": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "calls": 2,
+      "input_tokens": 836,
+      "output_tokens": 143,
+      "estimated_cost_usd": 0.0005632
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "calls": 2,
+      "input_tokens": 836,
+      "output_tokens": 215,
+      "estimated_cost_usd": 0.003392
+    }
+  ],
+  "total_estimated_cost_usd": 0.0039552
+}

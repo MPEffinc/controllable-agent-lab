@@ -1,0 +1,37 @@
+{
+  "times": ["12:30", "13:30"],
+  "scopes": ["atlas_prod", "atlas_stage", "boreal_prod", "boreal_stage"],
+  "baseline": {"atlas_prod": 2, "atlas_stage": 1, "boreal_prod": 2, "boreal_stage": 1},
+  "cases": [
+    {
+      "id": "baseline",
+      "owner_messages": ["2026-11-25 11:00 UTC: Production deployments for Atlas and Boreal require two independent reviewers. Staging deployments require one. This replaces older approval notes."],
+      "overrides": {}
+    },
+    {
+      "id": "scoped_tighten",
+      "owner_messages": ["2026-11-25 11:00 UTC: Production needs two reviewers and staging needs one for both teams.", "2026-11-25 12:00 UTC: For Atlas staging only, two independent reviewers are now required. Boreal staging remains one; production remains two."],
+      "overrides": {"12:30": {"atlas_stage": 2}, "13:30": {"atlas_stage": 2}}
+    },
+    {
+      "id": "scoped_expiry",
+      "owner_messages": ["2026-11-25 11:00 UTC: Production needs two reviewers and staging needs one for both teams.", "2026-11-25 12:00 UTC: Atlas production may deploy with one independent reviewer until 13:00 UTC today. At 13:00 the two-reviewer production rule applies again. Other scopes stay unchanged."],
+      "overrides": {"12:30": {"atlas_prod": 1}}
+    },
+    {
+      "id": "scoped_revocation",
+      "owner_messages": ["2026-11-25 11:00 UTC: Production needs two reviewers and staging needs one for both teams.", "2026-11-25 12:15 UTC: Revoke the one-reviewer exception for Atlas staging only: Atlas staging now needs two independent reviewers. Boreal staging still needs one."],
+      "overrides": {"12:30": {"atlas_stage": 2}, "13:30": {"atlas_stage": 2}}
+    },
+    {
+      "id": "replacement",
+      "owner_messages": ["2026-11-25 11:00 UTC: Atlas production needs three reviewers; Boreal production two; staging one for both.", "2026-11-25 12:00 UTC: From now on all production deployments require two independent reviewers, replacing prior production requirements, including Atlas. Staging remains one."],
+      "overrides": {}
+    },
+    {
+      "id": "future_change",
+      "owner_messages": ["2026-11-25 11:00 UTC: Production needs two reviewers and staging needs one for both teams.", "2026-11-25 12:00 UTC: At 13:00 UTC, Boreal staging will require two reviewers instead of one. Until 13:00 UTC, Boreal staging still needs one. Other scopes stay unchanged."],
+      "overrides": {"13:30": {"boreal_stage": 2}}
+    }
+  ]
+}

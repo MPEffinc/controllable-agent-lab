@@ -14,4 +14,8 @@
 
 이번 후속 결과는 [새 가설 H15–H19](new_hypotheses.md) 및 [B1 실제 서비스 모의](runs/B1_shared_worker_llm_20261125/result.md), [B2 실제 모델·원저자 parser](runs/B2_mapgraph_llm_20261125/result.md), [B3 독립 ARES 관계식 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)에 있다. B2는 모델이 tool call을 하지 않았고 저자 workflow는 simulated action을 기록하므로 두 뜻을 분리해 읽는다.
 
+2026-11-25 Phase 2 실행은 [K06 AutoCedar full author 실패](runs/C1c_autocedar_case011_20261125/result.md), [독립 target과 원본 verifier 대조](runs/C2_target_semantics_20261125/result.md), [현행 Agent libOS 원저자 테스트](runs/A5_agent_libos_manifest_20261125/result.md), [모델 A→B write-back](runs/D1_live_writeback_20261125/result.md), [기존 restricted-context 대안](runs/D2_restricted_regeneration_20261125/result.md), [owner event 48칸 추출](runs/D3_owner_event_scope_20261125/result.md), [AutoCedar 완료·승인 소비자 경계](runs/C3_autocedar_release_gate_20261125/result.md)에 각각 원시 로그·코드·사전등록과 함께 있다. [H20 조건부 승인 경계](h20_release_contract.md)는 기존 승인 필드 gate로 해결되는 범위와 남은 검증 질문을 분리한다.
+
+실행 코드는 각 run의 `run.py`(C1–C1c는 `run_author.py`)다. raw 파일이 있으면 중복·덮어쓰기를 거부하므로 재실행은 **새 Run ID 복제 후** 사전등록을 갱신한다. A5의 `env/`는 `.gitignore`로 제외된 `uv.lock` 고정 환경이다. D1–D3는 키를 `local/progent-vm/.env`에서 메모리로만 읽으며 사용자 승인 $5 상한과 현재 누적액은 `STATUS.md`에 있다. C2/C3는 API 비용 0이다.
+
 기존 공식 코드 checkout은 `third_party/`에 위치한다. 새 연구실 코드 checkout은 `third_party/LAB_*`에 고정하고 commit SHA를 [source_registry.md](source_registry.md)에 기록한다. `third_party` checkout과 환경 파일은 연구 결과가 아니다.

@@ -26,12 +26,13 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [D2 제한 context 재생성](runs/D2_restricted_regeneration_20261125/result.md): Permissive IFC의 기존 대안을 D1 동일 요청에 독립 적용. 폐기 `r1`을 A 입력에서 제거한 새 journal은 `r2`만 code-owned ancestor로 갖고, 정상 2명 1/1·비인가 1명 0을 달성. 3 calls/$0.000306. D1 과차단의 새 메커니즘 Need 기각. **누적 추정 $0.0050052 / $5.** 남은 조건은 어떤 최신 owner event가 정확히 신뢰·적용되는지 식별하는 과정.
 - [D3 owner event scope/time 실제 모델 추출](runs/D3_owner_event_scope_20261125/result.md): 고정 합성 6 history·48 policy cell 전부 gold 일치, 모의 정상 효과 48/48·비인가 0/48. 6 calls/$0.0013192. 명료한 입력의 실패 가설 기각. **누적 추정 $0.0063244 / $5.** 장기/모호/공격자 제어·권한자 식별은 미평가.
 - [C3 AutoCedar 저자 archive/원본 verifier](runs/C3_autocedar_release_gate_20261125/result.md): 수동 AITL CyberChair trace의 후보가 42/42 verifier pass·완료 true이나 `final_user_approved=false`. 원본 CLI는 완료/승인을 의도적으로 분리하고 후보 존재 시 exit 0. 완료만 보는 독립 SQLite 소비자 effect +1, 승인 확인 소비자 0. **조건부 배포 인터페이스 Gap**, 원저자 실제 무승인 배포 아님. 기존 승인 필드 gate로 해당 고정 문제 해결. API 비용 $0, 누적 $0.0063244/5.
+- [C4 블라인드 정책 리뷰 대조](runs/C4_blind_policy_review_20261125/result.md): case-011 gold+6 고정 변이. `gpt-4.1-mini` verdict 6/7, 올바른 gold `p0` 오거부; 원본 verifier+독립 gold 7/7. 연구자 변이의 비인가 효과와 과거부를 Cedar/SQLite로 확인. 7 calls/$0.0020584, **누적 추정 $0.0083828 / $5**. 사람 atom review 성능은 미평가. C5 강한 모델 반박 사전등록.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
-2. Track D4: D3 성공을 기준으로 더 긴 실제적 승인 history와 권한자·scope 충돌을 사전등록할지, EAL/WTB/독립 검토자가 같은 조건을 해결하는지 확인한다. 실패를 위해 사후 문장 조정하지 않는다.
-3. Track A5+: 현행 Agent libOS의 실제 provider effect 경로와 동적 철회 테스트를 확인해 내부 decision 결과의 한계를 좁힌다. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
+1. C5: 같은 7개 정책과 블라인드 prompt에서 `gpt-4.1`로 C4 false rejection이 해소되는지 테스트한다. 사전등록 완료, 비용 목표 <$0.05.
+2. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
+3. Track D4/A5+: 장기 승인 history와 원본 Agent libOS provider effect 경로를 각기 별도 사전등록. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 
 Git 체크포인트: 현재 브랜치 `exp/20261125-systems-mas-access-control`. 최신 commit은 `git log -1 --oneline`, 원격 동기화는 `git ls-remote origin refs/heads/exp/20261125-systems-mas-access-control`로 확인한다. 이 세션의 각 단계는 실행 전에 사전등록 commit, 실행 뒤 결과 commit을 별도로 push했다. 이전 자료/원저자 clone은 변경하지 않았다.

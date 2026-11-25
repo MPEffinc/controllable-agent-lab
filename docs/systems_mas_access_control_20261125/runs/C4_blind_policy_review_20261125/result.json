@@ -1,0 +1,584 @@
+{
+  "kind": "BLIND_MODEL_POLICY_REVIEW_GOLD_VERIFY_LOCAL_EFFECT",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "requirement_sha256": "db3690a7a06c5f646cb038685992817ca5e6e828b8d3e41e67b0ddf154097b25",
+  "gold_sha256": "f941d9877af94005d9336309c2a2075085120f51cc88d75e07d0672530440581",
+  "order": [
+    "p4",
+    "p0",
+    "p6",
+    "p2",
+    "p5",
+    "p1",
+    "p3"
+  ],
+  "mutation_markers": {
+    "p1": [
+      " && (context.onVpn)",
+      ""
+    ],
+    "p2": [
+      "((principal.roles.contains(Role::\"Maintainer\"))) && ",
+      ""
+    ],
+    "p3": [
+      "(!(true) || (principal != resource.author)) && ",
+      ""
+    ],
+    "p4": [
+      "((resource.targetBranch like \"hotfix/*\")) && ",
+      ""
+    ],
+    "p5": [
+      " && ((resource.approvalCount >= 1))",
+      ""
+    ],
+    "p6": [
+      "approvalCount >= 1",
+      "approvalCount >= 2"
+    ]
+  },
+  "reviews": [
+    {
+      "policy_id": "p4",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging when approvalCount is 0 or more due to 'resource.approvalCount >= 0' condition, which is redundant and confusing. It also lacks the required condition that the pull request's target branch name must begin with 'hotfix/'. Additionally, the condition '!(true) || (principal != resource.author)' simplifies to 'false || (principal != resource.author)', effectively '(principal != resource.author)', which is correct but the redundant negation is confusing. Overall, the policy is missing the branch name condition and has redundant or unclear conditions, so it does not exactly enforce the user requirement."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "policy_id": "p0",
+      "gold_approve": true,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging when approvalCount is 0 or more due to the redundant condition (resource.approvalCount >= 0), which is always true and does not restrict the action. Also, the condition (!(true) || (principal != resource.author)) simplifies to true, failing to enforce that the user is not the pull request's author. Therefore, the policy is too permissive and does not strictly enforce all user requirements."
+      },
+      "error": null,
+      "correct": false
+    },
+    {
+      "policy_id": "p6",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too broad and inconsistent with the requirements. It allows merging when approvalCount is >= 0 and also requires approvalCount >= 2, which is contradictory. The user requirement states at least one approval is needed, but the policy requires at least two. The condition '!(true) || (principal != resource.author)' simplifies to 'false || (principal != resource.author)', effectively requiring the principal to not be the author, which is correct. However, the redundant and contradictory approvalCount checks and the allowance of approvalCount >= 0 make the policy incorrect. Also, the policy does not explicitly deny other actions, but since only this permit exists, other actions are denied by default, which is acceptable. The policy should be corrected to require approvalCount >= 1 and remove contradictory conditions."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "policy_id": "p2",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging when approvalCount is 0 or more due to 'resource.approvalCount >= 0' condition, which is redundant and confusing. Also, the condition '!(true) || (principal != resource.author)' simplifies to 'false || (principal != resource.author)', effectively requiring the principal to not be the author, which is correct but written confusingly. However, the policy does not check that the principal holds the maintainer role, which is required. Therefore, the policy is too permissive and does not enforce all required constraints."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "policy_id": "p5",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging pull requests with zero approvals (approvalCount >= 0) instead of requiring at least one approval (approvalCount >= 1). Also, the condition '!(true) || (principal != resource.author)' simplifies to 'false || (principal != resource.author)', which is just 'principal != resource.author', so that part is correct but unnecessarily complex. The policy otherwise correctly restricts merging to maintainers on VPN, not the author, and target branches starting with 'hotfix/'. However, the approval count condition is too permissive, violating the requirement."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "policy_id": "p1",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging when approvalCount is 0 or more due to redundant and conflicting conditions, and the condition '!(true) || (principal != resource.author)' always evaluates to false, failing to enforce that the user is not the pull request's author. Additionally, it does not check that the user is using the VPN. Therefore, it is both too permissive and incomplete."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "policy_id": "p3",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging when the approvalCount is >= 0, which is redundant but not harmful, and it does not check that the principal is not the pull request's author, violating the requirement. Also, it only permits mergePullRequest action but does not explicitly deny other actions, which is required. Therefore, the policy is too permissive and incomplete."
+      },
+      "error": null,
+      "correct": true
+    }
+  ],
+  "verifications": [
+    {
+      "policy_id": "p0",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p0"
+      ],
+      "exit_code": 0,
+      "stdout": "candidate_implies_gold: PASS (implies)\ngold_implies_candidate: PASS (implies)\nloss: 0\n",
+      "stderr": "",
+      "expected_pass": true
+    },
+    {
+      "policy_id": "p1",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p1"
+      ],
+      "exit_code": 1,
+      "stdout": "candidate_implies_gold: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"mergePullRequest\", resource: PullRequest::\"\"\ncontext: {breakGlass: true, currentTime: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), extendedReviewCompleted: true, mergePullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), mergePullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), onVpn: false, reviewPullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), reviewPullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), securityReviewCompleted: true}\nentities: [\n  PullRequestStatusValue::\"closed\",\n  PullRequestStatusValue::\"approved\",\n  Role::\"Reviewer\",\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  RepositoryStatusValue::\"active\",\n  User::\"\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  PullRequestStatusValue::\"merged\",\n  Role::\"SecurityLead\",\n  Action::\"mergePullRequest\",\n  PullRequestStatusValue::\"open\",\n  User::\"B\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  Role::\"Maintainer\",\n  User::\"A\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  Role::\"Developer\",\n  RepositoryStatusValue::\"incubating\",\n  RepositoryStatusValue::\"archived\",\n  PullRequest::\"\" {\n    approvalCount: 9223372036854775807,\n    approvedBy: User::\"B\",\n    author: User::\"A\",\n    linesChanged: 0,\n    repo: Repository::\"\",\n    requiresSecurityReview: true,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"hotfix/\",\n  },\n]\ngold_implies_candidate: PASS (implies)\nloss: 1\n",
+      "stderr": "",
+      "expected_pass": false
+    },
+    {
+      "policy_id": "p2",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p2"
+      ],
+      "exit_code": 1,
+      "stdout": "candidate_implies_gold: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"mergePullRequest\", resource: PullRequest::\"\"\ncontext: {breakGlass: true, currentTime: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), extendedReviewCompleted: true, mergePullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), mergePullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), onVpn: true, reviewPullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), reviewPullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), securityReviewCompleted: true}\nentities: [\n  PullRequest::\"\" {\n    approvalCount: 9223372036854775807,\n    approvedBy: User::\"B\",\n    author: User::\"A\",\n    linesChanged: 0,\n    repo: Repository::\"\",\n    requiresSecurityReview: true,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"hotfix/\",\n  },\n  PullRequestStatusValue::\"merged\",\n  RepositoryStatusValue::\"active\",\n  Role::\"Reviewer\",\n  RepositoryStatusValue::\"incubating\",\n  RepositoryStatusValue::\"archived\",\n  Role::\"Maintainer\",\n  PullRequestStatusValue::\"closed\",\n  User::\"\" {\n    clearance: 0,\n    roles: [],\n  },\n  PullRequestStatusValue::\"open\",\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  Role::\"SecurityLead\",\n  User::\"A\" {\n    clearance: 0,\n    roles: [],\n  },\n  Role::\"Developer\",\n  Action::\"mergePullRequest\",\n  User::\"B\" {\n    clearance: 0,\n    roles: [],\n  },\n  PullRequestStatusValue::\"approved\",\n]\ngold_implies_candidate: PASS (implies)\nloss: 1\n",
+      "stderr": "",
+      "expected_pass": false
+    },
+    {
+      "policy_id": "p3",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p3"
+      ],
+      "exit_code": 1,
+      "stdout": "candidate_implies_gold: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"mergePullRequest\", resource: PullRequest::\"\"\ncontext: {breakGlass: true, currentTime: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), extendedReviewCompleted: true, mergePullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), mergePullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), onVpn: true, reviewPullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), reviewPullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), securityReviewCompleted: true}\nentities: [\n  PullRequestStatusValue::\"closed\",\n  PullRequestStatusValue::\"open\",\n  RepositoryStatusValue::\"archived\",\n  PullRequestStatusValue::\"approved\",\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  Role::\"Developer\",\n  Role::\"Maintainer\",\n  Action::\"mergePullRequest\",\n  PullRequest::\"\" {\n    approvalCount: 9223372036854775807,\n    approvedBy: User::\"A\",\n    author: User::\"\",\n    linesChanged: 0,\n    repo: Repository::\"\",\n    requiresSecurityReview: true,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"hotfix/\",\n  },\n  PullRequestStatusValue::\"merged\",\n  RepositoryStatusValue::\"active\",\n  RepositoryStatusValue::\"incubating\",\n  User::\"A\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  Role::\"Reviewer\",\n  Role::\"SecurityLead\",\n  User::\"\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n]\ngold_implies_candidate: PASS (implies)\nloss: 1\n",
+      "stderr": "",
+      "expected_pass": false
+    },
+    {
+      "policy_id": "p4",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p4"
+      ],
+      "exit_code": 1,
+      "stdout": "candidate_implies_gold: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"mergePullRequest\", resource: PullRequest::\"\"\ncontext: {breakGlass: true, currentTime: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), extendedReviewCompleted: true, mergePullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), mergePullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), onVpn: true, reviewPullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), reviewPullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), securityReviewCompleted: true}\nentities: [\n  PullRequestStatusValue::\"open\",\n  PullRequestStatusValue::\"merged\",\n  RepositoryStatusValue::\"archived\",\n  Role::\"Developer\",\n  Role::\"SecurityLead\",\n  User::\"\" {\n    clearance: -1,\n    roles: [Role::\"Maintainer\"],\n  },\n  User::\"B\" {\n    clearance: -1,\n    roles: [Role::\"Maintainer\"],\n  },\n  RepositoryStatusValue::\"active\",\n  Action::\"mergePullRequest\",\n  PullRequest::\"\" {\n    approvalCount: 9223372036854775807,\n    approvedBy: User::\"B\",\n    author: User::\"A\",\n    linesChanged: -1,\n    repo: Repository::\"\",\n    requiresSecurityReview: true,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"\",\n  },\n  PullRequestStatusValue::\"approved\",\n  RepositoryStatusValue::\"incubating\",\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  PullRequestStatusValue::\"closed\",\n  User::\"A\" {\n    clearance: -1,\n    roles: [Role::\"Maintainer\"],\n  },\n  Role::\"Maintainer\",\n  Role::\"Reviewer\",\n]\ngold_implies_candidate: PASS (implies)\nloss: 1\n",
+      "stderr": "",
+      "expected_pass": false
+    },
+    {
+      "policy_id": "p5",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p5"
+      ],
+      "exit_code": 1,
+      "stdout": "candidate_implies_gold: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"mergePullRequest\", resource: PullRequest::\"\"\ncontext: {breakGlass: true, currentTime: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), extendedReviewCompleted: true, mergePullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), mergePullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), onVpn: true, reviewPullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), reviewPullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), securityReviewCompleted: true}\nentities: [\n  Role::\"Developer\",\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  Role::\"SecurityLead\",\n  Role::\"Reviewer\",\n  RepositoryStatusValue::\"incubating\",\n  PullRequestStatusValue::\"open\",\n  Role::\"Maintainer\",\n  User::\"A\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  User::\"B\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  PullRequestStatusValue::\"closed\",\n  PullRequest::\"\" {\n    approvalCount: 0,\n    approvedBy: User::\"B\",\n    author: User::\"A\",\n    linesChanged: 0,\n    repo: Repository::\"\",\n    requiresSecurityReview: true,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"hotfix/\",\n  },\n  Action::\"mergePullRequest\",\n  RepositoryStatusValue::\"archived\",\n  PullRequestStatusValue::\"approved\",\n  RepositoryStatusValue::\"active\",\n  PullRequestStatusValue::\"merged\",\n  User::\"\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n]\ngold_implies_candidate: PASS (implies)\nloss: 1\n",
+      "stderr": "",
+      "expected_pass": false
+    },
+    {
+      "policy_id": "p6",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/verify_p6"
+      ],
+      "exit_code": 1,
+      "stdout": "candidate_implies_gold: PASS (implies)\ngold_implies_candidate: FAIL (implies)\n\u2717 Policy set 1 implies policy set 2: DOES NOT HOLD\n  Counterexample found:\nprincipal: User::\"\", action: Action::\"mergePullRequest\", resource: PullRequest::\"\"\ncontext: {breakGlass: true, currentTime: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), extendedReviewCompleted: true, mergePullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), mergePullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), onVpn: true, reviewPullRequestScheduledEnd: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), reviewPullRequestScheduledStart: (datetime(\"1970-01-01\")).offset(duration(\"-1ms\")), securityReviewCompleted: true}\nentities: [\n  User::\"\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  Role::\"Reviewer\",\n  RepositoryStatusValue::\"active\",\n  Action::\"mergePullRequest\",\n  PullRequestStatusValue::\"closed\",\n  RepositoryStatusValue::\"archived\",\n  User::\"A\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  PullRequestStatusValue::\"merged\",\n  Role::\"Developer\",\n  Role::\"SecurityLead\",\n  PullRequestStatusValue::\"open\",\n  Role::\"Maintainer\",\n  PullRequest::\"\" {\n    approvalCount: 1,\n    approvedBy: User::\"B\",\n    author: User::\"A\",\n    linesChanged: 0,\n    repo: Repository::\"\",\n    requiresSecurityReview: true,\n    status: PullRequestStatusValue::\"approved\",\n    targetBranch: \"hotfix/\",\n  },\n  Repository::\"\" {\n    defaultBranchProtected: false,\n    owner: User::\"\",\n    sensitivity: 0,\n    status: RepositoryStatusValue::\"active\",\n    team: [],\n    topics: [],\n  },\n  RepositoryStatusValue::\"incubating\",\n  User::\"B\" {\n    clearance: 0,\n    roles: [Role::\"Maintainer\"],\n  },\n  PullRequestStatusValue::\"approved\",\n]\nloss: 1\n",
+      "stderr": "",
+      "expected_pass": false
+    }
+  ],
+  "effects": [
+    {
+      "policy_id": "p0",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p0.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p0",
+      "case_name": "off_vpn",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p0.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_off_vpn.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_off_vpn.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "pr_state_before": "open",
+      "pr_state_after": "open",
+      "effect_delta": 0
+    },
+    {
+      "policy_id": "p1",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p1.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p1",
+      "case_name": "off_vpn",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p1.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_off_vpn.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_off_vpn.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p2",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p2.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p2",
+      "case_name": "no_role",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p2.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_no_role.json",
+        "--principal",
+        "User::\"reader\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_no_role.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p3",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p3.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p3",
+      "case_name": "self",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p3.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_self.json",
+        "--principal",
+        "User::\"author\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_self.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p4",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p4.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p4",
+      "case_name": "no_branch",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p4.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_no_branch.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_no_branch.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p5",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p5.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p5",
+      "case_name": "no_approval",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p5.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_no_approval.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_no_approval.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "pr_state_before": "open",
+      "pr_state_after": "merged",
+      "effect_delta": 1
+    },
+    {
+      "policy_id": "p6",
+      "case_name": "normal",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/p6.cedar",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/entities_normal.json",
+        "--principal",
+        "User::\"maintainer\"",
+        "--action",
+        "Action::\"mergePullRequest\"",
+        "--resource",
+        "PullRequest::\"pr-11\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C4_blind_policy_review_20261125/context_normal.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "pr_state_before": "open",
+      "pr_state_after": "open",
+      "effect_delta": 0
+    }
+  ],
+  "review_correct": 6,
+  "verify_correct": 7,
+  "input_tokens": 1770,
+  "output_tokens": 844,
+  "estimated_cost_usd": 0.0020584
+}

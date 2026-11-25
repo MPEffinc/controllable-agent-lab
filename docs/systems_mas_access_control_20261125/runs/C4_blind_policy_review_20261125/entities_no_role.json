@@ -1,0 +1,63 @@
+[
+  {
+    "uid": {
+      "type": "User",
+      "id": "maintainer"
+    },
+    "attrs": {
+      "roles": [
+        {
+          "__entity": {
+            "type": "Role",
+            "id": "Maintainer"
+          }
+        }
+      ]
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "User",
+      "id": "author"
+    },
+    "attrs": {
+      "roles": [
+        {
+          "__entity": {
+            "type": "Role",
+            "id": "Maintainer"
+          }
+        }
+      ]
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "User",
+      "id": "reader"
+    },
+    "attrs": {
+      "roles": []
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "PullRequest",
+      "id": "pr-11"
+    },
+    "attrs": {
+      "approvalCount": 1,
+      "author": {
+        "__entity": {
+          "type": "User",
+          "id": "author"
+        }
+      },
+      "targetBranch": "hotfix/critical"
+    },
+    "parents": []
+  }
+]

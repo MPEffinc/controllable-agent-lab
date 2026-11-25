@@ -28,11 +28,13 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - [C3 AutoCedar 저자 archive/원본 verifier](runs/C3_autocedar_release_gate_20261125/result.md): 수동 AITL CyberChair trace의 후보가 42/42 verifier pass·완료 true이나 `final_user_approved=false`. 원본 CLI는 완료/승인을 의도적으로 분리하고 후보 존재 시 exit 0. 완료만 보는 독립 SQLite 소비자 effect +1, 승인 확인 소비자 0. **조건부 배포 인터페이스 Gap**, 원저자 실제 무승인 배포 아님. 기존 승인 필드 gate로 해당 고정 문제 해결. API 비용 $0, 누적 $0.0063244/5.
 - [C4 블라인드 정책 리뷰 대조](runs/C4_blind_policy_review_20261125/result.md): case-011 gold+6 고정 변이. `gpt-4.1-mini` verdict 6/7, 올바른 gold `p0` 오거부; 원본 verifier+독립 gold 7/7. 연구자 변이의 비인가 효과와 과거부를 Cedar/SQLite로 확인. 7 calls/$0.0020584, **누적 추정 $0.0083828 / $5**. 사람 atom review 성능은 미평가. C5 강한 모델 반박 사전등록.
 - [C5 강한 모델 동일 입력](runs/C5_stronger_review_20261125/result.md): `gpt-4.1` 7 calls, 6/7. 같은 정답 `p0` 거짓 거부가 반복됐고, `!(true)`를 참인 것처럼 해석했다. 입력 1,770/출력 1,026 tokens, $0.011748; **누적 추정 $0.0201308 / $5**. 독립 gold+원본 verifier는 C4에서 7/7이므로 새로운 검증 메커니즘 Need는 미확정.
+- [C6 정형 동치 확인 후 정규화](runs/C6_normalized_review_20261125/result.md): 공식 verifier 7/7 양방향 포함 PASS; 두 모델 모두 7/7로 오거부 해소. 14 calls/$0.0103136, **누적 추정 $0.0304444 / $5**. 첫 preflight 구문 오류는 모델 호출 전에 검출·보존했다. 같은 세트의 새 검증 메커니즘 Need 기각.
+- 공식 AutoCedar gold 200개 중 184개에 `(!(true) ||` 표기가 있다는 읽기 전용 코퍼스 감사 결과를 확인했다. 이는 reviewer 실패율이 아니다. 네 구간 첫 해당 case를 골라 C7에서 표기 민감성의 교차 사례를 확인한다.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. C6: 공식 verifier로 동치 확인한 정책 정규화 뒤 두 리뷰어의 정답 거짓 거부가 없어지는지 같은 7개 입력에서 시험한다. 먼저 사전등록·코드와 비용 상한을 고정한다.
+1. C7: 공식 gold 4 case의 원본/정규화 paired policy를 두 모델에 블라인드 검토시킨다. 사전등록·코드 완료. 동치 검증 4/4 통과 전 API 호출 금지, 총 16회·목표 <$0.10.
 2. H20 반박: AutoCedar 승인 필드가 downstream deploy/active policy hash에 실제로 묶이는 경로가 있는지 원본 source 및 강한 기존 release gate와 비교. 같은 조건에서 승인 gate가 설치되면 새 Need 기각. 공개 Figure 2 trace는 19개 오류 후보가 아니다.
 3. Track D4/A5+: 장기 승인 history와 원본 Agent libOS provider effect 경로를 각기 별도 사전등록. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 

@@ -24,7 +24,8 @@
 | C3a | AutoCedar 공개 저자 trace에서 `completed`와 `final_user_approved`가 release 소비자에서 결속되는가 | 고정 archive·원본 verify·서로 다른 로컬 소비자의 효과 비교 | [CyberChair 원본 trace 감사 완료](runs/C3_autocedar_release_gate_20261125/result.md): verify 42 pass, approval false, 완료만 소비한 효과 1/승인 gate 0. 조건부 인터페이스 Gap, 실제 저자 배포·의도 오류 아님 |
 | C4 | K06 case-011 원문을 본 블라인드 모델 검토자가 정답 정책과 단일 조건 변이 6개를 구별하는가 | 원본 verifier/gold 및 정상·비인가 로컬 effect 대조, 7개 고정 변이 | [완료](runs/C4_blind_policy_review_20261125/result.md): mini reviewer 6/7, 정상 gold 오거부; verifier 7/7. 원본 저자 생성 오류·인간 atom review 아님 |
 | C5 | 강한 모델 검토자가 C4 정상 gold 오거부를 동일 prompt에서 바로잡는가 | 고정 7개 verdict, 원시 응답/비용, 동일 gold/효과 대조 | [완료](runs/C5_stronger_review_20261125/result.md): `gpt-4.1`도 6/7, 정답 정책 거짓 거부. 7 calls/$0.011748. 모델 교체 단독 반박 실패 |
-| C6 | 형식적으로 동치인 간단한 정규화로 두 모델의 정답 거짓 거부를 고칠 수 있는가 | 원본 verifier 양방향 포함 7/7, 동일 prompt·순서·모델별 7 verdict, 정상·비인가 의미 보존 | 사전등록 후 실행. 해결되면 C4/C5의 모델 일반 실패 주장을 기각 |
+| C6 | 형식적으로 동치인 간단한 정규화로 두 모델의 정답 거짓 거부를 고칠 수 있는가 | 원본 verifier 양방향 포함 7/7, 동일 prompt·순서·모델별 7 verdict, 정상·비인가 의미 보존 | [완료](runs/C6_normalized_review_20261125/result.md): 동치 7/7, 두 모델 7/7; 고정 조건의 새 메커니즘 Need 기각 |
+| C7 | case-011 밖 공식 gold에서도 `(!(true) ||` 표기가 reviewer 거짓 거부에 영향을 주는가 | 200개 중 표기 빈도·네 구간 사전 선택 case, 각 동치 verifier, 4 paired 원본/정규화 × 2 모델·비용 | [사전등록](runs/C7_cross_case_review_20261125/prereg.md), 코드 고정, 실행 대기 |
 | H20 | 여러 policy 생성기/PEP에서 사람 승인 artifact·검증 target·활성 hash를 결속하지 않으면 같은 범위 누락이 반복되는가 | AutoCedar 외 실제 원본 deployment 경로와 기존 승인·서명·active-hash gate의 같은 입력 검증 | C3a는 AutoCedar 소비자 misconfiguration만. 기존 explicit approval gate가 해결해 넓은 새 Need `UNVERIFIED` |
 
 각 실험의 실패가 기존 방법으로 해결되면 그 조건의 Need를 기각한다. 저자 코드와 독립 adapter를 혼동하지 않는다.

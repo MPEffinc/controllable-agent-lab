@@ -1,0 +1,15 @@
+[
+  {
+    "policy_id": "p0",
+    "argv": [
+      "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+      "-c",
+      "import sys; from autocedar.cli import main; sys.exit(main())",
+      "verify",
+      "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p0"
+    ],
+    "exit_code": 1,
+    "stdout": "syntax: FAIL (syntax)\n\u00d7 failed to parse policy set\n  \u2570\u2500\u25b6 unexpected token `)`\n   \u256d\u2500[2:189]\n 1 \u2502 permit (principal is User, action == Action::\"mergePullRequest\", resource is PullRequest)\n 2 \u2502 when { ((principal.roles.contains(Role::\"Maintainer\"))) && (principal != resource.author) && ((resource.targetBranch like \"hotfix/*\")) && ((resource.approvalCount >= 1)) && (context.onVpn)) };\n   \u00b7                                                                                                                                                                                             \u252c\n   \u00b7                                                                                                                                                                                             \u2570\u2500\u2500 expected `}`\n   \u2570\u2500\u2500\u2500\u2500\nloss: 1\n",
+    "stderr": ""
+  }
+]

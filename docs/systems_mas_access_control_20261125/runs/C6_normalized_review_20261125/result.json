@@ -1,0 +1,313 @@
+{
+  "kind": "VERIFIED_NORMALIZATION_BLIND_POLICY_REVIEW",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "order": [
+    "p4",
+    "p0",
+    "p6",
+    "p2",
+    "p5",
+    "p1",
+    "p3"
+  ],
+  "policies": {
+    "p0": {
+      "original_sha256": "f941d9877af94005d9336309c2a2075085120f51cc88d75e07d0672530440581",
+      "normalized_sha256": "933ef83926396d37065a5a31be90a89c893c6eecf967154453128b526a46decd"
+    },
+    "p1": {
+      "original_sha256": "0ffe30b2069e45b276337d33fdb58dea0e504b7f408fa628d0af9a6423e21a0e",
+      "normalized_sha256": "6bac4c7b792d467467d0fac4a9282ea0ec6e05d992e07912577fc6514a48f1e8"
+    },
+    "p2": {
+      "original_sha256": "633cd77d9b9dcd2c38636d675a9f27a30521e2553095ab2d79d55c3a5dbbe206",
+      "normalized_sha256": "b6eff1c9b29dd417e903ab7090468eadc73f1741663e879299c74bcb729a8665"
+    },
+    "p3": {
+      "original_sha256": "58e1e67bc7d31adeb70f9811f9a9e015c8f71be493de5731c93a7fcad38af998",
+      "normalized_sha256": "99f959ba62b201dd31bfc667cd16aa637a84535d74daa6e6d53a9738a2d8e5d6"
+    },
+    "p4": {
+      "original_sha256": "f8400fcc9de11d6c5a40475cbcfb4dc0c1778228f94ee3412aee48d7d7fdaf13",
+      "normalized_sha256": "9f6b779e7301324c7e76530e9b266bac0b8e54a59a75f825c79eb69ad4aec4e3"
+    },
+    "p5": {
+      "original_sha256": "2209853b007644e96ac64386c9b83f8f1bb6d5b6e9abe8ccde129916885a5d84",
+      "normalized_sha256": "487767bb461ec329b0e85540ba34aba9d3ff2b660d77a383a40b65b7bab6cff1"
+    },
+    "p6": {
+      "original_sha256": "93c48e8eb8ab74087e1c3f51f25f174314498fa5e584d3449817e4fc90040ef7",
+      "normalized_sha256": "173ba2b195df2ff9bc2e49aeb9d87f34d2294d3b0b5ff44a48422a8d353a4b2d"
+    }
+  },
+  "verifications": [
+    {
+      "policy_id": "p0",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p0"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "policy_id": "p1",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p1"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "policy_id": "p2",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p2"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "policy_id": "p3",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p3"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "policy_id": "p4",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p4"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "policy_id": "p5",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p5"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    },
+    {
+      "policy_id": "p6",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/bin/python",
+        "-c",
+        "import sys; from autocedar.cli import main; sys.exit(main())",
+        "verify",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/verify_p6"
+      ],
+      "exit_code": 0,
+      "stdout": "normalized_implies_original: PASS (implies)\noriginal_implies_normalized: PASS (implies)\nloss: 0\n",
+      "stderr": ""
+    }
+  ],
+  "reviews": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p4",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy correctly requires the principal to have the Maintainer role, not be the pull request author, have at least one approval, and be on VPN. However, it does not enforce that the pull request's target branch name begins with 'hotfix/'. This omission means the policy grants broader permissions than specified. Additionally, the policy does not explicitly deny other actions, but since the user requirement states no other actions are permitted, the policy should be restrictive enough or explicitly deny other actions. Therefore, the policy is too permissive and incomplete."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p0",
+      "gold_approve": true,
+      "model_review": {
+        "approve": true,
+        "reason": "The policy precisely grants merge permission only when the principal is a Maintainer, is not the pull request author, the target branch starts with 'hotfix/', there is at least one approval, and the user is on VPN. It denies all other actions by omission, matching the user requirement exactly."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p6",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy requires approvalCount >= 2, but the user requirement states at least one approval. The policy is therefore too restrictive. Additionally, the policy does not explicitly deny other actions, but since this is the only permit policy, other actions are implicitly denied. Fixing the approvalCount condition to >= 1 would align the policy with the requirement."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p2",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy does not check that the principal holds the maintainer role, which is required by the user requirement. Additionally, the policy does not explicitly deny other actions or merges when conditions are not met, but since only this permit exists, other actions are implicitly denied. However, the missing role check makes the policy too permissive."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p5",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy incorrectly allows merging pull requests with zero approvals (approvalCount >= 0) instead of requiring at least one approval (approvalCount >= 1). This makes the policy too permissive and does not strictly enforce the user requirement. Additionally, the policy does not explicitly deny other actions, but since only this permit exists, other actions are implicitly denied, which is acceptable."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p1",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy correctly requires the principal to have the Maintainer role, not be the pull request author, the target branch to start with 'hotfix/', and at least one approval. However, it does not enforce the requirement that the user must be using the VPN. Additionally, it does not explicitly deny all other actions or merging attempts that do not meet these conditions, which is required by the user specification."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "policy_id": "p3",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy allows merging pull requests only if the principal has the Maintainer role, the target branch starts with 'hotfix/', the approval count is at least one, and the user is on VPN, which matches the requirements. However, it does not enforce that the principal is not the pull request's author, which is a required condition. Additionally, the policy does not explicitly deny other actions or merges that do not meet these conditions, but since this is the only permit policy, other actions are implicitly denied. The missing check for the author condition makes the policy too permissive."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p4",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The candidate policy is too broad. It allows merging pull requests to any branch, but the requirement specifies that the target branch name must begin with 'hotfix/'. The policy does not check the branch name. Additionally, the policy does not explicitly deny all other actions, but since only a single permit policy is considered, this is acceptable. However, the missing branch name check means the policy grants more permissions than required."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p0",
+      "gold_approve": true,
+      "model_review": {
+        "approve": true,
+        "reason": "The candidate policy grants permission to merge a pull request only if all specified conditions are met: the principal has the Maintainer role, is not the author, the target branch starts with 'hotfix/', there is at least one approval, and the user is on VPN. No other actions or broader permissions are allowed, and the policy is not too restrictive. This matches the user requirement exactly."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p6",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The candidate policy is too restrictive and does not exactly match the user requirement. The user requirement states that the pull request must have at least one approval, but the policy requires at least two approvals (resource.approvalCount >= 2). This is more restrictive than required. All other conditions are correct, but this mismatch means the policy does not grant exactly the stated permissions."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p2",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too broad: it does not check that the principal holds the 'maintainer' role, which is a required condition. Therefore, users without the maintainer role could merge pull requests, violating the requirement. All other conditions are correctly enforced, but the missing role check makes the policy non-compliant."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p5",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too broad in two ways: (1) It allows merging when approvalCount >= 0, but the requirement is at least one approval (approvalCount >= 1). (2) The policy does not explicitly deny all other actions, which is required by the user requirement stating that no other actions are permitted. Additionally, the policy does not deny merge when any of the conditions are not met; it only permits when they are met, relying on default deny, which is acceptable, but the approvalCount condition is incorrect."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p1",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The candidate policy is too broad because it does not check whether the user is using the VPN, which is a required condition. Therefore, it grants merge permission even when the VPN requirement is not met. Additionally, the policy does not explicitly deny all other actions, but since only a single permit policy is considered, this is acceptable. However, the missing VPN check makes the policy insufficient."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "policy_id": "p3",
+      "gold_approve": false,
+      "model_review": {
+        "approve": false,
+        "reason": "The policy is too broad: it does not check that the principal is not the pull request's author (i.e., it allows authors to merge their own pull requests, which is forbidden by the requirement). Additionally, the policy does not explicitly deny all other actions, but since only a single permit policy is considered, this is acceptable. However, the missing author check is a critical omission."
+      },
+      "error": null,
+      "correct": true
+    }
+  ],
+  "review_correct": {
+    "gpt-4.1-mini-2025-04-14": 7,
+    "gpt-4.1-2025-04-14": 7
+  },
+  "costs": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "calls": 7,
+      "input_tokens": 1680,
+      "output_tokens": 666,
+      "estimated_cost_usd": 0.0017376
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "calls": 7,
+      "input_tokens": 1680,
+      "output_tokens": 652,
+      "estimated_cost_usd": 0.008576
+    }
+  ],
+  "total_estimated_cost_usd": 0.0103136
+}

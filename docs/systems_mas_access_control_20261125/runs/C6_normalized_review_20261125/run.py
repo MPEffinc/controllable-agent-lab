@@ -44,7 +44,8 @@ for policy_id in ("p0", "p1", "p2", "p3", "p4", "p5", "p6"):
     if "approvalCount >= 1" in normalized or "approvalCount >= 2" in normalized:
         old = "(((resource.approvalCount >= 0)) && "
         assert normalized.count(old) == 1, policy_id
-        normalized = normalized.replace(old, "")
+        # The removed conjunct also carries the outer when-expression opening paren.
+        normalized = normalized.replace(old, "(")
     assert normalized != original, policy_id
     (HERE / f"{policy_id}.cedar").write_text(normalized)
     policies[policy_id] = {"original": original, "normalized": normalized,

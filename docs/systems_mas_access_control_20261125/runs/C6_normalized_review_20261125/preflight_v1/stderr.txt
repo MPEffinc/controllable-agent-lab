@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C6_normalized_review_20261125/run.py", line 86, in <module>
+    raise RuntimeError(f"normalization not verified for {policy_id}; no model calls")
+RuntimeError: normalization not verified for p0; no model calls

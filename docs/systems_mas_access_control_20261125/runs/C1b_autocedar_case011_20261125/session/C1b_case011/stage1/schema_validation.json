@@ -1,0 +1,10 @@
+[
+  {
+    "attempt_number": 1,
+    "schema_text": "entity Branch { name: String, protected: Bool };\nentity Group in [Group] {  };\nentity PullRequest { approvalCount: Long, approvedBy: User, author: User, linesChanged: Long, repo: Repository, requiresSecurityReview: Bool, status: PullRequestStatusValue, targetBranch: String };\nentity PullRequestStatusValue enum [\"open\", \"approved\", \"merged\", \"closed\"];\nentity Repository { defaultBranchProtected: Bool, owner: User, sensitivity: Long, status: RepositoryStatusValue, team: Set<User>, topics: Set<String> };\nentity RepositoryStatusValue enum [\"incubating\", \"active\", \"archived\"];\nentity Role enum [\"Developer\", \"Reviewer\", \"Maintainer\", \"SecurityLead\"];\nentity User { clearance: Long, roles: Set<Role> };\naction mergePullRequest appliesTo { principal: [User], resource: [PullRequest], context: {\n    breakGlass: Bool,\n    currentTime: datetime,\n    extendedReviewCompleted: Bool,\n    mergePullRequestScheduledEnd: datetime,\n    mergePullRequestScheduledStart: datetime,\n    onVpn: Bool,\n    reviewPullRequestScheduledEnd: datetime,\n    reviewPullRequestScheduledStart: datetime,\n    securityReviewCompleted: Bool,\n  },\n};\n",
+    "validator_passed": true,
+    "validator_error": "",
+    "llm_was_called": false,
+    "schema_override": true
+  }
+]

@@ -1,0 +1,2 @@
+property progress: start | 0/2 sources complete | open 2 | approved 0 | decisions 0
+property progress: source start | source 1/2 | open 2 | approved 0 | decisions 0

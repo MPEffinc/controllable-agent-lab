@@ -1,0 +1,15 @@
+{
+  "id": "condition.0002.step0001",
+  "kind": "condition",
+  "focus_node_ids": [
+    "src.root.p0002.l3"
+  ],
+  "scope_ids": [
+    "mergePullRequest_User_PullRequest"
+  ],
+  "related_node_ids": [
+    "src.root.p0003.l3",
+    "src.root.p0004.l5"
+  ],
+  "text": "<autocedar_condition_packet id=\"condition.0002.step0001\">\nRequirement to encode:\n[source_id: src.root.p0002.l3; section: root] A user may merge a pull request only if the user holds the maintainer role, is not the pull request\u2019s author, and is using the VPN.\n\nWrite one condition atom for each scope below. AutoCedar joins the conditions of a slice with AND and the slices of a scope with OR, so encode only what this requirement says.\n\nScope mergePullRequest_User_PullRequest: principal User, action mergePullRequest, resource PullRequest (every way to allow it is listed).\n  It is a condition of slice mergeSlice1: User is a maintainer, not the author, uses VPN, pull request has at least one approval, and target branch starts with 'hotfix/'.\n  The other conditions of this slice (encoded separately):\n    [source_id: src.root.p0003.l3; section: root] The pull request must have at least one approval, and its target branch name must begin with \u201chotfix/\u201d.\n  Approved condition atoms of this scope:\n    - none yet\n\nRules for interpretation (apply them to every requirement):\n  [source_id: src.root.p0004.l5; section: root] These are the only permissions: merging is allowed when all these requirements are met; otherwise it is denied, and no other actions are permitted.\n</autocedar_condition_packet>\n"
+}

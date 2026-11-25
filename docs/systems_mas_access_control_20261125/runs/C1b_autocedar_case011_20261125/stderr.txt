@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "<string>", line 10, in <module>
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/cli.py", line 65, in main
+    return args.func(args)
+           ^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/cli.py", line 782, in _cmd_author
+    result = author_pipeline(
+             ^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/pipeline.py", line 1350, in author
+    proposal_result = propose_property_atom(
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/cli.py", line 878, in property_proposer
+    return propose_property_atom(text, schema_path, llm, prior_atoms, prior_decisions)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/property_atomizer.py", line 25, in propose_property_atom
+    return llm.propose_property_atoms(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/llm.py", line 707, in propose_property_atoms
+    return self.propose_condition_atoms(spec_text, schema_text, prior_decisions=prior_decisions)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/llm.py", line 985, in propose_condition_atoms
+    response = self._call_parse(
+               ^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/llm.py", line 1143, in _call_parse
+    result = self._backend.generate_structured(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/providers/openai_api.py", line 94, in generate_structured
+    response = self._client.responses.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/lib/python3.11/site-packages/openai/resources/responses/responses.py", line 1338, in parse
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1332, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1105, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "Invalid schema for response_format 'PropertyAtomsResponse': In context=('properties', 'request_dict'), 'additionalProperties' is required to be supplied and to be false.", 'type': 'invalid_request_error', 'param': 'text.format.schema', 'code': 'invalid_json_schema'}}

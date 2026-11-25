@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/cli.py", line 65, in main
+    return args.func(args)
+           ^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/cli.py", line 782, in _cmd_author
+    result = author_pipeline(
+             ^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/pipeline.py", line 1143, in author
+    intent_map, map_decision, map_note = _build_reviewed_intent_map(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/pipeline.py", line 385, in _build_reviewed_intent_map
+    intent_map = build_map(feedback="", previous=None)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/pipeline.py", line 373, in build_map
+    built = map_intent(outline=outline, schema_actions=mapper_actions(), **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/cli.py", line 920, in <lambda>
+    "map_intent": lambda **kwargs: llm.build_intent_map(**kwargs),
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/llm.py", line 917, in build_intent_map
+    response = self._call_parse(
+               ^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/llm.py", line 1143, in _call_parse
+    result = self._backend.generate_structured(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/third_party/K06-autocedar/autocedar/providers/openai_api.py", line 94, in generate_structured
+    response = self._client.responses.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/lib/python3.11/site-packages/openai/resources/responses/responses.py", line 1338, in parse
+    return self._post(
+           ^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1332, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1105, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported parameter: 'reasoning.effort' is not supported with this model.", 'type': 'invalid_request_error', 'param': 'reasoning.effort', 'code': 'unsupported_parameter'}}

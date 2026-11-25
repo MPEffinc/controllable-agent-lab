@@ -1,0 +1,9 @@
+{"ts": "2026-11-25T12:47:04.843788Z", "event": "input.spec_written", "filename": "requirement.md", "size": 412}
+{"ts": "2026-11-25T12:47:04.868611Z", "event": "stage0.source_index", "nodes": 4, "authorization_relevant_nodes": 4}
+{"ts": "2026-11-25T12:47:04.893563Z", "event": "stage0.intent_dag", "source_nodes": 4, "schema_packets": 0, "property_packets": 0, "schema_atoms": 0, "property_atoms": 0, "schema_gaps": 0}
+{"ts": "2026-11-25T12:47:04.924035Z", "event": "stage0.coverage_ledger", "open_property_nodes": 4, "completed_property_nodes": 0}
+{"ts": "2026-11-25T12:47:04.954502Z", "event": "stage1.schema_validation", "attempts": 1}
+{"ts": "2026-11-25T12:47:04.981132Z", "event": "stage1.proposed", "count": 0}
+{"ts": "2026-11-25T12:47:05.004947Z", "event": "stage1.attributions_logged", "count": 0}
+{"ts": "2026-11-25T12:47:05.028500Z", "event": "stage1.decisions_logged", "count": 0}
+{"ts": "2026-11-25T12:47:05.051303Z", "event": "stage1.schema_written", "size": 1121}

@@ -1,0 +1,128 @@
+{
+  "approved": true,
+  "map": {
+    "scopes": [
+      {
+        "id": "s1",
+        "action": "mergePullRequest",
+        "principal_type": "User",
+        "resource_type": "PullRequest",
+        "exhaustive": true,
+        "summary": "Allows mergePullRequest only if the user holds maintainer role, is not the author, uses VPN; the pull request has approval and its target branch begins with 'hotfix/'."
+      }
+    ],
+    "slices": [
+      {
+        "id": "slice1",
+        "scope_id": "s1",
+        "summary": "Merge pull request when the user holds maintainer role, is not the author, uses VPN; the pull request has at least one approval and target branch starts with 'hotfix/'."
+      }
+    ],
+    "sentences": [
+      {
+        "node_id": "src.root.p0002.l3",
+        "kind": "condition",
+        "slice_ids": [
+          "slice1"
+        ],
+        "restricts_scope_ids": [],
+        "note": "User must hold maintainer role, not be pull request author, and be using VPN."
+      },
+      {
+        "node_id": "src.root.p0003.l3",
+        "kind": "condition",
+        "slice_ids": [
+          "slice1"
+        ],
+        "restricts_scope_ids": [],
+        "note": "Pull request must have at least one approval and target branch name must start with 'hotfix/'."
+      },
+      {
+        "node_id": "src.root.p0004.l5",
+        "kind": "interpretation",
+        "slice_ids": [],
+        "restricts_scope_ids": [
+          "s1"
+        ],
+        "note": "Only these permissions are allowed: merging under stated conditions; all other requests are denied and no other actions permitted."
+      }
+    ]
+  },
+  "decision": {
+    "atom_name": "intent_map",
+    "action": "approve",
+    "reason": "",
+    "edit_delta": {
+      "review_channel": "model",
+      "model_review": "The map correctly captures all access constraints as conditions under the proper scope and slice, marks the only ways to allow mergePullRequest as exhaustive as specified, identifies interpretation sentences properly, and leaves the title sentence as carrying no requirement.",
+      "review_model": "openai:gpt-4.1-mini-2025-04-14"
+    },
+    "intent_acknowledged_by_user": false,
+    "symbolic_verified": false
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "map": {
+        "scopes": [
+          {
+            "id": "s1",
+            "action": "mergePullRequest",
+            "principal_type": "User",
+            "resource_type": "PullRequest",
+            "exhaustive": true,
+            "summary": "Allows mergePullRequest only if the user holds maintainer role, is not the author, uses VPN; the pull request has approval and its target branch begins with 'hotfix/'."
+          }
+        ],
+        "slices": [
+          {
+            "id": "slice1",
+            "scope_id": "s1",
+            "summary": "Merge pull request when the user holds maintainer role, is not the author, uses VPN; the pull request has at least one approval and target branch starts with 'hotfix/'."
+          }
+        ],
+        "sentences": [
+          {
+            "node_id": "src.root.p0002.l3",
+            "kind": "condition",
+            "slice_ids": [
+              "slice1"
+            ],
+            "restricts_scope_ids": [],
+            "note": "User must hold maintainer role, not be pull request author, and be using VPN."
+          },
+          {
+            "node_id": "src.root.p0003.l3",
+            "kind": "condition",
+            "slice_ids": [
+              "slice1"
+            ],
+            "restricts_scope_ids": [],
+            "note": "Pull request must have at least one approval and target branch name must start with 'hotfix/'."
+          },
+          {
+            "node_id": "src.root.p0004.l5",
+            "kind": "interpretation",
+            "slice_ids": [],
+            "restricts_scope_ids": [
+              "s1"
+            ],
+            "note": "Only these permissions are allowed: merging under stated conditions; all other requests are denied and no other actions permitted."
+          }
+        ]
+      },
+      "decision": {
+        "atom_name": "intent_map",
+        "action": "approve",
+        "reason": "",
+        "edit_delta": {
+          "review_channel": "model",
+          "model_review": "The map correctly captures all access constraints as conditions under the proper scope and slice, marks the only ways to allow mergePullRequest as exhaustive as specified, identifies interpretation sentences properly, and leaves the title sentence as carrying no requirement.",
+          "review_model": "openai:gpt-4.1-mini-2025-04-14"
+        },
+        "intent_acknowledged_by_user": false,
+        "symbolic_verified": false
+      }
+    }
+  ]
+}

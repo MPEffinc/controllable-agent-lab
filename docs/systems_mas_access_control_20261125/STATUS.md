@@ -2,7 +2,7 @@
 
 ## 현재 검증 질문
 
-H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 **자연어 승인→정책 target의 의미 오류를 독립 oracle·원본 검증기가 같은 입력에서 얼마나 찾아내며 정상 업무를 유지하는가**이다. 자동 event/lineage 수집의 정확·비용(D), 실제 위임 대안 적용(A), 교차 계층 활성 정책(B)을 순차 대조한다.
+H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 **자연어 승인→정책 target의 의미 오류를 독립 oracle·원본 검증기가 같은 입력에서 얼마나 찾아내며 정상 업무를 유지하는가**이다. 자동 event/lineage 수집의 정확·비용(D), 실제 위임 대안 적용(A), 교차 계층 활성 정책(B)을 순차 대조한다. AutoCedar full author C1–C1c는 후보 생성 전 종료됐고 재시도 상한에 도달했으므로, C2는 원본 verifier와 독립 gold 요청 oracle로 분리한다.
 
 2026-11-25 후속 지시의 [Phase 1 H1–H19 전수 재감사](phase1_full_reassessment.md)를 완료했다. 원문·원본 메서드·독립 fixture와 강한 대안을 19행에서 구분하고 Track A–D별 반증 질문을 재선정했다. B1/B3/H17을 중심으로 고정하지 않는다. AutoCedar는 Python 3.11+, Cedar/SymCC/CVC5 및 모델 설정이 필요한 실제 authoring 경로를 확인했다. 해당 전체 경로의 즉시 실행 가능성은 추가 환경 감사 대상이다.
 
@@ -19,12 +19,14 @@ H1–H19를 네 Track으로 전수 재감사한 결과, 현재 우선 질문은 
 - `local/progent-vm/.env`의 API key는 값 출력 없이 실제 모델 endpoint로 확인했다. [B1 실제 LLM/로컬 효과](runs/B1_shared_worker_llm_20261125/result.md)는 12 calls, 비용 상한 USD 0.0007984. A→B 요청에서 ALPS-only는 합성 B row를 변경했고, task/service PEP는 차단하며 정상 A/B는 보존했다. 비신뢰 row instruction은 이번 모델 실행에서 무시됐다. 이 고정 구성의 새 메커니즘 필요 가설은 기각.
 - [B2 실제 LLM+MAP-Graph 원본 메서드](runs/B2_mapgraph_llm_20261125/result.md)는 2 calls, USD 0.0003232. **누적 USD 0.0011216 / 5**, 외부 서비스 effect `NOT_RUN`. 모델은 tool call이 아니라 JSON 텍스트를 반환했다. 초기 tool-call 해석을 수정해 원저자 parser를 저장 응답에 API 없이 재생하니 둘 다 task의 `expected_action` fallback으로 gate에 들어갔고, revoked source는 정확 edge adapter에서 BLOCK, 원본 support에서는 ALLOW였다. 일반 거부 문장도 fallback simulated ALLOW인 반례 확인. 이는 저자 41건 원인이나 실제 provider effect가 아니다. [A2b 공개 CSV 감사](runs/A2b_mapgraph_result_audit_20261125/result.md)는 41/450 label을 확인했지만 원시 출력이 공개 archive에서 빠져 fallback 비율은 `NOT_ESTABLISHED`로 닫았다.
 - [B3 ARES ARP 관계식 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)는 API 비용 0, SQLite 실제 전후 상태 6행을 남겼다. 가능 경로만으로 preflight하면 정상 branch 0/1·금지 효과 0; origin-aware effect PEP는 정상 1/1·금지 효과 0. ARES 원저자 LAM·4개 cloud 구현 재현이 아니며 그 정상성은 `UNVERIFIED`.
+- [K06 AutoCedar C1–C1c](runs/C1c_autocedar_case011_20261125/result.md): 원본 API에서 unsupported reasoning, strict schema incompatibility; 실험 adapter로 3 calls 진행 후 model atom의 필수 `rationale` 누락. 후보 및 의미·effect 판정 불가. 세 시도 원시 로그 보존. 추가 추정 $0.0032656, **누적 $0.0043872 / $5**. 동일 author 재시도는 중단.
+- [A5 Agent libOS v1.6.0 원저자 네 테스트](runs/A5_agent_libos_manifest_20261125/result.md): 고정 SHA, lock 의존성, exit 0, 4 passed. Host manifest hash/영속화, child parent intersection, effect ceiling 확대 거부, 빈 ceiling deny를 관측. 내부 decision만이며 provider effect `DECISION_ONLY`. 현행 강한 대안으로 단순 자식 권한 확대 Need를 기각.
 - **H19 정책 목표 감시:** ARES의 사용자 직접 DB Deny를 모든 대리 DB effect 금지로 해석하려면 별도 승인 의도 명세가 필요하다. [AWS Lambda 역할 문서](https://docs.aws.amazon.com/lambda/latest/dg/concepts-basics.html)는 함수가 별도 execution role로 실행됨을 확인한다. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html)/[RFC 9396](https://www.rfc-editor.org/rfc/rfc9396.html)과 K04/K15는 위임/세부 승인 대안이므로 새 Need는 `UNVERIFIED`.
 
 ## 다음 실행
 
-1. Track C: K06 원본 gold case/후보 trace의 접근성 및 `verify`/`synthesize` 실제 환경을 감사하고, 동일 문장·독립 gold·정상 요청·비인가 요청을 고정한 최소 실험을 사전등록한다. 19개 저자 오류 trace가 없으면 동일 후보 재현이라고 부르지 않는다.
-2. Track D: K06보다 높은 정보 가치가 확인되면 순서를 바꿀 수 있다. H10/H12/H14의 신뢰 event/lineage 자동 수집과 WTB 등 강한 대안의 같은 입력 성능을 준비한다.
-3. Track A: 현행 Agent libOS 원본 `TaskAuthorityManifest`의 최소 단위/집행 시험을 고정 SHA로 실행하고 논문 평가 version과 구별한다. H17 raw 41건은 현재 공개되지 않아 반복 모델 호출을 보류한다.
+1. Track C2: K06 원본 `verify`/`synthesize` 입력 형식을 확인한 뒤 gold와 의미가 다른 정책 target을 같은 case-011에서 검증하고, 독립 Cedar 요청 oracle로 정상·비인가 효과 차이를 확인한다. 검증기가 실제 보장하는 성질만 보고한다.
+2. Track D1: H10/H12/H14의 신뢰 event/lineage 자동 수집과 WTB 등 강한 대안을 같은 입력에서 준비한다. 정확 evidence를 이미 준 fixture를 반복하지 않는다.
+3. Track A5+: 현행 Agent libOS의 실제 provider effect 경로와 동적 철회 테스트를 확인해 내부 decision 결과의 한계를 좁힌다. H17 raw 41건은 공개되지 않아 반복 모델 호출을 보류한다.
 
 Git 체크포인트: 현재 브랜치 `exp/20261125-systems-mas-access-control`. 최신 commit은 `git log -1 --oneline`, 원격 동기화는 `git ls-remote origin refs/heads/exp/20261125-systems-mas-access-control`로 확인한다. 이 세션의 각 단계는 실행 전에 사전등록 commit, 실행 뒤 결과 commit을 별도로 push했다. 이전 자료/원저자 clone은 변경하지 않았다.

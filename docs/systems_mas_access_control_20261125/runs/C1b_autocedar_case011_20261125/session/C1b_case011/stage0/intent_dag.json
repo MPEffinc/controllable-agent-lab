@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "document",
+      "kind": "document",
+      "summary": "raw requirements document"
+    },
+    {
+      "id": "src.root.p0001.l1",
+      "text": "Pull Request Merge Access",
+      "start_line": 1,
+      "end_line": 1,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 1,
+      "kind": "source"
+    },
+    {
+      "id": "src.root.p0002.l3",
+      "text": "A user may merge a pull request only if the user holds the maintainer role, is not the pull request\u2019s author, and is using the VPN.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 2,
+      "kind": "source"
+    },
+    {
+      "id": "src.root.p0003.l3",
+      "text": "The pull request must have at least one approval, and its target branch name must begin with \u201chotfix/\u201d.",
+      "start_line": 3,
+      "end_line": 3,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 3,
+      "kind": "source"
+    },
+    {
+      "id": "src.root.p0004.l5",
+      "text": "These are the only permissions: merging is allowed when all these requirements are met; otherwise it is denied, and no other actions are permitted.",
+      "start_line": 5,
+      "end_line": 5,
+      "heading_path": [],
+      "node_type": "requirement",
+      "parent_id": null,
+      "ordinal": 4,
+      "kind": "source"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document",
+      "target": "src.root.p0001.l1",
+      "type": "contains"
+    },
+    {
+      "source": "document",
+      "target": "src.root.p0002.l3",
+      "type": "contains"
+    },
+    {
+      "source": "document",
+      "target": "src.root.p0003.l3",
+      "type": "contains"
+    },
+    {
+      "source": "document",
+      "target": "src.root.p0004.l5",
+      "type": "contains"
+    },
+    {
+      "source": "src.root.p0001.l1",
+      "target": "src.root.p0002.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0002.l3",
+      "target": "src.root.p0003.l3",
+      "type": "next_sibling"
+    },
+    {
+      "source": "src.root.p0003.l3",
+      "target": "src.root.p0004.l5",
+      "type": "next_sibling"
+    }
+  ],
+  "summary": {
+    "source_nodes": 4,
+    "schema_packets": 0,
+    "property_packets": 0,
+    "schema_atoms": 0,
+    "property_atoms": 0,
+    "schema_gaps": 0
+  }
+}

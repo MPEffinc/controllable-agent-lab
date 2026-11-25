@@ -1,0 +1,124 @@
+{
+  "approved": true,
+  "map": {
+    "scopes": [
+      {
+        "id": "mergePullRequest_User_PullRequest",
+        "action": "mergePullRequest",
+        "principal_type": "User",
+        "resource_type": "PullRequest",
+        "exhaustive": true,
+        "summary": "Merging a pull request is allowed only if all specified conditions are met; no other actions are allowed."
+      }
+    ],
+    "slices": [
+      {
+        "id": "mergeSlice1",
+        "scope_id": "mergePullRequest_User_PullRequest",
+        "summary": "User is a maintainer, not the author, uses VPN, pull request has at least one approval, and target branch starts with 'hotfix/'."
+      }
+    ],
+    "sentences": [
+      {
+        "node_id": "src.root.p0002.l3",
+        "kind": "condition",
+        "slice_ids": [
+          "mergeSlice1"
+        ],
+        "restricts_scope_ids": [],
+        "note": ""
+      },
+      {
+        "node_id": "src.root.p0003.l3",
+        "kind": "condition",
+        "slice_ids": [
+          "mergeSlice1"
+        ],
+        "restricts_scope_ids": [],
+        "note": ""
+      },
+      {
+        "node_id": "src.root.p0004.l5",
+        "kind": "interpretation",
+        "slice_ids": [],
+        "restricts_scope_ids": [],
+        "note": ""
+      }
+    ]
+  },
+  "decision": {
+    "atom_name": "intent_map",
+    "action": "approve",
+    "reason": "",
+    "edit_delta": {
+      "review_channel": "model",
+      "model_review": "All conditions constraining access are correctly included and attached to the proper slice; no conditions appear under sentences with no requirement; no title or metadata sentences are marked as conditions; the scope is correctly marked as exhaustive per the document's statement; rules for interpretation are properly identified; and the slices exactly match all ways the document allows merging, with no missing or misplaced conditions.",
+      "review_model": "openai:gpt-4.1-mini-2025-04-14"
+    },
+    "intent_acknowledged_by_user": false,
+    "symbolic_verified": false
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "map": {
+        "scopes": [
+          {
+            "id": "mergePullRequest_User_PullRequest",
+            "action": "mergePullRequest",
+            "principal_type": "User",
+            "resource_type": "PullRequest",
+            "exhaustive": true,
+            "summary": "Merging a pull request is allowed only if all specified conditions are met; no other actions are allowed."
+          }
+        ],
+        "slices": [
+          {
+            "id": "mergeSlice1",
+            "scope_id": "mergePullRequest_User_PullRequest",
+            "summary": "User is a maintainer, not the author, uses VPN, pull request has at least one approval, and target branch starts with 'hotfix/'."
+          }
+        ],
+        "sentences": [
+          {
+            "node_id": "src.root.p0002.l3",
+            "kind": "condition",
+            "slice_ids": [
+              "mergeSlice1"
+            ],
+            "restricts_scope_ids": [],
+            "note": ""
+          },
+          {
+            "node_id": "src.root.p0003.l3",
+            "kind": "condition",
+            "slice_ids": [
+              "mergeSlice1"
+            ],
+            "restricts_scope_ids": [],
+            "note": ""
+          },
+          {
+            "node_id": "src.root.p0004.l5",
+            "kind": "interpretation",
+            "slice_ids": [],
+            "restricts_scope_ids": [],
+            "note": ""
+          }
+        ]
+      },
+      "decision": {
+        "atom_name": "intent_map",
+        "action": "approve",
+        "reason": "",
+        "edit_delta": {
+          "review_channel": "model",
+          "model_review": "All conditions constraining access are correctly included and attached to the proper slice; no conditions appear under sentences with no requirement; no title or metadata sentences are marked as conditions; the scope is correctly marked as exhaustive per the document's statement; rules for interpretation are properly identified; and the slices exactly match all ways the document allows merging, with no missing or misplaced conditions.",
+          "review_model": "openai:gpt-4.1-mini-2025-04-14"
+        },
+        "intent_acknowledged_by_user": false,
+        "symbolic_verified": false
+      }
+    }
+  ]
+}

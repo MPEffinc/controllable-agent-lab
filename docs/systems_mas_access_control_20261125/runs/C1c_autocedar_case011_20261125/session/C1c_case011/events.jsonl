@@ -1,0 +1,10 @@
+{"ts": "2026-11-25T12:50:34.302464Z", "event": "input.spec_written", "filename": "requirement.md", "size": 412}
+{"ts": "2026-11-25T12:50:34.327615Z", "event": "stage0.source_index", "nodes": 4, "authorization_relevant_nodes": 4}
+{"ts": "2026-11-25T12:50:34.351544Z", "event": "stage0.intent_dag", "source_nodes": 4, "schema_packets": 0, "property_packets": 0, "schema_atoms": 0, "property_atoms": 0, "schema_gaps": 0}
+{"ts": "2026-11-25T12:50:34.375853Z", "event": "stage0.coverage_ledger", "open_property_nodes": 4, "completed_property_nodes": 0}
+{"ts": "2026-11-25T12:50:34.405310Z", "event": "stage1.schema_validation", "attempts": 1}
+{"ts": "2026-11-25T12:50:34.430212Z", "event": "stage1.proposed", "count": 0}
+{"ts": "2026-11-25T12:50:34.453865Z", "event": "stage1.attributions_logged", "count": 0}
+{"ts": "2026-11-25T12:50:34.476882Z", "event": "stage1.decisions_logged", "count": 0}
+{"ts": "2026-11-25T12:50:34.500661Z", "event": "stage1.schema_written", "size": 1121}
+{"ts": "2026-11-25T12:50:40.071519Z", "event": "stage0.context_packet", "packet_id": "condition.0002.step0001", "kind": "condition", "focus_node_ids": ["src.root.p0002.l3"]}

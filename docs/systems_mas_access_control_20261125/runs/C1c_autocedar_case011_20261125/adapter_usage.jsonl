@@ -1,0 +1,3 @@
+{"operation": "IntentMapResponse", "request_id": "resp_0476708062745474016b06d99bb99087d0bb19e74c3c375924", "input_tokens": 1363, "output_tokens": 287, "estimated_usd": 0.0010044, "cumulative_estimated_usd": 0.0010044}
+{"operation": "MapReviewResponse", "request_id": "resp_0ff5dc983c2cf667016b06d99ea6bc87d0ba424550ea0e09c7", "input_tokens": 1600, "output_tokens": 82, "estimated_usd": 0.0007712, "cumulative_estimated_usd": 0.0017756}
+{"operation": "PropertyAtomsResponse", "request_id": "resp_0fe61f25eee11779016b06d9a02b0887d09715717bc932c1b1", "input_tokens": 2477, "output_tokens": 312, "estimated_usd": 0.00149, "cumulative_estimated_usd": 0.0032656}

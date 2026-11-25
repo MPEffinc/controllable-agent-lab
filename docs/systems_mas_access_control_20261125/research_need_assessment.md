@@ -37,6 +37,8 @@
 
 [C9](runs/C9_grounded_review_20261125/result.md)는 공식 연산자 의미만 추가했지만 두 모델×원본/정규화에서 승인 **1/4**였다. 두 응답은 자연어 설명에서 승인해야 한다고 결론 내리면서 기계 판정 `approve=false`를 냈다. 따라서 단순 문서 grounding도 고정 입력의 reviewer 오류를 안정적으로 해결하지 못했다. [H21](h21_target_review_semantics.md)의 좁은 독립 전체 정책 reviewer Gap은 유지하되, 실제 AutoCedar atom reviewer·human review의 오류라고 확대하지 않는다. [AutoCedar v2](https://arxiv.org/html/2607.03656v2)는 197개 완료 중 19개 target plan이 gold와 달랐고, 14명 연구는 artifact 선호도이며 실제 사람 atom review를 평가하지 않았다고 명시한다. [Reparo](https://arxiv.org/html/2610.41800v1)는 독립 요청 oracle과 사람 표본 검토의 강한 대안이므로 **독립 신규 Need는 여전히 `UNVERIFIED`**다.
 
+[C10](runs/C10_oracle_refinement_bias_20261125/result.md)은 Reparo식 독립 oracle의 한 위험을 저자 원본이 아닌 통제 fixture에서 반박했다. 공식 gold는 `case-101` 자손 두 요청을 허용하지만 equality-only 후보는 거부했다. 모델 oracle은 blind와 잘못된 후보의 decision/불일치 정보를 본 arm에서 **같은 자손 기대 ALLOW**를 유지해, 정책 노출로 gold label을 지우는 실패는 이 조건에서 없었다. 다른 무관 그룹의 강한 모델 ALLOW 2건은 입력이 부모 간선 목록의 완전성을 명시하지 않아 모델 오류와 정보 누락을 구별할 수 없다. C10b에서 그 사실만 보충한다. Reparo의 실제 oracle refinement 결과가 아님.
+
 [ARES 원문 §III](https://cclab.info/papers/kor/2026_shin_cisc-s.pdf)는 최초 caller IAM Deny·함수 호출 관계·자원 도달성을 결합해 함수 실행 전 차단하고 caller context를 후속 함수에 전파한다. 따라서 H15에서 origin 권위 전파 기술이 없다는 주장은 성립하지 않는다. 명시 ARP 관계가 invocation별 branch의 실제 효과를 판별할 수 있는지, 정상 branch를 과차단하는지는 [B3 독립 fixture](runs/B3_ares_reachability_fixture_20261125/result.md)로 좁혀 봤다. 원본 LAM의 실제 행위는 공개 코드 없이 `UNVERIFIED`다.
 [B3 결과](runs/B3_ares_reachability_fixture_20261125/result.md)는 **관계식만 적용한 경우** 정상 branch 과차단 1/1을 확인했다. 별도 origin-aware effect PEP는 정상 1/1과 금지 DB 효과 0을 함께 달성했다. ARES 원저자 구현의 정상성 실패나 새 메커니즘 Need를 이 fixture에서 도출하지 않는다.
 

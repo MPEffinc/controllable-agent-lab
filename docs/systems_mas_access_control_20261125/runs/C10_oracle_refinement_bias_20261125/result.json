@@ -1,0 +1,476 @@
+{
+  "kind": "INDEPENDENT_ORACLE_DISAGREEMENT_EXPOSURE_CONTROL",
+  "source_commit": "a0cf180977d799cf943514b67ffc260fc579b9a5",
+  "reparo_reference": "https://arxiv.org/html/2610.41800v1",
+  "cli_results": [
+    {
+      "case_name": "same",
+      "policy": "gold",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/gold.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_same.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-same\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "gold_expected": "ALLOW"
+    },
+    {
+      "case_name": "same",
+      "policy": "equality_only",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C10_oracle_refinement_bias_20261125/equality_only_candidate.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_same.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-same\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "gold_expected": "ALLOW"
+    },
+    {
+      "case_name": "direct_child",
+      "policy": "gold",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/gold.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_direct_child.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-direct_child\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "gold_expected": "ALLOW"
+    },
+    {
+      "case_name": "direct_child",
+      "policy": "equality_only",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C10_oracle_refinement_bias_20261125/equality_only_candidate.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_direct_child.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-direct_child\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "gold_expected": "ALLOW"
+    },
+    {
+      "case_name": "transitive_grandchild",
+      "policy": "gold",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/gold.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_transitive_grandchild.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-transitive_grandchild\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 0,
+      "stdout": "\nALLOW\n\nnote: this decision was due to the following policies:\n  policy0\n\n",
+      "stderr": "",
+      "decision": "ALLOW",
+      "gold_expected": "ALLOW"
+    },
+    {
+      "case_name": "transitive_grandchild",
+      "policy": "equality_only",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C10_oracle_refinement_bias_20261125/equality_only_candidate.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_transitive_grandchild.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-transitive_grandchild\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "gold_expected": "ALLOW"
+    },
+    {
+      "case_name": "unrelated",
+      "policy": "gold",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/gold.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_unrelated.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-unrelated\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "gold_expected": "DENY"
+    },
+    {
+      "case_name": "unrelated",
+      "policy": "equality_only",
+      "argv": [
+        "/home/cclab/controllable_agent/docs/access_control_empirical_20261124/runs/K06_verify_20261124/env/cedar-policy-cli-experimental-x86_64-unknown-linux-gnu/cedar",
+        "authorize",
+        "--policies",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C10_oracle_refinement_bias_20261125/equality_only_candidate.cedar",
+        "--schema",
+        "/home/cclab/controllable_agent/third_party/K06-autocedar/dataset/gold-reference-dataset/cases/case-101/gold/schema.cedarschema",
+        "--entities",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/entities_unrelated.json",
+        "--principal",
+        "User::\"officer\"",
+        "--action",
+        "Action::\"approveClearToClose\"",
+        "--resource",
+        "EscrowFile::\"escrow-unrelated\"",
+        "--context",
+        "/home/cclab/controllable_agent/docs/systems_mas_access_control_20261125/runs/C8_cedar_hierarchy_effect_20261125/context.json",
+        "--verbose"
+      ],
+      "exit_code": 2,
+      "stdout": "\nDENY\n\nnote: no policies applied to this request\n",
+      "stderr": "",
+      "decision": "DENY",
+      "gold_expected": "DENY"
+    }
+  ],
+  "arm_order": {
+    "same": [
+      "blind",
+      "exposed"
+    ],
+    "direct_child": [
+      "exposed",
+      "blind"
+    ],
+    "transitive_grandchild": [
+      "blind",
+      "exposed"
+    ],
+    "unrelated": [
+      "exposed",
+      "blind"
+    ]
+  },
+  "reviews": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "same",
+      "arm": "blind",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "ALLOW",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "User holds the TitleOfficer role and the file's region 'root' is the same as the user's assigned group 'root'. The file status is 'funded', held amount is 0 cents (>= 0), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time '2026-11-25T00:00:00Z' is before the closing date '2026-12-01T00:00:00Z'. All conditions for approval are met."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "same",
+      "arm": "exposed",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "ALLOW",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The user's assigned group 'root' is the same as the file's region 'root', satisfying the group requirement. The file status is 'funded', held amount is 0 cents (>= 0), payee count is 0 (>= 0), title is cleared, and lien status does not contain 'tax_lien'. The request time (2026-11-25) is before the closing date (2026-12-01). All conditions for approval are met."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "direct_child",
+      "arm": "exposed",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The file's region 'child' is a descendant of the user's assigned group 'root' as per the group hierarchy. The file status is 'funded', held amount is 0 cents (>= 0), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time (2026-11-25) is before the closing date (2026-12-01). All conditions for approval are met."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "direct_child",
+      "arm": "blind",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "User holds the TitleOfficer role and the file's region 'child' is a descendant of the user's assigned group 'root'. The file status is 'funded', held amount is 0 cents (>= 0), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time (2026-11-25) is on or before the closing date (2026-12-01). All conditions are met for approval."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "transitive_grandchild",
+      "arm": "blind",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "User holds the TitleOfficer role and the file's region 'leaf' is a descendant of the user's assigned group 'root'. The file status is 'funded', held amount is 0 cents (>= 0), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time (2026-11-25) is on or before the closing date (2026-12-01). All conditions are met for approval."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "transitive_grandchild",
+      "arm": "exposed",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The file's region 'leaf' is a descendant of the user's assigned group 'root' via the group hierarchy (root -> child -> leaf). The file status is 'funded', held amount is 0 cents (>= 0), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time (2026-11-25) is before or on the closing date (2026-12-01). All conditions for approval are met."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "unrelated",
+      "arm": "exposed",
+      "gold_expected": "DENY",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "DENY",
+        "reason": "The user's assigned group is 'root' and the file's region is 'south', but 'south' is not in the group hierarchy provided (which only includes 'root', 'child', and 'leaf'). Therefore, the file's region is neither the same group as nor a descendant of the user's assigned group, violating the group membership requirement for approval."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "case_name": "unrelated",
+      "arm": "blind",
+      "gold_expected": "DENY",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "DENY",
+        "reason": "User role is TitleOfficer which is allowed, but the file's region 'south' is not the same as or a descendant of the user's assigned group 'root' based on the provided group hierarchy edges. The group hierarchy only includes 'root' -> 'child' -> 'leaf', and 'south' is not connected. Therefore, the region requirement is not met."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "same",
+      "arm": "blind",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "ALLOW",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role and is assigned to the 'root' group. The file's region is also 'root', which is the same group. The file has funded status, a held amount of 0 cents (which is at least $0.00), a payee count of 0 (at least zero), cleared title, and no 'tax_lien' in lien status. The request time is before the closing date. All requirements are satisfied."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "same",
+      "arm": "exposed",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "ALLOW",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role and is assigned to the 'root' group. The file's region is also 'root', which is the same group. The file status is 'funded', held amount is 0 cents (>= $0.00), payee count is 0 (>= 0), title is cleared, and lien status does not contain 'tax_lien'. The request time is before the closing date. All requirements are satisfied, so approval is permitted."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "direct_child",
+      "arm": "exposed",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The file's region ('child') is a descendant of the user's assigned group ('root'), as shown by the group_parent_edges. The file status is 'funded', held amount is 0 cents (>= $0.00), payee count is 0 (>= 0), title is cleared, lien_status does not contain 'tax_lien', and the request time is before the closing date. All requirements are satisfied, so approval is allowed."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "direct_child",
+      "arm": "blind",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The file's region ('child') is a descendant of the user's assigned group ('root') according to the group_parent_edges. The file status is 'funded', held amount is 0 cents (>= $0.00), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time is before the closing date. All requirements are satisfied."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "transitive_grandchild",
+      "arm": "blind",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role. The file's region ('leaf') is a descendant of the user's assigned group ('root') via the group_parent_edges. The file is funded, has a held amount of 0 cents (>= $0.00), payee count is 0 (>= 0), title is cleared, lien_status does not contain 'tax_lien', and the request time is before the closing date. All requirements are satisfied."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "transitive_grandchild",
+      "arm": "exposed",
+      "gold_expected": "ALLOW",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role. The file's region 'leaf' is a descendant of the user's assigned group 'root' (root -> child -> leaf). The file has funded status, held amount is 0 cents (>= $0.00), payee count is 0 (>= 0), title is cleared, lien status does not contain 'tax_lien', and the request time is before the closing date. All requirements are satisfied, so approval is permitted."
+      },
+      "error": null,
+      "correct": true
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "unrelated",
+      "arm": "exposed",
+      "gold_expected": "DENY",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role, which is permitted. The file's region 'south' is a descendant of the user's assigned group 'root' (since 'root' is an ancestor of all groups). The file is funded, held amount is $0.00 (0 cents), payee count is 0, title is cleared, lien status does not contain 'tax_lien', and the request time is before the closing date. All requirements are satisfied."
+      },
+      "error": null,
+      "correct": false
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "case_name": "unrelated",
+      "arm": "blind",
+      "gold_expected": "DENY",
+      "candidate_decision": "DENY",
+      "response": {
+        "decision": "ALLOW",
+        "reason": "The user holds the TitleOfficer role. The file's region 'south' is a descendant of the user's assigned group 'root' (since all groups are ultimately descendants of 'root'). The file has funded status, held amount is $0.00 (0 cents), payee count is 0, title is cleared, lien status does not contain 'tax_lien', and the request time is before the closing date. All requirements are satisfied."
+      },
+      "error": null,
+      "correct": false
+    }
+  ],
+  "costs": [
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "calls": 8,
+      "input_tokens": 3173,
+      "output_tokens": 898,
+      "estimated_cost_usd": 0.002706
+    },
+    {
+      "model": "gpt-4.1-2025-04-14",
+      "calls": 8,
+      "input_tokens": 3173,
+      "output_tokens": 880,
+      "estimated_cost_usd": 0.013386
+    }
+  ],
+  "total_estimated_cost_usd": 0.016092
+}

@@ -1,0 +1,1 @@
+{"calls": 16, "accuracy": {"blind": 7, "exposed": 7}, "errors": [["gpt-4.1-2025-04-14", "unrelated", "exposed", "ALLOW"], ["gpt-4.1-2025-04-14", "unrelated", "blind", "ALLOW"]], "total_estimated_cost_usd": 0.016092}
